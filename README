@@ -1,0 +1,21 @@
+      ██            ██     ████ ██  ██                
+     ░██           ░██    ░██░ ░░  ░██                
+     ░██  ██████  ██████ ██████ ██ ░██  █████   ██████
+  ██████ ██░░░░██░░░██░ ░░░██░ ░██ ░██ ██░░░██ ██░░░░ 
+ ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████ 
+░██  ░██░██   ░██  ░██    ░██  ░██ ░██░██░░░░  ░░░░░██
+░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████ 
+ ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░ 
+ 
+  ▓▓▓▓▓▓▓▓▓▓
+ ░▓ about  ▓ custom linux config files
+ ░▓ author ▓ xero <x@xero.nu>
+ ░▓ code   ▓ http://code.xero.nu/dotfiles
+ ░▓ mirror ▓ http://github.com/xero/dotfiles
+ ░▓▓▓▓▓▓▓▓▓▓
+ ░░░░░░░░░░
+
+ .Xdefaults > urxvt ui/color settings
+ .zshrc     > z shell settings, aliases, prompts
+ fun/       > term color, sys info, and other misc scripts
+ .ncmpcpp   > ncurses mpc++ ui/color settings
