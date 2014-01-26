@@ -1,3 +1,17 @@
+#  ██████████   █████ 
+# ░░██░░██░░██ ██░░░██
+#  ░██ ░██ ░██░██  ░░ 
+#  ░██ ░██ ░██░██   ██
+#  ███ ░██ ░██░░█████ 
+# ░░░  ░░  ░░  ░░░░░ 
+#
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ xero <x@xero.nu>
+# ░▓ code   ▓ http://code.xero.nu/dotfiles
+# ░▓ mirror ▓ http://github.com/xero/dotfiles
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+#
 [Midnight-Commander]
 verbose=1
 pause_after_run=1
