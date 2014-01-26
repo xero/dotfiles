@@ -15,7 +15,9 @@
  ░▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░
 
- .Xdefaults > urxvt ui/color settings
- .zshrc     > z shell settings, aliases, prompts
- fun/       > term color, sys info, and other misc scripts
- .ncmpcpp   > ncurses mpc++ ui/color settings
+ Xdefaults      > urxvt ui/color settings
+ zshrc          > z shell settings, aliases, prompts
+ fun            > term color, sys info, and other misc scripts
+ ncmpcpp        > ncurses mpc++ ui/color settings
+ mc             > midnight commander ui colors
+ sublime-text-2 > blaque theme ui colors
