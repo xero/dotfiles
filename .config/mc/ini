@@ -12,6 +12,7 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 #
+
 [Midnight-Commander]
 verbose=1
 pause_after_run=1
@@ -94,16 +95,16 @@ keymap=mc.keymap
 skin=default
 
 [Layout]
-message_visible=1
+message_visible=0
 keybar_visible=1
-xterm_title=1
+xterm_title=0
 output_lines=0
-command_prompt=1
+command_prompt=0
 menubar_visible=1
 free_space=1
 horizontal_split=0
 vertical_equal=1
-left_panel_size=84
+left_panel_size=57
 horizontal_equal=1
 top_panel_size=1
 
@@ -120,7 +121,7 @@ clipboard_paste=
 
 [Colors]
 #base_color=linux:normal=white,black:marked=yellow,black:input=,green:menu=black:menusel=white:menuhot=red,:menuhotsel=black,red:dfocus=white,black:dhotnormal=white,black:dhotfocus=white,black:executable=,black:directory=white,black:link=white,black:device=white,black:special=white,black:core=,black:stalelink=red,black:editnormal=white,black
-base_color=normal=white,default:selected=white,blue:marked=brightcyan,default:markselect=brightcyan,blue:errors=white,red:input=white,default:reverse=black,lightgray:menu=brightcyan,blue:menusel=blue,lightgray:menuhot=red,blue:menuhotsel=red,lightgray:gauge=black,brightcyan:dnormal=brightcyan,blue:dfocus=blue,lightgray:dhotnormal=brightred,blue:dhotfocus=brightred,lightgray:helpnormal=brightcyan,blue:helpbold=white,blue:helpitalic=brightgreen,blue:helpslink=brightred,blue:helplink=yellow,blue:executable=brightgreen,default:directory=brightblue,default:link=gray,default:special=magenta,default:device=yellow,default:core=brightred,default:stalelink=brown,default:viewunderline=lightgray,default:editnormal=lightgray,default:editbold=white,default:editmarked=blue,lightgray
+base_color=normal=gray,default:selected=black,cyan:marked=cyan,black:markselect=cyan,blue:errors=white,red:input=white,default:reverse=black,gray:menu=cyan,black:menusel=cyan,black:menuhot=cyan,black:menuhotsel=cyan,grey:gauge=black,cyan:dnormal=cyan,black:dfocus=black,gray:dhotnormal=black,cyan:dhotfocus=lightcyan,black:helpnormal=cyan,black:helpbold=white,blue:helpitalic=brightgreen,blue:helpslink=black,blue:helplink=yellow,blue:executable=brightgreen,default:directory=brightblue,default:link=gray,default:special=magenta,default:device=green,default:core=brightred,default:stalelink=brown,cyan:viewunderline=lightgray,cyan:editnormal=lightgray,cyan:editbold=white,cyan:editmarked=black,gray
 xterm=
 color_terminals=
 
@@ -145,6 +146,8 @@ filetype_mode=true
 permission_mode=false
 torben_fj_mode=false
 quick_search_mode=2
+
+simple_swap=false
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print
