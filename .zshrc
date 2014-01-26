@@ -6,15 +6,15 @@
 #   ██    ░░░░░██░██  ░██ ░██   ░██   ██
 #  ██████ ██████ ░██  ░██░███   ░░█████ 
 # ░░░░░░ ░░░░░░  ░░   ░░ ░░░     ░░░░░  
-!
-!  ▓▓▓▓▓▓▓▓▓▓
-! ░▓ author ▓ xero <x@xero.nu>
-! ░▓ code   ▓ http://code.xero.nu/dotfiles
-! ░▓ mirror ▓ http://github.com/xero/dotfiles
-! ░▓▓▓▓▓▓▓▓▓▓
-! ░░░░░░░░░░
-!
-! █▓▒░ timestamps
+#
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ xero <x@xero.nu>
+# ░▓ code   ▓ http://code.xero.nu/dotfiles
+# ░▓ mirror ▓ http://github.com/xero/dotfiles
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+#
+# █▓▒░ timestamps
 # HIST_STAMPS="mm/dd/yyyy"
 
 #█▓▒░ exports
