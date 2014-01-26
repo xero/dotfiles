@@ -1,0 +1,10 @@
+{
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"font_face": "gohuFont",
+	"font_size": 11,
+	"ignored_packages":
+	[
+		"Vintage",
+		"Jamon"
+	]
+}

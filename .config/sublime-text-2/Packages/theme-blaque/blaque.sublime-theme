@@ -1,6 +1,6 @@
 [
     {
-        "class": "label_control",
+        "class": "label_control",   
         "color": [255, 255, 255],
         "shadow_color": [24, 24, 24],
         "shadow_offset": [0, -1]
@@ -327,13 +327,17 @@
     },
     {
         "class": "sidebar_label",
-        "color": [255, 255, 255]
+        "color": [255, 255, 255],
+        "font.face": "gohuFont",
+        "font.size":11
         // , "shadow_color": [250, 250, 250], "shadow_offset": [0, 0]
     },
     {
         "class": "sidebar_label",
         "parents": [{"class": "tree_row", "attributes": ["selected"]}],
-        "color": [255, 255, 255]
+        "color": [255, 255, 255],
+        "font.face": "gohuFont",
+        "font.size":11
         // , "shadow_color": [60, 60, 60], "shadow_offset": [0, 1]
     },
     {
@@ -562,6 +566,8 @@
     /** Tab Labels **/
     {
         "class": "tab_label",
+        "font.face": "gohuFont",
+        "font.size":11,
         "fg": [0, 0, 0, 255],
         "shadow_color": [255, 255, 255, 80],
         "shadow_offset": [0, 1]
@@ -569,6 +575,8 @@
     {
         "class": "tab_label",
         "parents": [{"class": "tab_control", "attributes": ["file_medium"]}],
+        "font.face": "gohuFont",
+        "font.size":11,
         "fg": [255, 255, 255, 180],
         "shadow_color": [0, 0, 0, 100],
         "shadow_offset": [0, -1]
@@ -576,6 +584,8 @@
     {
         "class": "tab_label",
         "parents": [{"class": "tab_control", "attributes": ["selected"]}],
+        "font.face": "gohuFont",
+        "font.size":11,
         "fg": [0, 0, 0, 255],
         "shadow_color": [255, 255, 255, 50],
         "shadow_offset": [0, 1]
@@ -583,6 +593,8 @@
     {
         "class": "tab_label",
         "parents": [{"class": "tab_control", "attributes": ["selected", "file_medium"]}],
+        "font.face": "gohuFont",
+        "font.size":11,
         "fg": [255, 255, 255, 255],
         "shadow_color": [0, 0, 0, 100],
         "shadow_offset": [0, -1]
@@ -590,6 +602,8 @@
     {
         "class": "tab_label",
         "parents": [{"class": "tab_control", "attributes": ["file_medium_dark"]}],
+        "font.face": "gohuFont",
+        "font.size":11,
         "fg": [255, 255, 255, 140],
         "shadow_color": [0, 0, 0, 100],
         "shadow_offset": [0, -1]
@@ -597,6 +611,8 @@
     {
         "class": "tab_label",
         "parents": [{"class": "tab_control", "attributes": ["selected", "file_medium_dark"]}],
+        "font.face": "gohuFont",
+        "font.size":11,
         "fg": [255, 255, 255, 230],
         "shadow_color": [0, 0, 0, 255],
         "shadow_offset": [0, -1]
@@ -604,6 +620,8 @@
     {
         "class": "tab_label",
         "parents": [{"class": "tab_control", "attributes": ["file_dark"]}],
+        "font.face": "gohuFont",
+        "font.size":11,
         "fg": [255, 255, 255, 160],
         "shadow_color": [0, 0, 0, 100],
         "shadow_offset": [0, -1]
@@ -611,6 +629,8 @@
     {
         "class": "tab_label",
         "parents": [{"class": "tab_control", "attributes": ["selected", "file_dark"]}],
+        "font.face": "gohuFont",
+        "font.size":11,
         "fg": [255, 255, 255, 230],
         "shadow_color": [0, 0, 0, 255],
         "shadow_offset": [0, -1]
