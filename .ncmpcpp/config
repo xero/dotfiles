@@ -27,10 +27,10 @@
   visualizer_type = "spectrum" #"wave" 
 
 # █▓▒░ Display Settings
-  song_list_format = "{$7%a $1> $6}{%t$1$R} [{%l}]"
-  song_status_format = "$7%a $1> $6%t $1> $2%b$1"
+  song_list_format = "{$7%a $1> $6}{%t$1$R$b} [{%l}]"
+  song_status_format = "$7%a $1$b> $6%t $1$b> $2%b$1"
   statusbar_color = "black"
-  visualizer_color = "red"
+  visualizer_color = "cyan"
   main_window_highlight_color = "red"
   header_visibility = "no"
   statusbar_visibility = "yes"
