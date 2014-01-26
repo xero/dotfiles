@@ -19,6 +19,7 @@ urxvt*font: xft:gohufont:size=11:antialias=true
 urxvt*boldFont: xft:gohufont:size=11:antialias=true
 
 ! █▓▒░ interface
+urxvt.saveLines: 4095
 urxvt*scrollBar: false
 urxvt*transparent: true
 urxvt*shading: 15
@@ -48,9 +49,5 @@ urxvt*color8: #666666
 
 ! █▓▒░ clipboard
 urxvt.keysym.Shift-Control-V: perl:clipboard:paste
-urxvt.iso14755: False
-urxvt.perl-ext-common: default,clipboard
-
-! █▓▒░ misc
-urxvt.saveLines: 4095
 urxvt.iso14755: false
+urxvt.perl-ext-common: default,clipboard
