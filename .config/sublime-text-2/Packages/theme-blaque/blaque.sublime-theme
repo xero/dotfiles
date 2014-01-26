@@ -1,9 +1,11 @@
 [
     {
         "class": "label_control",   
-        "color": [255, 255, 255],
-        "shadow_color": [24, 24, 24],
-        "shadow_offset": [0, -1]
+        "font.face": "gohuFont",
+        "font.size":11,
+        "color": [200, 200, 200],
+        "shadow_color": [25, 25, 25],
+        "shadow_offset": [0, 1]
     },
     {
         "class": "button_control",
@@ -314,6 +316,8 @@
         "class": "sidebar_heading",
         "color": [130, 130, 130],
         "font.bold": true,
+        "font.face": "gohuFont",
+        "font.size":14,
         "shadow_color": [130, 130, 130],
         "shadow_offset": [0, 0]
     },
