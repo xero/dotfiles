@@ -10,7 +10,7 @@
 !  ▓▓▓▓▓▓▓▓▓▓
 ! ░▓ author ▓ xero <x@xero.nu>
 ! ░▓ code   ▓ http://code.xero.nu/dotfiles
-! ░▓ mirror ▓ http://github.com/xero/dotfiles
+! ░▓ mirror ▓ http://git.io/.files
 ! ░▓▓▓▓▓▓▓▓▓▓
 ! ░░░░░░░░░░
 !
@@ -19,7 +19,6 @@ urxvt*font: xft:gohufont:size=11:antialias=true
 urxvt*boldFont: xft:gohufont:size=11:antialias=true
 
 ! █▓▒░ interface
-urxvt.saveLines: 4095
 urxvt*scrollBar: false
 urxvt*transparent: true
 urxvt*shading: 15
@@ -49,5 +48,10 @@ urxvt*color8: #666666
 
 ! █▓▒░ clipboard
 urxvt.keysym.Shift-Control-V: perl:clipboard:paste
-urxvt.iso14755: false
+urxvt.iso14755: False
 urxvt.perl-ext-common: default,clipboard
+
+! █▓▒░ misc
+urxvt.saveLines: 4095
+urxvt.iso14755: false
+urxvt*iconFile: /home/xero/.icons/AwOkenWhite/clear/128x128/apps/terminal3.png
