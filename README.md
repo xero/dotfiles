@@ -1,3 +1,4 @@
+```
       ██            ██     ████ ██  ██                
      ░██           ░██    ░██░ ░░  ░██                
      ░██  ██████  ██████ ██████ ██ ░██  █████   ██████
@@ -26,3 +27,6 @@
  Xdefaults      > urxvt ui/color settings
  xinitrc        > x bootstrap for awesome wm on crunchbang
  zshrc          > z shell settings, aliases, prompts
+```
+
+![](https://raw.github.com/xero/dotfiles/master/preview.png)
