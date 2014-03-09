@@ -1,4 +1,29 @@
 #!/bin/bash
+# Animated pipes.sh terminal screensaver at an angle.
+# Copyright (C) 2013, 2014 by Yu-Jie Lin
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+# Website: https://github.com/livibetter/pipesX.sh
+
+VERSION=0.1.0
+
 W=$(tput cols) H=$(tput lines)
 # maximal random value + 1
 M=32768
@@ -8,7 +33,7 @@ COLORS=(31 32 33 34 35 36 37)
 
 # default values
 N=1
-T=0
+T=()
 I=0.05
 P=25
 R=$((W * H / 4))
@@ -19,7 +44,7 @@ Animated pipes.sh terminal screensaver at an angle.
 Options:
 
   -n [1-]     number of pipes. (Default: $N)
-  -t [0-$((${#SETS[@]} - 1))]    type of pipes. (Default: $T)
+  -t [0-$((${#SETS[@]} - 1))]    types of pipes, can be used more than once. (Default: $T)
   -i [float]  piping interval or maze generation interval. (Default: $I)
   -P [0-100]  probability of a turning pipe or of \\ in maze generation. (Default: $P)
   -r [LIMIT]  reset after x characters, 0 if no limit. (Default: $R)
@@ -27,15 +52,16 @@ Options:
   -C          no color.
   -X          maze generation.
   -h          this help message.
+  -v          print version number.
 "
 
-while getopts "n:t:i:P:r:RCXh" arg; do
+while getopts "n:t:i:P:r:RCXhv" arg; do
   case $arg in
     n)
       ((N = OPTARG > 0 ? OPTARG : N))
       ;;
     t)
-      ((T = (OPTARG >= 0 && OPTARG < ${#SETS[@]}) ? OPTARG : T))
+      T+=($(((OPTARG >= 0 && OPTARG < ${#SETS[@]}) ? OPTARG : T)))
       ;;
     i)
       I=$OPTARG
@@ -59,8 +85,14 @@ while getopts "n:t:i:P:r:RCXh" arg; do
       echo -e "$HELP"
       exit 0
       ;;
+    v)
+      echo "$(basename -- "$0") $VERSION"
+      exit 0
   esac
 done
+
+# set to default values if not by options
+((${#T[@]})) || T=(0)
 
 do_exit() {
   # Show cursor and echo stdin
@@ -90,6 +122,7 @@ for ((n = 0; n < N; n++)); do
   ((Y[n] = RNDSTART ? (H + 2) * RANDOM / M : H / 2))
   D[n]=$((4 * RANDOM / M))
   C[n]=${COLORS[${#COLORS[@]} * RANDOM / M]}
+  t[n]=${T[${#T[@]} * RANDOM / M]}
 done
 
 clear
@@ -131,6 +164,7 @@ while :; do
     ((d > 1 && y == H)) && ((yn++, CC=1))
     ((e < 2 && x == W)) && ((xn++, CC=1))
     ((CC)) && c=${COLORS[${#COLORS[@]} * RANDOM / M]}
+    ((CC)) && t[n]=${T[${#T[@]} * RANDOM / M]}
 
     # warp pipe
     ((xn = (xn + W + 1) % (W + 1)))
@@ -147,7 +181,7 @@ while :; do
 
     echo -ne "\e[${yt};${xt}H"
     [[ $NOCOLOR ]] || echo -ne "\e[1;${c}m"
-    echo -n "${SETS[T]:d%2:1}"
+    echo -n "${SETS[t[n]]:d%2:1}"
 
     X[n]=$xn Y[n]=$yn
     D[n]=$d C[n]=$c
