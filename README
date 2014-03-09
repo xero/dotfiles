@@ -5,19 +5,24 @@
  ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████ 
 ░██  ░██░██   ░██  ░██    ░██  ░██ ░██░██░░░░  ░░░░░██
 ░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████ 
- ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░ 
+ ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░  
  
   ▓▓▓▓▓▓▓▓▓▓
  ░▓ about  ▓ custom linux config files
  ░▓ author ▓ xero <x@xero.nu>
  ░▓ code   ▓ http://code.xero.nu/dotfiles
- ░▓ mirror ▓ http://github.com/xero/dotfiles
+ ░▓ mirror ▓ http://git.io/.files
  ░▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░
 
- Xdefaults      > urxvt ui/color settings
- zshrc          > z shell settings, aliases, prompts
- fun            > term color, sys info, and other misc scripts
- ncmpcpp        > ncurses mpc++ ui/color settings
+ awesome        > awesome wm config and ghost theme
+ code/fun       > term color, sys info, and other misc scripts
+ code/sys       > system automation scripts
+ fonts          > config for gohu and bitmap fonts
+ git            > global git config and aliases
  mc             > midnight commander ui colors
- sublime-text-2 > blaque theme ui colors
+ ncmpcpp        > ncurses mpc++ ui/color settings
+ sublime-text-2 > blaque theme and ui colors
+ Xdefaults      > urxvt ui/color settings
+ xinitrc        > x bootstrap for awesome wm on crunchbang
+ zshrc          > z shell settings, aliases, prompts

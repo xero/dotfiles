@@ -1,0 +1,68 @@
+#!/bin/bash
+#
+# A simple cover fetcher script for current playing song on mpd.
+#
+# Author : Wolfgang Mueller
+#
+# Adapted for Lain internal use.
+# https://github.com/copycat-killer/lain
+#
+# You can use, edit and redistribute this script in any way you like.
+#
+# Dependencies: imagemagick.
+#
+# Usage: mpdcover <music_directory> <song_file> <cover_resize> <default_art>
+
+# Configuration-------------------------------------------------------
+
+# Music directory
+MUSIC_DIR=$1
+
+# Song file
+file=$2
+
+# Regex expression used for image search
+IMG_REG="(Front|front|Cover|cover|Art|art|Folder|folder)\.(jpg|jpeg|png|gif)$"
+
+# Path of temporary resized cover
+TEMP_PATH="/tmp/mpdcover.png"
+
+# Resize cover
+COVER_RESIZE="$3x$3"
+
+if [ $COVER_RESIZE == "x" ]; then
+    COVER_RESIZE="100x100"
+fi
+
+# The default cover to use (optional)
+DEFAULT_ART=$4
+
+# Thumbnail background (transparent)
+COVER_BACKGROUND="none"
+
+#--------------------------------------------------------------------
+
+# check if anything is playing at all
+[[ -z $file ]] && exit 1
+
+# Art directory
+art="$MUSIC_DIR/${file%/*}"
+
+# find every file that matches IMG_REG set the first matching file to be the
+# cover.
+cover="$(find "$art/" -maxdepth 1 -type f | egrep -i -m1 "$IMG_REG")"
+
+# when no cover is found, use DEFAULT_ART as cover
+cover="${cover:=$DEFAULT_ART}"
+
+# check if art is available
+if [[ -n $cover ]]; then
+   if [[ -n $COVER_RESIZE ]]; then
+        convert "$cover" -thumbnail $COVER_RESIZE -gravity "center" -background "$COVER_BACKGROUND" -extent $COVER_RESIZE "$TEMP_PATH"
+        cover="$TEMP_PATH"
+   fi
+else
+   rm $TEMP_PATH
+fi
+
+exit 0
