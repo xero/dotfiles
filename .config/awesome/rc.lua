@@ -62,14 +62,14 @@ function run_once(cmd)
   if firstspace then
 	 findme = cmd:sub(0, firstspace-1)
   end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+  awful.util.spawn_with_shell("pgrep -u $USER -x "..findme.." > /dev/null || ("..cmd..")")
 end
 
 run_once("urxvtd")
 run_once("unclutter")
 
 -- █▓▒░ theme
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/ghost/theme.lua")
+beautiful.init(os.getenv("HOME").."/.config/awesome/themes/ghost/theme.lua")
 
 -- █▓▒░ layouts
 local layouts = {
@@ -136,7 +136,7 @@ awesomemenu = {
 	{"showdown", "cb-exit"}
 }
 gfx_settings = {
-	{"view","bash "..home.."/code/bash/gfx-status.sh"},
+	{"view","bash "..home.."/code/sys/gfx-status.sh"},
 	{"░░▒▒▓▓████▓▓▒▒░░"},
 	{"switch to ati","bash "..home.."/code/sys/gfx-radeon.sh"},
 	{"switch to intel","bash "..home.."/code/sys/gfx-intel.sh"},
@@ -264,11 +264,6 @@ mymainmenu = awful.menu({
 	width = 250
 })
 
--- █▓▒░ internal apps
-mail       = terminal .. " -e mutt "
-iptraf     = terminal .. " -g 180x54-20+34 -e sudo iptraf-ng -i all "
-musicplr   = terminal .. " -g 130x34-320+16 -e ncmpcpp "
-
 -- █▓▒░ wibox
 markup = lain.util.markup
 
@@ -281,20 +276,20 @@ lain.widgets.calendar:attach(mytextclock, { font_size = 10, fg = "#FFFFFF", posi
 
 -- █▓▒░ MPD
 mpdicon = wibox.widget.imagebox(beautiful.widget_music)
-mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
+mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplayer) end)))
 mpdwidget = lain.widgets.mpd({
 	settings = function()
 		mpdicon:set_image(beautiful.widget_music)
 		if mpd_now.state == "play" then
-			artist = " " .. mpd_now.artist .. " "
+			artist = " "..mpd_now.artist.." "
 			-- truncate titles if too long
-			title  = string.sub(mpd_now.title, 0, 55)  .. " "
+			title  = string.sub(mpd_now.title, 0, 55).." "
 		else
 			artist = ""
 			title  = ""
 		end
 
-		widget:set_markup(markup("#74999E", artist) .. title)
+		widget:set_markup(markup("#74999E", artist)..title)
 	end
 })
 mpdwidgetbg = mpdwidget
@@ -306,7 +301,7 @@ systray = wibox.widget.systray()
 memicon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_mem), "#000000")
 memwidget = wibox.widget.background(lain.widgets.mem({
 	settings = function()
-		widget:set_text(" " .. mem_now.used .. "MB ")
+		widget:set_text(" "..math.floor((mem_now.used/mem_now.total)*100).."% ")
 	end
 }), "#000000")
 
@@ -314,7 +309,7 @@ memwidget = wibox.widget.background(lain.widgets.mem({
 cpuicon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_cpu), "#313131")
 cpuwidget = wibox.widget.background(lain.widgets.cpu({
 	settings = function()
-		widget:set_text(" " .. cpu_now.usage .. "% ")
+		widget:set_text(" "..cpu_now.usage.."% ")
 	end
 }), "#313131")
 
@@ -322,7 +317,7 @@ cpuwidget = wibox.widget.background(lain.widgets.cpu({
 tempicon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_temp), "#313131")
 tempwidget = wibox.widget.background(lain.widgets.temp({
 	settings = function()
-		widget:set_text(" " .. coretemp_now .. "°C ")
+		widget:set_text(" "..coretemp_now.."°C ")
 	end
 }), "#313131")
 
@@ -330,7 +325,7 @@ tempwidget = wibox.widget.background(lain.widgets.temp({
 fsicon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_hdd), "#000000")
 fswidget = wibox.widget.background(lain.widgets.fs({
 	settings  = function()
-		widget:set_text(" " .. fs_now.used .. "% ")
+		widget:set_text(" "..fs_now.used.."% ")
 	end
 }), "#000000")
 fswidgetbg = fswidget
@@ -351,7 +346,7 @@ batwidget = lain.widgets.bat({
 		else
 			baticon:set_image(beautiful.widget_battery)
 		end
-		widget:set_markup(" " .. bat_now.perc .. "% ")
+		widget:set_markup(" "..bat_now.perc.."% ")
 	end
 })
 
@@ -360,8 +355,8 @@ neticon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_net), "
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 netwidget = wibox.widget.background(lain.widgets.net({
 	settings = function()
-		widget:set_markup(markup("#ffffff", " " .. net_now.received)..
-						  markup("#ffffff", " / " .. net_now.sent .. " "))
+		widget:set_markup(markup("#ffffff", " "..net_now.received)..
+						  markup("#ffffff", " / "..net_now.sent.." "))
 	end
 }), "#313131")
 
@@ -509,7 +504,7 @@ globalkeys = awful.util.table.join(
 	-- touchpad toggle
 	awful.key({ modkey,           }, "m",      
 		function () 
-			awful.util.spawn('bash /home/xero/code/bash/toggle-touchpad.sh') 
+			awful.util.spawn('bash /home/xero/code/sys/toggle-touchpad.sh') 
 		end),
 
 	-- tag browsing
@@ -686,7 +681,7 @@ globalkeys = awful.util.table.join(
 				  awful.prompt.run({ prompt = "Run Lua code: " },
 				  mypromptbox[mouse.screen].widget,
 				  awful.util.eval, nil,
-				  awful.util.getdir("cache") .. "/history_eval")
+				  awful.util.getdir("cache").."/history_eval")
 			  end),
 	awful.key(
 		{ altkey, "Shift" }, "h",
@@ -745,7 +740,7 @@ clientkeys = awful.util.table.join(
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
 	globalkeys = awful.util.table.join(globalkeys,
-		awful.key({ modkey }, "#" .. i + 9,
+		awful.key({ modkey }, "#"..i + 9,
 				  function ()
 						local screen = mouse.screen
 						local tag = awful.tag.gettags(screen)[i]
@@ -753,7 +748,7 @@ for i = 1, 9 do
 						   awful.tag.viewonly(tag)
 						end
 				  end),
-		awful.key({ modkey, "Control" }, "#" .. i + 9,
+		awful.key({ modkey, "Control" }, "#"..i + 9,
 				  function ()
 					  local screen = mouse.screen
 					  local tag = awful.tag.gettags(screen)[i]
@@ -761,14 +756,14 @@ for i = 1, 9 do
 						 awful.tag.viewtoggle(tag)
 					  end
 				  end),
-		awful.key({ modkey, "Shift" }, "#" .. i + 9,
+		awful.key({ modkey, "Shift" }, "#"..i + 9,
 				  function ()
 					  local tag = awful.tag.gettags(client.focus.screen)[i]
 					  if client.focus and tag then
 						  awful.client.movetotag(tag)
 					 end
 				  end),
-		awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+		awful.key({ modkey, "Control", "Shift" }, "#"..i + 9,
 				  function ()
 					  local tag = awful.tag.gettags(client.focus.screen)[i]
 					  if client.focus and tag then
