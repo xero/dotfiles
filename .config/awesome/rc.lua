@@ -338,6 +338,7 @@ fswidgetbg = fswidget
 -- █▓▒░ battery
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
 batwidget = lain.widgets.bat({
+	battery = battery_id,
 	settings = function()
 		if bat_now.perc == "N/A" then
 			widget:set_markup(" AC ")

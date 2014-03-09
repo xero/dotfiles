@@ -17,6 +17,7 @@ tag_count		= 4
 tag_icon 		= "◊"
 tag_icon_active = "◆"
 clock_format 	= " %a %m/%d %H:%M " -- http://linux.die.net/man/3/strftime
+battery_id 		= "BAT1"
 
 -- █▓▒░ preffered apps
 terminal 		= "urxvtc"
