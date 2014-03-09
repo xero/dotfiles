@@ -32,7 +32,7 @@ discrete_condition="off"
 fi
 
 notify-send -t 5000 \
--i "/home/xero/.config/awesome/greyhash/gfx.png" \
+-i "/home/xero/.config/awesome/themes/ghost/gfx.png" \
 '  gfx status 
 ░░▒▒▓▓███▓▓▒▒░░' \
 " intel  = $integrated_condition 

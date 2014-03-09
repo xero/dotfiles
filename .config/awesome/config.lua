@@ -16,10 +16,7 @@ menu_position 	= "bottom"
 tag_count		= 4
 tag_icon 		= "◊"
 tag_icon_active = "◆"
-menu_icon 		= true
-tasks_icon_only	= true
 clock_format 	= " %a %m/%d %H:%M " -- http://linux.die.net/man/3/strftime
-sloppy_focus 	= false -- switch to client on mouse over
 
 -- █▓▒░ preffered apps
 terminal 		= "urxvtc"
@@ -48,7 +45,6 @@ torrent 		= "transmission-gtk"
 calc 			= "galculator"
 pdf 			= "evince"
 imageviewer 	= "viewnior"
-locker 			= "cb-lock"
 exiter 			= "cb-exit"
 passmanager 	= "keepassx"
 runcmd 			= "gmrun"
