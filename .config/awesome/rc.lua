@@ -108,7 +108,7 @@ tags = {
 	names = {},
 	layout = {}
 }
-for i = 1, 4 do
+for i = 1, tag_count do
 	tags.names[i] = tag_icon
 	tags.layout[i] = layouts[1]
 end
@@ -275,24 +275,24 @@ mytextclock = wibox.widget.background(awful.widget.textclock(markup("#FFFFFF",cl
 lain.widgets.calendar:attach(mytextclock, { font_size = 10, fg = "#FFFFFF", position = "bottom_right" })
 
 -- █▓▒░ MPD
-mpdicon = wibox.widget.imagebox(beautiful.widget_music)
-mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplayer) end)))
-mpdwidget = lain.widgets.mpd({
-	settings = function()
-		mpdicon:set_image(beautiful.widget_music)
-		if mpd_now.state == "play" then
-			artist = " "..mpd_now.artist.." "
-			-- truncate titles if too long
-			title  = string.sub(mpd_now.title, 0, 55).." "
-		else
-			artist = ""
-			title  = ""
-		end
+-- mpdicon = wibox.widget.imagebox(beautiful.widget_music)
+-- mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplayer) end)))
+-- mpdwidget = lain.widgets.mpd({
+-- 	settings = function()
+-- 		mpdicon:set_image(beautiful.widget_music)
+-- 		if mpd_now.state == "play" then
+-- 			artist = " "..mpd_now.artist.." "
+-- 			-- truncate titles if too long
+-- 			title  = string.sub(mpd_now.title, 0, 55).." "
+-- 		else
+-- 			artist = ""
+-- 			title  = ""
+-- 		end
 
-		widget:set_markup(markup("#74999E", artist)..title)
-	end
-})
-mpdwidgetbg = mpdwidget
+-- 		widget:set_markup(markup("#74999E", artist)..title)
+-- 	end
+-- })
+-- mpdwidgetbg = mpdwidget
 
 -- █▓▒░ systray
 systray = wibox.widget.systray()
@@ -383,10 +383,10 @@ mytaglist.buttons = awful.util.table.join(
 					)
 for s = 1, screen.count() do
 
-	-- Create a promptbox for each screen
+	-- create a promptbox for each screen
 	mypromptbox[s] = awful.widget.prompt()
 
-	-- We need one layoutbox per screen.
+	-- we need one layoutbox per screen.
 	mylayoutbox[s] = wibox.widget.background(awful.widget.layoutbox(s), "#313131")
 	mylayoutbox[s]:buttons(awful.util.table.join(
 							awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
@@ -394,13 +394,13 @@ for s = 1, screen.count() do
 							awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
 							awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
 
-	-- Create a taglist widget
+	-- create a taglist widget
 	mytaglist[s] = wibox.widget.background(awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons), beautiful.tag_bg_normal)
 
-	-- Create the wibox
-	mywibox[s] = awful.wibox({ position = "bottom", screen = s, height = 18 })
+	-- create the wibox
+	mywibox[s] = awful.wibox({ position = bar_position, screen = s, height = 18 })
 
-	-- Widgets that are aligned to the upper left
+	-- widgets that are aligned to the upper left
 	local left_layout = wibox.layout.fixed.horizontal()
 	left_layout:add(hash3)
 	left_layout:add(hash3)
@@ -417,7 +417,7 @@ for s = 1, screen.count() do
 	left_layout:add(mypromptbox[s])
 	left_layout:add(space)
 
-	-- Widgets that are aligned to the upper right
+	-- widgets that are aligned to the upper right
 	local right_layout = wibox.layout.fixed.horizontal()
 	if s == 1 then 
 		right_layout:add(hash2)
@@ -584,7 +584,7 @@ globalkeys = awful.util.table.join(
 			awful.client.moveresize( 20,   0,   0,   0) 
 		end),
 
-	-- show Menu
+	-- show menu
 	awful.key({ modkey }, "w",
 		function ()
 			mymainmenu:show({ keygrabber = true })
@@ -631,50 +631,32 @@ globalkeys = awful.util.table.join(
 	awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
 	awful.key({ altkey,           }, "h",      function () fswidget.show(7) end),
 
-	-- ALSA volume control
-	awful.key({ altkey }, "Up",
-		function ()
-			awful.util.spawn("amixer -q set Master 1%+")
-		end),
-	awful.key({ altkey }, "Down",
-		function ()
-			awful.util.spawn("amixer -q set Master 1%-")
-		end),
-	awful.key({ altkey }, "m",
-		function ()
-			awful.util.spawn("amixer -q set Master playback toggle")
-		end),
-	awful.key({ altkey, "Control" }, "m",
-		function ()
-			awful.util.spawn("amixer -q set Master playback 100%")
-		end),
-
 	-- MPD control
-	awful.key({ altkey, "Control" }, "Up",
-		function ()
-			awful.util.spawn_with_shell("mpc toggle || ncmpcpp toggle || ncmpc toggle || pms toggle")
-			mpdwidget.update()
-		end),
-	awful.key({ altkey, "Control" }, "Down",
-		function ()
-			awful.util.spawn_with_shell("mpc stop || ncmpcpp stop || ncmpc stop || pms stop")
-			mpdwidget.update()
-		end),
-	awful.key({ altkey, "Control" }, "Left",
-		function ()
-			awful.util.spawn_with_shell("mpc prev || ncmpcpp prev || ncmpc prev || pms prev")
-			mpdwidget.update()
-		end),
-	awful.key({ altkey, "Control" }, "Right",
-		function ()
-			awful.util.spawn_with_shell("mpc next || ncmpcpp next || ncmpc next || pms next")
-			mpdwidget.update()
-		end),
+	-- awful.key({ altkey, "Control" }, "Up",
+	-- 	function ()
+	-- 		awful.util.spawn_with_shell("mpc toggle || ncmpcpp toggle || ncmpc toggle || pms toggle")
+	-- 		mpdwidget.update()
+	-- 	end),
+	-- awful.key({ altkey, "Control" }, "Down",
+	-- 	function ()
+	-- 		awful.util.spawn_with_shell("mpc stop || ncmpcpp stop || ncmpc stop || pms stop")
+	-- 		mpdwidget.update()
+	-- 	end),
+	-- awful.key({ altkey, "Control" }, "Left",
+	-- 	function ()
+	-- 		awful.util.spawn_with_shell("mpc prev || ncmpcpp prev || ncmpc prev || pms prev")
+	-- 		mpdwidget.update()
+	-- 	end),
+	-- awful.key({ altkey, "Control" }, "Right",
+	-- 	function ()
+	-- 		awful.util.spawn_with_shell("mpc next || ncmpcpp next || ncmpc next || pms next")
+	-- 		mpdwidget.update()
+	-- 	end),
 
-	-- Copy to clipboard
+	-- clipboard
 	awful.key({ modkey }, "c", function () os.execute("xsel -p -o | xsel -i -b") end),
 
-	-- Prompt
+	-- prompt
 	awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
 	awful.key({ modkey }, "x",
 			  function ()
@@ -682,20 +664,21 @@ globalkeys = awful.util.table.join(
 				  mypromptbox[mouse.screen].widget,
 				  awful.util.eval, nil,
 				  awful.util.getdir("cache").."/history_eval")
-			  end),
-	awful.key(
-		{ altkey, "Shift" }, "h",
-		function ()
-			naughty.notify({ 
-				title   = "Command Reference: Client Keybindings"
-				, text = "<span background=\"#000000\" color=\"#FFFFFF\">WIN+SPACE</span> : spawn terminal\nWIN+W     : open menu"
-				, timeout = 10
-				, position = "top_right"
-				, fg = beautiful.fg_focus
-				, bg = beautiful.bg_focus
-			})
-		end
-	)        
+			  end)
+	-- help cheatsheet
+	-- awful.key(
+	-- 	{ altkey, "Shift" }, "h",
+	-- 	function ()
+	-- 		naughty.notify({ 
+	-- 			title   = "Command Reference: Client Keybindings"
+	-- 			, text = "<span background=\"#000000\" color=\"#FFFFFF\">WIN+SPACE</span> : spawn terminal\nWIN+W     : open menu"
+	-- 			, timeout = 10
+	-- 			, position = "top_right"
+	-- 			, fg = beautiful.fg_focus
+	-- 			, bg = beautiful.bg_focus
+	-- 		})
+	-- 	end
+	-- )        
 )
 
 -- █▓▒░ client key bindings

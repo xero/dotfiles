@@ -12,7 +12,7 @@
 -- █▓▒░ interface settings
 modkey 			= "Mod4"
 altkey 			= "Mod1"
-menu_position 	= "bottom"
+bar_position 	= "bottom"
 tag_count		= 4
 tag_icon 		= "◊"
 tag_icon_active = "◆"
@@ -38,6 +38,7 @@ mediaplayer 	= "smplayer"
 musicplayer 	= terminal.." -e ncmpcpp"
 volumecontrol 	= terminal.. " -T sound -e alsamixer"
 irc 			= terminal.." -T weechat -e weechat-curses"
+iptraf 			= terminal.." -g -e sudo iptraf-ng -i all"
 burner 			= "xfburn"
 webgui 			= "chromium"
 webcli 			= terminal.." -e links2"
