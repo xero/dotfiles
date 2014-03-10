@@ -834,6 +834,15 @@ client.connect_signal("manage", function (c, startup)
 		awful.placement.no_overlap(c)
 		awful.placement.no_offscreen(c)
 	end
+    -- sloppy focus
+    if sloppy_focus then
+	    c:connect_signal("mouse::enter", function(c)
+	        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+	            and awful.client.focus.filter(c) then
+	            client.focus = c
+	        end
+	    end)	
+	end	
 end)
 
 -- closed client
