@@ -49,6 +49,7 @@ alias tempwatch="while :; do sensors|while read x; do printf '% .23s\n' "$x"; do
 alias term='urxvtc -hold -e '
 alias fixcursor='xsetroot -cursor_name left_ptr'
 alias hashcompare='bash ~/code/sys/hash-compare.sh '
+alias apachereload='sudo /etc/init.d/apache2 restart'
 
 #█▓▒░ ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"

@@ -231,6 +231,7 @@ fun_scripts = {
 	{"slendy", term_exec.."bash "..home.."/code/fun/slendy"},
 }
 climenu = {
+	{"blank", blanktag},
 	{"$ terminal", terminal},
 	{"# terminal", rootterm},
 	{"file-manager", filecli},
@@ -251,6 +252,7 @@ mymainmenu = awful.menu({
 		{"# file manager", "gksu "..filegui},
 		{"web browser", webgui},
 		{"text editor", guieditor},
+		{"# text editor", "gksu "..guieditor},
 		{"music player", musicplayer},
 		{"media player", mediaplayer},
 		{"keepass", passmanager},
@@ -335,8 +337,8 @@ baticon = wibox.widget.imagebox(beautiful.widget_battery)
 batwidget = lain.widgets.bat({
 	battery = battery_id,
 	settings = function()
-		if bat_now.perc == "N/A" then
-			widget:set_markup(" AC ")
+		widget:set_markup(" "..bat_now.perc.."% ")
+		if bat_now.perc == "N/A" or bat_now.perc == "100" then
 			baticon:set_image(beautiful.widget_ac)
 			return
 		elseif tonumber(bat_now.perc) <= 5 then
@@ -346,7 +348,6 @@ batwidget = lain.widgets.bat({
 		else
 			baticon:set_image(beautiful.widget_battery)
 		end
-		widget:set_markup(" "..bat_now.perc.."% ")
 	end
 })
 
@@ -794,7 +795,11 @@ awful.rules.rules = {
 	{ rule = { name = "File Operation Progress" },
 		properties = { 
 			floating = true 
-		} },            
+		} },
+	{ rule = { name = "blank" },
+		properties = { 
+			opacity = 0 -- works via composite manager
+		} },
 	{ rule = { name = "urxvt" },
 		properties = { 
 			-- fix term sizing calculation glitches

@@ -40,6 +40,9 @@ eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 # enable backlight
 (sleep 2s && xbacklight -inc 100) &
 
+# compositing manager
+compton -b &
+
 # start thunar daemon
 thunar --daemon &
 
