@@ -423,9 +423,9 @@ for s = 1, screen.count() do
 	if s == 1 then 
 		right_layout:add(hash2)
 		right_layout:add(hash2)
-		right_layout:add(space)
+		right_layout:add(grey)
 		right_layout:add(systray) 
-		right_layout:add(space)
+		right_layout:add(grey)
 	end
 	right_layout:add(hash1)
 	right_layout:add(hash1)
