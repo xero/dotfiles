@@ -47,7 +47,7 @@ compton -b --config ~/.config/compton.conf &
 thunar --daemon &
 
 # automount drives
-udisks-glue -c ~/.udisk-glue.conf --session &
+udisks-glue -c ~/.config/.udisk-glue.conf --session &
 
 # wallpaper
 nitrogen --restore &&
