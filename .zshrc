@@ -50,6 +50,7 @@ alias term='urxvtc -hold -e ' #used for awesomewm run menu
 alias fixcursor='xsetroot -cursor_name left_ptr'
 alias hashcompare='bash ~/code/sys/hash-compare.sh '
 alias apachereload='sudo /etc/init.d/apache2 restart'
+alias checkrootkits='sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check'
 
 #█▓▒░ ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
