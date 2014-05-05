@@ -54,6 +54,12 @@ nitrogen --restore &&
 
 # configure touchpad
 syndaemon -i 0.8 -d &
+if egrep -iq 'touchpad' /proc/bus/input/devices; then
+	synclient VertEdgeScroll=0 &
+	synclient TapButton1=1 &
+	synclient HorizTwoFingerScroll=1 &
+fi
+
 
 # clipboard manager
 (sleep 3s && clipit) &
