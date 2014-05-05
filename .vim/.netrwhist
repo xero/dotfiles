@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/xero/code/www/loyaltree.com'
+let g:netrw_dirhist_2='/home/xero/code/www/loyaltree.com/ui'
+let g:netrw_dirhist_3='/home/xero/code/www/loyaltree.com/ui/css'
+let g:netrw_dirhist_4='/home/xero/code/www/loyaltree.com/ui/css/sass'
+let g:netrw_dirhist_5='/home/xero/code/www/loyaltree.com/ui/css/sass/loyaltree'
+let g:netrw_dirhist_6='/etc/X11'
