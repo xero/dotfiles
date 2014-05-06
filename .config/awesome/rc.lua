@@ -891,4 +891,10 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
 end)
 end
 
+-- disable startup-notification globally
+local oldspawn = awful.util.spawn
+awful.util.spawn = function (s)
+  oldspawn(s, false)
+end
+
 run_once("nitrogen --restore")
