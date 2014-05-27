@@ -93,6 +93,9 @@ preexec_functions+='preexec_update_git_vars'
 precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
  
+#█▓▒░ load configs
+for config_file (~/.zsh/*.zsh) source $config_file
+
 #█▓▒░ custom prompts
 
 #█▓▒░dual line

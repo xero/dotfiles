@@ -24,6 +24,7 @@
  mc             > midnight commander ui colors
  ncmpcpp        > ncurses mpc++ ui/color settings
  sublime-text-2 > greybeard theme
+ vimrc          > vim custom airline bar and plugins
  Xdefaults      > urxvt ui/color settings
  xinitrc        > x bootstrap for awesome wm on crunchbang
  zshrc          > z shell settings, aliases, prompts
