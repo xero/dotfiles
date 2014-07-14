@@ -1,0 +1,24 @@
+#!/bin/bash
+hc() { "${herbstclient_command[@]:-herbstclient}" "$@" ;}
+monitor=${1:-0}
+geometry=( $(herbstclient monitor_rect "$monitor") )
+if [ -z "$geometry" ] ;then
+    echo "Invalid monitor $monitor"
+    exit 1
+fi
+# geometry has the format W H X Y
+x=${geometry[0]}
+y=${geometry[1]}
+panel_width=${geometry[2]}
+panel_height=16
+#font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
+font="-Gohu-GohuFont-Medium-R-Normal--11-80-100-100-C-60-ISO10646-1"
+bgcolor=$(hc get frame_border_normal_color)
+fgcolor='#efefef'
+
+conky | dzen2 -w $panel_width -x $x -y $y -fn "$font" -h $panel_height \
+    -e 'button3=;button4=exec:herbstclient use_index -1;button5=exec:herbstclient use_index +1' \
+    -ta l -bg "$bgcolor" -fg "$fgcolor" & 
+
+sleep 2
+stalonetray

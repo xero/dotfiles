@@ -1,0 +1,32 @@
+UnityPanelWidget,
+.unity-panel {
+    background:@dark_bg_color;
+    color:@dark_fg_color;
+    text-shadow: 0 -1px shade (#000000, 0.7);
+}
+
+.unity-panel.menubar,
+.unity-panel .menubar {
+}
+
+.unity-panel.menuitem,
+.unity-panel .menuitem {
+   icon-shadow: 0 -1px shade (@dark_bg_color, 0.7);
+    background-color:transparent;
+     box-shadow:none;
+     border:none;
+}
+
+.unity-panel.menubar.menuitem:hover,
+.unity-panel.menubar .menuitem *:hover {
+    background-image: -gtk-gradient (linear, 0 0, 0 1,
+                                     from (transparent),
+                                     to (alpha(@selected_bg_color,0.1)));
+    background-color:transparent;
+    border-radius:4px 4px 0 0;
+    border-color:transparent;
+    border-width:0px;
+    border-bottom:2px solid @selected_bg_color;
+    box-shadow:none;
+    transition: 150ms ease-in-out;
+}

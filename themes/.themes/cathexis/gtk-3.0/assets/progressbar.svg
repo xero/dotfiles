@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2121"
+   height="10"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="progressbar.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3946">
+      <stop
+         style="stop-color:#fea63c;stop-opacity:0;"
+         offset="0"
+         id="stop3948" />
+      <stop
+         style="stop-color:#fea63c;stop-opacity:1;"
+         offset="1"
+         id="stop3950" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3946"
+       id="linearGradient3952"
+       x1="-2120"
+       y1="5"
+       x2="1"
+       y2="5"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-3,-4)" />
+    <filter
+       id="filter3757"
+       inkscape:label="Colorize"
+       inkscape:menu="Color"
+       inkscape:menu-tooltip="Blend image or object with a flood color and set lightness and contrast"
+       x="0"
+       y="0"
+       width="1"
+       height="1"
+       color-interpolation-filters="sRGB">
+      <feColorMatrix
+         id="feColorMatrix3759"
+         values="1"
+         in="SourceGraphic"
+         type="saturate"
+         result="result2" />
+      <feFlood
+         id="feFlood3761"
+         flood-color="rgb(254,102,0)"
+         flood-opacity="1"
+         result="result1" />
+      <feBlend
+         id="feBlend3763"
+         in2="result2"
+         mode="multiply"
+         in="result1"
+         result="result3" />
+      <feComposite
+         id="feComposite3765"
+         in2="SourceGraphic"
+         operator="in"
+         k2="1"
+         result="result4" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#000000"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4067935"
+     inkscape:cx="2109.0874"
+     inkscape:cy="9.7206157"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1146"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     guidetolerance="10000"
+     objecttolerance="10000"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3792"
+       empspacing="10"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       originx="2120px"
+       originy="-4px" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(2120,4)">
+    <rect
+       style="fill:url(#linearGradient3952);fill-opacity:1;stroke-width:0.43599999;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect3796"
+       width="2121"
+       height="2"
+       x="-2123"
+       y="0" />
+    <image
+       y="-4"
+       x="-24"
+       id="image3943"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAKCAYAAABFXiVrAAAABHNCSVQICAgIfAhkiAAAAVRJREFU OI2dk8Fu2zAQRN/QCikZvfVT+u39pBwKtIWTNHVdy5weuFs7ApxDCEjiLmZnxJ2lvnx9ZLPKNnEn rzu4XAZ67DvAdEOUZLv/ObHTFTOBEreL2txnrULkDBzBf2yOwAVYtwUPiAmYQuQBVIEamAo0oCUO qBpxweBxihfMAfRd8k+b11uxFJpDpIFa5BbBHpjjWYCKNKewxBzYgvkLHMDfbNZxQo5AuW1jCjfQ jFiAWbC32QMLg/QTpoJriDf3ERuEOQGrpN8Sn209Iz/hjem6xiX6L5sNhB6+5BvYoO6sPFkHVsOq ZLEuDKMvEmvsT8AJ0ZAaogGLiurwl+LRxl/YLzY/wK+YS4r1+OPz0GACVuHTINDRJsmmaF0FT+PL hO8NCIfwqwM9xbIpHXMGisfoS4M0JlZ5LXb4OvpmCPH+6L9pY4peffSNLVDeRB+41P8A9aeLIfbj 6zcAAAAASUVORK5CYII= "
+       height="10"
+       width="27"
+       style="filter:url(#filter3757)" />
+  </g>
+</svg>

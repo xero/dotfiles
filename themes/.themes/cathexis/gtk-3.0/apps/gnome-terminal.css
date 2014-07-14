@@ -1,0 +1,114 @@
+/* gnome-terminal */
+TerminalScreen {
+    -TerminalScreen-background-darkness: 0.95;
+
+    background-color: #300a24;
+
+    color: #fff;
+}
+
+/*
+TerminalWindow,
+TerminalWindow.background {
+    background-color: @dark_bg_color;
+
+    color: @dark_fg_color;
+}
+*/
+/* notebook */
+/*
+TerminalWindow .notebook {
+    background-image: none;
+    background-color: shade (@dark_bg_color, 1.02);
+    border-radius: 3;
+
+    -unico-border-gradient: -gtk-gradient (linear, left top, right top,
+                                           from (shade (@dark_bg_color, 0.93)),
+                                           to (shade (@dark_bg_color, 0.93)));
+    -unico-inner-stroke-width: 0;
+    -unico-outer-stroke-width: 0;
+}
+
+TerminalWindow .notebook tab {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (shade (@dark_bg_color, 0.92)),
+                                     color-stop (0.60, shade (@dark_bg_color, 0.9)),
+                                     to (shade (@dark_bg_color, 0.85)));                   
+    padding: 0;
+
+    color: @dark_fg_color;
+
+    -unico-inner-stroke-color: alpha (shade (@dark_bg_color, 1.26), 0.2);
+}
+
+TerminalWindow .notebook tab:active {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (shade (@dark_bg_color, 1.2)),
+                                     to (shade (@dark_bg_color, 1.12)));
+
+    -unico-inner-stroke-color: alpha (shade (@dark_bg_color, 1.26), 1.0);
+}
+
+TerminalWindow .notebook .button,
+TerminalWindow .notebook .button:active  {
+    background-image: -gtk-gradient (linear, left top, right top,
+                                    from (shade (@dark_bg_color, 1.08)),
+                                    to (shade (@dark_bg_color, 0.92)));
+
+    -unico-border-gradient: -gtk-gradient (linear, left top, right top,
+                                           from (shade (@dark_bg_color, 0.9)),
+                                           to (shade (@dark_bg_color, 0.9)));                                          
+    -unico-inner-stroke-color: alpha (shade (@dark_bg_color, 1.26), 0.7);
+    -unico-outer-stroke-style: none;
+}
+*/
+/* Scrollbars */
+/*
+TerminalWindow .scrollbar {
+    border-radius:  20;
+
+    -unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
+                                           from (shade (@dark_bg_color, 0.74)),
+                                           to (shade (@dark_bg_color, 0.74)));
+}
+
+TerminalWindow .scrollbar.trough {
+    background-image: -gtk-gradient (linear, left top, right top,
+                                    from (shade (@dark_bg_color, 0.9)),
+                                    to (shade (@dark_bg_color, 0.95)));
+}
+
+TerminalWindow .scrollbar.trough.horizontal {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                    from (shade (@dark_bg_color, 0.9)),
+                                    to (shade (@dark_bg_color, 0.95)));
+}
+
+TerminalWindow .scrollbar.slider,
+TerminalWindow .scrollbar.slider:prelight,
+TerminalWindow .scrollbar.button,
+TerminalWindow .scrollbar.button:insensitive {                     
+    background-image: -gtk-gradient (linear, left top, right top,
+                                    from (shade (@dark_bg_color, 1.08)),
+                                    to (shade (@dark_bg_color, 0.92)));
+
+    -unico-border-gradient: -gtk-gradient (linear, left top, right top,
+                                           from (shade (@dark_bg_color, 0.74)),
+                                           to (shade (@dark_bg_color, 0.74)));                                          
+    -unico-inner-stroke-color: alpha (shade (@dark_bg_color, 1.26), 0.7);
+}
+
+TerminalWindow .scrollbar.slider.horizontal,
+TerminalWindow .scrollbar.slider.horizontal:prelight,
+TerminalWindow .scrollbar.button.horizontal,
+TerminalWindow .scrollbar.button:insensitive {                                   
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                    from (shade (@dark_bg_color, 1.08)),
+                                    to (shade (@dark_bg_color, 0.92)));
+
+    -unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
+                                           from (shade (@dark_bg_color, 0.74)),
+                                           to (shade (@dark_bg_color, 0.74)));                                   
+    -unico-inner-stroke-color: alpha (shade (@dark_bg_color, 1.26), 0.7);
+}
+*/
