@@ -97,3 +97,19 @@ uninstall awesome theme
 install herbstluftwm
 
 `stow herbstluftwm`
+
+#previews
+![](https://raw.githubusercontent.com/xero/dotfiles/master/herbstluftwm/preview.png)
+- herbstluftwm greybeard theme
+- vim 
+- htop
+- ncmpcpp
+- fun pipes script
+- sys arch screenfetch
+
+![](https://raw.githubusercontent.com/xero/dotfiles/master/awesome/preview.png)
+- awesome ghost theme
+- sublime greybeard theme
+- ncmpcpp
+- fun ghost color script
+- fun screenfetch
