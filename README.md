@@ -21,6 +21,7 @@
  fun            > term color, sys info, and other misc scripts
  sys            > system automation scripts
  fonts          > config for gohu and bitmap fonts
+ figlet         > custom 3d font
  git            > global git config and aliases
  herbstluftwm   > herbstluft wm config and greybeard theme
  mc             > midnight commander ui colors
@@ -99,7 +100,7 @@ install herbstluftwm
 `stow herbstluftwm`
 
 #previews
-![](https://raw.githubusercontent.com/xero/dotfiles/master/herbstluftwm/preview.png)
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/herbstluftwm.png)
 - herbstluftwm greybeard theme
 - vim 
 - htop
@@ -107,7 +108,7 @@ install herbstluftwm
 - fun pipes script
 - sys arch screenfetch
 
-![](https://raw.githubusercontent.com/xero/dotfiles/master/awesome/preview.png)
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/awesome.png)
 - awesome ghost theme
 - sublime greybeard theme
 - ncmpcpp
