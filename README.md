@@ -27,6 +27,7 @@
  mc             > midnight commander ui colors
  mpd            > music player daemon setup
  ncmpcpp        > ncurses mpc++ ui/color settings
+ pacman         > pacman colors and progress bar animations
  ryu-login      > ryu ansi art for /etc/issue tty login
  sublime        > sublime text 2 with greybeard, monokai, and gohu
  vim            > vim custom airline bar and plugins
