@@ -76,7 +76,7 @@ hc pad $monitor $panel_height
     while true ; do
         # "date" output is checked once a second, but an event is only
         # generated if the output changed compared to the previous run.
-        date +$'date\t^bg(#666666) ^fg(#d9d9d9)^i(/usr/share/icons/stlarch_icons/clock1.xbm) ^fg(#efefef)%H:%M^fg(#bcbcbc) %Y-%m-^fg(#efefef)%d '
+        date +$'date\t^bg(#666666) ^ca(1,~/code/sys/cal.sh)^fg(#d9d9d9)^i(/usr/share/icons/stlarch_icons/clock1.xbm) ^fg(#efefef)%H:%M^fg(#bcbcbc) %Y-%m-^fg(#efefef)%d^ca() '
         sleep 1 || break
     done > >(uniq_linebuffered) &
     childpid=$!
@@ -105,7 +105,7 @@ hc pad $monitor $panel_height
         for i in "${tags[@]}" ; do
             case ${i:0:1} in
                 '#')
-                    echo -n "^bg($selbg)^fg($selfg)"
+                    echo -n "^bg(#6A8C8C)^fg(#101010)"
                     ;;
                 '+')
                     echo -n "^bg(#9CA668)^fg(#141414)"
@@ -196,7 +196,7 @@ hc pad $monitor $panel_height
         #     net="^fg($xicon)^i(/usr/share/icons/stlarch_icons/dice5.xbm) ^fg($xtitle)network ^fg($xfg)disconnected"
         # fi
         #combine
-        right="^bg(#333333)  $cpu $separator $mem $separator $temp $separator $bat $separator $updates $separator $uptime ^bg(#444444)               $date $separator $separator"
+        right="^bg(#333333) $cpu $separator $mem $separator $temp $separator $bat $separator $updates $separator $uptime ^bg(#444444)               $date $separator $separator"
 
         right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')
         # get width of right aligned text.. and add some space..
