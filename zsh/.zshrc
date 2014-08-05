@@ -18,7 +18,7 @@
 # HIST_STAMPS="mm/dd/yyyy"
 
 #█▓▒░ exports
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/home/xero/.gem/ruby/2.1.0/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 #█▓▒░ preferred editor for local and remote sessions
@@ -40,11 +40,12 @@ alias matrix="cmatrix -b -s"
 alias pipes="bash ~/code/fun/pipes"
 alias pipesx="bash ~/code/fun/pipesx"
 alias rain="bash ~/code/fun/rain"
-alias screenfetch="~/code/fun/screenfetch"
+alias screenfetch="~/code/sys/info"
 alias hashcompare='bash ~/code/sys/hash-compare '
 alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
 alias term='urxvtc -hold -e ' #used for awesomewm run menu
 alias fixcursor='xsetroot -cursor_name left_ptr'
+alias img='bash ~/code/sys/img'
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
@@ -57,8 +58,6 @@ dirlist() {
 alias pacman="sudo pacman"
 alias apachereload='sudo systemctl restart httpd.service'
 alias disks="ncdu"
-#█▓▒░ work aliases
-alias workscreen='xrandr --output HDMI1 --left-of LVDS1 --mode 1366x768'
 
 #█▓▒░ ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
