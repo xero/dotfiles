@@ -35,8 +35,10 @@ alias "cd.."="cd ../"
 alias rock="ncmpcpp"
 alias mixer="alsamixer"
 alias checkrootkits='sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check'
+alias checkvirus='clamscan --recursive=yes --infected /home'
+alias updateantivirus='sudo freshclam'
 alias genplaylist="cd ~/music;find . -name '*.mp3' -o -name '*.flac'|sed -e 's%^./%%g' > ~/.config/mpd/playlists/all.m3u;mpd ~/.config/mpd/mpd.conf;mpc clear;mpc load all.m3u;mpc update"
-alias matrix="cmatrix -b -s"
+alias matrix="cmatrix -b"
 alias pipes="bash ~/code/fun/pipes"
 alias pipesx="bash ~/code/fun/pipesx"
 alias rain="bash ~/code/fun/rain"
@@ -46,6 +48,7 @@ alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
 alias term='urxvtc -hold -e ' #used for awesomewm run menu
 alias fixcursor='xsetroot -cursor_name left_ptr'
 alias img='bash ~/code/sys/img'
+alias monokai='viewnior ~/images/monokai.png'
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
@@ -58,6 +61,16 @@ dirlist() {
 alias pacman="sudo pacman"
 alias apachereload='sudo systemctl restart httpd.service'
 alias disks="ncdu"
+#█▓▒░ work aliases
+alias dev0="ssh andrew.harrison@dev.brandingbrand.com"
+alias ascii="figlet -f 3d "
+alias chromeproxy='/usr/bin/env http_proxy="http://127.0.0.1:8888" /usr/bin/chromium'
+alias front="node app --url http://localhost:4000"
+alias frontfake="sudo node app --url http://localhost:4000 --p 80 --w 0"
+alias frontprod="NODE_ENV=production node app --url http://localhost:4000 -w 1 --p 3000"
+alias back="node app"
+alias backprod="NODE_ENV=production node app -w 1 --p 4000"
+alias compassfix="echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
 
 #█▓▒░ ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
@@ -148,6 +161,9 @@ SAVEHIST=1000
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
+
+#█▓▒░ setup node version manager
+source ~/.nvm/nvm.sh
 
 #█▓▒░ custom prompts
 

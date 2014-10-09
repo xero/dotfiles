@@ -1,0 +1,11 @@
+{
+	"color_scheme": "Packages/Monokai Extended/Monokai Extended Bright.tmTheme",
+	"font_face": "gohufont",
+	"font_size": 10,
+	"ignored_packages":
+	[
+		"Vintage",
+		"Monokai Extended"
+	],
+	"theme": "Brogrammer.sublime-theme"
+}

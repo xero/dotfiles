@@ -11,7 +11,7 @@
   ncmpcpp_directory = "/home/xero/.ncmpcpp"
   #lyrics_directory = /home/xero/.lyrics
   mpd_music_dir = "/home/xero/music"
-  external_editor = "/usr/bin/nano"
+  external_editor = "/usr/bin/vim"
 
 # █▓▒░ MPD Settings
   mpd_crossfade_time = "3"

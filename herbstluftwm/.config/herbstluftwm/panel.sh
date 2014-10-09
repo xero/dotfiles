@@ -23,6 +23,7 @@ panel_height=16
 #font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
 font="-Gohu-GohuFont-Medium-R-Normal--11-80-100-100-C-60-ISO10646-1"
 #font2="-misc-stlarch-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+font2="-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*"
 
 bgcolor=$(hc get frame_border_normal_color)
 selbg='#6A8C8C'
@@ -108,7 +109,7 @@ hc pad $monitor $panel_height
                     echo -n "^bg(#6A8C8C)^fg(#101010)"
                     ;;
                 '+')
-                    echo -n "^bg(#9CA668)^fg(#141414)"
+                    echo -n "^bg(#93a1a1)^fg(#141414)"
                     ;;
                 ':')
                     echo -n "^bg(#333333)^fg(#ffffff)"
@@ -167,8 +168,8 @@ hc pad $monitor $panel_height
         mem=`free -om | awk '/Mem:/ {print int(($3 - $7 - $6) / $2  * 100)}'`
         mem="^fg($xicon)^i(/usr/share/icons/stlarch_icons/mem1.xbm) ^fg($xtitle)ram ^fg($xfg)$mem^fg($xext)%"
         #battery
-        bat=`cat /sys/class/power_supply/BAT1/capacity`
-        batstat=`cat /sys/class/power_supply/BAT1/status`
+        bat=`cat /sys/class/power_supply/BAT0/capacity`
+        batstat=`cat /sys/class/power_supply/BAT0/status`
         if (($batstat=='Charging'))
         then
             batico="^i(/usr/share/icons/stlarch_icons/ac10.xbm)"
@@ -200,7 +201,7 @@ hc pad $monitor $panel_height
 
         right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')
         # get width of right aligned text.. and add some space..
-        width=$($textwidth "$font" "$right_text_only    ")
+        width=$($textwidth "$font" "$right_text_only     ")
         echo -n "^pa($(($panel_width - $width)))$right"
         echo
 

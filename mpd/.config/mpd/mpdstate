@@ -1,1 +1,13 @@
-
+sw_volume: 100
+audio_device_state:1:My ALSA Device
+audio_device_state:1:my_fifo
+state: stop
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+playlist_end

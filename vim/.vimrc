@@ -1,6 +1,6 @@
 "█▓▒░ autoload
 execute pathogen#infect()
-
+set viminfo='100,n$HOME/.vim/files/info/viminfo
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts   = 0
 let g:airline_theme             = 'tomorrow'

@@ -1,0 +1,13 @@
+action mode :: ctrl + a 
+
+new buffer :: action + c
+
+rename buffer :: action + ,
+
+close buffer :: action + x
+
+copy :: action + esc
+        move
+        v - highlight
+        y - yank
+

@@ -35,16 +35,19 @@ alias "cd.."="cd ../"
 alias rock="ncmpcpp"
 alias mixer="alsamixer"
 alias checkrootkits='sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check'
+alias checkvirus='clamscan --recursive=yes --infected /home'
 alias genplaylist="cd ~/music;find . -name '*.mp3' -o -name '*.flac'|sed -e 's%^./%%g' > ~/.config/mpd/playlists/all.m3u;mpd ~/.config/mpd/mpd.conf;mpc clear;mpc load all.m3u;mpc update"
-alias matrix="cmatrix -b -s"
+alias matrix="cmatrix -b"
 alias pipes="bash ~/code/fun/pipes"
 alias pipesx="bash ~/code/fun/pipesx"
 alias rain="bash ~/code/fun/rain"
-alias screenfetch="~/code/fun/screenfetch"
+alias screenfetch="~/code/sys/info"
 alias hashcompare='bash ~/code/sys/hash-compare '
 alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
 alias term='urxvtc -hold -e ' #used for awesomewm run menu
 alias fixcursor='xsetroot -cursor_name left_ptr'
+alias img='bash ~/code/sys/img'
+alias monokai='viewnior ~/images/monokai.png'
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
@@ -58,10 +61,16 @@ alias pacman="sudo pacman"
 alias apachereload='sudo systemctl restart httpd.service'
 alias disks="ncdu"
 #█▓▒░ work aliases
-alias workscreen='xrandr --output HDMI1 --left-of LVDS1 --mode 1366x768'
+alias dev0="ssh andrew.harrison@dev.brandingbrand.com"
+alias ascii="figlet -f 3d "
+alias front="node app --url http://localhost:4000"
+alias frontfake="sudo node app --url http://localhost:4000 --p 80 --w 0"
+alias frontprod="NODE_ENV=production node app --url http://localhost:4000 -w 1 --p 3000"
+alias back="node app"
+alias chromeproxy='/usr/bin/env http_proxy="http://127.0.0.1:8888" /usr/bin/chromium'
 
 #█▓▒░ ssh
-export SSH_KEY_PATH="~/.ssh/id_rsa"
+export SSH_KEY_PATH="/home/xero/.ssh/id_rsa"
 
 #█▓▒░ keybindings
 typeset -A key

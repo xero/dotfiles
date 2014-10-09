@@ -19,7 +19,7 @@
 # merge custom x resources
 xrdb -merge "${HOME}/.Xdefaults" &
  
-# start the terminal emulator daemon
+# terminal emulator
 urxvtd -q -f -o &
 
 # keyring
@@ -35,14 +35,17 @@ gnome-keyring-daemon &
 # sound mixer
 (sleep 2s && pnmixer) &
 
-# volume keys daemon
+# volume keys
 (sleep 2s && xfce4-volumed) &
 
 # compositing manager
 compton -b --config ~/.config/compton.conf &
 
-# start thunar daemon
+# file manager
 thunar --daemon &
+
+# automount drives
+udisks-glue -c ~/.config/.udisk-glue.conf --session &
 
 # wallpaper
 nitrogen --restore &
@@ -52,6 +55,9 @@ syndaemon -i 0.8 -d &
 if egrep -iq 'touchpad' /proc/bus/input/devices; then
 	synclient VertEdgeScroll=0 &
 	synclient TapButton1=1 &
+	synclient TapButton2=1 &
+	synclient TapButton3=2 &
+	synclient VertTwoFingerScroll=1 &
 	synclient HorizTwoFingerScroll=1 &
 fi
 
@@ -70,6 +76,8 @@ mpd &
 # setup fonts
 xset +fp ~/.fonts &
 xset fp rehash &
+
+bash ~/.screenlayout/work.sh &
 
 # ░▒▓█ herbstluft █▓▒░
 exec herbstluftwm --locked 

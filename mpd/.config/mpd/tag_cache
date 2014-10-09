@@ -1,6 +1,6 @@
 info_begin
 format: 1
-mpd_version: 0.18.11
+mpd_version: 0.18.14
 fs_charset: UTF-8
 tag: Artist
 tag: ArtistSort
@@ -20,750 +20,9 @@ tag: MUSICBRAINZ_ALBUMID
 tag: MUSICBRAINZ_ALBUMARTISTID
 tag: MUSICBRAINZ_TRACKID
 info_end
-directory: Jane Doe
-mtime: 1401999688
-begin: Jane Doe
-song_begin: 01 - Converge - Concubine.mp3
-Time: 79
-Artist: Converge
-Title: Concubine
-Album: Jane Doe
-Track: 1
-Date: 2001
-Genre: Hardcore
-mtime: 1401999682
-song_end
-song_begin: 02 - Converge - Fault And Fracture.mp3
-Time: 185
-Artist: Converge
-Title: Fault And Fracture
-Album: Jane Doe
-Track: 2
-Date: 2001
-Genre: Hardcore
-mtime: 1401583232
-song_end
-song_begin: 03 - Converge - Distance And Meaning.mp3
-Time: 258
-Artist: Converge
-Title: Distance And Meaning
-Album: Jane Doe
-Track: 3
-Date: 2001
-Genre: Hardcore
-mtime: 1401999771
-song_end
-song_begin: 04 - Converge - Hell To Pay.mp3
-Time: 272
-Artist: Converge
-Title: Hell To Pay
-Album: Jane Doe
-Track: 4
-Date: 2001
-Genre: Hardcore
-mtime: 1401583769
-song_end
-song_begin: 05 - Converge - Homewrecker.mp3
-Time: 231
-Artist: Converge
-Title: Homewrecker
-Album: Jane Doe
-Track: 5
-Date: 2001
-Genre: Hardcore
-mtime: 1401584287
-song_end
-song_begin: 06 - Converge - The Broken Vow.mp3
-Time: 133
-Artist: Converge
-Title: The Broken Vow
-Album: Jane Doe
-Track: 6
-Date: 2001
-Genre: Hardcore
-mtime: 1401583980
-song_end
-song_begin: 07 - Converge - Bitter And Then Some.mp3
-Time: 88
-Artist: Converge
-Title: Bitter And Then Some
-Album: Jane Doe
-Track: 7
-Date: 2001
-Genre: Hardcore
-mtime: 1401582825
-song_end
-song_begin: 08 - Converge - Heaven In Her Arms.mp3
-Time: 241
-Artist: Converge
-Title: Heaven In Her Arms
-Album: Jane Doe
-Track: 8
-Date: 2001
-Genre: Hardcore
-mtime: 1401584734
-song_end
-song_begin: 09 - Converge - Phoenix In Flight.mp3
-Time: 229
-Artist: Converge
-Title: Phoenix In Flight
-Album: Jane Doe
-Track: 9
-Date: 2001
-Genre: Hardcore
-mtime: 1401999769
-song_end
-song_begin: 10 - Converge - Phoenix In Flames.mp3
-Time: 42
-Artist: Converge
-Title: Phoenix In Flames
-Album: Jane Doe
-Track: 10
-Date: 2001
-Genre: Hardcore
-mtime: 1401583337
-song_end
-song_begin: 11 - Converge - Thaw.mp3
-Time: 270
-Artist: Converge
-Title: Thaw
-Album: Jane Doe
-Track: 11
-Date: 2001
-Genre: Hardcore
-mtime: 1401583604
-song_end
-song_begin: 12 - Converge - Jane Doe.mp3
-Time: 694
-Artist: Converge
-Title: Jane Doe
-Album: Jane Doe
-Track: 12
-Date: 2001
-Genre: Hardcore
-mtime: 1401999685
-song_end
-playlist_begin: Converge - Jane Doe.m3u
-mtime: 1401583234
-playlist_end
-end: Jane Doe
-directory: Metal Metroid
-mtime: 1292790433
-begin: Metal Metroid
-song_begin: metal.metroid_01-intro.mp3
-Time: 27
-Artist: metal.metroid
-Title: 02 - intro
-Date: 2003
-Genre: Game
-mtime: 1096580414
-song_end
-song_begin: metal.metroid_02-theme.mp3
-Time: 153
-Artist: metal.metroid
-Title: 01 - the.theme
-Date: 2003
-Genre: Game
-mtime: 1096580408
-song_end
-song_begin: metal.metroid_03-brinstar.mp3
-Time: 145
-Artist: metal.metroid
-Title: 03 - brinstar
-mtime: 1096580422
-song_end
-song_begin: metal.metroid_04-item.room.mp3
-Time: 133
-Artist: metal.metroid
-Title: 04 - item.room
-Date: 2003
-Genre: Game
-mtime: 1096580430
-song_end
-song_begin: metal.metroid_05-itemcollect.mp3
-Time: 57
-Artist: metal.metroid
-Title: 05 - item.collect
-Date: 2004
-Genre: Game
-mtime: 1096580486
-song_end
-song_begin: metal.metroid_06-norfair.mp3
-Time: 219
-Artist: metal.metroid
-Title: 06 - norfair
-Date: 2003
-Genre: Game
-mtime: 1096580492
-song_end
-song_begin: metal.metroid_07-kraid.mp3
-Time: 179
-Artist: metal.metroid
-Title: 07 - kraid
-Date: 2003
-Genre: Game
-mtime: 1096580498
-song_end
-song_begin: metal.metroid_08-ridley.mp3
-Time: 136
-Artist: metal.metroid
-Title: 08 - ridley
-Date: 2003
-Genre: Game
-mtime: 1096580504
-song_end
-song_begin: metal.metroid_09-tourian-motherbrain.mp3
-Time: 192
-Artist: metal.metroid
-Title: 09 - tourian / mother.brain
-Date: 2004
-Genre: Game
-mtime: 1096580370
-song_end
-song_begin: metal.metroid_10-escape.mp3
-Time: 218
-Artist: metal.metroid
-Title: 10 - the escape
-Date: 2004
-Genre: Game
-mtime: 1096580332
-song_end
-song_begin: metal.metroid_11-ending.mp3
-Time: 305
-Artist: metal.metroid
-Title: 11 - the ending
-Date: 2004
-Genre: Game
-mtime: 1096580308
-song_end
-song_begin: supermetroid_bossmedley.mp3
-Time: 420
-Artist: Stemage
-Title: Super Metroid Metal - Boss Medley
-Date: 2005
-Genre: Game
-Genre: Game
-Composer: Grant Henry
-mtime: 1153151498
-song_end
-song_begin: supermetroid_brinstar.mp3
-Time: 320
-Artist: Stemage
-Title: Super Metroid Metal - Brinstar
-Date: 2006
-Composer: Grant Henry
-mtime: 1153151492
-song_end
-song_begin: supermetroid_lowernorfair.mp3
-Time: 287
-Artist: Stemage
-Title: Super Metroid Metal - Lower Norfair
-Date: 2004
-Genre: Game
-Genre: Game
-Composer: Grant Henry
-mtime: 1153151528
-song_end
-song_begin: supermetroid_maridia.mp3
-Time: 231
-Artist: Stemage
-Title: Super Metroid Metal - Maridia
-Date: 2005
-Genre: Game
-Genre: Game
-Composer: Grant Henry
-mtime: 1153151514
-song_end
-end: Metal Metroid
-directory: The Black Dahlia Murder
-mtime: 1338068980
-begin: The Black Dahlia Murder
-directory: miasma
-mtime: 1338068838
-begin: The Black Dahlia Murder/miasma
-song_begin: 01 Built For Sin.mp3
-Time: 75
-mtime: 1304616492
-song_end
-song_begin: 02 I'm Charming.mp3
-Time: 175
-mtime: 1304616498
-song_end
-song_begin: 03 Flies.mp3
-Time: 207
-mtime: 1304616502
-song_end
-song_begin: 04 Statutory Ape.mp3
-Time: 222
-mtime: 1304616508
-song_end
-song_begin: 05 A Vulgar Picture.mp3
-Time: 218
-mtime: 1304616522
-song_end
-song_begin: 06 Novelty Crosses.mp3
-Time: 232
-mtime: 1304616532
-song_end
-song_begin: 07 Dave Goes To Hollywood.mp3
-Time: 239
-mtime: 1304616534
-song_end
-song_begin: 08 Miscarriage.mp3
-Time: 189
-mtime: 1304616550
-song_end
-song_begin: 09 Spite Suicide.mp3
-Time: 172
-mtime: 1304616554
-song_end
-song_begin: 10 Miasma.mp3
-Time: 282
-mtime: 1304616554
-song_end
-end: The Black Dahlia Murder/miasma
-directory: unhallowed
-mtime: 1338068827
-begin: The Black Dahlia Murder/unhallowed
-song_begin: The Black Dahlia Murder - 01 - Unhallowed.mp3
-Time: 122
-Artist: The Black Dahlia Murder
-Title: Unhallowed
-Album: Unhallowed++
-Track: 1
-Date: 2003
-Genre: Metalcore
-mtime: 1150743380
-song_end
-song_begin: The Black Dahlia Murder - 02 - Funeral Thirst.mp3
-Time: 237
-Artist: The Black Dahlia Murder
-Title: Funeral Thirst
-Album: Unhallowed++
-Track: 2
-Date: 2003
-Genre: Metalcore
-mtime: 1150743400
-song_end
-song_begin: The Black Dahlia Murder - 03 - Elder Misanthropy.mp3
-Time: 156
-Artist: The Black Dahlia Murder
-Title: Elder Misanthropy
-Album: Unhallowed++
-Track: 3
-Date: 2003
-Genre: Metalcore
-mtime: 1150743410
-song_end
-song_begin: The Black Dahlia Murder - 04 - Contagion.mp3
-Time: 205
-Artist: The Black Dahlia Murder
-Title: Contagion
-Album: Unhallowed++
-Track: 4
-Date: 2003
-Genre: Metalcore
-mtime: 1150743418
-song_end
-song_begin: The Black Dahlia Murder - 05 - When The Last Grave Has Emptied.mp3
-Time: 193
-Artist: The Black Dahlia Murder
-Title: When The Last Grave Has Emptied
-Album: Unhallowed++
-Track: 5
-Date: 2003
-Genre: Metalcore
-mtime: 1150743426
-song_end
-song_begin: The Black Dahlia Murder - 06 - Thy Horror Cosmic.mp3
-Time: 177
-Artist: The Black Dahlia Murder
-Title: Thy Horror Cosmic
-Album: Unhallowed++
-Track: 6
-Date: 2003
-Genre: Metalcore
-mtime: 1150743434
-song_end
-song_begin: The Black Dahlia Murder - 07 - The Blackest Incarnation.mp3
-Time: 285
-Artist: The Black Dahlia Murder
-Title: The Blackest Incarnation
-Album: Unhallowed++
-Track: 7
-Date: 2003
-Genre: Metalcore
-mtime: 1150743444
-song_end
-song_begin: The Black Dahlia Murder - 08 - Hymn For The Wretched.mp3
-Time: 261
-Artist: The Black Dahlia Murder
-Title: Hymn For The Wretched
-Album: Unhallowed++
-Track: 8
-Date: 2003
-Genre: Metalcore
-mtime: 1150743454
-song_end
-song_begin: The Black Dahlia Murder - 09 - Closed Casket Requiem.mp3
-Time: 267
-Artist: The Black Dahlia Murder
-Title: Closed Casket Requiem
-Album: Unhallowed++
-Track: 9
-Date: 2003
-Genre: Metalcore
-mtime: 1150743464
-song_end
-song_begin: The Black Dahlia Murder - 10 - Apex.mp3
-Time: 307
-Artist: The Black Dahlia Murder
-Title: Apex
-Album: Unhallowed++
-Track: 10
-Date: 2003
-Genre: Metalcore
-mtime: 1150743476
-song_end
-song_begin: The Black Dahlia Murder - 11 - Burning The Hive.mp3
-Time: 65
-Artist: The Black Dahlia Murder
-Title: Burning The Hive
-Album: Unhallowed++
-Track: 11
-Date: 2003
-Genre: Metalcore
-mtime: 1150743478
-song_end
-song_begin: The Black Dahlia Murder - 12 - Built For Sin.mp3
-Time: 242
-Artist: The Black Dahlia Murder
-Title: Built For Sin
-Album: Unhallowed++
-Track: 12
-Date: 2003
-Genre: Metalcore
-mtime: 1150743486
-song_end
-song_begin: The Black Dahlia Murder - 13 - Miasma.mp3
-Time: 234
-Artist: The Black Dahlia Murder
-Title: Miasma
-Album: Unhallowed++
-Track: 13
-Date: 2003
-Genre: Metalcore
-mtime: 1150743496
-song_end
-song_begin: The Black Dahlia Murder - 14 - A Vulgar Picture.mp3
-Time: 266
-Artist: The Black Dahlia Murder
-Title: A Vulgar Picture
-Album: Unhallowed++
-Track: 14
-Date: 2003
-Genre: Metalcore
-mtime: 1150743504
-song_end
-song_begin: The Black Dahlia Murder - 15 - Spite Suicide.mp3
-Time: 154
-Artist: The Black Dahlia Murder
-Title: Spite Suicide
-Album: Unhallowed++
-Track: 15
-Date: 2003
-Genre: Metalcore
-mtime: 1150743510
-song_end
-end: The Black Dahlia Murder/unhallowed
-end: The Black Dahlia Murder
-directory: Turbonegro - Party Animals - V0
-mtime: 1401582607
-begin: Turbonegro - Party Animals - V0
-song_begin: 01 - Turbonegro - Intro- The Party Zone.mp3
-Time: 119
-Artist: Turbonegro
-Title: Intro: The Party Zone
-Album: Party Animals
-Track: 1
-Date: 2005
-Genre: Punk Rock
-mtime: 1401581172
-song_end
-song_begin: 02 - Turbonegro - All my Friends Are Dead.mp3
-Time: 156
-Artist: Turbonegro
-Title: All my Friends Are Dead
-Album: Party Animals
-Track: 2
-Date: 2005
-Genre: Punk Rock
-mtime: 1401582058
-song_end
-song_begin: 03 - Turbonegro - Blow Me (Like The Wind).mp3
-Time: 197
-Artist: Turbonegro
-Title: Blow Me (Like The Wind)
-Album: Party Animals
-Track: 3
-Date: 2005
-Genre: Punk Rock
-mtime: 1401582392
-song_end
-song_begin: 04 - Turbonegro - City Of Satan.mp3
-Time: 343
-Artist: Turbonegro
-Title: City Of Satan
-Album: Party Animals
-Track: 4
-Date: 2005
-Genre: Punk Rock
-mtime: 1401580839
-song_end
-song_begin: 05 - Turbonegro - Death From Above.mp3
-Time: 183
-Artist: Turbonegro
-Title: Death From Above
-Album: Party Animals
-Track: 5
-Date: 2005
-Genre: Punk Rock
-mtime: 1401582712
-song_end
-song_begin: 06 - Turbonegro - Wasted Again.mp3
-Time: 187
-Artist: Turbonegro
-Title: Wasted Again
-Album: Party Animals
-Track: 6
-Date: 2005
-Genre: Punk Rock
-mtime: 1401581477
-song_end
-song_begin: 07 - Turbonegro - High On The Crime.mp3
-Time: 199
-Artist: Turbonegro
-Title: High On The Crime
-Album: Party Animals
-Track: 7
-Date: 2005
-Genre: Punk Rock
-mtime: 1401582098
-song_end
-song_begin: 08 - Turbonegro - If You See Kaye (Tell Her I L-O-V-E Her).mp3
-Time: 179
-Artist: Turbonegro
-Title: If You See Kaye (Tell Her I L-
-Album: Party Animals
-Track: 8
-Date: 2005
-Genre: Punk Rock
-mtime: 1401581647
-song_end
-song_begin: 09 - Turbonegro - Stay Free.mp3
-Time: 225
-Artist: Turbonegro
-Title: Stay Free
-Album: Party Animals
-Track: 9
-Date: 2005
-Genre: Punk Rock
-mtime: 1401580274
-song_end
-song_begin: 10 - Turbonegro - Babylon Forever.mp3
-Time: 232
-Artist: Turbonegro
-Title: Babylon Forever
-Album: Party Animals
-Track: 10
-Date: 2005
-Genre: Punk Rock
-mtime: 1401582963
-song_end
-song_begin: 11 - Turbonegro - Hot Stuff,Hot Shit.mp3
-Time: 240
-Artist: Turbonegro
-Title: Hot Stuff/Hot Shit
-Album: Party Animals
-Track: 11
-Date: 2005
-Genre: Punk Rock
-mtime: 1401582603
-song_end
-song_begin: 12 - Turbonegro - Final Warning.mp3
-Time: 606
-Artist: Turbonegro
-Title: Final Warning
-Album: Party Animals
-Track: 12
-Date: 2005
-Genre: Punk Rock
-mtime: 1401580824
-song_end
-end: Turbonegro - Party Animals - V0
-directory: Unfortunately We're Not Robots
-mtime: 1401999819
-begin: Unfortunately We're Not Robots
-song_begin: 01 - We.mp3
-Time: 5
-Artist: Curl Up And Die
-Title: We
-Album: Unfortunately We're Not Robots
-Track: 1
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999775
-song_end
-song_begin: 02 - Are.mp3
-Time: 5
-Artist: Curl Up And Die
-Title: Are
-Album: Unfortunately We're Not Robots
-Track: 2
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999782
-song_end
-song_begin: 03 - All.mp3
-Time: 5
-Artist: Curl Up And Die
-Title: All
-Album: Unfortunately We're Not Robots
-Track: 3
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999777
-song_end
-song_begin: 04 - Dead.mp3
-Time: 6
-Artist: Curl Up And Die
-Title: Dead
-Album: Unfortunately We're Not Robots
-Track: 4
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999774
-song_end
-song_begin: 05 - 100 M.P.H. Vomit Dedicated To Jon.mp3
-Time: 24
-Artist: Curl Up And Die
-Title: 100 M.P.H. Vomit Dedicated To Jon
-Album: Unfortunately We're Not Robots
-Track: 5
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999773
-song_end
-song_begin: 06 - On The Run From Johnny Law Ain't No Trip To Cleveland.mp3
-Time: 74
-Artist: Curl Up And Die
-Title: On The Run From Johnny Law Ain't No Trip To Cleveland
-Album: Unfortunately We're Not Robots
-Track: 6
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999743
-song_end
-song_begin: 07 - Ted Nugent Goes AOL.mp3
-Time: 151
-Artist: Curl Up And Die
-Title: Ted Nugent Goes AOL
-Album: Unfortunately We're Not Robots
-Track: 7
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999769
-song_end
-song_begin: 08 - Total Pandemonium.mp3
-Time: 148
-Artist: Curl Up And Die
-Title: Total Pandemonium
-Album: Unfortunately We're Not Robots
-Track: 8
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999822
-song_end
-song_begin: 09 - Doctor Doom, A Man of Science, Doesn't Believe In Jesus, Why The Fuck Do You.mp3
-Time: 159
-Artist: Curl Up And Die
-Title: Doctor Doom, A Man of Science, Doesn't Believe In Jesus, Why The Fuck Do You
-Album: Unfortunately We're Not Robots
-Track: 9
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999814
-song_end
-song_begin: 10 - You'd Be Cuter If I Shot You In The Face.mp3
-Time: 490
-Artist: Curl Up And Die
-Title: You'd Be Cuter If I Shot You In The Face
-Album: Unfortunately We're Not Robots
-Track: 10
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1402000086
-song_end
-song_begin: 11 - Make Like A Computer And Get With The Program.mp3
-Time: 296
-Artist: Curl Up And Die
-Title: Make Like A Computer And Get With The Program
-Album: Unfortunately We're Not Robots
-Track: 11
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999801
-song_end
-song_begin: 12 - Your Idea Of Fascism And Global Intervention Makes Me Puke.mp3
-Time: 157
-Artist: Curl Up And Die
-Title: Your Idea Of Fascism And Global Intervention Makes Me Puke
-Album: Unfortunately We're Not Robots
-Track: 12
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999865
-song_end
-song_begin: 13 - I Lost My Job To A Machine.mp3
-Time: 80
-Artist: Curl Up And Die
-Title: I Lost My Job To A Machine
-Album: Unfortunately We're Not Robots
-Track: 13
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999752
-song_end
-song_begin: 14 - Kissing You Is Like Licking An Ashtray.mp3
-Time: 122
-Artist: Curl Up And Die
-Title: Kissing You Is Like Licking An Ashtray
-Album: Unfortunately We're Not Robots
-Track: 14
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999778
-song_end
-song_begin: 15 - Rich Hall (Runner Up In A Carson Daly Lookalike Contest).mp3
-Time: 425
-Artist: Curl Up And Die
-Title: Rich Hall (Runner Up In A Carson Daly Lookalike Contest)
-Album: Unfortunately We're Not Robots
-Track: 15
-Date: 2001
-Genre: Chaotic Hardcore
-mtime: 1401999907
-song_end
-playlist_begin: Unfortunately We're Not Robots.cue
-mtime: 1401999817
-playlist_end
-playlist_begin: Curl Up And Die - Unfortunately We're Not Robots.m3u
-mtime: 1401999779
-playlist_end
-end: Unfortunately We're Not Robots
-directory: black.wizard
-mtime: 1401640787
-begin: black.wizard
+directory: Black Wizard - Black Wizard (2010) [320]
+mtime: 1408336380
+begin: Black Wizard - Black Wizard (2010) [320]
 song_begin: 01. Long Way Home.mp3
 Time: 382
 Artist: Black Wizard
@@ -772,17 +31,17 @@ Album: Black Wizard
 Track: 1
 Date: 2010
 Genre: Stoner Metal
-mtime: 1399340593
+mtime: 1408336062
 song_end
 song_begin: 02. Evergreen.mp3
-Time: 300
+Time: 234
 Artist: Black Wizard
 Title: Evergreen
 Album: Black Wizard
 Track: 2
 Date: 2010
 Genre: Stoner Metal
-mtime: 1399340620
+mtime: 1408337762
 song_end
 song_begin: 03. Waves.mp3
 Time: 214
@@ -792,7 +51,7 @@ Album: Black Wizard
 Track: 3
 Date: 2010
 Genre: Stoner Metal
-mtime: 1399340587
+mtime: 1408337756
 song_end
 song_begin: 04. Drugs.mp3
 Time: 344
@@ -802,7 +61,7 @@ Album: Black Wizard
 Track: 4
 Date: 2010
 Genre: Stoner Metal
-mtime: 1399340628
+mtime: 1408335357
 song_end
 song_begin: 05. Winds of Helliwell (Acoustic).mp3
 Time: 125
@@ -812,17 +71,17 @@ Album: Black Wizard
 Track: 5
 Date: 2010
 Genre: Stoner Metal
-mtime: 1399340553
+mtime: 1408333763
 song_end
 song_begin: 06. Kill the City.mp3
-Time: 287
+Time: 154
 Artist: Black Wizard
 Title: Kill the City
 Album: Black Wizard
 Track: 6
 Date: 2010
 Genre: Stoner Metal
-mtime: 1399340544
+mtime: 1408337650
 song_end
 song_begin: 07. Black Fog.mp3
 Time: 361
@@ -832,89 +91,244 @@ Album: Black Wizard
 Track: 7
 Date: 2010
 Genre: Stoner Metal
-mtime: 1399340645
+mtime: 1408334657
 song_end
-end: black.wizard
+end: Black Wizard - Black Wizard (2010) [320]
+directory: brass
+mtime: 1403633856
+begin: brass
+song_begin: minibosses - castlevania.mp3
+Time: 328
+Artist: minibosses
+Title: castlevania
+Album: brass
+Track: 01
+mtime: 1403633856
+song_end
+song_begin: minibosses - double dragon.mp3
+Time: 70
+Artist: minibosses
+Title: double dragon
+Album: brass
+Track: 03
+mtime: 1403633856
+song_end
+song_begin: minibosses - super mario bros 2.mp3
+Time: 376
+Artist: minibosses
+Title: super mario bros II
+Album: brass
+Track: 04
+mtime: 1403633856
+song_end
+song_begin: minibosses - ikari warriors.mp3
+Time: 116
+Artist: minibosses
+Title: ikari warriors
+Album: brass
+Track: 05
+mtime: 1403633856
+song_end
+song_begin: minibosses - blaster master _ contra.mp3
+Time: 407
+Artist: minibosses
+Title: blaster master - contra
+Album: brass
+Track: 06
+mtime: 1403633856
+song_end
+song_begin: minibosses - mike tyson's punch out.mp3
+Time: 213
+Artist: minibosses
+Title: mike tyson's punch out
+Album: brass
+Track: 07
+mtime: 1403633856
+song_end
+song_begin: minibosses - kid icarus.mp3
+Time: 101
+Artist: minibosses
+Title: kid icarus
+Album: brass
+Track: 08
+mtime: 1403633856
+song_end
+song_begin: minibosses - mega man 2.mp3
+Time: 609
+Artist: minibosses
+Title: mega man II
+Album: brass
+Track: 09
+mtime: 1403633856
+song_end
+song_begin: minibosses - metroid.mp3
+Time: 394
+Artist: minibosses
+Title: metroid
+Album: brass
+Track: 10
+mtime: 1403633857
+song_end
+end: brass
+directory: brass2
+mtime: 1403633864
+begin: brass2
+song_begin: minibosses - excitebike 13.mp3
+Time: 25
+Artist: minibosses
+Title: excite bike 13
+Album: brass
+Track: 17
+mtime: 1403633864
+song_end
+song_begin: minibosses - ninja gaiden.mp3
+Time: 250
+Artist: minibosses
+Title: ninja gaiden
+Album: brass2
+Track: 00
+mtime: 1403633864
+song_end
+song_begin: minibosses - sports!!!.mp3
+Time: 279
+Artist: minibosses
+Title: sports!!!
+Album: brass2
+Track: 01
+mtime: 1403633864
+song_end
+song_begin: minibosses - tecmo bowl.mp3
+Time: 72
+Artist: minibosses
+Title: tecmo bowl
+Album: brass2
+Track: 02
+mtime: 1403633864
+song_end
+song_begin: minibosses - vantam.mp3
+Time: 481
+Artist: minibosses
+Title: vantam
+Album: brass2
+Track: 03
+mtime: 1403633863
+song_end
+song_begin: minibosses - excitebike 9.mp3
+Time: 22
+Artist: minibosses
+Title: excitebike 9
+Album: brass2
+Track: 04
+mtime: 1403633864
+song_end
+song_begin: minibosses - the legend of zelda.mp3
+Time: 225
+Artist: minibosses
+Title: the legend of zelda
+Album: brass2
+Track: 05
+mtime: 1403633864
+song_end
+song_begin: minibosses - the legend of hallowbike.mp3
+Time: 108
+Artist: minibosses
+Title: the legend of hallowbike
+Album: brass2
+Track: 06
+mtime: 1403633864
+song_end
+song_begin: minibosses - ghosts n goblins.mp3
+Time: 66
+Artist: minibosses
+Title: ghosts n goblins
+Album: brass2
+Track: 07
+mtime: 1403633864
+song_end
+song_begin: minibosses - excitebike 11.mp3
+Time: 10
+Artist: minibosses
+Title: excite bike 11
+Album: brass2
+Track: 08
+mtime: 1403633864
+song_end
+song_begin: minibosses - aphexcitebike.mp3
+Time: 28
+Artist: minibosses
+Title: aphexcite bike
+Album: brass2
+Track: 09
+mtime: 1403633864
+song_end
+song_begin: minibosses - la moto eccitato.mp3
+Time: 25
+Artist: minibosses
+Title: la moto eccitato
+Album: brass2
+Track: 10
+mtime: 1403633864
+song_end
+song_begin: minibosses - kid icarus.mp3
+Time: 731
+Artist: minibosses
+Title: kid icarus
+Album: brass2
+Track: 11
+mtime: 1403633863
+song_end
+song_begin: minibosses - excitebike 17.mp3
+Time: 14
+Artist: minibosses
+Title: excite bike 17
+Album: brass2
+Track: 12
+mtime: 1403633864
+song_end
+song_begin: minibosses - super mario bros 3.mp3
+Time: 398
+Artist: minibosses
+Title: super mario bros 3
+Album: brass2
+Track: 13
+mtime: 1403633864
+song_end
+song_begin: minibosses - goonies 2.mp3
+Time: 88
+Artist: minibosses
+Title: goonies 2
+Album: brass2
+Track: 14
+mtime: 1403633864
+song_end
+song_begin: minibosses - excitebike 20.mp3
+Time: 32
+Artist: minibosses
+Title: excite bike 20
+Album: brass2
+Track: 15
+mtime: 1403633864
+song_end
+song_begin: minibosses - excitebike 14.mp3
+Time: 8
+Artist: minibosses
+Title: excite bike 14
+Album: brass2
+Track: 16
+mtime: 1403633864
+song_end
+song_begin: minibosses - it's not for sale, francis.mp3
+Time: 25
+Artist: minibosses
+Title: it's not for sale, francis
+Album: brass2
+Track: 18
+mtime: 1403633864
+song_end
+end: brass2
 directory: brimstone.coven
-mtime: 1401640624
+mtime: 1403633576
 begin: brimstone.coven
-directory: I
-mtime: 1401640639
-begin: brimstone.coven/I
-song_begin: 01-Brimstone Coven _ I n t r o d u c t i o n.mp3
-Time: 49
-Artist: Brimstone Coven
-Title: Brimstone Coven / I n t r o d u c t i o n
-Album: Brimstone Coven
-Track: 1
-Date: 2012
-Genre: Metal
-mtime: 1331156284
-song_end
-song_begin: 02-Brimstone Coven _ We Are Forever.mp3
-Time: 201
-Artist: Brimstone Coven
-Title: Brimstone Coven / We Are Forever
-Album: Brimstone Coven
-Track: 2
-Date: 2012
-Genre: Metal
-mtime: 1331156378
-song_end
-song_begin: 03-Brimstone Coven _ The Ancients.mp3
-Time: 193
-Artist: Brimstone Coven
-Title: Brimstone Coven / The Ancients
-Album: Brimstone Coven
-Track: 3
-Date: 2012
-Genre: Metal
-mtime: 1331156456
-song_end
-song_begin: 04-Brimstone Coven _ Son Of The Morning.mp3
-Time: 335
-Artist: Brimstone Coven
-Title: Brimstone Coven / Son Of The Morning
-Album: Brimstone Coven
-Track: 4
-Date: 2012
-Genre: Metal
-mtime: 1331156586
-song_end
-song_begin: 05-Brimstone Coven _ LoSt in the oDyssey.mp3
-Time: 234
-Artist: Brimstone Coven
-Title: Brimstone Coven / LoSt in the oDyssey
-Album: Brimstone Coven
-Track: 5
-Date: 2012
-Genre: Metal
-mtime: 1331156673
-song_end
-song_begin: 06-Brimstone Coven _ Children Of The Sun.mp3
-Time: 311
-Artist: Brimstone Coven
-Title: Brimstone Coven / Children Of The Sun
-Album: Brimstone Coven
-Track: 6
-Date: 2012
-Genre: Metal
-mtime: 1331156787
-song_end
-song_begin: 07-Brimstone Coven _ O u t r o.mp3
-Time: 641
-Artist: Brimstone Coven
-Title: Brimstone Coven / O u t r o
-Album: Brimstone Coven
-Track: 7
-Date: 2012
-Genre: Metal
-mtime: 1331157014
-song_end
-end: brimstone.coven/I
-directory: II
-mtime: 1401640644
-begin: brimstone.coven/II
 song_begin: 01-Brimstone Coven _ Cosmic Communion.mp3
 Time: 279
 Artist: Brimstone Coven
@@ -922,7 +336,7 @@ Title: Brimstone Coven / Cosmic Communion
 Album: II
 Track: 1
 Genre: Unknown
-mtime: 1383782442
+mtime: 1403633574
 song_end
 song_begin: 02-Brimstone Coven _ Behold, the Anunnaki.mp3
 Time: 345
@@ -931,7 +345,7 @@ Title: Brimstone Coven / Behold, the Anunnaki
 Album: II
 Track: 2
 Genre: Unknown
-mtime: 1383782516
+mtime: 1403633575
 song_end
 song_begin: 03-Brimstone Coven _ The Black Door.mp3
 Time: 231
@@ -940,7 +354,7 @@ Title: Brimstone Coven / The Black Door
 Album: II
 Track: 3
 Genre: Unknown
-mtime: 1383782557
+mtime: 1403633575
 song_end
 song_begin: 04-Brimstone Coven _ Blood On The Wall.mp3
 Time: 271
@@ -949,7 +363,7 @@ Title: Brimstone Coven / Blood On The Wall
 Album: II
 Track: 4
 Genre: Unknown
-mtime: 1383782599
+mtime: 1403633575
 song_end
 song_begin: 05-Brimstone Coven _ The Grave.mp3
 Time: 274
@@ -958,7 +372,7 @@ Title: Brimstone Coven / The Grave
 Album: II
 Track: 5
 Genre: Unknown
-mtime: 1383782639
+mtime: 1403633576
 song_end
 song_begin: 06-Brimstone Coven _ Lord And Master.mp3
 Time: 372
@@ -967,7 +381,7 @@ Title: Brimstone Coven / Lord And Master
 Album: II
 Track: 6
 Genre: Unknown
-mtime: 1383782695
+mtime: 1403633575
 song_end
 song_begin: 07-Brimstone Coven _ Vying.mp3
 Time: 287
@@ -976,7 +390,7 @@ Title: Brimstone Coven / Vying
 Album: II
 Track: 7
 Genre: Unknown
-mtime: 1383782737
+mtime: 1403633574
 song_end
 song_begin: 08-Brimstone Coven _ The Seance.mp3
 Time: 230
@@ -985,7 +399,7 @@ Title: Brimstone Coven / The Seance
 Album: II
 Track: 8
 Genre: Unknown
-mtime: 1383782770
+mtime: 1403633575
 song_end
 song_begin: 09-Brimstone Coven _ Hades Hymn.mp3
 Time: 88
@@ -994,7 +408,7 @@ Title: Brimstone Coven / Hades Hymn
 Album: II
 Track: 9
 Genre: Unknown
-mtime: 1383782794
+mtime: 1403633575
 song_end
 song_begin: 10-Brimstone Coven _ The Folly Of Faust.mp3
 Time: 424
@@ -1003,147 +417,506 @@ Title: Brimstone Coven / The Folly Of Faust
 Album: II
 Track: 10
 Genre: Unknown
-mtime: 1383782854
+mtime: 1403633576
 song_end
-end: brimstone.coven/II
 end: brimstone.coven
-directory: converge
-mtime: 1401640807
-begin: converge
-directory: jane.doe
-mtime: 1401640810
-begin: converge/jane.doe
-song_begin: 01 - Converge - Concubine.mp3
-Time: 79
-Artist: Converge
-Title: Concubine
-Album: Jane Doe
-Track: 1
-Date: 2001
-Genre: Hardcore
-mtime: 1399340762
-song_end
-song_begin: 02 - Converge - Fault And Fracture.mp3
-Time: 185
-Artist: Converge
-Title: Fault And Fracture
-Album: Jane Doe
-Track: 2
-Date: 2001
-Genre: Hardcore
-mtime: 1399340734
-song_end
-song_begin: 03 - Converge - Distance And Meaning.mp3
-Time: 258
-Artist: Converge
-Title: Distance And Meaning
-Album: Jane Doe
-Track: 3
-Date: 2001
-Genre: Hardcore
-mtime: 1399340797
-song_end
-song_begin: 04 - Converge - Hell To Pay.mp3
-Time: 272
-Artist: Converge
-Title: Hell To Pay
-Album: Jane Doe
-Track: 4
-Date: 2001
-Genre: Hardcore
-mtime: 1399340762
-song_end
-song_begin: 05 - Converge - Homewrecker.mp3
-Time: 231
-Artist: Converge
-Title: Homewrecker
-Album: Jane Doe
-Track: 5
-Date: 2001
-Genre: Hardcore
-mtime: 1399340777
-song_end
-song_begin: 06 - Converge - The Broken Vow.mp3
-Time: 133
-Artist: Converge
-Title: The Broken Vow
-Album: Jane Doe
-Track: 6
-Date: 2001
-Genre: Hardcore
-mtime: 1399340738
-song_end
-song_begin: 07 - Converge - Bitter And Then Some.mp3
-Time: 88
-Artist: Converge
-Title: Bitter And Then Some
-Album: Jane Doe
-Track: 7
-Date: 2001
-Genre: Hardcore
-mtime: 1399340708
-song_end
-song_begin: 08 - Converge - Heaven In Her Arms.mp3
-Time: 241
-Artist: Converge
-Title: Heaven In Her Arms
-Album: Jane Doe
-Track: 8
-Date: 2001
-Genre: Hardcore
-mtime: 1399340774
-song_end
-song_begin: 09 - Converge - Phoenix In Flight.mp3
-Time: 229
-Artist: Converge
-Title: Phoenix In Flight
-Album: Jane Doe
-Track: 9
-Date: 2001
-Genre: Hardcore
-mtime: 1399340797
-song_end
-song_begin: 10 - Converge - Phoenix In Flames.mp3
-Time: 42
-Artist: Converge
-Title: Phoenix In Flames
-Album: Jane Doe
-Track: 10
-Date: 2001
-Genre: Hardcore
-mtime: 1399340713
-song_end
-song_begin: 11 - Converge - Thaw.mp3
-Time: 270
-Artist: Converge
-Title: Thaw
-Album: Jane Doe
-Track: 11
-Date: 2001
-Genre: Hardcore
-mtime: 1399340749
-song_end
-song_begin: 12 - Converge - Jane Doe.mp3
-Time: 694
-Artist: Converge
-Title: Jane Doe
-Album: Jane Doe
-Track: 12
-Date: 2001
-Genre: Hardcore
-mtime: 1399340830
-song_end
-playlist_begin: Converge - Jane Doe.m3u
-mtime: 1399340703
+directory: discovery
+mtime: 1403633535
+begin: discovery
+playlist_begin: 00. Daft Punk - Discovery.m3u
+mtime: 1403633535
 playlist_end
-end: converge/jane.doe
-end: converge
-directory: curlupanddie
-mtime: 1401640800
-begin: curlupanddie
+end: discovery
+directory: galaktikon
+mtime: 1403633595
+begin: galaktikon
+song_begin: 01 - Triton_[plixid.com].mp3
+Time: 242
+Artist: Brendon Small
+AlbumArtist: Brendon Small
+Title: Triton
+Album: Brendon Small's Galaktikon
+Track: 01
+Date: 2012
+Genre: Heavy Metal
+Composer: Brendon Small
+Disc: 1
+mtime: 1403633594
+song_end
+song_begin: 02 - Prophecy Of The Lazer Witch_[plixid.com].mp3
+Time: 274
+Artist: Brendon Small
+AlbumArtist: Brendon Small
+Title: Prophecy Of The Lazer Witch
+Album: Brendon Small's Galaktikon
+Track: 02
+Date: 2012
+Genre: Heavy Metal
+Composer: Brendon Small
+Disc: 1
+mtime: 1403633595
+song_end
+song_begin: 03 - Beastblade_[plixid.com].mp3
+Time: 287
+Artist: Brendon Small
+AlbumArtist: Brendon Small
+Title: Beastblade
+Album: Brendon Small's Galaktikon
+Track: 03
+Date: 2012
+Genre: Heavy Metal
+Composer: Brendon Small
+Disc: 1
+mtime: 1403633594
+song_end
+song_begin: 04 - Deathwaltz_[plixid.com].mp3
+Time: 213
+Artist: Brendon Small
+AlbumArtist: Brendon Small
+Title: Deathwaltz
+Album: Brendon Small's Galaktikon
+Track: 04
+Date: 2012
+Genre: Heavy Metal
+Composer: Brendon Small
+Disc: 1
+mtime: 1403633594
+song_end
+song_begin: 05 - Truth Orb And The Kill Pool_[plixid.com].mp3
+Time: 268
+Artist: Brendon Small
+AlbumArtist: Brendon Small
+Title: Truth Orb And The Kill Pool
+Album: Brendon Small's Galaktikon
+Track: 05
+Date: 2012
+Genre: Heavy Metal
+Composer: Brendon Small
+Disc: 1
+mtime: 1403633595
+song_end
+song_begin: 06 - You Can't Run Away_[plixid.com].mp3
+Time: 305
+Artist: Brendon Small
+AlbumArtist: Brendon Small
+Title: You Can't Run Away
+Album: Brendon Small's Galaktikon
+Track: 06
+Date: 2012
+Genre: Heavy Metal
+Composer: Brendon Small
+Disc: 1
+mtime: 1403633595
+song_end
+song_begin: 07 - Arena War of the Immortal Masters_[plixid.com].mp3
+Time: 287
+Artist: Brendon Small
+AlbumArtist: Brendon Small
+Title: Arena War of the Immortal Masters
+Album: Brendon Small's Galaktikon
+Track: 07
+Date: 2012
+Genre: Heavy Metal
+Composer: Brendon Small
+Disc: 1
+mtime: 1403633594
+song_end
+song_begin: 08 - Dangertits_[plixid.com].mp3
+Time: 272
+Artist: Brendon Small
+AlbumArtist: Brendon Small
+Title: Dangertits
+Album: Brendon Small's Galaktikon
+Track: 08
+Date: 2012
+Genre: Heavy Metal
+Composer: Brendon Small
+Disc: 1
+mtime: 1403633595
+song_end
+song_begin: 09 - On My Way_[plixid.com].mp3
+Time: 325
+Artist: Brendon Small
+AlbumArtist: Brendon Small
+Title: On My Way
+Album: Brendon Small's Galaktikon
+Track: 09
+Date: 2012
+Genre: Heavy Metal
+Composer: Brendon Small
+Disc: 1
+mtime: 1403633595
+song_end
+end: galaktikon
+directory: kiss.they.sky.goodbye
+mtime: 1403633569
+begin: kiss.they.sky.goodbye
+song_begin: Kiss The Sky Goodbye - FUCK - 01 Handless.mp3
+Time: 41
+Artist: Kiss The Sky Goodbye
+AlbumArtist: Kiss The Sky Goodbye
+Title: Handless
+Album: FUCK
+Track: 1
+Date: 2012
+mtime: 1403633569
+song_end
+song_begin: Kiss The Sky Goodbye - FUCK - 02 318.mp3
+Time: 157
+Artist: Kiss The Sky Goodbye
+AlbumArtist: Kiss The Sky Goodbye
+Title: 318
+Album: FUCK
+Track: 2
+Date: 2012
+mtime: 1403633569
+song_end
+song_begin: Kiss The Sky Goodbye - FUCK - 04 I Can't Recall.mp3
+Time: 137
+Artist: Kiss The Sky Goodbye
+AlbumArtist: Kiss The Sky Goodbye
+Title: I Can't Recall
+Album: FUCK
+Track: 4
+Date: 2012
+mtime: 1403633569
+song_end
+song_begin: Kiss The Sky Goodbye - FUCK - 05 Oh, How I Hate This Place.mp3
+Time: 149
+Artist: Kiss The Sky Goodbye
+AlbumArtist: Kiss The Sky Goodbye
+Title: Oh, How I Hate This Place
+Album: FUCK
+Track: 5
+Date: 2012
+mtime: 1403633569
+song_end
+end: kiss.they.sky.goodbye
+directory: leg.vacuum
+mtime: 1403633517
+begin: leg.vacuum
+song_begin: Armcannon-01-Cranial Syphon [Kay-Raid]_(metroid).mp3
+Time: 298
+Artist: armcannon
+Title: cranial syphon - metroid kraid
+Album: legVacuum
+Track: 01
+mtime: 1403633517
+song_end
+song_begin: Armcannon-02-Smegmaman Three [He Enter Magma]_(megaman3).mp3
+Time: 360
+Artist: armcannon
+Title: smegmaman three - megaman 3
+Album: legVacuum
+Track: 02
+mtime: 1403633517
+song_end
+song_begin: Armcannon-03-Techno [for some reason].mp3
+Time: 265
+Artist: armcannon
+Title: techno (for some reason)
+Album: legVacuum
+Track: 03
+mtime: 1403633517
+song_end
+song_begin: Armcannon-04-Super Cranial Syphon [Drum Poetries]_(super metroid).mp3
+Time: 386
+Artist: armcannon
+Title: super cranial syphon - super metroid
+Album: legVacuum
+Track: 04
+mtime: 1403633517
+song_end
+song_begin: Armcannon-05-Borrow Mega Nuke [Eureka Bong Worm]_(megaman x).mp3
+Time: 159
+Artist: armcannon
+Title: borrow mega nuke - megaman X
+Album: legVacuum
+Track: 05
+mtime: 1403633517
+song_end
+song_begin: Armcannon-06-Dutch Town [Elbow Computers]_(tecmo bowl).mp3
+Time: 181
+Artist: armcannon
+Title: dutch town - tecmo bowl
+Album: legVacuum
+Track: 06
+mtime: 1403633517
+song_end
+song_begin: Armcannon-07-Bigger Boards [With Bigger Nails [with bees in their mouth]_(final fantasy vii).mp3
+Time: 277
+Artist: armcannon
+Title: bigger boards - final fantasy VII
+Album: legVacuum
+Track: 07
+mtime: 1403633517
+song_end
+song_begin: Armcannon-08-Dozen Elf Death Gel [Unearthed Knife Volt]_(zelda 1-2).mp3
+Time: 696
+Artist: armcannon
+Title: dozen elf death gel - legend of zelda 1-2
+Album: legVacuum
+Track: 08
+mtime: 1403633518
+song_end
+end: leg.vacuum
+directory: party.animals
+mtime: 1403633771
+begin: party.animals
+song_begin: 01 - Turbonegro - Intro- The Party Zone.mp3
+Time: 119
+Artist: Turbonegro
+Title: Intro: The Party Zone
+Album: Party Animals
+Track: 1
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633770
+song_end
+song_begin: 02 - Turbonegro - All my Friends Are Dead.mp3
+Time: 156
+Artist: Turbonegro
+Title: All my Friends Are Dead
+Album: Party Animals
+Track: 2
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633771
+song_end
+song_begin: 03 - Turbonegro - Blow Me (Like The Wind).mp3
+Time: 197
+Artist: Turbonegro
+Title: Blow Me (Like The Wind)
+Album: Party Animals
+Track: 3
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633770
+song_end
+song_begin: 04 - Turbonegro - City Of Satan.mp3
+Time: 343
+Artist: Turbonegro
+Title: City Of Satan
+Album: Party Animals
+Track: 4
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633770
+song_end
+song_begin: 05 - Turbonegro - Death From Above.mp3
+Time: 183
+Artist: Turbonegro
+Title: Death From Above
+Album: Party Animals
+Track: 5
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633770
+song_end
+song_begin: 06 - Turbonegro - Wasted Again.mp3
+Time: 187
+Artist: Turbonegro
+Title: Wasted Again
+Album: Party Animals
+Track: 6
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633770
+song_end
+song_begin: 07 - Turbonegro - High On The Crime.mp3
+Time: 199
+Artist: Turbonegro
+Title: High On The Crime
+Album: Party Animals
+Track: 7
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633770
+song_end
+song_begin: 08 - Turbonegro - If You See Kaye (Tell Her I L-O-V-E Her).mp3
+Time: 179
+Artist: Turbonegro
+Title: If You See Kaye (Tell Her I L-
+Album: Party Animals
+Track: 8
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633770
+song_end
+song_begin: 09 - Turbonegro - Stay Free.mp3
+Time: 225
+Artist: Turbonegro
+Title: Stay Free
+Album: Party Animals
+Track: 9
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633771
+song_end
+song_begin: 10 - Turbonegro - Babylon Forever.mp3
+Time: 232
+Artist: Turbonegro
+Title: Babylon Forever
+Album: Party Animals
+Track: 10
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633770
+song_end
+song_begin: 11 - Turbonegro - Hot Stuff,Hot Shit.mp3
+Time: 240
+Artist: Turbonegro
+Title: Hot Stuff/Hot Shit
+Album: Party Animals
+Track: 11
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633769
+song_end
+song_begin: 12 - Turbonegro - Final Warning.mp3
+Time: 606
+Artist: Turbonegro
+Title: Final Warning
+Album: Party Animals
+Track: 12
+Date: 2005
+Genre: Punk Rock
+mtime: 1403633771
+song_end
+end: party.animals
+directory: retox
+mtime: 1403633764
+begin: retox
+song_begin: 01 We're Gonna Drop the Atom Bomb.mp3
+Time: 222
+Artist: Turbonegro
+Title: We're Gonna Drop the Atom Bomb
+Album: Retox
+Track: 01
+Date: 2007
+mtime: 1403633764
+song_end
+song_begin: 02 Welcome to the Garbage Dump.mp3
+Time: 119
+Artist: Turbonegro
+Title: Welcome to the Garbage Dump
+Album: Retox
+Track: 02
+Date: 2007
+mtime: 1403633764
+song_end
+song_begin: 03 Hell Toupée.mp3
+Time: 207
+Artist: Turbonegro
+Title: Hell Toupée
+Album: Retox
+Track: 03
+Date: 2007
+mtime: 1403633763
+song_end
+song_begin: 04 Stroke the Shaft.mp3
+Time: 200
+Artist: Turbonegro
+Title: Stroke the Shaft
+Album: Retox
+Track: 04
+Date: 2007
+mtime: 1403633764
+song_end
+song_begin: 05 No, I'm Alpha Male.mp3
+Time: 194
+Artist: Turbonegro
+Title: No, I'm Alpha Male
+Album: Retox
+Track: 05
+Date: 2007
+mtime: 1403633764
+song_end
+song_begin: 06 Do You Do You Dig Destruction.mp3
+Time: 226
+Artist: Turbonegro
+Title: Do You Do You Dig Destruction
+Album: Retox
+Track: 06
+Date: 2007
+mtime: 1403633764
+song_end
+song_begin: 07 I Wanna Come.mp3
+Time: 217
+Artist: Turbonegro
+Title: I Wanna Come
+Album: Retox
+Track: 07
+Date: 2007
+mtime: 1403633763
+song_end
+song_begin: 08 You Must Bleed ／ All Night Long.mp3
+Time: 159
+Artist: Turbonegro
+Title: You Must Bleed / All Night Long
+Album: Retox
+Track: 08
+Date: 2007
+mtime: 1403633764
+song_end
+song_begin: 09 Hot & Filthy.mp3
+Time: 195
+Artist: Turbonegro
+Title: Hot & Filthy
+Album: Retox
+Track: 09
+Date: 2007
+mtime: 1403633763
+song_end
+song_begin: 10 Boys From Nowhere.mp3
+Time: 210
+Artist: Turbonegro
+Title: Boys From Nowhere
+Album: Retox
+Track: 10
+Date: 2007
+mtime: 1403633764
+song_end
+song_begin: 11 Everybody Loves a Chubby Dude.mp3
+Time: 229
+Artist: Turbonegro
+Title: Everybody Loves a Chubby Dude
+Album: Retox
+Track: 11
+Date: 2007
+mtime: 1403633763
+song_end
+song_begin: 12 What Is Rock!.mp3
+Time: 473
+Artist: Turbonegro
+Title: What Is Rock!?
+Album: Retox
+Track: 12
+Date: 2007
+mtime: 1403633765
+song_end
+song_begin: 13 Back in Denim.mp3
+Time: 250
+Artist: Turbonegro
+Title: Back in Denim
+Album: Retox
+Track: 13
+Date: 2007
+mtime: 1403633764
+song_end
+song_begin: 14 Into the Void.mp3
+Time: 185
+Artist: Turbonegro
+Title: Into the Void
+Album: Retox
+Track: 14
+Date: 2007
+mtime: 1403633764
+song_end
+end: retox
 directory: the.old.good.bug.is.a.dead.bug
-mtime: 1401640799
-begin: curlupanddie/the.old.good.bug.is.a.dead.bug
+mtime: 1403634122
+begin: the.old.good.bug.is.a.dead.bug
 song_begin: 01 - And Then The Robots Killed.mp3
 Time: 263
 Artist: Curl Up And Die
@@ -1152,7 +925,7 @@ Album: The Only Good Bug Is A Dead Bug
 Track: 1/6
 Date: 2000
 Genre: Alternative & Punk
-mtime: 1399340743
+mtime: 1403634121
 song_end
 song_begin: 02 - Absolute Denial Of The Ultimate Nullifier.mp3
 Time: 251
@@ -1162,7 +935,7 @@ Album: The Only Good Bug Is A Dead Bug
 Track: 2/6
 Date: 2000
 Genre: Alternative & Punk
-mtime: 1399340724
+mtime: 1403634121
 song_end
 song_begin: 03 - Hella Vegas Kids Say Hella.mp3
 Time: 196
@@ -1172,7 +945,7 @@ Album: The Only Good Bug Is A Dead Bug
 Track: 3/6
 Date: 2000
 Genre: Alternative & Punk
-mtime: 1399340694
+mtime: 1403634122
 song_end
 song_begin: 04 - Up Up Down Down Left Right Left Right B A Start.mp3
 Time: 157
@@ -1182,7 +955,7 @@ Album: The Only Good Bug Is A Dead Bug
 Track: 4/6
 Date: 2000
 Genre: Alternative & Punk
-mtime: 1399340698
+mtime: 1403634122
 song_end
 song_begin: 05 - Proclaimed Bat Hunter.mp3
 Time: 209
@@ -1192,7 +965,7 @@ Album: The Only Good Bug Is A Dead Bug
 Track: 5/6
 Date: 2000
 Genre: Alternative & Punk
-mtime: 1399340703
+mtime: 1403634122
 song_end
 song_begin: 06 - Nest Of The Face Hugger.mp3
 Time: 354
@@ -1202,15 +975,15 @@ Album: The Only Good Bug Is A Dead Bug
 Track: 6/6
 Date: 2000
 Genre: Alternative & Punk
-mtime: 1399340737
+mtime: 1403634122
 song_end
 playlist_begin: The Only Good Bug Is A Dead Bug.cue
-mtime: 1399340653
+mtime: 1403634122
 playlist_end
-end: curlupanddie/the.old.good.bug.is.a.dead.bug
+end: the.old.good.bug.is.a.dead.bug
 directory: unfortunately.we.are.not.robots
-mtime: 1401640801
-begin: curlupanddie/unfortunately.we.are.not.robots
+mtime: 1403634116
+begin: unfortunately.we.are.not.robots
 song_begin: 01 - We.mp3
 Time: 5
 Artist: Curl Up And Die
@@ -1219,7 +992,7 @@ Album: Unfortunately We're Not Robots
 Track: 1
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340788
+mtime: 1403634115
 song_end
 song_begin: 02 - Are.mp3
 Time: 5
@@ -1229,7 +1002,7 @@ Album: Unfortunately We're Not Robots
 Track: 2
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340792
+mtime: 1403634116
 song_end
 song_begin: 03 - All.mp3
 Time: 5
@@ -1239,7 +1012,7 @@ Album: Unfortunately We're Not Robots
 Track: 3
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340794
+mtime: 1403634116
 song_end
 song_begin: 04 - Dead.mp3
 Time: 6
@@ -1249,7 +1022,7 @@ Album: Unfortunately We're Not Robots
 Track: 4
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340787
+mtime: 1403634115
 song_end
 song_begin: 05 - 100 M.P.H. Vomit Dedicated To Jon.mp3
 Time: 24
@@ -1259,7 +1032,7 @@ Album: Unfortunately We're Not Robots
 Track: 5
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340784
+mtime: 1403634116
 song_end
 song_begin: 06 - On The Run From Johnny Law Ain't No Trip To Cleveland.mp3
 Time: 74
@@ -1269,7 +1042,7 @@ Album: Unfortunately We're Not Robots
 Track: 6
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340776
+mtime: 1403634116
 song_end
 song_begin: 07 - Ted Nugent Goes AOL.mp3
 Time: 151
@@ -1279,7 +1052,7 @@ Album: Unfortunately We're Not Robots
 Track: 7
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340798
+mtime: 1403634115
 song_end
 song_begin: 08 - Total Pandemonium.mp3
 Time: 148
@@ -1289,7 +1062,7 @@ Album: Unfortunately We're Not Robots
 Track: 8
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340825
+mtime: 1403634115
 song_end
 song_begin: 09 - Doctor Doom, A Man of Science, Doesn't Believe In Jesus, Why The Fuck Do You.mp3
 Time: 159
@@ -1299,7 +1072,7 @@ Album: Unfortunately We're Not Robots
 Track: 9
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340827
+mtime: 1403634116
 song_end
 song_begin: 10 - You'd Be Cuter If I Shot You In The Face.mp3
 Time: 490
@@ -1309,7 +1082,7 @@ Album: Unfortunately We're Not Robots
 Track: 10
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340850
+mtime: 1403634116
 song_end
 song_begin: 11 - Make Like A Computer And Get With The Program.mp3
 Time: 296
@@ -1319,7 +1092,7 @@ Album: Unfortunately We're Not Robots
 Track: 11
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340827
+mtime: 1403634116
 song_end
 song_begin: 12 - Your Idea Of Fascism And Global Intervention Makes Me Puke.mp3
 Time: 157
@@ -1329,7 +1102,7 @@ Album: Unfortunately We're Not Robots
 Track: 12
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340829
+mtime: 1403634116
 song_end
 song_begin: 13 - I Lost My Job To A Machine.mp3
 Time: 80
@@ -1339,7 +1112,7 @@ Album: Unfortunately We're Not Robots
 Track: 13
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340773
+mtime: 1403634115
 song_end
 song_begin: 14 - Kissing You Is Like Licking An Ashtray.mp3
 Time: 122
@@ -1349,7 +1122,7 @@ Album: Unfortunately We're Not Robots
 Track: 14
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340799
+mtime: 1403634116
 song_end
 song_begin: 15 - Rich Hall (Runner Up In A Carson Daly Lookalike Contest).mp3
 Time: 425
@@ -1359,125 +1132,12 @@ Album: Unfortunately We're Not Robots
 Track: 15
 Date: 2001
 Genre: Chaotic Hardcore
-mtime: 1399340839
+mtime: 1403634115
 song_end
-playlist_begin: Unfortunately We're Not Robots.cue
-mtime: 1399340803
-playlist_end
 playlist_begin: Curl Up And Die - Unfortunately We're Not Robots.m3u
-mtime: 1399340796
+mtime: 1403634115
 playlist_end
-end: curlupanddie/unfortunately.we.are.not.robots
-end: curlupanddie
-directory: galaktikon
-mtime: 1338072054
-begin: galaktikon
-song_begin: 1-01 Triton.mp3
-Time: 243
-Artist: Brendon Small
-AlbumArtist: Brendon Small
-Title: Triton
-Album: Galaktikon
-Track: 1/9
-Date: 2012
-Genre: Heavy Metal
-Disc: 1/1
-mtime: 1337623192
-song_end
-song_begin: 1-02 Prophecy of the Lazer Witch.mp3
-Time: 274
-Artist: Brendon Small
-AlbumArtist: Brendon Small
-Title: Prophecy of the Lazer Witch
-Album: Galaktikon
-Track: 2/9
-Date: 2012
-Genre: Heavy Metal
-Disc: 1/1
-mtime: 1337623192
-song_end
-song_begin: 1-03 Beastblade.mp3
-Time: 287
-Artist: Brendon Small
-AlbumArtist: Brendon Small
-Title: Beastblade
-Album: Galaktikon
-Track: 3/9
-Date: 2012
-Genre: Heavy Metal
-Disc: 1/1
-mtime: 1337623192
-song_end
-song_begin: 1-04 Deathwaltz.mp3
-Time: 214
-Artist: Brendon Small
-AlbumArtist: Brendon Small
-Title: Deathwaltz
-Album: Galaktikon
-Track: 4/9
-Date: 2012
-Genre: Heavy Metal
-Disc: 1/1
-mtime: 1337623192
-song_end
-song_begin: 1-05 Truth Orb and the Kill Pool.mp3
-Time: 269
-Artist: Brendon Small
-AlbumArtist: Brendon Small
-Title: Truth Orb and the Kill Pool
-Album: Galaktikon
-Track: 5/9
-Date: 2012
-Genre: Heavy Metal
-Disc: 1/1
-mtime: 1337623194
-song_end
-song_begin: 1-06 You Can't Run Away.mp3
-Time: 305
-Artist: Brendon Small
-AlbumArtist: Brendon Small
-Title: You Can't Run Away
-Album: Galaktikon
-Track: 6/9
-Date: 2012
-Genre: Heavy Metal
-Disc: 1/1
-mtime: 1337623192
-song_end
-song_begin: 1-07 Arena War of the Immortal Masters.mp3
-Time: 288
-Artist: Brendon Small
-AlbumArtist: Brendon Small
-Title: Arena War of the Immortal Masters
-Album: Galaktikon
-Track: 7/9
-Date: 2012
-Genre: Heavy Metal
-Disc: 1/1
-mtime: 1337623192
-song_end
-song_begin: 1-08 Dangertits.mp3
-Time: 273
-Artist: Brendon Small
-AlbumArtist: Brendon Small
-Title: Dangertits
-Album: Galaktikon
-Track: 8/9
-Date: 2012
-Genre: Heavy Metal
-Disc: 1/1
-mtime: 1337623194
-song_end
-song_begin: 1-09 On My Way.mp3
-Time: 328
-Artist: Brendon Small
-AlbumArtist: Brendon Small
-Title: On My Way
-Album: Galaktikon
-Track: 9/9
-Date: 2012
-Genre: Heavy Metal
-Disc: 1/1
-mtime: 1337623192
-song_end
-end: galaktikon
+playlist_begin: Unfortunately We're Not Robots.cue
+mtime: 1403634115
+playlist_end
+end: unfortunately.we.are.not.robots
