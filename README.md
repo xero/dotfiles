@@ -29,8 +29,12 @@
  ncmpcpp        > ncurses mpc++ ui/color settings
  pacman         > pacman colors and progress bar animations
  ryu-login      > ryu ansi art for /etc/issue tty login
+ ssh            > remote ssh server keep alive
+ stalonetray    > stand alone tray for daemons
  sublime        > sublime text 2 with greybeard, monokai, and gohu
- vim            > vim custom airline bar and plugins
+ themes         > mod of the cathexis dark theme for gtk/qt/xfce
+ tmux           > minimal terminal multiplexer setup
+ vim            > vim custom airline bar, colors, and plugins
  urxvt          > urxvt terminal colors and keyboard settings
  zsh            > zshell settings, aliases, and custom prompts
 ```
