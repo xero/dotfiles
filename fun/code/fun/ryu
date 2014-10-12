@@ -1,15 +1,17 @@
 #!/bin/bash
-#  s y n t a x . s a m u r a i
-#        p r e s e n t s
+#      s y n t a x . s a m u r a i
+#            p r e s e n t s
 #
-#  ███████   ██    ██ ██     ██
-# ░██░░░░██ ░░██  ██ ░██    ░██
-# ░██   ░██  ░░████  ░██    ░██
-# ░███████    ░░██   ░██    ░██
-# ░██░░░██     ░██   ░██    ░██
-# ░██  ░░██    ░██   ░██    ░██
-# ░██   ░░██   ░██   ░░███████
-# ░░     ░░    ░░     ░░░░░░░
+#      ███████   ██    ██ ██     ██
+#     ░██░░░░██ ░░██  ██ ░██    ░██
+#     ░██   ░██  ░░████  ░██    ░██
+#     ░███████    ░░██   ░██    ░██
+#     ░██░░░██     ░██   ░██    ░██
+#     ░██  ░░██    ░██   ░██    ░██
+#     ░██   ░░██   ░██   ░░███████
+#     ░░     ░░    ░░     ░░░░░░░
+#
+# ansi art of ryu hayabusa from ninja gaiden
 # 
 #  ▓▓▓▓▓▓▓▓▓▓
 # ░▓ author ▓ xero <x@xero.nu>
@@ -19,11 +21,6 @@
 # ░░░░░░░░░░
 
 cols=`tput cols`
-if [[ $cols -lt 100 ]]; then
-	echo "term size must be greater than 100px wide!"
-	echo "call 'ryu --help' for more info"
-	exit
-fi
 pad () {
 	count=$1
 	until [[ $count -eq 1 ]]; do
@@ -145,11 +142,12 @@ else
 		echo "▟▒░░░░░░░▜▙▜████████████████████████████████▛"
 		echo "▜▒░░░░░░░▟▛▟▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▛"
 		echo "        ▜▛"
-		echo "this program is free software, and distrobuted under the Creative Commons "
+		echo "this program is free software, and distributed under the Creative Commons "
 		echo "Attribution-ShareAlike 3.0 Unported License (CC BY-SA 3.0)"
 		echo "http://creativecommons.org/licenses/by-sa/3.0/"
 		exit
 	elif [[ $1 = '--help' || $1 = '-h' || $1 == "help" ]]; then
+		echo ""
 		echo "    s y n t a x . s a m u r a i"
 		echo "          p r e s e n t s"
 		echo ""
@@ -164,16 +162,18 @@ else
 		echo ""
 		echo "       usage: ryu [option]"
 		echo ""
-		echo " display some ansi art of ryu from ninja gaiden"
+		echo " ansi art of ryu hayabusa from ninja gaiden"
 		echo ""
 		echo " --help,    -h : display this message"
 		echo " --version, -v : display version and license"
 		echo " --grey,    -g : display the art [default]"
 		echo " --color,   -c : display the art in color"
+		echo ""
 		echo "        ▟▙"
 		echo "▟▒░░░░░░░▜▙▜████████████████████████████████▛"
 		echo "▜▒░░░░░░░▟▛▟▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▛"
 		echo "        ▜▛"
+		echo ""
 		echo "  author:  xero harrison > http://xero.nu"
 		echo "        homepage: http://git.io/ryu"
 		echo "  crew: http://github.com/syntax-samurai"
