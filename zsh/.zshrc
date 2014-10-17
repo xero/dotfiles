@@ -71,6 +71,7 @@ alias frontprod="NODE_ENV=production node app --url http://localhost:4000 -w 1 -
 alias back="node app"
 alias backprod="NODE_ENV=production node app -w 1 --p 4000"
 alias compassfix="echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
+alias npminstall="sudo PYTHON=/usr/bin/python2 npm install"
 
 #█▓▒░ ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
