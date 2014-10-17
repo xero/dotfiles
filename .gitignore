@@ -1,1 +1,9 @@
 icons/
+vim/.vim/files/info/viminfo
+mpd/.config/mpd/mpd.conf
+mpd/.config/mpd/mpd.fifo
+mpd/.config/mpd/mpd.log
+mpd/.config/mpd/mpd.pid
+mpd/.config/mpd/mpdstate
+mpd/.config/mpd/tag_cache
+
