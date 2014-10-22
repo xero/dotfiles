@@ -121,6 +121,8 @@ hc keybind $Mod-Shift-Tab   cycle_all -1
 hc keybind $Mod-n cycle
 hc keybind $Mod-i jumpto urgent
 
+# screen locker
+hc keybind $Mod-Escape spawn xscreensaver-command -lock
 
 # theme
 hc attr theme.tiling.reset 1

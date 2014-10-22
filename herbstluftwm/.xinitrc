@@ -77,6 +77,8 @@ mpd &
 xset +fp ~/.fonts &
 xset fp rehash &
 
+# work setup
+xscreensaver -no-splash &
 bash ~/.screenlayout/work.sh &
 
 # ░▒▓█ herbstluft █▓▒░
