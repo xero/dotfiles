@@ -3,7 +3,7 @@
 @define-color fg_color #666666;
 @define-color base_color #222222;
 @define-color text_color #666666;
-@define-color selected_bg_color #FEA63C;
+@define-color selected_bg_color #6A8C8C;
 @define-color selected_fg_color #000000;
 @define-color tooltip_bg_color #111111;
 @define-color tooltip_fg_color #666666;
@@ -20,7 +20,7 @@
 @define-color question_bg_color #0099cc;
 @define-color error_fg_color #EFEFEF;
 @define-color error_bg_color #cc0000;
-@define-color link_color #FEA63C; 
+@define-color link_color #6A8C8C; 
 @define-color success_color #669900;
 @define-color error_color #cc0000;
 
