@@ -1,7 +1,0 @@
-A Vim plugin to colorize all text in the form #rrggbb or #rgb. See the comment at the beginning of the [plugin](https://github.com/lilydjwg/colorizer/tree/master/plugin/colorizer.vim) for more.
-
-![screenshot](https://github.com/lilydjwg/colorizer/raw/master/screenshot.png)
-
-The `Makefile` is used to quickly install/uninstall the script.
-
-[colorizer.vim on vim.org](http://www.vim.org/scripts/script.php?script_id=3567)
