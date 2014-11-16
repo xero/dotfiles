@@ -33,8 +33,8 @@ Mod=Mod4
 Alt=Mod1
 
 # run menu
-hc keybind $Mod-w	spawn dmenu_run -nb '#222222' -nf '#bcbcbc' -sb '#6A8C8C' -sf '#101010' -i -fn '-Gohu-GohuFont-Medium-R-Normal'
-hc keybind $Mod-r	spawn dmenu_run -nb '#222222' -nf '#bcbcbc' -sb '#6A8C8C' -sf '#101010' -i -fn '-Gohu-GohuFont-Medium-R-Normal'
+hc keybind $Mod-w	spawn dmenu_run -nb '#272822' -nf '#bcbcbc' -sb '#6A8C8C' -sf '#101010' -i -fn '-Gohu-GohuFont-Medium-R-Normal'
+hc keybind $Mod-r	spawn dmenu_run -nb '#272822' -nf '#bcbcbc' -sb '#6A8C8C' -sf '#101010' -i -fn '-Gohu-GohuFont-Medium-R-Normal'
 # toggle touchpad
 hc keybind $Mod-m	spawn bash /home/xero/code/sys/toggle-touchpad
 # dynamic window gap
@@ -44,7 +44,7 @@ hc keybind $Mod-0	spawn bash /home/xero/code/sys/herbstluftwm-add-gap
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close
-hc keybind $Mod-Return spawn urxvtc 
+hc keybind $Mod-Return spawn urxvtc
 
 # basic movement
 # focusing clients
@@ -121,33 +121,30 @@ hc keybind $Mod-Shift-Tab   cycle_all -1
 hc keybind $Mod-n cycle
 hc keybind $Mod-i jumpto urgent
 
-
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color '#222222'
-hc set frame_border_normal_color '#222222'
-hc set frame_bg_normal_color '#000000'
-hc set frame_bg_active_color '#6A8C8C'
+hc set frame_border_active_color '#272822'
+hc set frame_border_normal_color '#272822'
+hc set frame_bg_normal_color '#222222'
+hc set frame_bg_active_color '#000000'
 hc set frame_border_width 0
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
 hc set frame_gap 8
 
-# hc attr theme.active.color '#222222'
-#hc attr theme.active.color '#666666'
-hc attr theme.active.color '#6A8C8C'
-hc attr theme.normal.color '#000000'
-hc attr theme.urgent.color '#6A8C8C'
+hc attr theme.active.color '#000000' #6A8C8C
+hc attr theme.normal.color '#222222'
+hc attr theme.urgent.color '#000000'
 hc attr theme.inner_width 0
 hc attr theme.inner_color black
 hc attr theme.border_width 3
 hc attr theme.floating.border_width 3
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
-hc attr theme.active.inner_color '#222222'
-hc attr theme.active.outer_color '#6A8C8C'
+hc attr theme.active.inner_color '#272822'
+hc attr theme.active.outer_color '#000000'
 hc attr theme.background_color '#141414'
 
 hc set window_gap 10

@@ -39,7 +39,7 @@ gnome-keyring-daemon &
 (sleep 2s && xfce4-volumed) &
 
 # compositing manager
-compton -b --config ~/.config/compton.conf &
+#compton -b --config ~/.config/compton.conf &
 
 # start thunar daemon
 thunar --daemon &
