@@ -31,11 +31,14 @@ fi
 #█▓▒░ aliases
 alias ls='ls --color=auto'
 alias lsla="ls -la --color=auto"
+alias lsls="ls -la --color=auto"
+alias lsl="ls -l --color=auto"
 alias "cd.."="cd ../"
 alias rock="ncmpcpp"
 alias mixer="alsamixer"
 alias checkrootkits='sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check'
 alias checkvirus='clamscan --recursive=yes --infected /home'
+alias updateantivirus='sudo freshclam'
 alias genplaylist="cd ~/music;find . -name '*.mp3' -o -name '*.flac'|sed -e 's%^./%%g' > ~/.config/mpd/playlists/all.m3u;mpd ~/.config/mpd/mpd.conf;mpc clear;mpc load all.m3u;mpc update"
 alias matrix="cmatrix -b"
 alias pipes="bash ~/code/fun/pipes"
@@ -45,17 +48,14 @@ alias screenfetch="~/code/sys/info"
 alias hashcompare='bash ~/code/sys/hash-compare '
 alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
 alias term='urxvtc -hold -e ' #used for awesomewm run menu
+alias tmx='bash ~/code/sys/tmx'
 alias fixcursor='xsetroot -cursor_name left_ptr'
 alias img='bash ~/code/sys/img'
 alias monokai='viewnior ~/images/monokai.png'
+alias gitio='bash ~/code/sys/gitio'
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
-#█▓▒░ debian aliases
-#alias sai="sudo apt-get install"
-#alias apachereload='sudo /etc/init.d/apache2 restart'
-#alias disks="palimpsest"
-#alias invert="xcalib -i -a"
 #█▓▒░ arch aliases
 alias pacman="sudo pacman"
 alias apachereload='sudo systemctl restart httpd.service'
@@ -63,11 +63,15 @@ alias disks="ncdu"
 #█▓▒░ work aliases
 alias dev0="ssh andrew.harrison@dev.brandingbrand.com"
 alias ascii="figlet -f 3d "
+alias chromeproxy='/usr/bin/env http_proxy="http://127.0.0.1:8888" /usr/bin/chromium'
 alias front="node app --url http://localhost:4000"
 alias frontfake="sudo node app --url http://localhost:4000 --p 80 --w 0"
 alias frontprod="NODE_ENV=production node app --url http://localhost:4000 -w 1 --p 3000"
+alias frontend="sudo frontend"
 alias back="node app"
-alias chromeproxy='/usr/bin/env http_proxy="http://127.0.0.1:8888" /usr/bin/chromium'
+alias backprod="NODE_ENV=production node app -w 1 --p 4000"
+alias compassfix="echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
+alias npminstall="sudo PYTHON=/usr/bin/python2 npm install"
 
 #█▓▒░ ssh
 export SSH_KEY_PATH="/home/xero/.ssh/id_rsa"

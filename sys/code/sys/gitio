@@ -3,4 +3,9 @@ echo -e "repo url:"
 read repo
 echo -e "short link:"
 read link
+if [ -z "$link" ]
+then
+curl -i http://git.io -F "url=$repo"
+else
 curl -i http://git.io -F "url=$repo" -F "code=$link"
+fi
