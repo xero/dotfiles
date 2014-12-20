@@ -24,10 +24,12 @@
  figlet         > custom 3d font
  git            > global git config and aliases
  herbstluftwm   > herbstluft wm config and greybeard theme
+ irssi			> irc monokai theme
  mc             > midnight commander ui colors
  mpd            > music player daemon setup
  ncmpcpp        > ncurses mpc++ ui/color settings
  pacman         > pacman colors and progress bar animations
+ ranger			> file manager with image previews and z3bra theme
  ryu-login      > ryu ansi art for /etc/issue tty login
  ssh            > remote ssh server keep alive
  stalonetray    > stand alone tray for daemons
