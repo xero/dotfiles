@@ -53,25 +53,31 @@ alias fixcursor='xsetroot -cursor_name left_ptr'
 alias img='bash ~/code/sys/img'
 alias monokai='viewnior ~/images/monokai.png'
 alias gitio='bash ~/code/sys/gitio'
+alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
 #█▓▒░ arch aliases
 alias pacman="sudo pacman"
 alias apachereload='sudo systemctl restart httpd.service'
-alias disks="ncdu"
+alias disks="lsblk -a && echo '' && df -h" #ncdu
 #█▓▒░ work aliases
 alias dev0="ssh andrew.harrison@dev.brandingbrand.com"
-alias ascii="figlet -f 3d "
+alias ascii="figlet -w `tput cols` -f 3d "
 alias chromeproxy='/usr/bin/env http_proxy="http://127.0.0.1:8888" /usr/bin/chromium'
-alias front="node app --url http://localhost:4000"
+alias front="node app --url http://localhost:4000 --w 0"
 alias frontfake="sudo node app --url http://localhost:4000 --p 80 --w 0"
 alias frontprod="NODE_ENV=production node app --url http://localhost:4000 -w 1 --p 3000"
+alias frontdebug="sudo node --debug app --url http://localhost:4000 --cluster:workers 0"
 alias frontend="sudo frontend"
+alias frontsecure="sudo NODE_ENV=production node app --url http://localhost:4000 --p 80 -w 0"
+alias gencert="openssl genrsa -out ssl-key.pem 1024 && openssl req -new -key ssl-key.pem -out certrequest.csr && openssl x509 -req -in certrequest.csr -signkey ssl-key.pem -out ssl-cert.pem"
+alias inspect="node-inspector --debug-port=5858"
 alias back="node app"
 alias backprod="NODE_ENV=production node app -w 1 --p 4000"
+alias backdebug="sudo node --debug app.js --cluster:workers 0"
 alias compassfix="echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
-alias npminstall="sudo PYTHON=/usr/bin/python2 npm install"
+alias npminstall="sudo rm -rf node_modules && npm cache clear && sudo PYTHON=/usr/bin/python2 npm install"
 
 #█▓▒░ ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
@@ -134,6 +140,13 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+#█▓▒░ colors for permissions
+if [[ "$EUID" -ne "0" ]] ; then  # if user is not root
+	USER_LEVEL="%F{cyan}"
+else # root!
+	USER_LEVEL="%F{red}"
+fi
+
 #█▓▒░ allow functions in the prompt
 setopt PROMPT_SUBST
 
@@ -169,16 +182,16 @@ source ~/.nvm/nvm.sh
 #█▓▒░ custom prompts
 
 #█▓▒░dual line
-PROMPT="%F{cyan}┌[%F{white}%n@%M%F{cyan}]─[%F{red}%~%F{cyan}]
-%F{cyan}└─ %F{white}"
-#RPROMPT="%F{cyan}[%F{white}%n@%M%F{cyan}]"
+PROMPT="${USER_LEVEL}┌[%F{white}%n@%M${USER_LEVEL}]─[%F{white}%~${USER_LEVEL}]
+${USER_LEVEL}└─ %F{white}"
+#RPROMPT="${USER_LEVEL}[%F{white}%n@%M${USER_LEVEL}]"
 
 #█▓▒░ ninja
-PROMPT="%F{white}        ▟▙    %F{red}%~%F{white}
-▟▒%F{blue}░░░░░░░%F{white}▜▙▜████████████████████████████████▛
-▜▒%F{blue}░░░░░░░%F{white}▟▛▟▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▛
+PROMPT="%F{white}        ▟▙    ${USER_LEVEL}%~%F{white}
+▟▒${USER_LEVEL}░░░░░░░%F{white}▜▙▜████████████████████████████████▛
+▜▒${USER_LEVEL}░░░░░░░%F{white}▟▛▟▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▛
         ▜▛  
             %F{white}"
 
 #█▓▒░ minial
-PROMPT='%F{cyan}[%F{white}%~%F{cyan}]$(prompt_git_info)── -%f '
+PROMPT='${USER_LEVEL}[%F{white}%~${USER_LEVEL}]$(prompt_git_info)── -%f '

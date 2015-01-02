@@ -20,10 +20,10 @@ x=${geometry[0]}
 y=${geometry[1]}
 panel_width=${geometry[2]}
 panel_height=16
-#font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
+font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
 font="-Gohu-GohuFont-Medium-R-Normal--11-80-100-100-C-60-ISO10646-1"
 #font2="-misc-stlarch-medium-r-normal--10-100-75-75-c-80-iso10646-1"
-font2="-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*"
+#font2="-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*"
 
 bgcolor=$(hc get frame_border_normal_color)
 selbg='#6A8C8C'
@@ -165,7 +165,7 @@ hc pad $monitor $panel_height
         cpu=`mpstat | awk '$3 ~ /CPU/ { for(i=1;i<=NF;i++) { if ($i ~ /%idle/) field=i } } $3 ~ /all/ { print 100 - $field }'`
         cpu="^fg($xicon)^i(/usr/share/icons/stlarch_icons/cpu1.xbm) ^fg($xtitle)cpu ^fg($xfg)$cpu^fg($xext)%"
         #memory
-        mem=`free -om | awk '/Mem:/ {print int(($3 - $7 - $6) / $2  * 100)}'`
+        mem=`free | awk '/Mem:/ {print int($3/$2 * 100.0)}'`
         mem="^fg($xicon)^i(/usr/share/icons/stlarch_icons/mem1.xbm) ^fg($xtitle)ram ^fg($xfg)$mem^fg($xext)%"
         #battery
         bat=`cat /sys/class/power_supply/BAT0/capacity`
@@ -202,7 +202,12 @@ hc pad $monitor $panel_height
         right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')
         # get width of right aligned text.. and add some space..
         width=$($textwidth "$font" "$right_text_only     ")
+        
+        #bitmap fonts
         echo -n "^pa($(($panel_width - $width)))$right"
+        
+        #ttf fonts
+        #echo -n "^pa($(($panel_width - $width*4-10)))$right"
         echo
 
         ### Data handling ###

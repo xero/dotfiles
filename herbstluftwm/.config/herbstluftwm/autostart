@@ -26,7 +26,7 @@ killall stalonetray
 killall conky
 
 # gap counter
-echo 10 > /tmp/herbstluftwm-gap
+echo 30 > /tmp/herbstluftwm-gap
 
 # keybindings
 Mod=Mod4
@@ -129,7 +129,7 @@ hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc set frame_border_active_color '#222222'
 hc set frame_border_normal_color '#222222'
-hc set frame_bg_normal_color '#000000'
+hc set frame_bg_normal_color '#222222'
 hc set frame_bg_active_color '#6A8C8C'
 hc set frame_border_width 0
 hc set always_show_frame 0
@@ -140,7 +140,7 @@ hc set frame_gap 8
 # hc attr theme.active.color '#222222'
 #hc attr theme.active.color '#666666'
 hc attr theme.active.color '#6A8C8C'
-hc attr theme.normal.color '#000000'
+hc attr theme.normal.color '#222222'
 hc attr theme.urgent.color '#6A8C8C'
 hc attr theme.inner_width 0
 hc attr theme.inner_color black
@@ -150,9 +150,9 @@ hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
 hc attr theme.active.inner_color '#222222'
 hc attr theme.active.outer_color '#6A8C8C'
-hc attr theme.background_color '#141414'
+hc attr theme.background_color '#222222'
 
-hc set window_gap 10
+hc set window_gap 30
 hc set frame_padding 0
 hc set smart_window_surroundings 0
 hc set smart_frame_surroundings 1
