@@ -62,6 +62,9 @@ dirlist() {
 alias pacman="sudo pacman"
 alias apachereload='sudo systemctl restart httpd.service'
 alias disks="lsblk -a && echo '' && df -h" #ncdu
+#█▓▒░ games
+alias doom='gzdoom brutal19.pk3'
+alias fez='~/fez/FEZ'
 
 #█▓▒░ ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
