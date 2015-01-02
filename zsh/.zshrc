@@ -127,6 +127,14 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+
+#█▓▒░ colors for permissions
+if [[ "$EUID" -ne "0" ]] ; then  # if user is not root
+	USER_LEVEL="%F{cyan}"
+else # root!
+	USER_LEVEL="%F{red}"
+fi
+
 #█▓▒░ allow functions in the prompt
 setopt PROMPT_SUBST
 
@@ -159,16 +167,16 @@ setopt SHARE_HISTORY
 #█▓▒░ custom prompts
 
 #█▓▒░dual line
-PROMPT="%F{cyan}┌[%F{white}%n@%M%F{cyan}]─[%F{red}%~%F{cyan}]
-%F{cyan}└─ %F{white}"
-#RPROMPT="%F{cyan}[%F{white}%n@%M%F{cyan}]"
+PROMPT="${USER_LEVEL}┌[%F{white}%n@%M${USER_LEVEL}]─[%F{white}%~${USER_LEVEL}]
+${USER_LEVEL}└─ %F{white}"
+#RPROMPT="${USER_LEVEL}[%F{white}%n@%M${USER_LEVEL}]"
 
 #█▓▒░ ninja
-PROMPT="%F{white}        ▟▙    %F{red}%~%F{white}
-▟▒%F{blue}░░░░░░░%F{white}▜▙▜████████████████████████████████▛
-▜▒%F{blue}░░░░░░░%F{white}▟▛▟▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▛
+PROMPT="%F{white}        ▟▙    ${USER_LEVEL}%~%F{white}
+▟▒${USER_LEVEL}░░░░░░░%F{white}▜▙▜████████████████████████████████▛
+▜▒${USER_LEVEL}░░░░░░░%F{white}▟▛▟▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▛
         ▜▛  
             %F{white}"
 
 #█▓▒░ minial
-PROMPT='%F{cyan}[%F{white}%~%F{cyan}]$(prompt_git_info)── -%f '
+PROMPT='${USER_LEVEL}[%F{white}%~${USER_LEVEL}]$(prompt_git_info)── -%f '
