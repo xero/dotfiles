@@ -134,7 +134,7 @@ hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
 hc set frame_gap 8
 
-hc attr theme.active.color '#6A8C8C'
+hc attr theme.active.color '#000000' #6A8C8C
 hc attr theme.normal.color '#222222'
 hc attr theme.urgent.color '#000000'
 hc attr theme.inner_width 0

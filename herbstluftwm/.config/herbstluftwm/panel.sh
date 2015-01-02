@@ -164,8 +164,8 @@ hc pad $monitor $panel_height
         cpu=`mpstat | awk '$3 ~ /CPU/ { for(i=1;i<=NF;i++) { if ($i ~ /%idle/) field=i } } $3 ~ /all/ { print 100 - $field }'`
         cpu="^fg($xicon)^i(/usr/share/icons/stlarch_icons/cpu1.xbm) ^fg($xtitle)cpu ^fg($xfg)$cpu^fg($xext)%"
         #memory
-        mem=`free -om | awk '/Mem:/ {print int(($3 - $7 - $6) / $2  * 100)}'`
-        mem="^fg($xicon)^i(/usr/share/icons/stlarch_icons/mem1.xbm) ^fg($xtitle)ram ^fg($xfg)$mem^fg($xext)%"
+	mem=`free | awk '/Mem:/ {print int($3/$2 * 100.0)}'`
+	mem="^fg($xicon)^i(/usr/share/icons/stlarch_icons/mem1.xbm) ^fg($xtitle)ram ^fg($xfg)$mem^fg($xext)%"
         #battery
         bat=`cat /sys/class/power_supply/BAT1/capacity`
         batstat=`cat /sys/class/power_supply/BAT1/status`
