@@ -90,9 +90,9 @@ install the zsh settings
 
 `stow zsh`
 
-install the root zsh settings
+install zsh settings for the root user
 
-`sudo stow zsh-root -t /root`
+`sudo stow zsh -t /root`
 
 install awesomewm theme
 
