@@ -18,7 +18,7 @@
 # HIST_STAMPS="mm/dd/yyyy"
 
 #█▓▒░ exports
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/home/xero/.gem/ruby/2.1.0/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 #█▓▒░ preferred editor for local and remote sessions
@@ -29,22 +29,27 @@ else
 fi
 
 #█▓▒░ aliases
-alias ls='ls --color=auto'
+alias ls="ls --color=auto"
 alias lsla="ls -la --color=auto"
+alias lsls="ls -la --color=auto"
+alias lsl="ls -l --color=auto"
 alias "cd.."="cd ../"
 alias rock="ncmpcpp"
 alias mixer="alsamixer"
-alias checkrootkits='sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check'
+alias checkrootkits="sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check"
 alias genplaylist="cd ~/music;find . -name '*.mp3' -o -name '*.flac'|sed -e 's%^./%%g' > ~/.config/mpd/playlists/all.m3u;mpd ~/.config/mpd/mpd.conf;mpc clear;mpc load all.m3u;mpc update"
-alias matrix="cmatrix -b -s"
+alias matrix="cmatrix -b"
 alias pipes="bash ~/code/fun/pipes"
 alias pipesx="bash ~/code/fun/pipesx"
 alias rain="bash ~/code/fun/rain"
-alias screenfetch="~/code/fun/screenfetch"
-alias hashcompare='bash ~/code/sys/hash-compare '
+alias screenfetch="~/code/sys/info"
+alias hashcompare="bash ~/code/sys/hash-compare "
 alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
-alias term='urxvtc -hold -e ' #used for awesomewm run menu
-alias fixcursor='xsetroot -cursor_name left_ptr'
+alias fixcursor="xsetroot -cursor_name left_ptr"
+alias img="bash ~/code/sys/img"
+alias tmx="~/code/sys/tmx"
+alias gitio"~/code/sys/gitio"
+alias ascii="figlet -w `tput cols` -f 3d "
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
@@ -56,9 +61,10 @@ dirlist() {
 #█▓▒░ arch aliases
 alias pacman="sudo pacman"
 alias apachereload='sudo systemctl restart httpd.service'
-alias disks="ncdu"
-#█▓▒░ work aliases
-alias workscreen='xrandr --output HDMI1 --left-of LVDS1 --mode 1366x768'
+alias disks="lsblk -a && echo '' && df -h" #ncdu
+#█▓▒░ games
+alias doom='gzdoom brutal19.pk3'
+alias fez='~/fez/FEZ'
 
 #█▓▒░ ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
