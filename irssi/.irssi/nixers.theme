@@ -274,10 +274,6 @@ formats = {
   "Irssi::Script::ichat" = { ichat_timestamp = "%Y>%K>      $1 %y>%n"; };
 };
 settings = {
-  core = { real_name = "xero"; user_name = "xero"; nick = "xero"; };
+  core = { real_name = "Unknown"; user_name = "xero"; nick = "xero"; };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = {
-     theme = "nixers.theme";
-     bell_beeps = "no";
-  };
 };
