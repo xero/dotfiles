@@ -17,6 +17,7 @@
 ! █▓▒░ fonts
 urxvt*font: xft:gohufont:size=11:antialias=true
 urxvt*boldFont: xft:gohufont:size=11:antialias=true
+urxvt*lineSpace: -1
 
 ! █▓▒░ interface
 urxvt*scrollBar: false
