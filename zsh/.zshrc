@@ -50,6 +50,7 @@ alias img="bash ~/code/sys/img"
 alias tmx="~/code/sys/tmx"
 alias gitio"~/code/sys/gitio"
 alias ascii="figlet -w `tput cols` -f 3d "
+alias ix="~/code/sys/ix"
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
