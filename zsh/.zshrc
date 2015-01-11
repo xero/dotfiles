@@ -51,6 +51,8 @@ alias tmx="~/code/sys/tmx"
 alias gitio"~/code/sys/gitio"
 alias ascii="figlet -w `tput cols` -f 3d "
 alias ix="~/code/sys/ix"
+alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
+alias clbin="curl -F 'clbin=<-' https://clbin.com"
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
