@@ -18,7 +18,7 @@
 # HIST_STAMPS="mm/dd/yyyy"
 
 #█▓▒░ exports
-export PATH=$HOME/bin:/usr/local/bin:/home/xero/.gem/ruby/2.1.0/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/home/xero/.gem/ruby/2.2.0/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 #█▓▒░ preferred editor for local and remote sessions
@@ -53,7 +53,9 @@ alias fixcursor='xsetroot -cursor_name left_ptr'
 alias img='bash ~/code/sys/img'
 alias monokai='viewnior ~/images/monokai.png'
 alias gitio='bash ~/code/sys/gitio'
+alias ix='bash ~/code/sys/ix'
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
+alias clbin="curl -F 'clbin=<-' https://clbin.com"
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
