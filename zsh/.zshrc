@@ -28,6 +28,9 @@ else
 	export EDITOR='vim'
 fi
 
+#█▓▒░ locale
+export LC_CTYPE=en_US.utf8
+
 #█▓▒░ aliases
 alias ls='ls --color=auto'
 alias lsla="ls -la --color=auto"
@@ -56,6 +59,7 @@ alias gitio='bash ~/code/sys/gitio'
 alias ix='bash ~/code/sys/ix'
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias clbin="curl -F 'clbin=<-' https://clbin.com"
+alias irc="dtach -A /home/xero/save/irc zsh"
 dirlist() {
 	ls -la "$1" && echo -e '' &&  tree -a "$1"
 }
