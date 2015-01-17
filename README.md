@@ -117,8 +117,8 @@ install herbstluftwm
 - [ncmpcpp](http://git.io/.ncmpcpp)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-3.png)
-- [chroimum & devtools](http://git.io/greybeard-devtools)
-- [figlet](https://github.com/xero/dotfiles/blob/master/figlet/3d.flf)
+- [chroimum with cathexis gtk](http://git.io/cathexis) & [greybeard devtools](http://git.io/greybeard-devtools)
+- [figlet](http://git.io/3d)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-4.png)
 - [irssi](http://git.io/.irssi)
