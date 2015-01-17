@@ -38,6 +38,7 @@
  tmux           > minimal terminal multiplexer setup
  vim            > vim custom airline bar, colors, and plugins
  urxvt          > urxvt terminal colors and keyboard settings
+ wallpaper      > the cool desktop background images i use
  zsh            > zshell settings, aliases, and custom prompts
 ```
 #managing
@@ -107,17 +108,18 @@ install herbstluftwm
 `stow herbstluftwm`
 
 #previews
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/herbstluftwm.png)
-- herbstluftwm greybeard theme
-- vim 
-- htop
-- ncmpcpp
-- fun pipes script
-- sys arch screenfetch
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-1.png)
+- [sysinfo](http://git.io/.sysinfo)
+- [urxvt](http://git.io/.urxvt)
 
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/awesome.png)
-- awesome ghost theme
-- sublime greybeard theme
-- ncmpcpp
-- fun ghost color script
-- fun screenfetch
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-2.png)
+- [sublime greybeard theme](http://git.io/sublimegreybeard)
+- [ncmpcpp](http://git.io/.ncmpcpp)
+
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-3.png)
+- [chroimum & devtools](http://git.io/greybeard-devtools)
+- [figlet](https://github.com/xero/dotfiles/blob/master/figlet/3d.flf)
+
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-4.png)
+- [irssi](http://git.io/.irssi)
+- [tmux](http://git.io/.tmux)
