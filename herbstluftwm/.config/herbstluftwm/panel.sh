@@ -24,7 +24,7 @@ panel_height=16
 font="-Gohu-GohuFont-Medium-R-Normal--11-80-100-100-C-60-ISO10646-1"
 #font2="-misc-stlarch-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 
-bgcolor=$(hc get frame_border_normal_color)
+bgcolor=$(hc get frame_bg_active_color)
 selbg='#6A8C8C'
 selfg='#101010'
 
@@ -76,7 +76,7 @@ hc pad $monitor $panel_height
     while true ; do
         # "date" output is checked once a second, but an event is only
         # generated if the output changed compared to the previous run.
-        date +$'date\t^bg(#666666) ^ca(1,~/code/sys/calendar)^fg(#d9d9d9)^i(/usr/share/icons/stlarch_icons/clock1.xbm) ^fg(#efefef)%H:%M^fg(#bcbcbc) %Y-%m-^fg(#efefef)%d^ca() '
+        date +$'date\t ^ca(1,~/code/sys/calendar)^fg(#d9d9d9)^i(/usr/share/icons/stlarch_icons/clock1.xbm) ^fg(#efefef)%H:%M^fg(#bcbcbc) %Y-%m-^fg(#efefef)%d^ca() '
         sleep 1 || break
     done > >(uniq_linebuffered) &
     childpid=$!
@@ -108,16 +108,16 @@ hc pad $monitor $panel_height
                     echo -n "^bg(#6A8C8C)^fg(#101010)"
                     ;;
                 '+')
-                    echo -n "^bg(#9CA668)^fg(#141414)"
+                    echo -n "^bg(#666666)^fg(#141414)"
                     ;;
                 ':')
-                    echo -n "^bg(#333333)^fg(#ffffff)"
+                    echo -n "^bg(#222222)^fg(#ffffff)"
                     ;;
                 '!')
-                    echo -n "^bg(#FF0675)^fg(#141414)"
+                    echo -n "^bg(#F92672)^fg(#141414)"
                     ;;
                 *)
-                    echo -n "^bg(#111111)^fg($xtitle)"
+                    echo -n "^bg($bgcolor)^fg($xtitle)"
                     ;;
             esac
             if [ ! -z "$dzen2_svn" ] ; then
@@ -196,7 +196,7 @@ hc pad $monitor $panel_height
         #     net="^fg($xicon)^i(/usr/share/icons/stlarch_icons/dice5.xbm) ^fg($xtitle)network ^fg($xfg)disconnected"
         # fi
         #combine
-        right="^bg(#333333) $cpu $separator $mem $separator $temp $separator $bat $separator $updates $separator $uptime ^bg(#444444)               $date $separator $separator"
+        right="^bg($bgcolor) $cpu $separator $mem $separator $temp $separator $bat $separator $updates $separator $uptime               $date $separator $separator"
 
         right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')
         # get width of right aligned text.. and add some space..
