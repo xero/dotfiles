@@ -118,7 +118,7 @@ install herbstluftwm
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-3.png)
 - [chroimum with cathexis gtk](http://git.io/cathexis) & [greybeard devtools](http://git.io/greybeard-devtools)
-- figlet - [-f 3d](http://git.io/3d) webdev | lolcat
+- figlet [-f 3d](http://git.io/3d) webdev | lolcat
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-4.png)
 - [irssi](http://git.io/.irssi)
