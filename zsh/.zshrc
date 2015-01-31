@@ -64,9 +64,13 @@ alias ioup="~/code/sys/ioup"
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias clbin="curl -F 'clbin=<-' https://clbin.com"
 alias irc="dtach -A /home/xero/save/irc zsh"
+alias toiletlist='for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf; do j=${i##*/}; echo ""; echo "╓───── "$j; echo "╙────────────────────────────────────── ─ ─ "; echo ""; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done'
+alias ascii="toilet -f 3d"
+alias metal="toilet -f 3d --metal"
 alias pacman="sudo pacman"
 alias apachereload='sudo systemctl restart httpd.service'
-alias disks="lsblk -a && echo '' && df -h" #ncdu
+alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e"; echo "╙────────────────────────────────────── ─ ─ "; df -h;'
+
 #█▓▒░ games
 alias doom='gzdoom brutal19.pk3'
 alias fez='~/fez/FEZ'
