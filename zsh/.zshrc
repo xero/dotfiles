@@ -17,8 +17,8 @@
 # █▓▒░ timestamps
 # HIST_STAMPS="mm/dd/yyyy"
 
-#█▓▒░ exports
-export PATH=$HOME/bin:/usr/local/bin:/home/xero/.gem/ruby/2.1.0/bin:$PATH
+#█▓▒░ paths
+export PATH=$HOME/bin:/usr/local/bin:/home/xero/.gem/ruby/2.2.0/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 #█▓▒░ preferred editor for local and remote sessions
@@ -28,15 +28,24 @@ else
 	export EDITOR='vim'
 fi
 
+#█▓▒░ language
+export LC_CTYPE=en_US.utf8
+
+#█▓▒░ ssh keys
+export SSH_KEY_PATH="~/.ssh/id_rsa"
+
 #█▓▒░ aliases
 alias ls="ls --color=auto"
 alias lsla="ls -la --color=auto"
 alias lsls="ls -la --color=auto"
 alias lsl="ls -l --color=auto"
 alias "cd.."="cd ../"
+alias up="cd ../"
 alias rock="ncmpcpp"
 alias mixer="alsamixer"
 alias checkrootkits="sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check"
+alias checkvirus="clamscan --recursive=yes --infected /home"
+alias updateantivirus="sudo freshclam"
 alias genplaylist="cd ~/music;find . -name '*.mp3' -o -name '*.flac'|sed -e 's%^./%%g' > ~/.config/mpd/playlists/all.m3u;mpd ~/.config/mpd/mpd.conf;mpc clear;mpc load all.m3u;mpc update"
 alias matrix="cmatrix -b"
 alias pipes="bash ~/code/fun/pipes"
@@ -45,32 +54,22 @@ alias rain="bash ~/code/fun/rain"
 alias screenfetch="~/code/sys/info"
 alias hashcompare="bash ~/code/sys/hash-compare "
 alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
+alias term="urxvtc -hold -e " #used for awesomewm run menu
+alias tmx="bash ~/code/sys/tmx"
 alias fixcursor="xsetroot -cursor_name left_ptr"
 alias img="bash ~/code/sys/img"
-alias tmx="~/code/sys/tmx"
-alias gitio"~/code/sys/gitio"
-alias ascii="figlet -w `tput cols` -f 3d "
-alias ix="~/code/sys/ix"
+alias gitio="bash ~/code/sys/gitio"
+alias ix="bash ~/code/sys/ix"
+alias ioup="~/code/sys/ioup"
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias clbin="curl -F 'clbin=<-' https://clbin.com"
-dirlist() {
-	ls -la "$1" && echo -e '' &&  tree -a "$1"
-}
-#█▓▒░ debian aliases
-#alias sai="sudo apt-get install"
-#alias apachereload='sudo /etc/init.d/apache2 restart'
-#alias disks="palimpsest"
-#alias invert="xcalib -i -a"
-#█▓▒░ arch aliases
+alias irc="dtach -A /home/xero/save/irc zsh"
 alias pacman="sudo pacman"
 alias apachereload='sudo systemctl restart httpd.service'
 alias disks="lsblk -a && echo '' && df -h" #ncdu
 #█▓▒░ games
 alias doom='gzdoom brutal19.pk3'
 alias fez='~/fez/FEZ'
-
-#█▓▒░ ssh
-export SSH_KEY_PATH="~/.ssh/id_rsa"
 
 #█▓▒░ keybindings
 typeset -A key
@@ -108,7 +107,6 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 	zle -N zle-line-finish
 fi
 
-
 #█▓▒░ autocompletion systems
 autoload -Uz compinit
 compinit
@@ -129,7 +127,6 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
 
 #█▓▒░ colors for permissions
 if [[ "$EUID" -ne "0" ]] ; then  # if user is not root
@@ -166,6 +163,9 @@ SAVEHIST=1000
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
+
+#█▓▒░ node version manager
+#source ~/.nvm/nvm.sh
 
 #█▓▒░ custom prompts
 
