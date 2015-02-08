@@ -8,19 +8,21 @@
 # ░░      ░░░   ░░░░░░  ░░         ░░ ░░         ░░░░░░  ░░       ░░       
 #
 # █▓▒░ Setup
-ncmpcpp_directory = "/home/xero/.ncmpcpp"
+ncmpcpp_directory = "~/.ncmpcpp"
 #lyrics_directory = /home/xero/.lyrics
 external_editor = "/usr/bin/vim"
 
 # █▓▒░ MPD Settings
 mpd_crossfade_time = "3"
-mpd_music_dir = "/home/xero/music"
+mpd_music_dir = "~/music"
+mpd_host = "127.0.0.1"
+mpd_port = "6601"
 
 # █▓▒░ Visualizer
 visualizer_look = "▒░"
 visualizer_color = "cyan"
 visualizer_in_stereo = "yes"
-visualizer_fifo_path = "/home/xero/.config/mpd/mpd.fifo"
+visualizer_fifo_path = "~/.mpd/mpd.fifo"
 visualizer_sync_interval = "1"
 visualizer_output_name = "mpd spectrum"
 #visualizer_type = "frequency spectrum"
