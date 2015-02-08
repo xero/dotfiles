@@ -1,0 +1,16 @@
+set imap_user		= "e@mail.com"
+set imap_pass		= ""
+set smtp_url		= "smtp://user@smtp.email.com:587/"
+set smtp_pass		= ""
+set from		= "e@mail.com"
+set realname		= "xero"
+set header_cache	= "~/.mutt/cache/headers"
+set message_cachedir	= "~/.mutt/cache/"
+set certificate_file 	= "~/.mutt/certificates"
+set folder		= imaps://imap.mail.com/
+set spoolfile		= +INBOX
+mailboxes		= +INBOX
+unset imap_passive
+set imap_keepalive	= 300
+set mail_check		= 120
+set editor		= vim
