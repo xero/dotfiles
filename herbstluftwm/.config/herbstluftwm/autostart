@@ -26,7 +26,7 @@ killall stalonetray
 killall conky
 
 # gap counter
-echo 30 > /tmp/herbstluftwm-gap
+echo 35 > /tmp/herbstluftwm-gap
 
 # keybindings
 Mod=Mod4
@@ -152,7 +152,7 @@ hc attr theme.active.inner_color '#222222'
 hc attr theme.active.outer_color '#6A8C8C'
 hc attr theme.background_color '#222222'
 
-hc set window_gap 30
+hc set window_gap 35
 hc set frame_padding 0
 hc set smart_window_surroundings 0
 hc set smart_frame_surroundings 1

@@ -3,7 +3,9 @@ filename="/tmp/herbstluftwm-gap"
 while read -r line
 do
 	gap=$line
-	gap=$((gap+10))
-    herbstclient set window_gap $gap
-    echo $gap > $filename
+	if [ "$gap" -le 90 ];then
+		gap=$((gap+7))
+    		herbstclient set window_gap $gap
+    		echo $gap > $filename
+	fi
 done < "$filename"
