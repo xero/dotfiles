@@ -35,7 +35,7 @@
  stalonetray    > stand alone tray for daemons
  sublime        > sublime text 2 with greybeard, monokai, and gohu
  themes         > mod of the cathexis dark theme for gtk/qt/xfce
- tmux           > minimal terminal multiplexer setup
+ tmux           > terminal multiplexer with custom status bar
  vim            > vim custom airline bar, colors, and plugins
  urxvt          > urxvt terminal colors and keyboard settings
  wallpaper      > the cool desktop background images i use
