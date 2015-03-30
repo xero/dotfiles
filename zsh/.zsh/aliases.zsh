@@ -21,6 +21,10 @@ alias lsls="ls -la --color=auto"
 alias lsl="ls -l --color=auto"
 alias "cd.."="cd ../"
 alias up="cd ../"
+alias v="vim"
+alias vi="vim"
+alias g="git"
+alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules|bower_components" --dirsfirst'
 alias rock="ncmpcpp"
 alias mixer="alsamixer"
 alias checkrootkits="sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check"
@@ -34,7 +38,7 @@ alias rain="bash ~/code/fun/rain"
 alias screenfetch="~/code/sys/info"
 alias hashcompare="bash ~/code/sys/hash-compare "
 alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
-alias term="urxvtc -hold -e " #used for awesomewm run menu
+alias term="urxvtc -hold -e " #used for run menu
 alias tmx="bash ~/code/sys/tmx"
 alias fixcursor="xsetroot -cursor_name left_ptr"
 alias img="bash ~/code/sys/img"
@@ -54,4 +58,10 @@ alias todo="bash ~/code/sys/todo"
 alias record="ffmpeg -f x11grab -s 1366x768 -an -r 16 -loglevel quiet -i :0.0 -b:v 5M -y " #pass a filename
 email() {
 	echo $3 | mutt -s $2 $1
+}
+pcat() {
+	pygmentize -f terminal256 -O style=monokai -g
+}
+pless() {
+	pygmentize -f terminal256 -O style=monokai -g $1 | less -r
 }
