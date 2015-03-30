@@ -43,7 +43,7 @@ optstest() {
 	found=0
 	for arg in "$@"
 	do
-		if echo $arg | cut -d/ -f3 | grep -Eq "github.com"
+		if echo $arg | cut -d/ -f3 | grep -q "github.com\|raw.githubusercontent.com"
 		then
 			GHURL=$arg
 			found=1
