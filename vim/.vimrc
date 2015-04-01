@@ -50,6 +50,10 @@ set number
 " no line wrapping
 set nowrap
 
+" searching
+set hlsearch
+set incsearch
+
 " no folding
 set foldlevel=99
 set foldminlines=99
