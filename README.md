@@ -18,10 +18,9 @@
 
  awesome        > awesome wm config and ghost theme
  compton        > minimal composite config for opacity
- fun            > term color, sys info, and other misc scripts
- sys            > system automation scripts
- fonts          > config for gohu and bitmap fonts
  figlet         > custom 3d font
+ fonts          > config for gohu and bitmap fonts
+ fun            > term color, sys info, and other misc scripts
  git            > global git config and aliases
  herbstluftwm   > herbstluft wm config and greybeard theme
  irssi          > irc monokai theme
@@ -32,15 +31,17 @@
  ranger         > file manager with image previews and z3bra theme
  ryu-login      > ryu ansi art for /etc/issue tty login
  ssh            > remote ssh server keep alive
+ sys            > system automation scripts
  stalonetray    > stand alone tray for daemons
  sublime        > sublime text 2 with greybeard, monokai, and gohu
  themes         > mod of the cathexis dark theme for gtk/qt/xfce
  tmux           > terminal multiplexer with custom status bar
- vim            > vim custom airline bar, colors, and plugins
  urxvt          > urxvt terminal colors and keyboard settings
+ vim            > wizard status bar and sorcerer color scheme
  wallpaper      > the cool desktop background images i use
  zsh            > zshell settings, aliases, and custom prompts
 ```
+
 #managing
 it's been said of every console user: _"you are your dotfiles"_.
 
