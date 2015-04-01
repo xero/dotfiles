@@ -36,7 +36,7 @@
  sublime        > sublime text 2 with greybeard, monokai, and gohu
  themes         > mod of the cathexis dark theme for gtk/qt/xfce
  tmux           > terminal multiplexer with custom status bar
- urxvt          > urxvt terminal colors and keyboard settings
+ urxvt          > sourcerer terminal colors and keyboard settings
  vim            > wizard status bar and sorcerer color scheme
  wallpaper      > the cool desktop background images i use
  zsh            > zshell settings, aliases, and custom prompts
@@ -124,3 +124,7 @@ install herbstluftwm
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-4.png)
 - [irssi](http://git.io/.irssi)
 - [tmux](http://git.io/.tmux)
+
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-5.png)
+- [vim](http://git.io/.vim)
+- [color scripts](http://git.io/.fun)

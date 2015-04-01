@@ -13,7 +13,7 @@
 " ░▓ mirror ▓ http://git.io/.files
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
-
+"
 " use vim settings, rather than vi settings
 " must be first, because it changes other options as a side effect
 set nocompatible
@@ -38,7 +38,7 @@ set shortmess+=I
 
 " syntax highlighting and colors
 syntax on
-colorscheme sorcerer 
+colorscheme sourcerer
 filetype plugin indent on
 
 " stop unnecessary rendering
@@ -123,5 +123,5 @@ function! Colorize(mode)
 endfunction 
 
 au InsertEnter * call Colorize(v:insertmode)
-:au InsertLeave * hi StatColor guibg=#3a3a3a guifg=#ffffff ctermbg=237 ctermfg=255
+au InsertLeave * hi StatColor guibg=#3a3a3a guifg=#ffffff ctermbg=237 ctermfg=255
 

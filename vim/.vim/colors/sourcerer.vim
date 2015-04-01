@@ -1,8 +1,14 @@
-" 'sorcerer.vim' -- Vim color scheme.
-" Maintainer: Andrew Lawson
-" Forked from 'vim-scripts/Sorcerer' by Jeet Sukumaran
-" Based on 'Mustang' by Henrique C. Alves (hcarvalhoalves@gmail.com),
-" Interface mods by xero harrison (http://git.io/.files)
+
+"   ██████  ██████  ██   ██ ██████  █████   █████  ██████  █████  ██████
+"  ██░░░░  ██░░░░██░██  ░██░░██░░█ ██░░░██ ██░░░██░░██░░█ ██░░░██░░██░░█
+" ░░█████ ░██   ░██░██  ░██ ░██ ░ ░██  ░░ ░███████ ░██ ░ ░███████ ░██ ░
+"  ░░░░░██░██   ░██░██  ░██ ░██   ░██   ██░██░░░░  ░██   ░██░░░░  ░██
+"  ██████ ░░██████ ░░██████░███   ░░█████ ░░██████░███   ░░██████░███
+" ░░░░░░   ░░░░░░   ░░░░░░ ░░░     ░░░░░   ░░░░░░ ░░░     ░░░░░░ ░░░
+"
+" sourcerer -- a vim color scheme
+" forked from http://git.io/sorcerer.vim by Jeet Sukumaran
+" mods by xero harrison (http://git.io/xero)
 
 set background=dark
 
