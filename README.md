@@ -37,7 +37,7 @@
  themes         > mod of the cathexis dark theme for gtk/qt/xfce
  tmux           > terminal multiplexer with custom status bar
  urxvt          > sourcerer terminal colors and keyboard settings
- vim            > wizard status bar and sorcerer color scheme
+ vim            > wizard status bar and sourcerer color scheme
  wallpaper      > the cool desktop background images i use
  zsh            > zshell settings, aliases, and custom prompts
 ```
