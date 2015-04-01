@@ -2,7 +2,7 @@
 " Maintainer: Andrew Lawson
 " Forked from 'vim-scripts/Sorcerer' by Jeet Sukumaran
 " Based on 'Mustang' by Henrique C. Alves (hcarvalhoalves@gmail.com),
-" Slight mods by xero harrison (git.io/.files)
+" Interface mods by xero harrison (http://git.io/.files)
 
 set background=dark
 
@@ -33,7 +33,7 @@ hi Folded       guifg=#406060 guibg=#232c2c gui=NONE
 hi IncSearch    guifg=#ffffff guibg=#ff4500 gui=bold
 hi LineNr       guifg=#878787 guibg=#3A3A3A gui=NONE
 hi MatchParen   guifg=#fff000 guibg=NONE    gui=bold
-hi ModeMsg      guifg=#000000 guibg=#00ff00 gui=bold
+hi ModeMsg      guifg=#afafaf guibg=#222222 gui=bold
 hi MoreMsg      guifg=#2e8b57 guibg=NONE    gui=bold
 hi NonText      guifg=#404050 guibg=NONE    gui=NONE
 
@@ -121,7 +121,7 @@ hi Folded                 cterm=NONE             ctermbg=16    ctermfg=60
 hi IncSearch              cterm=bold             ctermbg=202   ctermfg=231
 hi LineNr                 cterm=NONE             ctermbg=237   ctermfg=102
 hi MatchParen             cterm=bold             ctermbg=NONE  ctermfg=226
-hi ModeMsg                cterm=bold             ctermbg=46    ctermfg=16
+hi ModeMsg                cterm=bold             ctermbg=NONE  ctermfg=145
 hi MoreMsg                cterm=bold             ctermbg=234   ctermfg=29
 hi NonText                cterm=NONE             ctermbg=NONE  ctermfg=59
 hi Pmenu                  cterm=NONE             ctermbg=238   ctermfg=231
@@ -204,7 +204,7 @@ hi VisualNOS              cterm=bold,underline   ctermbg=NONE  ctermfg=fg
 hi cCursor                cterm=reverse          ctermbg=NONE  ctermfg=fg
 hi iCursor                cterm=NONE             ctermbg=210   ctermfg=16
 hi lCursor                cterm=NONE             ctermbg=145   ctermfg=234
-hi nCursor                cterm=NONE             ctermbg=46    ctermfg=16
+hi nCursor                cterm=NONE             ctermbg=NONE  ctermfg=145
 hi vCursor                cterm=NONE             ctermbg=201   ctermfg=16
 " 1}}}
 
