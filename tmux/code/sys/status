@@ -45,7 +45,7 @@ draw()
 	thiscolor=
 	for v in `seq 0 $(( SIZE - 1 ))`; do
 		test "$v" -le "$inc"   \
-		&& out="${out}#[fg=$C0]${FULL}" \
+		&& out="${out}#[fg=$C1]${FULL}" \
 		|| out="${out}#[fg=$C1]${EMPTY}"
 	done
 	echo $out
@@ -104,8 +104,8 @@ clock()
 }
 front()
 {
-	echo "#[bg=$C7]#[fg=$C0]▓░"
+	echo "#[bg=$C7]#[fg=$C1]▓░"
 }
 CPU_INFO=`cpu`
 RAM_INFO=`ram`
-echo -e `front` `bat` `draw $RAM_INFO 4` `temp` `draw $CPU_INFO 7``clock`
+echo `front` `bat` `draw $RAM_INFO 4` `temp` `draw $CPU_INFO 7` `clock`
