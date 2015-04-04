@@ -48,8 +48,8 @@ alias ioup="~/code/sys/ioup"
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias clbin="curl -F 'clbin=<-' https://clbin.com"
 alias toiletlist='for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf; do j=${i##*/}; echo ""; echo "╓───── "$j; echo "╙────────────────────────────────────── ─ ─ "; echo ""; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done'
-alias ascii="toilet -f 3d"
-alias metal="toilet -f 3d --metal"
+alias ascii="toilet -t -f 3d"
+alias metal="toilet -t -f 3d --metal"
 alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
 alias apachereload='sudo systemctl restart httpd.service'
