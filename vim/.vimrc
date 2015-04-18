@@ -30,6 +30,16 @@ set noswapfile
 set wildmode=longest,list,full
 set wildmenu
 
+" case insensitive search
+set ignorecase
+set smartcase
+
+" the /g flag on :s substitutions by default
+set gdefault
+
+" show matching brackets/parenthesis
+set showmatch
+
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
 
@@ -57,7 +67,28 @@ set incsearch
 " no folding
 set foldlevel=99
 set foldminlines=99
- 
+
+" wrap long lines
+set nowrap
+
+" use indents of 4 spaces
+set shiftwidth=4
+
+" tabs are spaces, not tabs
+set expandtab
+
+" an indentation every four columns
+set tabstop=4
+
+" let backspace delete indent
+set softtabstop=4
+
+" remove trailing whitespaces and ^M chars
+autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+
+" make ; work like : for commands. lazy shifting
+nnoremap ; :
+
 " enable file type detection and do language-dependent indenting
 if has("autocmd")
   filetype on
@@ -71,7 +102,10 @@ nnoremap <silent> <leader>y V:w !xsel -i -b<CR>
 nnoremap <silent> <leader>p :silent :r !xsel -o -b<CR>
 
 " remap code completion to ^space
-inoremap <Nul> <C-x><C-o>
+"inoremap <Nul> <C-x><C-o>
+" inoremap <Nul> <C-n>
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-Space>
 
 " █▓▒░ wizard status line
 set laststatus=2
@@ -89,19 +123,19 @@ function! WizardStatus(mode)
     if &modified == 1
 	let statusline.="%#ModColor# »» "
     else
-    	let statusline.="    " 
+    	let statusline.="    "
     endif
     if &readonly != ''
         hi StatColor guifg=#af0000 ctermfg=124
     endif
-    let statusline.="%#StatColor#%F " 
+    let statusline.="%#StatColor#%F "
     "let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d'")
-    let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
-    if branch != ''
-        let statusline .= '%#VoidColor#▓%#GitColor# ' . substitute(branch, '\n', '', 'g') . ' %#VoidColor#▓▒░ '
-    else
+    "let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
+    "if branch != ''
+    "    let statusline .= '%#VoidColor#▓%#GitColor# ' . substitute(branch, '\n', '', 'g') . ' %#VoidColor#▓▒░ '
+    "else
 	let statusline .= '%#VoidColor#▒░ '
-    endif
+    "endif
     let statusline .= "%=%h%w\ %#TypeColor#▓"
     if &filetype != ''
         let statusline .="▒ %Y "
@@ -124,8 +158,7 @@ function! Colorize(mode)
   else
     hi StatColor guibg=#af0000 guifg=#222222 ctermbg=124  ctermfg=235
   endif
-endfunction 
+endfunction
 
 au InsertEnter * call Colorize(v:insertmode)
 au InsertLeave * hi StatColor guibg=#3a3a3a guifg=#ffffff ctermbg=237 ctermfg=255
-
