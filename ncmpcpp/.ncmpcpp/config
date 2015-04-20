@@ -28,8 +28,8 @@ visualizer_output_name = "mpd spectrum"
 #visualizer_type = "frequency spectrum"
 
 # █▓▒░ Display Settings
-song_list_format = "{$7%a $1> $6}{%t$1$R$b} [{%l}]"
-song_status_format = "$7%a $1$b> $6%t $1$b> $2%b$1"
+song_list_format = "{$7%a $6> $5}{%t$6$R$b} [{%l}]"
+song_status_format = "$7%a $6$b> $5%t $6$b> $2%b$6"
 statusbar_color = "black"
 main_window_color = "cyan"
 main_window_highlight_color = "magenta"
