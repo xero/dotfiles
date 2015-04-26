@@ -16,6 +16,7 @@
 #
 #█▓▒░ aliases
 alias ls="ls --color=auto"
+alias ll="ls -la --color=auto"
 alias lsla="ls -la --color=auto"
 alias lsls="ls -la --color=auto"
 alias lsl="ls -l --color=auto"
@@ -23,7 +24,8 @@ alias "cd.."="cd ../"
 alias up="cd ../"
 alias v="vim"
 alias vi="vim"
-alias g="git"
+alias g="hub"
+alias git="hub"
 alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules|bower_components" --dirsfirst'
 alias rock="ncmpcpp"
 alias mixer="alsamixer"
