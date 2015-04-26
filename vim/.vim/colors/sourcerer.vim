@@ -1,28 +1,26 @@
-
 "   ██████  ██████  ██   ██ ██████  █████   █████  ██████  █████  ██████
-"  ██░░░░  ██░░░░██░██  ░██░░██░░█ ██░░░██ ██░░░██░░██░░█ ██░░░██░░██░░█
-" ░░█████ ░██   ░██░██  ░██ ░██ ░ ░██  ░░ ░███████ ░██ ░ ░███████ ░██ ░
-"  ░░░░░██░██   ░██░██  ░██ ░██   ░██   ██░██░░░░  ░██   ░██░░░░  ░██
-"  ██████ ░░██████ ░░██████░███   ░░█████ ░░██████░███   ░░██████░███
-" ░░░░░░   ░░░░░░   ░░░░░░ ░░░     ░░░░░   ░░░░░░ ░░░     ░░░░░░ ░░░
+"  ██░░░░  ██░░░░██░██  ░██░░██░░████░░░██ ██░░░██░░██░░████░░░██░░██░░██
+" ░░█████ ░██   ░██░██  ░██ ░██ ░░░██  ░░ ░███████ ░██ ░░░███████ ░██ ░░
+"  ░░░░░██░██   ░██░██  ░██ ░██   ░██   ██░██░░░░  ░██   ░██░░░░  ░██   
+"  ██████ ░░██████ ░░██████░███   ░░█████ ░░██████░███   ░░██████░███   
+" ░░░░░░   ░░░░░░   ░░░░░░ ░░░     ░░░░░   ░░░░░░ ░░░     ░░░░░░ ░░░   
+"  r  e  a  d     c  o  d  e     l  i  k  e     a     w  i  z  a  r  d 
 "
-" sourcerer -- a vim color scheme
-" forked from http://git.io/sorcerer.vim by Jeet Sukumaran
-" mods by xero harrison (http://git.io/xero)
+" sourcerer by xero harrison (http://xero.nu)
+"  ├─ based on sorcerer by Jeet Sukumaran (http://jeetworks.org)
+"  └─ based on mustang by Henrique C. Alves (hcarvalhoalves@gmail.com)
 
 set background=dark
-
 hi clear
 
 if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "sorcerer"
+let colors_name = "sourcerer"
 
-" GUI Colors {{{1
-" ============================================================================
 
+"  █▓▒░ GUI colors
 hi Normal       guifg=#c2c2b0 guibg=#222222 gui=NONE
 hi ColorColumn  guifg=NONE    guibg=#1c1c1c
 hi Cursor       guifg=NONE    guibg=#626262 gui=NONE
@@ -68,7 +66,7 @@ hi WarningMsg   guifg=#ee9a00 guibg=NONE    gui=NONE
 hi WildMenu     guifg=#000000 guibg=#87ceeb gui=NONE
 hi ExtraWhitespace guifg=fg   guibg=#528b8b gui=NONE
 
-"  Syntax highlighting
+"  syntax highlighting
 hi Comment      guifg=#686858 gui=italic
 hi Boolean      guifg=#ff9800 gui=NONE
 hi String       guifg=#779b70 gui=NONE
@@ -83,7 +81,7 @@ hi Special      guifg=#719611 gui=NONE
 hi PreProc      guifg=#528b8b gui=NONE
 hi Todo         guifg=#8f6f8f guibg=#202020 gui=italic,underline,bold
 
-" Diff
+" diff
 hi diffOldFile      guifg=#88afcb   guibg=NONE      gui=italic
 hi diffNewFile      guifg=#88afcb   guibg=NONE      gui=italic
 hi diffFile         guifg=#88afcb   guibg=NONE      gui=italic
@@ -101,16 +99,13 @@ hi link             diffNoEOL       Constant
 hi link             diffCommon      Constant
 hi link             diffComment     Constant
 
-" Python
+" python
 hi pythonException  guifg=#90b0d1 guibg=NONE gui=NONE
 hi pythonExClass    guifg=#996666 guibg=NONE gui=NONE
 hi pythonDecorator  guifg=#888555 guibg=NONE gui=NONE
 hi link pythonDecoratorFunction pythonDecorator
 
-" 1}}}
-
-" 256 Colors {{{1
-" ============================================================================
+"  █▓▒░ 256 colors 
 hi Normal                 cterm=NONE             ctermbg=NONE  ctermfg=145
 hi ColorColumn            cterm=NONE             ctermbg=16    ctermfg=NONE
 hi Cursor                 cterm=NONE             ctermbg=241   ctermfg=fg
@@ -212,5 +207,4 @@ hi iCursor                cterm=NONE             ctermbg=210   ctermfg=16
 hi lCursor                cterm=NONE             ctermbg=145   ctermfg=234
 hi nCursor                cterm=NONE             ctermbg=NONE  ctermfg=145
 hi vCursor                cterm=NONE             ctermbg=201   ctermfg=16
-" 1}}}
 
