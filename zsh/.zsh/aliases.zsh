@@ -15,11 +15,9 @@
 # ░░░░░░░░░░
 #
 #█▓▒░ aliases
+alias ll="ls -lah --color=auto"
 alias ls="ls --color=auto"
-alias ll="ls -la --color=auto"
-alias lsla="ls -la --color=auto"
-alias lsls="ls -la --color=auto"
-alias lsl="ls -l --color=auto"
+alias lsl="ls -lh --color=auto"
 alias "cd.."="cd ../"
 alias up="cd ../"
 alias v="vim"
@@ -48,7 +46,7 @@ alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias clbin="curl -F 'clbin=<-' https://clbin.com"
 alias toiletlist='for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf; do j=${i##*/}; echo ""; echo "╓───── "$j; echo "╙────────────────────────────────────── ─ ─ "; echo ""; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done'
 alias ascii="toilet -t -f 3d"
-alias metal="toilet -t -f 3d --metal"
+alias future="toilet -t -f future"
 alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
 alias apachereload='sudo systemctl restart httpd.service'
@@ -63,4 +61,8 @@ pcat() {
 }
 pless() {
 	pygmentize -f terminal256 -O style=monokai -g $1 | less -r
+}
+# read markdown files like manpages
+mdman() {
+    grep -v "\-\-\-\-\-" "$*" | pandoc -s -f markdown -t man | groff -T utf8 -man | less
 }
