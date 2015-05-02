@@ -109,6 +109,14 @@ install herbstluftwm
 `stow herbstluftwm`
 
 #previews
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_converge.png)
+- [herbstluftwm](http://git.io/.herbstluftwm)
+- [urxvt](http://git.io/.urxvt)
+- [zsh](http://git.io/.zsh)
+- [tmux](http://git.io/.tmux)
+- [vim](http://git.io/.vim)
+- [ncmpcpp](http://git.io/.ncmpcpp)
+
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-1.png)
 - [sysinfo](http://git.io/.sysinfo)
 - [urxvt](http://git.io/.urxvt)
