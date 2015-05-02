@@ -16,7 +16,19 @@
 !
 ! █▓▒░ fonts
 urxvt*font: xft:gohufont:size=11:antialias=true
-urxvt*boldFont: xft:gohufont:size=11:antialias=true
+!urxvt*font: xft:creep:size=16:antialias=true
+!urxvt*font: xft:envy code r:size=9:antialias=false
+!urxvt*font: xft:lemon:size=16:antialias=false
+!urxvt*font: xft:lime:size=16:antialias=false
+!urxvt*font: xft:neep:size=11:antialias=false
+!urxvt*font: xft:perfect dos vga 437:size=11:antialias=false
+!urxvt*font: xft:tewi:size=11:antialias=false
+
+urxvt*boldFont: 
+urxvt*italicFont: 
+urxvt*bolditalicFont: 
+
+urxvt*letterSpace: 0
 urxvt*lineSpace: -1
 
 ! █▓▒░ interface
@@ -75,6 +87,6 @@ urxvt.clipboard.copycmd:  xsel -ib
 urxvt.clipboard.pastecmd: xsel -ob
 
 ! █▓▒░ misc
-urxvt.saveLines: 4095
+urxvt.saveLines: 9999
 urxvt.iso14755: false
 !URxvt*altSendsEscape: true
