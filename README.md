@@ -19,11 +19,11 @@
  awesome        > awesome wm config and ghost theme
  compton        > minimal composite config for opacity
  figlet         > custom 3d font
- fonts          > config for gohu and bitmap fonts
+ fonts          > configs for gohu and other bitmap fonts
  fun            > term color, sys info, and other misc scripts
  git            > global git config and aliases
  herbstluftwm   > herbstluft wm config and greybeard theme
- irssi          > irc monokai theme
+ irssi          > nixers irc theme
  mc             > midnight commander ui colors
  mpd            > music player daemon setup
  ncmpcpp        > ncurses mpc++ ui/color settings
