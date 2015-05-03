@@ -33,8 +33,8 @@ Mod=Mod4
 Alt=Mod1
 
 # run menu
-hc keybind $Mod-w	spawn dmenu_run -nb '#272822' -nf '#bcbcbc' -sb '#6A8C8C' -sf '#101010' -i -fn '-Gohu-GohuFont-Medium-R-Normal'
-hc keybind $Mod-r	spawn dmenu_run -nb '#272822' -nf '#bcbcbc' -sb '#6A8C8C' -sf '#101010' -i -fn '-Gohu-GohuFont-Medium-R-Normal'
+hc keybind $Mod-w	spawn interrobang 
+hc keybind $Mod-r	spawn interrobang 
 # toggle touchpad
 hc keybind $Mod-m	spawn bash /home/xero/code/sys/toggle-touchpad
 # dynamic window gap
