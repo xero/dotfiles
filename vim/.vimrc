@@ -89,6 +89,9 @@ autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buff
 " make ; work like : for commands. lazy shifting
 nnoremap ; :
 
+" json pretty print
+command J :%!python -mjson.tool
+
 " enable file type detection and do language-dependent indenting
 if has("autocmd")
   filetype on
