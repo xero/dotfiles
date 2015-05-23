@@ -17,21 +17,19 @@
 ## █▓▒░ options
 set font      = fixed
 set font      = -Gohu-GohuFont-Medium-R-Normal
-set geometry  = top
 set geometry  = 1366x17+0+0 #16
 set colors    = #528b8b #111111 #d3d3d3 #111111 #cc8800 #000000
 set border    = 1px #111111
 set bangchar  = !
-set run_hook  = %s
-set run_hook  = %s || (notify-send "error: command not found";interrobang)
 set autocomp  = 1
 set list      = true
 set last      = true
 set margin    = -80
-set shell     = /bin/zsh
+set shell     = /usr/bin/zsh
+set run_hook  = %s || notify-send "error: command not found"
 
 ## █▓▒░ bangs
-bang !        = urxvtc -e %s
+bang !        = urxvtc -hold -e %s
 bang www      = chromium %s
 bang pdf      = evince %s
 bang img      = viewnior %s
@@ -41,7 +39,7 @@ bang math     = notify-send "$(echo '%s' | bc -l)"
 bang ?        = echo "interrobang ignored \"%s\""
 bang quit     = case "%s" in shutdown) sudo systemctl poweroff ;; sleep) sudo systemctl suspend ;; reboot) sudo systemctl reboot ;; logout) killall xinit ;; cancel) exit ;; esac
 
+## █▓▒░ tab completions
 tab default   = percontation "%s" %s | sort -u
-tab math      = str="%s%s"; echo "!calc $(echo ${str#\!calc} | bc -l)"
 tab ?         = ignore="%s%s"; awk '/^bang/ {print "!"$2" ";}' ~/.interrobangrc
 tab quit      = echo -e "cancel\nshutdown\nsleep\nreboot\nlogout" | grep "^%s%s"
