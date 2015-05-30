@@ -92,6 +92,12 @@ nnoremap ; :
 " json pretty print
 command J :%!python -mjson.tool
 
+" remove trailing white space
+command Nows :%s/\s\+$//
+
+" remove blank lines
+command Nobl :g/^\s*$/d
+
 " enable file type detection and do language-dependent indenting
 if has("autocmd")
   filetype on
@@ -165,3 +171,4 @@ endfunction
 
 au InsertEnter * call Colorize(v:insertmode)
 au InsertLeave * hi StatColor guibg=#3a3a3a guifg=#ffffff ctermbg=237 ctermfg=255
+
