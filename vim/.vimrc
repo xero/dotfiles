@@ -60,6 +60,9 @@ set number
 " no line wrapping
 set nowrap
 
+" highlight column
+set cursorcolumn
+
 " searching
 set hlsearch
 set incsearch
@@ -171,3 +174,5 @@ endfunction
 
 au InsertEnter * call Colorize(v:insertmode)
 au InsertLeave * hi StatColor guibg=#3a3a3a guifg=#ffffff ctermbg=237 ctermfg=255
+
+ "execute pathogen#infect()
