@@ -171,4 +171,3 @@ endfunction
 
 au InsertEnter * call Colorize(v:insertmode)
 au InsertLeave * hi StatColor guibg=#3a3a3a guifg=#ffffff ctermbg=237 ctermfg=255
-
