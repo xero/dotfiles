@@ -47,6 +47,8 @@ alias clbin="curl -F 'clbin=<-' https://clbin.com"
 alias toiletlist='for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf; do j=${i##*/}; echo ""; echo "╓───── "$j; echo "╙────────────────────────────────────── ─ ─ "; echo ""; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done'
 alias ascii="toilet -t -f 3d"
 alias future="toilet -t -f future"
+alias rusto="toilet -t -f rusto"
+alias rustofat="toilet -t -f rustofat"
 alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
 alias apachereload='sudo systemctl restart httpd.service'
@@ -63,6 +65,6 @@ pless() {
 	pygmentize -f terminal256 -O style=monokai -g $1 | less -r
 }
 # read markdown files like manpages
-mdman() {
-    grep -v "\-\-\-\-\-" "$*" | pandoc -s -f markdown -t man | groff -T utf8 -man | less
+md() {
+    pandoc -s -f markdown -t man "$*" | man -l -
 }
