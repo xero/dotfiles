@@ -118,6 +118,20 @@ install herbstluftwm
 
 `stow herbstluftwm`
 
+#vim
+[vim](http://www.vim.org), with it's tight integration to the unix shell, has quickly become my editor of choice. once you start to master the movements and operators you quickly begin manipulating, not just editing, source code files.
+
+when you learn vim it's best to use a more vanilla config. if helps you focus on learning the editor and not the plugins. these are also great for [remote machines](http://git.io/.vimrc-min). but for your local dev environment, vim's vast and powerful plugin system can add many great features. i try to keep my editor slim and fast, but i find myself loving these plugins:
+
+- [vundle](https://github.com/gmarik/vundle.vim) - to manage other plugins
+- [you complete me](https://github.com/Valloric/YouCompleteMe) - the best completion system
+- [php complete](https://github.com/shawncplus/phpcomplete.vim) - extended php completions
+- [syntastic](https://github.com/scrooloose/syntastic) - syntax linting
+- [git gutter](https://github.com/airblade/vim-gitgutter) - git diff in the gutter
+- [match it](https://github.com/isa/vim-matchit) - extended word and regex matching
+- [lightline](https://github.com/itchyny/lightline.vim) - custom status line (for much rice)
+- [fugitive](https://github.com/tpope/vim-fugitive) - fast git integration
+
 #previews
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_converge.png)
 - [herbstluftwm](http://git.io/.herbstluftwm)
