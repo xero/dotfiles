@@ -77,6 +77,10 @@ urxvt*transparent: false
 *.color7:       #d3d3d3
 *.color15:      #c1cdc1
 
+URxvt.colorIT:  #719611
+URxvt.colorBD:  #d3d3d3
+URxvt.colorUL:  #528b8b
+
 ! █▓▒░ clipboard
 urxvt.perl-ext-common: default,clipboard,keyboard-select
 urxvt.keysym.M-Escape: perl:keyboard-select:activate
