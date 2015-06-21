@@ -14,7 +14,7 @@
  ░▓ code   ▓ http://code.xero.nu/dotfiles
  ░▓ mirror ▓ http://git.io/.files
  ░▓▓▓▓▓▓▓▓▓▓
- ░░░░░░░░░░https://github.com/xero/dotfiles#how-it-works
+ ░░░░░░░░░░
 
  awesome        > awesome wm config and ghost theme
  compton        > minimal composite config for opacity
