@@ -15,15 +15,11 @@ hc() {
 
 hc emit_hook reload
 
-# solid background
-#xsetroot -solid '#5A8E3A'
-
 # remove all existing keybindings
 hc keyunbind --all
 
 # close tray if reloading
 killall stalonetray
-killall conky
 
 # gap counter
 echo 35 > /tmp/herbstluftwm-gap
@@ -35,12 +31,15 @@ Alt=Mod1
 # run menu
 hc keybind $Mod-w	spawn interrobang 
 hc keybind $Mod-r	spawn interrobang 
+
 # toggle touchpad
 hc keybind $Mod-m	spawn bash /home/xero/code/sys/toggle-touchpad
+
 # dynamic window gap
 hc keybind $Mod-9	spawn bash /home/xero/code/sys/herbstluftwm-remove-gap
 hc keybind $Mod-0	spawn bash /home/xero/code/sys/herbstluftwm-add-gap
 
+# generic actions
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close
@@ -87,8 +86,8 @@ hc keybind $Mod-Control-Right   resize right +$resizestep
 
 
 # tags
-tag_names=( 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001 )
-#tag_names=( {0..9} )
+#tag_names=( 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001 )
+tag_names=( {0..3} )
 
 # set up normal tags
 hc rename default "${tag_names[0]}" || true
@@ -124,8 +123,8 @@ hc keybind $Mod-i jumpto urgent
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color '#272822'
-hc set frame_border_normal_color '#272822'
+hc set frame_border_active_color '#222222'
+hc set frame_border_normal_color '#222222'
 hc set frame_bg_normal_color '#222222'
 hc set frame_bg_active_color '#000000'
 hc set frame_border_width 0
@@ -143,7 +142,7 @@ hc attr theme.border_width 3
 hc attr theme.floating.border_width 3
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
-hc attr theme.active.inner_color '#272822'
+hc attr theme.active.inner_color '#222222'
 hc attr theme.active.outer_color '#000000'
 hc attr theme.background_color '#141414'
 

@@ -152,7 +152,7 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 - [fugitive](https://github.com/tpope/vim-fugitive) - fast git integration
 
 #previews
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_converge.png)
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/coils.png)
 - [herbstluftwm](http://git.io/.herbstluftwm)
 - [urxvt](http://git.io/.urxvt)
 - [zsh](http://git.io/.zsh)
@@ -160,13 +160,13 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 - [vim](http://git.io/.vim)
 - [ncmpcpp](http://git.io/.ncmpcpp)
 
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_converge.png)
+
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-1.png)
 - [sysinfo](http://git.io/.sysinfo)
-- [urxvt](http://git.io/.urxvt)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-2.png)
 - [sublime greybeard theme](http://git.io/sublimegreybeard)
-- [ncmpcpp](http://git.io/.ncmpcpp)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-3.png)
 - [chroimum with cathexis gtk](http://git.io/cathexis) & [greybeard devtools](http://git.io/greybeard-devtools)
@@ -174,8 +174,6 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-4.png)
 - [irssi](http://git.io/.irssi)
-- [tmux](http://git.io/.tmux)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-5.png)
-- [vim](http://git.io/.vim)
 - [color scripts](http://git.io/.fun)

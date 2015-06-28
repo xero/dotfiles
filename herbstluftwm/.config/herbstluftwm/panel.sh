@@ -11,14 +11,15 @@
 hc() { "${herbstclient_command[@]:-herbstclient}" "$@" ;}
 monitor=${1:-0}
 geometry=( $(herbstclient monitor_rect "$monitor") )
-if [ -z "$geometry" ] ;then
+if [ -z "$geometry" ]
+then
     echo "Invalid monitor $monitor"
     exit 1
 fi
 # geometry has the format W H X Y
 x=${geometry[0]}
 y=${geometry[1]}
-panel_width=548
+panel_width=268
 panel_height=16
 #font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
 font="-Gohu-GohuFont-Medium-R-Normal--11-80-100-100-C-60-ISO10646-1"
@@ -39,13 +40,15 @@ else
 fi
 
 # detect version
-if dzen2 -v 2>&1 | head -n 1 | grep -q '^dzen-\([^,]*-svn\|\),'; then
+if dzen2 -v 2>&1 | head -n 1 | grep -q '^dzen-\([^,]*-svn\|\),'
+then
     dzen2_svn="true"
 else
     dzen2_svn=""
 fi
 
-if awk -Wv 2>/dev/null | head -1 | grep -q '^mawk'; then
+if awk -Wv 2>/dev/null | head -1 | grep -q '^mawk'
+then
     # mawk needs "-W interactive" to line-buffer stdout correctly
     uniq_linebuffered() {
       awk -W interactive '$0 != l { print ; l=$0 ; fflush(); }' "$@"
@@ -68,7 +71,8 @@ hc pad $monitor $panel_height
     #   date    ^fg(#efefef)18:33^fg(#909090), 2013-10-^fg(#efefef)29
 
     #mpc idleloop player &
-    while true ; do
+    while true
+    do
         # "date" output is checked once a second, but an event is only
         # generated if the output changed compared to the previous run.
         date +$'date\t ^ca(1,~/code/sys/calendar)^fg(#d9d9d9)^i(/usr/share/icons/stlarch_icons/clock1.xbm) ^fg(#efefef)%H:%M^fg(#bcbcbc) %Y-%m-^fg(#efefef)%d^ca()'
@@ -82,7 +86,8 @@ hc pad $monitor $panel_height
     visible=true
     date=""
     windowtitle=""
-    while true ; do
+    while true
+    do
 
         ### output ###
         # this part prints dzen data based on the _previous_ data handling run,
@@ -90,10 +95,11 @@ hc pad $monitor $panel_height
 
         echo -n "^bg($bgcolor)$date ^bg(#111111)           "
         # draw tags
-        for i in "${tags[@]}" ; do
+        for i in "${tags[@]}"
+        do
             case ${i:0:1} in
                 '#')
-                    echo -n "^bg(#5F8787)^fg(#101010)"
+                    echo -n "^bg(#5F8787)^fg(#222222)"
                     ;;
                 '+')
                     echo -n "^bg(#666666)^fg(#141414)"
@@ -108,16 +114,19 @@ hc pad $monitor $panel_height
                     echo -n "^bg(#222222)^fg(#bcbcbc)"
                     ;;
             esac
-            if [ ! -z "$dzen2_svn" ] ; then
+            if [ ! -z "$dzen2_svn" ]
+            then
                 # clickable tags if using SVN dzen
                 echo -n "^ca(1,\"${herbstclient_command[@]:-herbstclient}\" "
                 echo -n "focus_monitor \"$monitor\" && "
                 echo -n "\"${herbstclient_command[@]:-herbstclient}\" "
-                #echo -n "use \"${i:1}\") ^i(/usr/share/icons/stlarch_icons/diamond1.xbm) ^ca()"
-                echo -n "use \"${i:1}\") ${i:1} ^ca()"
+                echo -n " "
+            fi
+            if [ ${i:0:1 } == "#" ]
+            then
+                echo -n "use \"${i:1}\") ^i(/usr/share/icons/stlarch_icons/monocle2.xbm) ^ca()"
             else
-                # non-clickable tags if using older dzen
-                echo -n " ${i:1} "
+                echo -n "use \"${i:1}\") ^i(/usr/share/icons/stlarch_icons/monocle.xbm) ^ca()"
             fi
         done
         echo
@@ -150,11 +159,13 @@ hc pad $monitor $panel_height
                 if [ "${cmd[1]}" -ne "$monitor" ] ; then
                     continue
                 fi
-                if [ "${cmd[1]}" = "current" ] && [ "$currentmonidx" -ne "$monitor" ] ; then
+                if [ "${cmd[1]}" = "current" ] && [ "$currentmonidx" -ne "$monitor" ]
+                then
                     continue
                 fi
                 echo "^togglehide()"
-                if $visible ; then
+                if $visible
+                then
                     visible=false
                     hc pad $monitor 0
                 else
