@@ -22,8 +22,18 @@ alias "cd.."="cd ../"
 alias up="cd ../"
 alias v="vim"
 alias vi="vim"
-alias g="hub"
+alias emacs="vim"
 alias git="hub"
+alias g="hub"
+alias ga="git add"
+alias gu="git reset HEAD --"
+alias gc="git commit -m"
+alias gs="git status"
+alias gd="git diff"
+alias gf="git fetch"
+alias gm="git merge"
+alias gr="git rebase"
+alias gpr="hub pull-request"
 alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules|bower_components" --dirsfirst'
 alias rock="ncmpcpp"
 alias mixer="alsamixer"
@@ -36,7 +46,6 @@ alias screenfetch="~/code/sys/info"
 alias hashcompare="bash ~/code/sys/hash-compare "
 alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
 alias term="urxvtc -hold -e " #used for run menu
-alias tmx="bash ~/code/sys/tmx"
 alias fixcursor="xsetroot -cursor_name left_ptr"
 alias img="bash ~/code/sys/img"
 alias gitio="bash ~/code/sys/gitio"
@@ -51,10 +60,13 @@ alias rusto="toilet -t -f rusto"
 alias rustofat="toilet -t -f rustofat"
 alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
-alias apachereload='sudo systemctl restart httpd.service'
+alias apachereload="sudo systemctl restart httpd.service"
 alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e"; echo "╙────────────────────────────────────── ─ ─ "; df -h;'
 alias todo="bash ~/code/sys/todo"
-alias record="ffmpeg -f x11grab -s 1366x768 -an -r 16 -loglevel quiet -i :0.0 -b:v 5M -y " #pass a filename
+alias record="ffmpeg -f x11grab -s 1366x768 -an -r 16 -loglevel quiet -i :0.0 -b:v 5M -y" #pass a filename
+tmx() {
+  [[ $# -eq 0 ]] && bash ~/code/sys/tmx 0 || bash ~/code/sys/tmx $#
+}
 email() {
 	echo $3 | mutt -s $2 $1
 }
