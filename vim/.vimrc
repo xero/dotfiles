@@ -21,6 +21,9 @@ set nocompatible
 " paste without auto indentation
 set paste
 
+" hide buffers, not close them
+set hidden
+
 " maintain undo history between sessions
 set undofile
 set undodir=~/.vim/undo
