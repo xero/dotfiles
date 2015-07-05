@@ -33,6 +33,7 @@ alias gd="git diff"
 alias gf="git fetch"
 alias gm="git merge"
 alias gr="git rebase"
+alias gp="git push"
 alias gpr="hub pull-request"
 alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules|bower_components" --dirsfirst'
 alias rock="ncmpcpp"
