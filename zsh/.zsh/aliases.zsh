@@ -35,6 +35,7 @@ alias gm="git merge"
 alias gr="git rebase"
 alias gp="git push"
 alias gpr="hub pull-request"
+alias ag="ag --color --color-line-number '0;35' --color-match '46;30' --color-path '4;36'"
 alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules|bower_components" --dirsfirst'
 alias rock="ncmpcpp"
 alias mixer="alsamixer"
