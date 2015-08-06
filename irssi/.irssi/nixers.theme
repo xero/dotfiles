@@ -1,3 +1,19 @@
+#  ██                        ██
+# ░░                        ░░ 
+#  ██ ██████  ██████  ██████ ██
+# ░██░░██░░█ ██░░░░  ██░░░░ ░██
+# ░██ ░██ ░ ░░█████ ░░█████ ░██
+# ░██ ░██    ░░░░░██ ░░░░░██░██
+# ░██░███    ██████  ██████ ░██
+# ░░ ░░░    ░░░░░░  ░░░░░░  ░░ 
+# 
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ xero <x@xero.nu>
+# ░▓ code   ▓ http://code.xero.nu/dotfiles
+# ░▓ mirror ▓ http://git.io/.files
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+#
 # default foreground color (%N) - -1 is the "default terminal color"
 default_color = "-1";
 
@@ -19,7 +35,7 @@ abstracts = {
   line_start = "";
 
   # timestamp styling, nothing by default
-  timestamp = "%K$0-%n";
+  timestamp = "%Z5F5F5F$0-%n";
 
   # any kind of text that needs hilighting, default is to bold
   hilight = "%_$*%_";
@@ -67,24 +83,22 @@ abstracts = {
   ########### messages #################################
 
   # the basic styling of how to print message, $0 = nick mode, $1 = nick
-  # msgnick = "$1-$0%K·%N %|";
-  msgnick = "%K$0%N $1 %K│ %|%N";
-  # msgnick = "%K$0%N $1 %K· %|%N";
+  msgnick = "%Z5F5F5F$0%N $1 %K│ %|%N";
 
   # $0 = nick mode, $1 = nick
   ownmsgnick = "{msgnick $0 $1}";
-  ownnick = "%Y$*%n";
+  ownnick = "%Z6A8C8C$*%n";
 
   # public message in channel, $0 = nick mode, $1 = nick
   pubmsgnick = "{msgnick $0 $1}";
   pubnick = "%N$*%n";
 
   # public highlighted message in channel
-  pubmsghinick = "{msgnick $0 $1}%r";
-  menick = "%R$*%n";
+  pubmsghinick = "{msgnick $0 $1}%y";
+  menick = "%y$*%n";
 
   # channel name is printed with message
-  msgchannel = "%K:%m$*%n";
+  msgchannel = "%Z5F5F5F:%m$*%n";
 
   # private message, $0 = nick, $1 = host
   privmsg = "$0=%b\"$1-\"%n ";
@@ -93,13 +107,10 @@ abstracts = {
   ownprivmsg = "$0=%b\"$1-\"%n ";
 
   # private message in query
-  # privmsgnick = "{msgnick $*}";
   privmsgnick = "%g<%N %|";
 
   # own private message in query
-  #ownprivmsgnick = "{privmsgnick $*}";
   ownprivmsgnick = "%r>%N %|";
-  #ownprivnick = "$*";
 
 
   ########## Actions (/ME stuff) #########################
@@ -108,7 +119,6 @@ abstracts = {
   action = "  %m$* %M* %m%|";
 
   # own action, both private/public
-  # ownaction = "{action $*}";
   ownaction = "  %m$* %M*%N%m";
 
   # own action with target, both private/public
@@ -139,21 +149,23 @@ abstracts = {
   ctcp = "%N$*%n";
 
   # wallops
-  wallop = "%K$*%n: ";
+  wallop = "%Z5F5F5F$*%n: ";
   wallop_nick = "%n$*";
-  wallop_action = "%K * $*%n ";
+  wallop_action = "%Z5F5F5F * $*%n ";
 
   # netsplits
-  netsplit = "       %Knsplit %R< %b\"$*\"%n";
-  netjoin = "        %Knjoin %G> %b\"$*\"%n";
+  netsplit = "       %Z5F5F5Fnsplit %R< %b\"$*\"%n";
+  netjoin = "        %Z5F5F5Fnjoin %G> %b\"$*\"%n";
 
   # /names list
-  names_prefix = "%Y!%K!      names %Y!%n ";
+  #names_prefix = "%Z5F5F5F░▒▓ ";
+  names_users = "%Z5F5F5F┌┄┄ users in $1 ";
   names_nick = "%_$2$0%_%n$1- ";
   names_nick_op = "{names_nick $* %R}";
   names_nick_halfop = "{names_nick $* %C}";
-  names_nick_voice = "{names_nick $* %K}";
-  names_users = "%Y!%K!      names %Y!%n $1";
+  names_nick_voice = "{names_nick $* %Z5F5F5F}";
+  #names_users = "%Z5F5F5F░▒▓ %n$1";
+  names_prefix= "%Z5F5F5F│ %n$1";
   names_channel = "\"%b$*\"%n";
 
   # DCC
@@ -176,32 +188,23 @@ abstracts = {
 
   # default background for all statusbars. You can also give
   # the default foreground color for statusbar items.
-  sb_background = "%0";
+  sb_background = "%z303030";
 
-  # default backround for "default" statusbar group
-  #sb_default_bg = "%4";
   # background for prompt / input line
   sb_prompt_bg = "%n";
-  # background for info statusbar
-  #sb_info_bg = "%8";
-  # background for topicbar (same default)
-  #sb_topic_bg = "%4";
 
-  # text at the beginning of statusbars. sb-item already puts
-  # space there,so we don't use anything by default.
-  sbstart = "";
-  # text at the end of statusbars. Use space so that it's never
-  # used for anything.
-  sbend = "";
+  # text at the beginning of statusbars.
+  sbstart = "%k▓▒░ ";
+  # text at the end of statusbars.
+  sbend = "%k░▒▓";
 
-  topicsbstart = "%BChannel: %b\"$*";
-  topicsbend = "$*%b\"";
+  topicsbstart = "%k▓▒░$*";
+  topicsbend = "$*%b%k░▒▓";
 
-  prompt = " %r$* »%n ";
-  # prompt = " %K└╼ ";
+  prompt = " %y$* »%n ";
 
-  sb = "[$*]";
-  sbmode = " %K[%g%g+%n$*%K]";
+  sb = " $* ";
+  sbmode = " %Z5F5F5F░ %g%g+%n$* %Z5F5F5F░";
   sbaway = " %g/* zZzZ */%n";
   sbservertag = ":%g$0%n";
   sbnickmode = "$0";
@@ -219,7 +222,7 @@ abstracts = {
   # ',' separator
   sb_act_sep = " ";
   # normal text
-  sb_act_text = "%K%9$*%n";
+  sb_act_text = "%Z5F5F5F%9$*%n";
   # public message
   sb_act_msg = "%Y%9$*%n";
   # hilight
@@ -235,14 +238,14 @@ formats = {
     line_start = "{line_start}";
     line_start_irssi = "{line_start}";
 
-    join = "%G>%K>       join %g>%n {channick $0}";
-    part = "%R<%K<       part %r<%n {channick $0}";
-    kick = "%R<%K<     kicked %r<%n {channick $0}";
-    quit = "%R<%K<       quit %r<%n {channick $0}";
+    join = "%G>%Z5F5F5F>       join %g>%n {channick $0}";
+    part = "%R<%Z5F5F5F<       part %r<%n {channick $0}";
+    kick = "%R<%Z5F5F5F<     kicked %r<%n {channick $0}";
+    quit = "%R<%Z5F5F5F<       quit %r<%n {channick $0}";
     quit_once = "{channel $3} {channick $0} {chanhost $1} %kquit {reason %C$2}";
 
-    nick_changed = "%K{channick $[-13]0} %G>%n {channick $1}";
-    your_nick_changed = "%K          you %G>%n {channick $1}";
+    nick_changed = "%Z5F5F5F{channick $[-13]0} %G>%n {channick $1}";
+    your_nick_changed = "%Z5F5F5F          you %G>%n {channick $1}";
 
     pubmsg = "{pubmsgnick $2 {pubnick \00313$[-11]0}}$1";
 
@@ -258,20 +261,21 @@ formats = {
 
     pubmsg_channel = "{pubmsgnick {pubnick %G$[-11]0}$2}$1";
     msg_private_query = "{privmsgnick $[-11]0}$2";
-    new_topic = "        %ctopic %K= %|%B'$2' %non %b$1%n%K[set by {nick %y$0}]";
+    new_topic = "        %ctopic %Z5F5F5F= %|%B'$2' %non %b$1%n%Z5F5F5F[set by {nick %y$0}]";
 
-    endofnames = "%Y!%K!      names %Y!%m Total: {hilight $2} ops, {hilight $3} halfops, {hilight $4} voices, {hilight $5} normal%n";
+    #endofnames = "%Z5F5F5F░▒▓ %mtotal: {hilight $2} ops, {hilight $3} halfops, {hilight $4} voices, {hilight $5} normal%n";
+    endofnames = "%Z5F5F5F└┄┄ %mtotal: {hilight $2} ops, {hilight $3} halfops, {hilight $4} voices, {hilight $5} normal%n";
   };
   "fe-common/irc" = {
-    chanmode_change = "%Y!%K!       mode %y!%n {channick $1}";
-    server_chanmode_change = "%Y!%K!       mode %y!%n {channick $1}";
+    chanmode_change = "%Y!%Z5F5F5F!       mode %y!%n {channick $1}";
+    server_chanmode_change = "%Y!%Z5F5F5F!       mode %y!%n {channick $1}";
 
     own_action = "{ownaction $[-11]0} $1";
     action_private = "{pvtaction $[-11]0}$1";
     action_private_query = "{pvtaction_query $[-11]0} $2";
     action_public = "{pubaction $[-11]0}$1";
   };
-  "Irssi::Script::ichat" = { ichat_timestamp = "%Y>%K>      $1 %y>%n"; };
+  "Irssi::Script::ichat" = { ichat_timestamp = "%Y>%Z5F5F5F>      $1 %y>%n"; };
 };
 settings = {
   core = { real_name = "Unknown"; user_name = "xero"; nick = "xero"; };

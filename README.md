@@ -160,6 +160,9 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 - [vim](http://git.io/.vim)
 - [ncmpcpp](http://git.io/.ncmpcpp)
 
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/irc.png)
+- [irssi](http://git.io/.irssi)
+
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_converge.png)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-1.png)
@@ -171,9 +174,6 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-3.png)
 - [chroimum with cathexis gtk](http://git.io/cathexis) & [greybeard devtools](http://git.io/greybeard-devtools)
 - figlet [-f 3d](http://git.io/3d) webdev | lolcat
-
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-4.png)
-- [irssi](http://git.io/.irssi)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-5.png)
 - [color scripts](http://git.io/.fun)
