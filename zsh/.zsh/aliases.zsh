@@ -15,18 +15,25 @@
 # ░░░░░░░░░░
 #
 #█▓▒░ aliases
-alias ll="ls -lah --color=auto"
+alias ll="ls -lahF --color=auto"
 alias ls="ls --color=auto"
-alias lsl="ls -lh --color=auto"
+alias lsl="ls -lhF --color=auto"
 alias "cd.."="cd ../"
 alias up="cd ../"
+alias rmrf="rm -rf"
+alias psef="ps -ef"
+alias mkdir="mkdir -p"
+alias cp="cp -r"
+alias scp="scp -r"
+alias mkdir="mkdir -p"
+alias xsel="xsel -b"
+alias fuck='sudo $(fc -ln -1)'
 alias v="vim"
 alias vi="vim"
 alias emacs="vim"
 alias git="hub"
 alias g="hub"
 alias ga="git add"
-alias gu="git reset HEAD --"
 alias gc="git commit -m"
 alias gs="git status"
 alias gd="git diff"
@@ -34,6 +41,9 @@ alias gf="git fetch"
 alias gm="git merge"
 alias gr="git rebase"
 alias gp="git push"
+alias gu="git unstage"
+alias gg="git graph"
+alias gco="git checkout"
 alias gpr="hub pull-request"
 alias ag="ag --color --color-line-number '0;35' --color-match '46;30' --color-path '4;36'"
 alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules|bower_components" --dirsfirst'
@@ -48,7 +58,6 @@ alias screenfetch="~/code/sys/info"
 alias hashcompare="bash ~/code/sys/hash-compare "
 alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
 alias term="urxvtc -hold -e " #used for run menu
-alias fixcursor="xsetroot -cursor_name left_ptr"
 alias img="bash ~/code/sys/img"
 alias gitio="bash ~/code/sys/gitio"
 alias ix="bash ~/code/sys/ix"
@@ -61,11 +70,13 @@ alias future="toilet -t -f future"
 alias rusto="toilet -t -f rusto"
 alias rustofat="toilet -t -f rustofat"
 alias pacman="sudo pacman"
+alias update="code/fun/pacman && yaourt -Syua"
 alias systemctl="sudo systemctl"
 alias apachereload="sudo systemctl restart httpd.service"
 alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e"; echo "╙────────────────────────────────────── ─ ─ "; df -h;'
 alias todo="bash ~/code/sys/todo"
 alias record="ffmpeg -f x11grab -s 1366x768 -an -r 16 -loglevel quiet -i :0.0 -b:v 5M -y" #pass a filename
+alias nexus="jmtpfs ~/nexus"
 tmx() {
   [[ $# -eq 0 ]] && bash ~/code/sys/tmx 0 || bash ~/code/sys/tmx $#
 }
@@ -81,4 +92,7 @@ pless() {
 # read markdown files like manpages
 md() {
     pandoc -s -f markdown -t man "$*" | man -l -
+}
+short() {
+  curl -F"shorten=$*" https://0x0.st
 }
