@@ -41,6 +41,7 @@
  urxvt          > sourcerer terminal colors and keyboard settings
  vim            > wizard status bar and sourcerer color scheme
  wallpaper      > the cool desktop background images i use
+ xmodmap        > global vi/m movement keys with caps+hjkl
  zsh            > zshell settings, aliases, and custom prompts
 ```
 
