@@ -1,0 +1,30 @@
+!                                    ██                              
+!                                   ░██                       
+!  ██   ██ ██████████   ██████      ░██ ██████████   ██████   ██████ 
+! ░░██ ██ ░░██░░██░░██ ██░░░░██  ██████░░██░░██░░██ ░░░░░░██ ░██░░░██
+!  ░░███   ░██ ░██ ░██░██   ░██ ██░░░██ ░██ ░██ ░██  ███████ ░██  ░██
+!   ██░██  ░██ ░██ ░██░██   ░██░██  ░██ ░██ ░██ ░██ ██░░░░██ ░██████ 
+!  ██ ░░██ ███ ░██ ░██░░██████ ░░██████ ███ ░██ ░██░░████████░██░░░  
+! ░░   ░░ ░░░  ░░  ░░  ░░░░░░   ░░░░░░ ░░░  ░░  ░░  ░░░░░░░░ ░██     
+!                                                            ░░      
+!  ▓▓▓▓▓▓▓▓▓▓
+! ░▓ author ▓ xero <x@xero.nu>
+! ░▓ code   ▓ http://code.xero.nu/dotfiles
+! ░▓ mirror ▓ http://git.io/.files
+! ░▓▓▓▓▓▓▓▓▓▓
+! ░░░░░░░░░░
+!
+!█▓▒░ remove caps lock
+clear lock
+remove Lock  = Caps_Lock
+remove Shift = Caps_Lock
+
+!█▓▒░ add mode switch
+keycode 66 = NoSymbol NoSymbol
+keycode 66 = Mode_switch
+
+!█▓▒░ set vi movments
+keysym h = h H Left  NoSymbol NoSymbol NoSymbol
+keysym j = j J Down  NoSymbol NoSymbol NoSymbol
+keysym k = k K Up    NoSymbol NoSymbol NoSymbol
+keysym l = l L Right NoSymbol lstroke  Lstroke

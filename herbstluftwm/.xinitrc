@@ -18,12 +18,12 @@
 
 # merge custom x resources
 xrdb -merge "${HOME}/.Xdefaults" &
+
+# custom keymappings
++xmodmap ~/.xmodmap 
  
 # start the terminal emulator daemon
 urxvtd -q -f -o &
-
-# keyring
-gnome-keyring-daemon &
 
 # wifi
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
