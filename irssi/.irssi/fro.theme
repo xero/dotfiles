@@ -1,0 +1,209 @@
+#
+#
+default_color = "-1";
+
+info_eol = "false";
+
+replaces = { "[]" = "%K$*%n"; };
+
+abstracts = {
+
+  indent_default = "";
+
+  line_start = "";
+
+  timestamp = "";
+
+  hilight = "%_$*%_";
+
+  error = "%R$*%n";
+
+  channel = "%K$*%n";
+
+  nick = "%_$*%_";
+
+  nickhost = "%g$*";
+
+  server = "%_$*%_";
+
+  comment = "%n(%K$*%n)";
+
+  reason = "{comment $*}";
+
+  mode = "{comment $*}";
+
+  channick_hilight = "%g$*%N";
+  chanhost_hilight = "{nickhost $*}";
+
+  channick = "$*";
+  chanhost = "{nickhost $*}";
+
+  channelhilight = "%g$*%n";
+
+  ban = "$*";
+
+  #msgnick = "%K%N$1 %K %|%N";
+  msgnick = "%K<$0%w$1-%K>%n %|";
+  #ownmsgnick = "{msgnick $0 $1}";
+  #ownmsgnick = "{msgnick $0 $1-}";
+  ownnick = "%W$*%n";
+  #ownnick = "%K<$*%K>%n";
+
+  #pubmsgnick = "{msgnick $0 $1}";
+  #pubmsgnick = "{msgnick $0 $1-}";
+  pubnick = "%N$*%n";
+
+  #pubmsghinick = "{msgnick $0 $1}%r";
+  #menick = "%R$*%n";
+
+  #msgchannel = "%m$*%n";
+  #privmsg = "$0=%b\"$1-\"%n ";
+
+  #ownprivmsg = "$0=%b\"$1-\"%n ";
+
+  #privmsgnick = " %g<%N ";
+
+  #ownprivmsgnick = " %r>%N ";
+
+  action_core = "%c—%C—%K┄%K %n$*";
+
+  #action = "{action_core $*} ";
+
+  #ownaction = "{action %p$*}";
+
+  #ownaction_target = "{action_core $0}%Y:%c$1%n ";
+
+  #pvtaction = "%y (*) $*%n ";
+  #pvtaction_query = "{action $* }";
+
+  #pubaction = "{action $*}";
+
+  whois = "%K    │  %n$1-";
+
+  ownnotice = "%NNote n = %Mnew%n $0 ($1-) ";
+  notice = "%M$*%n ";
+  pubnotice_channel = " %N($*)";
+  pvtnotice_host = " %N($*)";
+  servernotice = " %N($*)";
+
+  ownctcp = "%N$0 (%K$1-%N) ";
+  ctcp = "%N$*%n";
+
+  wallop = "%K$*%n: ";
+  wallop_nick = "%n$*";
+  wallop_action = "%K * $*%n ";
+
+  #netsplit = "%K$*%n";
+  #netjoin = "%K$*%n";
+
+  names_users = "%c┌%C—%K┄ %nusers in $1";
+  names_nick = "$2$0%n$1 ";
+  names_nick_op = "{names_nick $* %K}";
+  names_nick_halfop = "{names_nick $* %K}";
+  names_nick_voice = "{names_nick $* %K}";
+  names_prefix = "%c│ %n$1";
+  names_channel = "%W$*%n";
+
+  dcc = "%g$*%n";
+  dccfile = "%_$*%_";
+
+  dccownmsg = "%g /* $0 ($1-) */";
+  dccownnick = "$*%n";
+  dccownquerynick = "$*%n";
+  dccownaction = "{action $*}";
+  dccownaction_target = "{action $*}";
+
+  dccmsg = "%g/* $1- ($0) */";
+  dccquerynick = "%g$*%n";
+  dccaction = "{action $*}";
+
+  sb_background = "%N%N";
+
+  sb_prompt_bg = "%n";
+
+  sbstart = "%c┌%C—%K┄ ";
+  sbend = "";
+
+  topicsbstart = "%BChannel: %b\"$*";
+  topicsbend = "$*%b\"";
+
+  prompt = "%c└%C—%K┄ %n";
+  #prompt = "%c│%n ";
+
+  sb = "%N$*%N ";
+  #sb = "";
+  sbmode = "%c(%K+%N$*%c)%n";
+  sbaway = "%c(%Naway%c)%N";
+  sbservertag = "%c:%N$0%c(%N^X%c)";
+  #sbservertag = "";
+  sbnickmode = "%K$0%N$1";
+
+  #sb_usercount = "{sb %_$0%_ nicks ($1-)}";
+  #sb_uc_ircops = "%_*%_$*";
+  #sb_uc_ops = "%_@%r$*%n";
+  #sb_uc_halfops = "%_%%%g$*%n";
+  #sb_uc_voices = "%_+%y$*%n";
+  #sb_uc_normal = "%w$*%n";
+  #sb_uc_space = " ";
+
+  #sb_act_sep = "%c$*";
+  #sb_act_text = "%N$*";
+  #sb_act_msg = "%c$*";
+  #sb_act_hilight = "%R%9$*%n";
+  #sb_act_hilight_color = "%R%9$1-%n";
+};
+
+formats = {
+  "fe-common/core" = {
+    #line_start = "{line_start}";
+    line_start_irssi = "{line_start}";
+
+    join = "%c—%C—%K┄%K %n{channick $0} %K(%n{nickhost %w$1}%K)%n joined %K$2";
+    part = "%c—%C—%K┄%K %n{channick $0} %K(%n{nickhost %w$1}%K)%n left %K$2 {reason %C$3}";
+    quit = "%c—%C—%K┄%K %nsignoff%K: %n{channick $0}%K {reason %C$2}";
+    kick = "%c—%C—%K┄%K %n{channick $0} was kicked by $2 %K{reason %C$3}";
+    nick_changed = "%c—%C—%K┄%K %n{channick $0} %Kis now known as %W{channick $1}";
+    your_nick_changed = "%c—%C—%K┄%K %nyou %Kare now known as %W{channick $1}";
+    #pubmsg = "{pubmsgnick $2 {pubnick \00312$[-9]0}}$1";
+    #own_msg = "{ownmsgnick $2 {ownnick $[-9]0}}$1";
+    #own_msg_channel = "{ownmsgnick $3 {ownnick $[-9]0}{msgchannel $1}}$2";
+    #own_msg_private_query = "{ownprivmsgnick {ownprivnick $[-11]2}}$1";
+    #pubmsg_me = "{pubmsghinick $2 {menick $[-9]0}}$1";
+    #pubmsg_me_channel = "{pubmsghinick $3 {menick $[-9]0}{msgchannel $1}}$2";
+    #pubmsg_hilight = "{pubmsghinick $3 {menick $[-9]1}}$2";
+    #pubmsg_hilight_channel = "{pubmsghinick $0 $[-9]1$4{msgchannel $2}}$3";
+    #pubmsg_channel = "{pubmsgnick {pubnick %G$[-9]0}$2}$1";
+    #msg_private_query = "{privmsgnick $[-9]0}$2";
+    new_topic = "%c—%C—%K┄ %wtopic %K'%W$2%K' %Nset by $0";
+    endofnames = "%c└%C—%K┄ %wtotal: {hilight $2} ops, {hilight $3} halfops, {hilight $4} voices, {hilight $5} normal%n";
+    #pubmsg = "{pubmsgnick $2 {pubnick \00304$[-9]0}}$1";
+  };
+  "fe-common/irc" = {
+    chanmode_change = "%c—%C—%K┄%n mode %K(%W{channick $1}%K) %nby %W$2";
+    server_chanmode_change = "%c—%C—%K┄%K%n {channick $1} %n(%K$2%n)";
+    whois = "%c┌%C—%K┄    %n\012%c│ %Ku%Cser %n$0 %K(%n$1%c@%n$2%K) %n\012%c│ %Kn%Came %n$3%n";
+    whois_idle = "%c│ %Ki%Cdle%n %|$1d $2h $3m $4s";
+    whois_idle_signon = "%c│ %Ki%Cdle%n %|$1d $2h $3m $4s {comment signon: $5}";
+    whois_server = "%c│ %Ks%Cerv%n %|$1 {comment $2}";
+    whois_oper = "%c│ %Ko%Cper%n {hilight $1}";
+    whois_registered = "%c│ %Kr%Cgis%n yes";
+    whois_help = "%c│ %Kh%Celp%n available for help";
+    whois_modes = "%c│ %Km%Code%n $1";
+    whois_realhost = "%c│ %Kr%Ceal%n $1-";
+    whois_usermode = "%c│ %Ku%Cmod%n $1";
+    whois_channels = "%c│ %Kc%Chan%n %|$1";
+    whois_away = "%c│ %Ka%Cway%n %|$1";
+    whois_special = "%c│ %Ki%Cnfo%n {comment %|$1}";
+    whois_extra = "%c│ %Ke%Cxtr%n %|$1";
+    end_of_whois = "%c└%C—%K┄ ";
+    whois_not_found = "%c—%C—%K┄ there is no such nick $0";
+    topic = "%c—%C—%K┄ %Ntopic for %K$0 %W$1";
+    topic_info = "%c—%C—%K┄ %Nset by $0 %N(%K$1%N)";
+    #own_action = "{ownaction $[-9]0} $1";
+    #action_private = "{pvtaction $[-9]0}$1";
+    #action_private_query = "{pvtaction_query $[-9]0} $2";
+    #action_public = "{pubaction $[-9]0}$1";
+    channel_synced = "%c—%C—%K┄ %nsynced in {hilight $1} secs";
+    channel_created = "%c—%C—%K┄ %ncreated $1";
+  };
+};

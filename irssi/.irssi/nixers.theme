@@ -22,7 +22,7 @@ info_eol = "false";
 
 # these characters are automatically replaced with specified color
 # (dark grey by default)
-replaces = { "[]" = "%g$*%n"; };
+replaces = { "[]" = "%b$*%n"; };
 
 abstracts = {
 
@@ -56,7 +56,7 @@ abstracts = {
   server = "%_$*%_";
 
   # some kind of comment is printed
-  comment = "%n(%b\"$*\"%n);";
+  comment = "%n(%b$*%n);";
 
   # reason for something is printed (part, quit, kick, ..)
   reason = "{comment $*}";
@@ -80,10 +80,12 @@ abstracts = {
   # ban/ban exception/invite list mask is printed
   ban = "$*";
 
+  action_core = "%Z5F5F5F─┄┄ %n$*";
+
   ########### messages #################################
 
   # the basic styling of how to print message, $0 = nick mode, $1 = nick
-  msgnick = "%Z5F5F5F$0%N $1 %K│ %|%N";
+  msgnick = "%Z5F5F5F$0%N $1 │ %|%N";
 
   # $0 = nick mode, $1 = nick
   ownmsgnick = "{msgnick $0 $1}";
@@ -165,8 +167,8 @@ abstracts = {
   names_nick_halfop = "{names_nick $* %C}";
   names_nick_voice = "{names_nick $* %Z5F5F5F}";
   #names_users = "%Z5F5F5F░▒▓ %n$1";
-  names_prefix= "%Z5F5F5F│ %n$1";
-  names_channel = "\"%b$*\"%n";
+  names_prefix = "%Z5F5F5F│ %n$1";
+  names_channel = "%b$*%n";
 
   # DCC
   dcc = "%g$*%n";
@@ -238,10 +240,10 @@ formats = {
     line_start = "{line_start}";
     line_start_irssi = "{line_start}";
 
-    join = "%G>%Z5F5F5F>       join %g>%n {channick $0}";
-    part = "%R<%Z5F5F5F<       part %r<%n {channick $0}";
-    kick = "%R<%Z5F5F5F<     kicked %r<%n {channick $0}";
-    quit = "%R<%Z5F5F5F<       quit %r<%n {channick $0}";
+    join = "%G>%Z5F5F5F>       join %g>%n {channick $0} %Z303030({nickhost %Z5F5F5F$1}%Z303030)%n";
+    part = "%R<%Z5F5F5F<       part %r<%n {channick $0} %Z303030({nickhost %Z5F5F5F$1}%Z303030)%n";
+    kick = "%R<%Z5F5F5F<     kicked %r<%n {channick $0} %Z303030({nickhost %Z5F5F5F$1}%Z303030)%n";
+    quit = "%R<%Z5F5F5F<       quit %r<%n {channick $0} %Z303030({nickhost %Z5F5F5F$1}%Z303030)%n";
     quit_once = "{channel $3} {channick $0} {chanhost $1} %kquit {reason %C$2}";
 
     nick_changed = "%Z5F5F5F{channick $[-13]0} %G>%n {channick $1}";
@@ -267,15 +269,34 @@ formats = {
     endofnames = "%Z5F5F5F└┄┄ %mtotal: {hilight $2} ops, {hilight $3} halfops, {hilight $4} voices, {hilight $5} normal%n";
   };
   "fe-common/irc" = {
-    chanmode_change = "%Y!%Z5F5F5F!       mode %y!%n {channick $1}";
-    server_chanmode_change = "%Y!%Z5F5F5F!       mode %y!%n {channick $1}";
+    chanmode_change = "%Z5F5F5F─┄┄ %n mode %y!%n {channick $1}";
+    server_chanmode_change = "%Z5F5F5F─┄┄ %n mode %y!%n {channick $1}";
+
+    whois = "%Z5F5F5F┌┄┄ %n\012%c%Z5F5F5F│  user %n$0 (%n$1%c@%n$2) %n\012%c%Z5F5F5F│  name %n$3%n";
+    whois_idle = "%Z5F5F5F│  idle%n %│$1d $2h $3m $4s";
+    whois_idle_signon = "%Z5F5F5F│  idle%n %|$1d $2h $3m $4s {comment signon: $5}";
+    whois_server = "%Z5F5F5F│  serv%n %|$1 {comment $2}";
+    whois_oper = "%Z5F5F5F│  oper%n {hilight $1}";
+    whois_registered = "%Z5F5F5F│  rgis%n yes";
+    whois_help = "%Z5F5F5F│  help%n available for help";
+    whois_modes = "%Z5F5F5F│  mode%n $1";
+    whois_realhost = "%Z5F5F5F│  real%n $1-";
+    whois_usermode = "%Z5F5F5F│  umod%n $1";
+    whois_channels = "%Z5F5F5F│  chan%n %|$1";
+    whois_away = "%Z5F5F5F│  away%n %|$1";
+    whois_special = "%Z5F5F5F│  info%n {comment %|$1}";
+    whois_extra = "%Z5F5F5F│  extr%n %|$1";
+    end_of_whois = "%Z5F5F5F└┄┄ ";
+    whois_not_found = "%Z5F5F5F─┄┄ %nthere is no such nick $0";
 
     own_action = "{ownaction $[-11]0} $1";
     action_private = "{pvtaction $[-11]0}$1";
     action_private_query = "{pvtaction_query $[-11]0} $2";
     action_public = "{pubaction $[-11]0}$1";
   };
-  "Irssi::Script::ichat" = { ichat_timestamp = "%Y>%Z5F5F5F>      $1 %y>%n"; };
+  "Irssi::Script::ichat" = {
+    ichat_timestamp = "%Y>%Z5F5F5F>      $1 %y>%n";
+  };
 };
 settings = {
   core = { real_name = "Unknown"; user_name = "xero"; nick = "xero"; };
