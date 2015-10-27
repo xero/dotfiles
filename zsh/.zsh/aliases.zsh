@@ -83,11 +83,11 @@ tmx() {
 email() {
 	echo $3 | mutt -s $2 $1
 }
-pcat() {
-	pygmentize -f terminal256 -O style=monokai -g
+c() {
+  pygmentize -O style=sourcerer -f console256 -g $1 
 }
-pless() {
-	pygmentize -f terminal256 -O style=monokai -g $1 | less -r
+l() {
+  pygmentize -O style=sourcerer -f console256 -g $1 | less -r 
 }
 # read markdown files like manpages
 md() {

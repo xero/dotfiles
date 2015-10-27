@@ -30,6 +30,7 @@
  ncmpcpp        > ncurses mpc++ ui/color settings
  pacman         > pacman colors and progress bar animations
  previews       > unixporn screenshots
+ pygments       > add syntax highlighting to cat and less commands
  ranger         > file manager with image previews and z3bra theme
  ryu-login      > ryu ansi art for /etc/issue tty login
  ssh            > remote ssh server keep alive
