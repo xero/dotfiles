@@ -84,7 +84,10 @@ email() {
 	echo $3 | mutt -s $2 $1
 }
 c() {
-  pygmentize -O style=sourcerer -f console256 -g $1 
+  for file in "$@"
+  do
+    pygmentize -O style=sourcerer -f console256 -g "$file" 
+  done
 }
 l() {
   pygmentize -O style=sourcerer -f console256 -g $1 | less -r 
