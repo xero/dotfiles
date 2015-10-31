@@ -72,9 +72,6 @@ nnoremap <silent> <leader>p :silent :r !xsel -o -b<CR>
 " ┃  ┃ ┃┃┃┃┃┃┃┣━┫┃┗┫ ┃┃┗━┓
 " ┗━╸┗━┛╹ ╹╹ ╹╹ ╹╹ ╹╺┻┛┗━┛
 
-" make ; work like : for commands (lazy shifting)
-nnoremap ; :
-
 " json pretty print
 command J :%!python -mjson.tool
 
