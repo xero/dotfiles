@@ -17,6 +17,7 @@
  ░░░░░░░░░░
 
  awesome        > awesome wm config and ghost theme
+ bin            > system automation scripts
  compton        > minimal composite config for opacity
  figlet         > custom 3d font
  fonts          > configs for gohu and other bitmap fonts
@@ -36,7 +37,6 @@
  ssh            > remote ssh server keep alive
  stalonetray    > stand alone tray for daemons
  sublime        > sublime text 2 with greybeard, monokai, and gohu
- sys            > system automation scripts
  themes         > mod of the cathexis dark theme for gtk/qt/xfce
  tmux           > terminal multiplexer with custom status bar
  urxvt          > sourcerer terminal colors and keyboard settings
