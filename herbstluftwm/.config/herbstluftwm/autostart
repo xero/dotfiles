@@ -33,11 +33,11 @@ hc keybind $Mod-w	spawn interrobang
 hc keybind $Mod-r	spawn interrobang 
 
 # toggle touchpad
-hc keybind $Mod-m	spawn bash /home/xero/code/sys/toggle-touchpad
+hc keybind $Mod-m	spawn bash $HOME/bin/toggle-touchpad
 
 # dynamic window gap
-hc keybind $Mod-9	spawn bash /home/xero/code/sys/herbstluftwm-remove-gap
-hc keybind $Mod-0	spawn bash /home/xero/code/sys/herbstluftwm-add-gap
+hc keybind $Mod-9	spawn bash $HOME/bin/herbstluftwm-remove-gap
+hc keybind $Mod-0	spawn bash $HOME/bin/herbstluftwm-add-gap
 
 # generic actions
 hc keybind $Mod-Shift-q quit

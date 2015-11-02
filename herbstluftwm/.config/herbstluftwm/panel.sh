@@ -75,7 +75,7 @@ hc pad $monitor $panel_height
     do
         # "date" output is checked once a second, but an event is only
         # generated if the output changed compared to the previous run.
-        date +$'date\t ^ca(1,~/code/sys/calendar)^fg(#d9d9d9)^i(/usr/share/icons/stlarch_icons/clock1.xbm) ^fg(#efefef)%H:%M^fg(#bcbcbc) %Y-%m-^fg(#efefef)%d^ca()'
+        date +$'date\t ^ca(1,~/bin/calendar)^fg(#d9d9d9)^i(/usr/share/icons/stlarch_icons/clock1.xbm) ^fg(#efefef)%H:%M^fg(#bcbcbc) %Y-%m-^fg(#efefef)%d^ca()'
         sleep 1 || break
     done > >(uniq_linebuffered) &
     childpid=$!
