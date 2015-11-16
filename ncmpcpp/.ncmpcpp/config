@@ -9,7 +9,7 @@
 #
 # █▓▒░ Setup
 ncmpcpp_directory = "~/.ncmpcpp"
-#lyrics_directory = /home/xero/.lyrics
+#lyrics_directory = "~/.lyrics"
 external_editor = "/usr/bin/vim"
 
 # █▓▒░ MPD Settings
@@ -23,9 +23,8 @@ visualizer_look = "▒░"
 visualizer_color = "cyan"
 visualizer_in_stereo = "yes"
 visualizer_fifo_path = "~/.mpd/mpd.fifo"
-visualizer_sync_interval = "1"
+visualizer_sync_interval = "10"
 visualizer_output_name = "mpd spectrum"
-#visualizer_type = "frequency spectrum"
 
 # █▓▒░ Display Settings
 song_list_format = "{$7%a $6> $5}{%t$6$R$b} [{%l}]"
@@ -42,6 +41,7 @@ now_playing_prefix = "> "
 autocenter_mode = "yes"
 centered_cursor = "yes"
 progressbar_color = "black"
+progressbar_elapsed_color = "yellow"
 progressbar_look = "▒▓░"
 titles_visibility = "no"
 mouse_support = "no"
