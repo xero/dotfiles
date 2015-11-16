@@ -62,8 +62,9 @@ urxvt*transparent: false
 *.color2:       #719611
 *.color10:      #b1d631
 ! yellow
-*.color3:       #cc8800
-*.color11:      #ff9800
+!*.color3:      #cc8800
+*.color3:       #ff9800
+*.color11:      #87875f
 ! blue
 *.color4:       #6688aa
 *.color12:      #90b0d1
