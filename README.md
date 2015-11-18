@@ -162,6 +162,9 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 - [vim](http://git.io/.vim)
 - [ncmpcpp](http://git.io/.ncmpcpp)
 
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/sysinfo.png)
+- [sysinfo](http://git.io/v4aH5)
+
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/irc.png)
 - [irssi](http://git.io/.irssi)
 
