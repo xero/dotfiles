@@ -16,7 +16,7 @@
 #
 #█▓▒░ aliases
 alias ll="ls -lahF --color=auto"
-alias ls="ls --color=auto"
+alias ls="ls -hF --color=auto"
 alias lsl="ls -lhF --color=auto"
 alias "cd.."="cd ../"
 alias up="cd ../"
@@ -60,9 +60,12 @@ alias ascii="toilet -t -f 3d"
 alias future="toilet -t -f future"
 alias rusto="toilet -t -f rusto"
 alias rustofat="toilet -t -f rustofat"
+alias lol="base64 </dev/urandom | lolcat"
 alias pacman="sudo pacman"
 alias update="pacman-colors && yaourt -Syua"
 alias systemctl="sudo systemctl"
+alias :q="sudo systemctl poweroff"
+alias ZZ="quit"
 alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e"; echo "╙────────────────────────────────────── ─ ─ "; df -h;'
 alias todo="bash ~/code/sys/todo"
 alias record="ffmpeg -f x11grab -s 1366x768 -an -r 16 -loglevel quiet -i :0.0 -b:v 5M -y" #pass a filename
