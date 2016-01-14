@@ -9,5 +9,10 @@
 	last = log -1 --stat
 	unstage = reset HEAD --
 	cached = diff --cached
+	d = difftool
 [color]
 	ui = auto
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
