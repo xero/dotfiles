@@ -18,6 +18,9 @@
 " must be first, because it changes other options as a side effect
 set nocompatible
 
+" security
+set modelines=0
+
 " paste without auto indentation
 set paste
 
@@ -37,6 +40,7 @@ set wildignorecase
 " case insensitive search
 set ignorecase
 set smartcase
+set infercase
 
 " the /g flag on :s substitutions by default
 set gdefault
@@ -59,6 +63,9 @@ set tabstop=2
 
 " let backspace delete indent
 set softtabstop=2
+
+" enable auto indentation
+set autoindent
 
 " remove trailing whitespaces and ^M chars
 autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
@@ -83,6 +90,9 @@ command Nobl :g/^\s*$/d
 
 " toggle spellcheck
 command Spell :setlocal spell! spell?
+
+" make current buffer executable
+command Chmodx :!chmod a+x %
 
 " ╻┏┓╻╺┳╸┏━╸┏━┓┏━╸┏━┓┏━╸┏━╸
 " ┃┃┗┫ ┃ ┣╸ ┣┳┛┣╸ ┣━┫┃  ┣╸ 
@@ -133,7 +143,6 @@ if 1 " boolean for plugin loading
   Plugin 'airblade/vim-gitgutter'
   Plugin 'isa/vim-matchit'
   Plugin 'shawncplus/phpcomplete.vim'
-  Plugin 'mustache/vim-mustache-handlebars'
   Plugin 'rking/ag.vim'
   Plugin 'itchyny/lightline.vim'
   Plugin 'tpope/vim-fugitive'
@@ -166,9 +175,6 @@ if 1 " boolean for plugin loading
   highlight GitGutterChange ctermfg=yellow ctermbg=237
   highlight GitGutterDelete ctermfg=red ctermbg=237
   highlight GitGutterChangeDelete ctermfg=red ctermbg=237
-
-  " vim mustache http://git.io/vim-stash
-  let g:mustache_abbreviations = 1
 
   " ag, the silver searcher http://git.io/AEu3dQ + http://git.io/d9N0MA
   let g:agprg="ag -i --vimgrep"
