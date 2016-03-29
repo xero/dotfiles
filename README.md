@@ -168,7 +168,7 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/sysinfo.png)
 - [sysinfo](http://git.io/v4aH5)
 
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/irc.png)
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/neongold.png)
 - [irssi](http://git.io/.irssi)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_converge.png)
