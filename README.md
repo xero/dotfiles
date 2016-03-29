@@ -162,6 +162,9 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 - [vim](http://git.io/.vim)
 - [ncmpcpp](http://git.io/.ncmpcpp)
 
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/blizzard-orb.png)
+- [blizzard orb xcolors](https://github.com/xero/dotfiles/blob/master/urxvt/blizzard-orb.Xcolors)
+
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/sysinfo.png)
 - [sysinfo](http://git.io/v4aH5)
 
