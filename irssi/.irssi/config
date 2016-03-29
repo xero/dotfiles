@@ -13,12 +13,66 @@
 # ░▓ mirror ▓ http://git.io/.files
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
-#
+
+utf8 = "on";
+
+servers = (
+  {
+    address = "unix.chat";
+    chatnet = "unixchat";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    ssl_capath = "/etc/ssl/certs/";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = { unixchat = { type = "IRC"; nick = "xero"; }; };
+
+channels = (
+  { name = "#nixers"; chatnet = "unixchat"; autojoin = "Yes"; },
+  { name = "#iotek"; chatnet = "unixchat"; autojoin = "Yes"; },
+  { name = "#gentlemanloser"; chatnet = "unixchat"; autojoin = "Yes"; }
+);
+
+aliases = {
+  emote = "exec -o emote";
+  ascii = "exec -o toilet -f future --irc";
+  rusto = "exec -o toilet -f rusto --irc";
+  rustofat = "exec -o toilet -f rustofat --irc";
+  gay = "exec -o toilet -f term --gay --irc";
+  toilet = "exec -o toilet";
+};
+
 settings = {
   core = { real_name = "xero"; user_name = "xero"; nick = "xero"; };
-  "fe-text" = { actlist_sort = "refnum"; };
+  "fe-text" = {
+    actlist_sort = "refnum";
+    term_force_colors = "yes";
+    indent = "12";
+  };
   "fe-common/core" = {
-     theme = "nixers.theme";
-     bell_beeps = "no";
+    theme = "neongold.theme";
+    bell_beeps = "no";
+    autolog_path = "/var/logs/irc/$tag/$0.log";
+    autolog = "yes";
+  };
+};
+logs = { };
+statusbar = {
+  default = {
+    window = {
+      items = {
+        barstart = { priority = "100"; };
+        user = { };
+        window = { };
+        window_empty = { };
+        lag = { priority = "-1"; };
+        act = { priority = "10"; };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
