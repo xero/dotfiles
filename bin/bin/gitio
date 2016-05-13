@@ -74,9 +74,9 @@ esac
 
 if [ -z "$VANITY" ]
 then
-  url=`curl -is http://git.io -F "url=$GHURL" | grep -i "location" | cut -d' ' -f2`
+  url=`curl -is https://git.io -F "url=$GHURL" | grep -i "location" | cut -d' ' -f2`
 else
-  url=`curl -is http://git.io -F "url=$GHURL" -F "code=$VANITY" | grep -i "location" | cut -d' ' -f2`
+  url=`curl -is https://git.io -F "url=$GHURL" -F "code=$VANITY" | grep -i "location" | cut -d' ' -f2`
 fi
 
 if [ -z $url ]
