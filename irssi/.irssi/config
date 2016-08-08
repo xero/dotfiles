@@ -28,12 +28,10 @@ servers = (
   }
 );
 
-chatnets = { unixchat = { type = "IRC"; nick = "xero"; }; };
+chatnets = { unixchat = { type = "IRC"; nick = "neongold"; }; };
 
 channels = (
-  { name = "#nixers"; chatnet = "unixchat"; autojoin = "Yes"; },
-  { name = "#iotek"; chatnet = "unixchat"; autojoin = "Yes"; },
-  { name = "#gentlemanloser"; chatnet = "unixchat"; autojoin = "Yes"; }
+  { name = "#unix"; chatnet = "unixchat"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -46,7 +44,7 @@ aliases = {
 };
 
 settings = {
-  core = { real_name = "xero"; user_name = "xero"; nick = "xero"; };
+  core = { real_name = "neongold"; user_name = "neongold"; nick = "neongold"; };
   "fe-text" = {
     actlist_sort = "refnum";
     term_force_colors = "yes";
