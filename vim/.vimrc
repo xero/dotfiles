@@ -21,9 +21,6 @@ set nocompatible
 " security
 set modelines=0
 
-" paste without auto indentation
-set paste
-
 " hide buffers, not close them
 set hidden
 
@@ -36,6 +33,17 @@ set noswapfile
 set wildmode=longest,list,full
 set wildmenu
 set wildignorecase
+" ignore files vim doesnt use
+set wildignore+=.git,.hg,.svn
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.rbc,*.class
+set wildignore+=*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
+set wildignore+=*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg
+set wildignore+=*.mp3,*.oga,*.ogg,*.wav,*.flac
+set wildignore+=*.eot,*.otf,*.ttf,*.woff
+set wildignore+=*.doc,*.pdf,*.cbr,*.cbz
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
+set wildignore+=*.swp,.lock,.DS_Store,._*
 
 " case insensitive search
 set ignorecase
@@ -104,9 +112,9 @@ set showmatch
 " disable startup message
 set shortmess+=I
 
-" syntax highlighting and colors
+" syntax highlighting
 syntax on
-colorscheme sourcerer
+set synmaxcol=512
 filetype off
 
 " stop unnecessary rendering
@@ -119,142 +127,177 @@ set number
 set nowrap
 
 " no folding
+set nofoldenable
 set foldlevel=99
 set foldminlines=99
+set foldlevelstart=99
 
-" don't wrap long lines
-set nowrap
+" highlight cursor
+set cursorline
+"set cursorcolumn
 
-" highlight column
-set cursorcolumn
+" so invisibles
+set list
+set listchars=
+set listchars+=tab:𐄙\ 
+set listchars+=trail:·
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=nbsp:⣿
 
 " ┏━┓╻  ╻ ╻┏━╸╻┏┓╻   ┏━┓╺┳╸╻ ╻┏━╸┏━╸
 " ┣━┛┃  ┃ ┃┃╺┓┃┃┗┫   ┗━┓ ┃ ┃ ┃┣╸ ┣╸ 
 " ╹  ┗━╸┗━┛┗━┛╹╹ ╹   ┗━┛ ╹ ┗━┛╹  ╹  
-" i struggle with the decision to use plugins or a more vanilla vim. but right now i'm feeling sytanx completion, linting, and visual git diffs. don't judge me.
+" i struggle with the decision to use plugins or a more vanilla vim, don't judge me.
 " to install from the shell run:
-" git clone https://github.com/gmarik/Vundle.vim.git ~/dotfiles/vim/.vim/bundle/Vundle.vim && vim +BundleInstall +qall && PYTHON=/usr/bin/python2 ~/dotfiles/vim/.vim/bundle/YouCompleteMe/install.sh --clang-completer && pacman -S the_silver_searcher
-if 1 " boolean for plugin loading
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
-  Plugin 'gmarik/Vundle.vim'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'scrooloose/syntastic'
-  Plugin 'airblade/vim-gitgutter'
-  Plugin 'isa/vim-matchit'
-  Plugin 'shawncplus/phpcomplete.vim'
-  Plugin 'rking/ag.vim'
-  Plugin 'itchyny/lightline.vim'
-  Plugin 'tpope/vim-fugitive'
-  call vundle#end()
-  filetype plugin indent on
+" git clone https://github.com/gmarik/Vundle.vim.git ~/dotfiles/vim/.vim/bundle/Vundle.vim && vim +BundleInstall +qall && pacman -S the_silver_searcher
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'ajh17/VimCompletesMe'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'elzr/vim-json'
+Plugin 'scrooloose/syntastic'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
+Plugin 'mbbill/undotree'
+Plugin 'rking/ag.vim'
+Plugin 'isa/vim-matchit'
+Plugin 'chrisbra/unicode.vim'
+Plugin 'lilydjwg/colorizer'
+Plugin 'itchyny/lightline.vim'
+Plugin 'xero/sourcerer.vim'
+call vundle#end()
+filetype plugin indent on
 
-  " syntatic http://git.io/syntastic.vim
-  " linters: (from aur) nodejs-jshint, nodejs-jsonlint, csslint, checkbashisms
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
-  highlight SyntasticErrorSign ctermfg=red ctermbg=237
-  highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
-  highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
-  highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
+" vimcompletesme https://git.io/XLcB1A
+" use omni-complete
+let b:vcm_tab_complete = 'omni'
+set omnifunc=syntaxcomplete#Complete
+" select the completion with enter
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" close preview on completion complete
+autocmd CompleteDone * pclose
+" or disable previews completely
+" set completeopt-=preview
 
-  " git-gutter http://git.io/vimgitgutter
-  let g:gitgutter_realtime = 1
-  let g:gitgutter_eager = 1
-  let g:gitgutter_diff_args = '-w'
-  let g:gitgutter_sign_added = '+'
-  let g:gitgutter_sign_modified = '~'
-  let g:gitgutter_sign_removed = '-'
-  let g:gitgutter_sign_removed_first_line = '^'
-  let g:gitgutter_sign_modified_removed = ':'
-  let g:gitgutter_max_signs = 1500
-  highlight clear SignColumn
-  highlight GitGutterAdd ctermfg=green ctermbg=237
-  highlight GitGutterChange ctermfg=yellow ctermbg=237
-  highlight GitGutterDelete ctermfg=red ctermbg=237
-  highlight GitGutterChangeDelete ctermfg=red ctermbg=237
+" syntatic http://git.io/syntastic.vim
+" linters: (from aur) nodejs-jshint, nodejs-jsonlint, csslint, checkbashisms
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" color overrides
+highlight SyntasticErrorSign ctermfg=red ctermbg=237
+highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
+highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
+highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
 
-  " ag, the silver searcher http://git.io/AEu3dQ + http://git.io/d9N0MA
-  let g:agprg="ag -i --vimgrep"
-  let g:ag_highlight=1
-  " map \ to the ag command for quick searching
-  nnoremap \ :Ag<SPACE>
+" disable folding
+let g:vim_json_syntax_conceal = 0
 
-  " ┏━┓╺┳╸┏━┓╺┳╸╻ ╻┏━┓╻  ╻┏┓╻┏━╸
-  " ┗━┓ ┃ ┣━┫ ┃ ┃ ┃┗━┓┃  ┃┃┗┫┣╸ 
-  " ┗━┛ ╹ ╹ ╹ ╹ ┗━┛┗━┛┗━╸╹╹ ╹┗━╸
-  " lightline http://git.io/lightline
-  " █▓▒░ wizard status line
-  set laststatus=2
-  let g:lightline = {
-    \ 'colorscheme': 'sourcerer',
-    \ 'active': {
-    \   'left': [ [ 'filename' ],
-    \             [ 'readonly', 'fugitive' ] ],
-    \   'right': [ [ 'percent', 'lineinfo' ],
-    \              [ 'fileencoding', 'filetype' ],
-    \              [ 'fileformat', 'syntastic' ] ]
-    \ },
-    \ 'component_function': {
-    \   'modified': 'WizMod',
-    \   'readonly': 'WizRO',
-    \   'fugitive': 'WizGit',
-    \   'filename': 'WizName',
-    \   'filetype': 'WizType',
-    \   'fileformat' : 'WizFormat',
-    \   'fileencoding': 'WizEncoding',
-    \   'mode': 'WizMode',
-    \ },
-    \ 'component_expand': {
-    \   'syntastic': 'SyntasticStatuslineFlag',
-    \ },
-    \ 'component_type': {
-    \   'syntastic': 'error',
-    \ },
-    \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
-    \ 'subseparator': { 'left': '▒', 'right': '░' }
-    \ }
+" git-gutter http://git.io/vimgitgutter
+" speed optimizations
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
+let g:gitgutter_max_signs = 1500
+let g:gitgutter_diff_args = '-w'
+" custom symbols
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = ':'
+" color overrrides
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green ctermbg=237
+highlight GitGutterChange ctermfg=yellow ctermbg=237
+highlight GitGutterDelete ctermfg=red ctermbg=237
+highlight GitGutterChangeDelete ctermfg=red ctermbg=237
 
-  function! WizMod()
-    return &ft =~ 'help\|vimfiler' ? '' : &modified ? '»' : &modifiable ? '' : ''
-  endfunction
+" ag, the silver searcher http://git.io/AEu3dQ + http://git.io/d9N0MA
+let g:agprg="ag -i --vimgrep"
+let g:ag_highlight=1
+" map \ to the ag command for quick searching
+nnoremap \ :Ag<SPACE>
 
-  function! WizRO()
-    return &ft !~? 'help\|vimfiler' && &readonly ? 'x' : ''
-  endfunction
+" wizard colors http://git.io/vim.sourcerer
+colorscheme blaquemagick
 
-  function! WizGit()
-    if &ft !~? 'help\|vimfiler' && exists("*fugitive#head")
-      return fugitive#head()
-    endif
-    return ''
-  endfunction
+" ┏━┓╺┳╸┏━┓╺┳╸╻ ╻┏━┓╻  ╻┏┓╻┏━╸
+" ┗━┓ ┃ ┣━┫ ┃ ┃ ┃┗━┓┃  ┃┃┗┫┣╸ 
+" ┗━┛ ╹ ╹ ╹ ╹ ┗━┛┗━┛┗━╸╹╹ ╹┗━╸
+" lightline http://git.io/lightline
+" █▓▒░ wizard status line
+set laststatus=2
+let g:lightline = {
+  \ 'colorscheme': 'sourcerer',
+  \ 'active': {
+  \   'left': [ [ 'filename' ],
+  \             [ 'readonly', 'fugitive' ] ],
+  \   'right': [ [ 'percent', 'lineinfo' ],
+  \              [ 'fileencoding', 'filetype' ],
+  \              [ 'fileformat', 'syntastic' ] ]
+  \ },
+  \ 'component_function': {
+  \   'modified': 'WizMod',
+  \   'readonly': 'WizRO',
+  \   'fugitive': 'WizGit',
+  \   'filename': 'WizName',
+  \   'filetype': 'WizType',
+  \   'fileformat' : 'WizFormat',
+  \   'fileencoding': 'WizEncoding',
+  \   'mode': 'WizMode',
+  \ },
+  \ 'component_expand': {
+  \   'syntastic': 'SyntasticStatuslineFlag',
+  \ },
+  \ 'component_type': {
+  \   'syntastic': 'error',
+  \ },
+  \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
+  \ 'subseparator': { 'left': '▒', 'right': '░' }
+  \ }
 
-  function! WizName()
-    return ('' != WizMod() ? WizMod() . ' ' : '') .
-          \ ('' != expand('%:t') ? expand('%:t') : '[none]') 
-  endfunction
+function! WizMod()
+  return &ft =~ 'help\|vimfiler' ? '' : &modified ? '»' : &modifiable ? '' : ''
+endfunction
 
-  function! WizType()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : '') : ''
-  endfunction
+function! WizRO()
+  return &ft !~? 'help\|vimfiler' && &readonly ? 'x' : ''
+endfunction
 
-  function! WizFormat()
-    return ''
-  endfunction
+function! WizGit()
+  if &ft !~? 'help\|vimfiler' && exists("*fugitive#head")
+    return fugitive#head()
+  endif
+  return ''
+endfunction
 
-  function! WizEncoding()
-    return winwidth(0) > 70 ? (strlen(&fenc) ? &enc : &enc) : ''
-  endfunction
+function! WizName()
+  return ('' != WizMod() ? WizMod() . ' ' : '') .
+        \ ('' != expand('%:t') ? expand('%:t') : '[none]') 
+endfunction
 
-  augroup AutoSyntastic
-    autocmd!
-    autocmd BufWritePost *.c,*.cpp call s:syntastic()
-  augroup END
-  function! s:syntastic()
-    SyntasticCheck
-    call lightline#update()
-  endfunction
-endif
+function! WizType()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : '') : ''
+endfunction
+
+function! WizFormat()
+  return ''
+endfunction
+
+function! WizEncoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &enc : &enc) : ''
+endfunction
+
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.c,*.cpp,*.go,*.js,*.php,*.css,*.scss,*.sh,*.rb call s:syntastic()
+augroup END
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
