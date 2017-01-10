@@ -41,6 +41,8 @@ aliases = {
   rustofat = "exec -o toilet -f rustofat --irc";
   gay = "exec -o toilet -f term --gay --irc";
   toilet = "exec -o toilet";
+  ns = "msg nickserv";
+  cs = "msg chanserv";
 };
 
 settings = {
