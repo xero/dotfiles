@@ -45,6 +45,7 @@ alias gp="git push"
 alias gu="git unstage"
 alias gg="git graph"
 alias gco="git checkout"
+alias gcs="git commit -S -m"
 alias gpr="hub pull-request"
 alias ag="ag --color --color-line-number '0;35' --color-match '46;30' --color-path '4;36'"
 alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules|bower_components" --dirsfirst'
