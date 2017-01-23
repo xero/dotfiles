@@ -1,10 +1,11 @@
 [user]
 	name = xero
 	email = x@xero.nu
+	signingkey = EB2399A45E8BCE0F
 [credential]
 	helper = cache
 [alias]
-	graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
+  graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%C(blue)%x20(%ce)%x20%C(cyan)[gpg:%GK%x20%G?]%C(reset)%n%x20%s%n"
 	stat = status -sb
 	last = log -1 --stat
 	unstage = reset HEAD --
@@ -16,3 +17,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[gpg]
+	program = gpg
