@@ -15,8 +15,9 @@
 # ░░░░░░░░░░
 #
 #█▓▒░ aliases
-alias ll="ls -lahF --color=auto"
+alias xyzzy="echo nothing happens"
 alias ls="ls -hF --color=auto"
+alias ll="ls -lahF --color=auto"
 alias lsl="ls -lhF --color=auto"
 alias "cd.."="cd ../"
 alias up="cd ../"
@@ -70,28 +71,46 @@ alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙──�
 alias todo="bash ~/code/sys/todo"
 alias record="ffmpeg -f x11grab -s 1366x768 -an -r 16 -loglevel quiet -i :0.0 -b:v 5M -y" #pass a filename
 alias nexus="jmtpfs ~/nexus"
-tmx() {
-  [[ $# -eq 0 ]] && bash ~/bin/tmx 0 || bash ~/bin/tmx $#
+
+#█▓▒░ dumb tmux trix
+alias tsad="printf '\033k┐(T_T)┌\033\\'"
+alias tshrug="printf '\033k┐(\`-\`)┌\033\\'"
+alias tlol="printf '\033k┐(^0^)┌\033\\'"
+
+#█▓▒░ update mpd database
+function genplaylist() {
+  cd ~/music
+  find . -name '*.mp3' -o -name '*.flac'|sed -e 's%^./%%g' > ~/.config/mpd/playlists/all.m3u
+  mpc clear
+  mpc load all.m3u
+  mpc update
 }
-email() {
+
+function t() {
+  X=$#
+  [[ $X -eq 0 ]] || X=X
+  tmux new-session -A -s $X
+}
+
+function email() {
 	echo $3 | mutt -s $2 $1
 }
 # colorized cat
-c() {
+function c() {
   for file in "$@"
   do
     pygmentize -O style=sourcerer -f console256 -g "$file" 
   done
 }
 # colorized less
-l() {
+function l() {
   pygmentize -O style=sourcerer -f console256 -g $1 | less -r 
 }
 # read markdown files like manpages
-md() {
+function md() {
     pandoc -s -f markdown -t man "$*" | man -l -
 }
 # nullpointer url shortener
-short() {
+function short() {
   curl -F"shorten=$*" https://0x0.st
 }

@@ -1,0 +1,34 @@
+#compdef berks
+
+local -a _1st_arguments
+_1st_arguments=(
+  'apply: Apply version locks from Berksfile.lock to a Chef environment'
+  'contingent: List all cookbooks that depend on the given cookbook in your Berksfile'
+  'cookbook: Create a skeleton for a new cookbook'
+  'help: Describe available commands or one specific command'
+  'info: Display name, author, copyright, and dependency information about a cookbook'
+  'init: Initialize Berkshelf in the given directory'
+  'install: Install the cookbooks specified in the Berksfile'
+  'list: List cookbooks and their dependencies specified by your Berksfile'
+  'outdated: List dependencies that have new versions available that satisfy their constraints'
+  'package: Vendor and archive the dependencies of a Berksfile'
+  'search: Search the remote source for cookbooks matching the partial name'
+  'shelf: Interact with the cookbook store'
+  'show: Display the path to a cookbook on disk'
+  'update: Update the cookbooks (and dependencies) specified in the Berksfile'
+  'upload: Upload the cookbook specified in the Berksfile to the Chef Server'
+  'vendor: Vendor the cookbooks specified by the Berksfile into a directory'
+  'verify: Perform a quick validation on the contents of your resolved cookbooks'
+  'version: Display version'
+  'viz: Visualize the dependency graph'
+)
+
+_arguments \
+  '(-v)'{-v,--version}'[version]' \
+  '(-h)'{-h,--help}'[help]' \
+  '*:: :->subcmds' && return 0
+
+if (( CURRENT == 1 )); then
+  _describe -t commands "berks subcommand" _1st_arguments
+  return
+fi
