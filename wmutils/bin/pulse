@@ -1,0 +1,26 @@
+#!/bin/sh
+#                  ██                
+# ██████          ░██                
+#░██░░░██ ██   ██ ░██  ██████  █████ 
+#░██  ░██░██  ░██ ░██ ██░░░░  ██░░░██
+#░██████ ░██  ░██ ░██░░█████ ░███████
+#░██░░░  ░██  ░██ ░██ ░░░░░██░██░░░░ 
+#░██     ░░██████ ███ ██████ ░░██████
+#░░       ░░░░░░ ░░░ ░░░░░░   ░░░░░░ 
+#
+FREQ=${FREQ:-0.05}
+FILE=$BOOTSTRAP/colors
+COLORS=$(tac < $FILE | cat - $FILE | tr -d '#')
+
+while :; do
+  for c in $COLORS
+  do
+    CUR=$(pfw)
+    test "`wattr wh $CUR`" != "`wattr wh $(lsw -r)`" && chwb -c $c $CUR
+    for WIN in `lsw`
+    do
+      test "$WIN" != "$CUR" && chwb -c 0x222222 $WIN
+    done
+    sleep $FREQ
+  done
+done

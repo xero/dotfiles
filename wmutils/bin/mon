@@ -1,0 +1,48 @@
+#!/bin/sh
+#                               
+#  ██████████   ██████  ███████ 
+# ░░██░░██░░██ ██░░░░██░░██░░░██
+#  ░██ ░██ ░██░██   ░██ ░██  ░██
+#  ░██ ░██ ░██░██   ░██ ░██  ░██
+#  ███ ░██ ░██░░██████  ███  ░██
+# ░░░  ░░  ░░  ░░░░░░  ░░░   ░░ 
+#
+
+usage() {
+  echo "usage: $(basename $0) [-lr <id>]\n    -l list monitor ids\n    -r get resolution by id\n" >&2
+  exit 1
+}
+
+list() {
+  mons=`xrandr | grep -e "^.* connected" | cut -d " "  --field "1"`
+  for mon in $mons; do
+    echo "$mon"
+  done
+}
+
+res() {
+  [ -z $1 ] && usage
+  res=`xrandr\
+    | grep -e "^$1 connected"\
+    | cut --delimiter=' ' --fields='3'\
+    | sed "s/[x\+]/ /g"`
+  echo $res
+}
+
+while getopts "lr:" opt
+do
+  case $opt in
+    # list
+    l)
+      list
+    ;;
+    # res
+    r)
+      res $OPTARG
+    ;;
+    *)
+      usage
+    ;;
+  esac  
+done
+[ -z $1 ] && usage

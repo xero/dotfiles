@@ -1,0 +1,192 @@
+#!/bin/sh
+#           
+# ███     ██  █████  ██████ ██████ 
+#░░██  █ ░██ ██░░░██░░██░░█░██░░░██
+# ░██ ███░██░██  ░██ ░██ ░ ░██  ░██
+# ░████░████░░██████ ░██   ░██████ 
+# ███░ ░░░██ ░░░░░██░███   ░██░░░  
+#░░░    ░░░  █████ ░░░     ░██     
+#           ░░░░░          ░░     
+
+# tmp dir
+wmutilsdir=${wmutilsdir:-"/tmp/wmutils"}
+dir="$wmutilsdir/groups"
+# create if it doesnt exist
+if [ ! -d "$dir" ]
+then
+  mkdir -p "$dir"
+  printf "1\n" > "$dir/active"
+  cat "/dev/null" > "$dir/1"
+fi
+
+# get current group
+active=`cat "$dir/active"`
+
+# help
+usage() {
+  say "usage: `basename $0` [-lbsmdarnpRA <gid>]\n\
+  -l list groups\n\
+  -b status bar info\n\
+  -s show all\n\
+  -m make group\n\
+  -d delete group\n\
+  -n next group\n\
+  -p previous group\n\
+  -a add current window\n\
+  -A add by wid\n\
+  -r remove current window\n\
+  -R remove by wid"
+}
+
+say() {
+  printf "$@\n" >&2
+  exit 1
+}
+
+show() {
+  while read wid
+  do
+    mapw -m "$wid"
+  done <"$1"
+}
+
+hide() {
+  while read wid
+  do
+    mapw -u "$wid"
+  done <"$1"
+}
+
+bar() {
+  b=" "
+  for grp in `ls "$dir" | grep -E '[0-9]'`
+  do
+    if [ "$grp" == "$active" ]
+    then
+      b="$b ◆"
+    else
+      b="$b ◇"
+    fi
+  done
+  printf "$b \n"
+}
+
+ingroup() {
+  grep -q "$1" "$dir/$active"
+}
+
+pushpop() {
+  if [ "$1" == "add" ]
+  then
+    if ingroup $2
+    then
+      say "error: window already exists in group"
+    else
+      printf "$2\n" >> "$dir/$active"
+    fi
+  else
+    if ingroup $2
+    then
+      sed -i "/$2/d" "$dir/$active"
+    else
+      say "error: window does not exist in group"
+    fi
+  fi
+}
+
+while getopts "lbsmdarnpiR:A:" opt
+do
+  case $opt in
+    # list
+    l)
+      tree $dir
+    ;;
+    # bar
+    b)
+      bar
+    ;;
+    # show all
+    s)
+      lsw -u | while read wid
+      do
+        mapw -m "$wid"
+      done
+    ;;
+    # make group
+    m)
+      last=`ls -r "$dir" | grep -E '[0-9]' | head -n 1`
+      next=$((last+1))
+      cat "/dev/null" > "$dir/$next"
+    ;;
+    # delete group
+    d)
+      if [ `ls -r "$dir" | grep -E '[0-9]' | wc -l` -gt 1 ]
+      then
+        rm "$dir/$active"
+        ls "$dir" | grep -E '[0-9]' | head -n 1 > "$dir/active"
+      else
+        say "there must be at least one group"
+      fi
+    ;;
+    # next group
+    n)
+      hide "$dir/$active"
+      for grp in `ls "$dir" | grep -E '[0-9]'`
+      do
+        if [ "$grp" -gt "$active" ]
+        then
+          printf "$grp\n" > "$dir/active"
+          break
+        fi
+      done
+      if [ "$grp" -eq "$active" ]
+      then
+        grp=`ls "$dir" | grep -E '[0-9]' | head -n 1`
+        printf "$grp\n" > "$dir/active"
+      fi
+      active=`cat "$dir/active"`
+      show "$dir/$active"
+    ;;
+    # previous group
+    p)
+      hide "$dir/$active"
+      for grp in `ls -r "$dir" | grep -E '[0-9]'`
+      do
+        if [ "$grp" -lt "$active" ]
+        then
+          printf "$grp\n" > "$dir/active"
+          break
+        fi
+      done
+      if [ "$grp" -eq "$active" ]
+      then
+        grp=`ls -r "$dir" | grep -E '[0-9]' | head -n 1`
+        printf "$grp\n" > "$dir/active"
+      fi
+      active=`cat "$dir/active"`
+      show "$dir/$active"
+    ;;
+    # add window to group
+    a)
+      pushpop "add" `pfw`
+    ;;
+    # add window to group by id
+    A)
+      pushpop "add" $OPTARG
+    ;;
+    # remove window from group
+    r)
+      pushpop "rm" `pfw`
+    ;;
+    # remove window from group
+    R)
+      pushpop "rm" $OPTARG
+    ;;
+    # unknown option
+    *)
+      usage
+    ;;
+  esac
+done
+
+[ $# -eq 0 ] && usage
