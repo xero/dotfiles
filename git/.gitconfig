@@ -1,7 +1,7 @@
 [user]
 	name = xero
 	email = x@xero.nu
-	signingkey = EB2399A45E8BCE0F
+	signingkey = 0DA7AB45AC1D0000
 [credential]
 	helper = cache
 [alias]
