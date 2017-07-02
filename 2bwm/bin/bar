@@ -1,0 +1,30 @@
+#!/bin/sh
+#  ██                      
+# ░██                      
+# ░██       ██████   ██████
+# ░██████  ░░░░░░██ ░░██░░█
+# ░██░░░██  ███████  ░██ ░ 
+# ░██  ░██ ██░░░░██  ░██   
+# ░██████ ░░████████░███   
+# ░░░░░    ░░░░░░░░ ░░░    
+#
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ xero <x@xero.nu>
+# ░▓ code   ▓ http://code.xero.nu/dotfiles
+# ░▓ mirror ▓ http://git.io/.files
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+#
+#█▓▒░ lemonbar wgrp display
+
+#f="-Gohu-GohuFont-Medium-R-Normal--11-80-100-100-C-60-ISO10646-1"
+f=-*-Symbola-*-*-*-*-11-*-*-*-*-*-iso10646-*
+fg='#ffd0d8e0'
+bg='#ff111111'
+
+{
+  while :; do
+      $@
+      sleep 1 || break
+  done 
+} 2> /dev/null | lemonbar -d -p -g 55x16+160+0 -f $f -B $bg -F $fg

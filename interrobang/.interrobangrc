@@ -17,9 +17,9 @@
 ## █▓▒░ options
 set font      = fixed
 set font      = -Gohu-GohuFont-Medium-R-Normal
-set geometry  = 1366x17+0+0 #16
-set colors    = #528b8b #111111 #d3d3d3 #111111 #cc8800 #000000
-set border    = 1px #111111
+set geometry  = 1223x16+143+0
+set colors    = #78824B #111111 #d3d3d3 #111111 #C9A554 #000000
+set border    = 0px #111111
 set bangchar  = !
 set autocomp  = 1
 set list      = true

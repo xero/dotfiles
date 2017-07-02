@@ -1,0 +1,24 @@
+#!/bin/sh
+#    ██                   
+#   ░██                   
+#  ██████ ██████  ██████    ██   ██
+# ░░░██░ ░░██░░█ ░░░░░░██  ░░██ ██ 
+#   ░██   ░██ ░   ███████   ░░███  
+#   ░██   ░██    ██░░░░██    ░██   
+#   ░░██ ░███   ░░████████   ██    
+#    ░░  ░░░     ░░░░░░░░   ██     
+#                          ░░      
+
+stalonetray --kludges fix_window_pos --dockapp-mode simple --geometry 1x1+111 &
+
+# keyring
+gnome-keyring-daemon &
+
+# wifi
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# sound mixer
+pnmixer &
+
+# clipboard manager
+clipit &

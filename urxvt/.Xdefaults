@@ -15,11 +15,14 @@
 ! ░░░░░░░░░░
 !
 
-#include </home/xero/sourcerer.Xcolors>
+
+! █▓▒░ color scheme
+#include </home/xero/miasma.Xcolors>
 
 ! █▓▒░ fonts
-urxvt*font: xft:gohufont:size=11:antialias=false, \
+urxvt*font: xft:gohufont:size=12:antialias=true, \
             xft:Symbola:pixelsize=14:antialias=true:hinting=slight
+!urxvt*font: xft:gohufont:size=11:antialias=false
 !urxvt*font: -*-creep-regular-*-*--16-*-*-*-*-*-*-1
 !urxvt*font: -*-lime-*-*-*--11-*-*-*-*-*-*-1
 !urxvt*font: xft:creep:size=16:antialias=true
@@ -35,15 +38,20 @@ urxvt*italicFont:
 urxvt*bolditalicFont: 
 
 urxvt*letterSpace: 0
-urxvt*lineSpace: -1
+urxvt*lineSpace: 0
 
 ! █▓▒░ interface
 urxvt*scrollBar: false
 urxvt*transparent: false
-!urxvt*shading: 38
+urxvt*internalBorder: 10
+urxvt*borderColor: #1c1c1c
+urxvt*borderLess:false
 
-! █▓▒░ clipboard
-urxvt.perl-ext-common: default,clipboard,keyboard-select
+! █▓▒░ extensions
+urxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
+urxvt.keysum.M-u: perl:url-select:select_next
+urxvt.url-select.autocopy: true
+urxvt.url-select.launcher: chromium
 urxvt.keysym.M-Escape: perl:keyboard-select:activate
 urxvt.keysym.M-c:   perl:clipboard:copy
 urxvt.keysym.C-v:   perl:clipboard:paste

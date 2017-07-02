@@ -1,0 +1,54 @@
+# Directory colors
+set color_win_dir=66
+
+# Normal text
+set color_win_fg=251
+
+# Window background color.
+set color_win_bg=234
+
+# Command line color.
+set color_cmdline_bg=0
+set color_cmdline_fg=102
+
+# Color of error messages displayed on the command line.
+set color_error=lightred
+
+# Color of informational messages displayed on the command line.
+set color_info=lightgreen
+
+# Color of the separator line between windows in view (1).
+set color_separator=101
+
+# Color of window titles (topmost line of the screen).
+set color_win_title_bg=0
+set color_win_title_fg=66
+
+# Status line color.
+set color_statusline_bg=234
+set color_statusline_fg=101
+
+# Color of currently playing track.
+set color_win_cur=66
+
+# Color of the line displaying currently playing track.
+set color_titleline_bg=0
+set color_titleline_fg=103
+
+# Color of the selected row which is also the currently playing track in active window.
+set color_win_cur_sel_bg=0
+set color_win_cur_sel_fg=66
+
+# Color of the selected row which is also the currently playing track in inactive window.
+set color_win_inactive_cur_sel_bg=0
+set color_win_inactive_cur_sel_fg=66
+
+# Color of selected row in active window.
+set color_win_sel_bg=0
+set color_win_sel_fg=66
+
+# Color of selected row in inactive window.
+set color_win_inactive_sel_bg=0
+set color_win_inactive_sel_fg=102
+
+

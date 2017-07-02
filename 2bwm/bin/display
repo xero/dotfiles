@@ -1,0 +1,24 @@
+#!/bin/sh
+#                       ██   ██   ██ ██                             ██
+#                      ░██  ░██  ░░ ░██                            ░██
+#  ██████████  ██   ██ ░██ ██████ ██░██       █████   ██████       ░██
+# ░░██░░██░░██░██  ░██ ░██░░░██░ ░██░██████  ██░░░██ ░░░░░░██   ██████
+#  ░██ ░██ ░██░██  ░██ ░██  ░██  ░██░██░░░██░███████  ███████  ██░░░██
+#  ░██ ░██ ░██░██  ░██ ░██  ░██  ░██░██  ░██░██░░░░  ██░░░░██ ░██  ░██
+#  ███ ░██ ░██░░██████ ███  ░░██ ░██░██  ░██░░██████░░████████░░██████
+# ░░░  ░░  ░░  ░░░░░░ ░░░    ░░  ░░ ░░   ░░  ░░░░░░  ░░░░░░░░  ░░░░░░ 
+
+#file="/tmp/_triplemon"
+#if [ ! -f $file ] 
+#then
+#    xrandr --setprovideroutputsource 1 0
+#    xrandr --newmode 1920x1080x 148.500  1920 2008 2052 2200  1080 1084 1089 1125 +Hsync +Vsync
+#    xrandr --addmode DVI-I-1 1920x1080x
+#    xrandr --output VIRTUAL1 --off --output eDP1 --mode 1440x900 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --mode 1920x1080 --pos 1440x0 --rotate normal --output DVI-I-1-1 --mode 1920x1080x --pos 3360x0 --rotate normal --output DP2 --off
+#    xrandr --output VIRTUAL1 --off --output eDP1 --primary --mode 1440x900 --pos 0x0 --rotate normal --output DP1 --off --output DVI-I-1-1 --mode 1920x1080 --pos 3360x0 --rotate normal --output HDMI2 --off --output HDMI1 --mode 1920x1080 --pos 1440x0 --rotate normal --output DP2 --off
+#    echo "setup" > $file
+#fi
+compton --config ~/.config/compton.conf &
+sleep 2 &
+#nitrogen --restore &
+hsetroot -fill ~/images/wallpaper/miasma.png &

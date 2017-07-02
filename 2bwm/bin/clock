@@ -1,0 +1,27 @@
+#!/bin/sh
+#           ██                  ██    
+#          ░██                 ░██    
+#   █████  ░██  ██████   █████ ░██  ██
+#  ██░░░██ ░██ ██░░░░██ ██░░░██░██ ██ 
+# ░██  ░░  ░██░██   ░██░██  ░░ ░████  
+# ░██   ██ ░██░██   ░██░██   ██░██░██ 
+# ░░█████  ███░░██████ ░░█████ ░██░░██
+#  ░░░░░  ░░░  ░░░░░░   ░░░░░  ░░  ░░ 
+#
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ xero <x@xero.nu>
+# ░▓ code   ▓ http://code.xero.nu/dotfiles
+# ░▓ mirror ▓ http://git.io/.files
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+#
+#█▓▒░ lemonbar clock
+
+f="-Gohu-GohuFont-Medium-R-Normal--11-80-100-100-C-60-ISO10646-1"
+fg='#ffd0d8e0'
+bg='#ff111111'
+
+while :; do
+  echo "%{c} $(date "+%H:%M %Y-%m-%d")%{c}"
+  sleep 1 || break
+done | lemonbar -d -p -g 111x16+0+0 -f $f -B $bg -F $fg

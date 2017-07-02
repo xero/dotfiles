@@ -20,10 +20,10 @@
 #FULL=▓
 #EMPTY=░
 FULL=━
-EMPTY=━
+#EMPTY=━
 #EMPTY=─
 #FULL=┅
-#EMPTY=┄
+EMPTY=┄
 
 name=$USER
 host=`hostname`
@@ -31,11 +31,11 @@ battery=/sys/class/power_supply/BAT1
 distro="arch linux"
 kernel=`uname -r`
 pkgs=`pacman -Qqs | wc -l`
-colors='sourcerer'
+colors='miasma'
 font='gohufont 11'
-wm='herbstluftwm'
+wm='2bwm'
 
-#█▓▒░ progress bar 
+#█▓▒░ progress bar
 draw()
 {
   perc=$1
@@ -56,7 +56,7 @@ draw()
   printf $out
 }
 
-#█▓▒░ colors 
+#█▓▒░ colors
 printf "\n"
 i=0
 while [ $i -le 6 ]
@@ -89,7 +89,7 @@ printf "   \e[0;36m%-4s \e[1;36m%-5s %-25s \n" " cpu" "$c_lvl%" `draw $c_lvl 15`
 ram=`free | awk '/Mem:/ {print int($3/$2 * 100.0)}'`
 printf "   \e[0;36m%-4s \e[1;36m%-5s %-25s \n" " ram" "$ram%" `draw $ram 15` 
 
-#█▓▒░ battery 
+#█▓▒░ battery
 b_full=$battery/charge_full
 b_now=$battery/charge_now
 bf=`cat $b_full`
