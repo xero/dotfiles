@@ -182,3 +182,5 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-5.png)
 - [color scripts](http://git.io/.fun)
+
+i'm a mod on [/r/unixporn](https://reddit.com/r/unixporn/), and you can find [more of my stuff there](https://www.reddit.com/search?q=author%3Ax_ero+subreddit%3Aunixporn&restrict_sr=&sort=relevance&t=all).
