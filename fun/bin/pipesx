@@ -1,6 +1,6 @@
 #!/bin/bash
 # Animated pipes.sh terminal screensaver at an angle.
-# Copyright (C) 2013, 2014 by Yu-Jie Lin
+# Copyright (c) 2013-2015 Yu-Jie Lin
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
-# Website: https://github.com/livibetter/pipesX.sh
+# Website: https://github.com/pipeseroni/pipesX.sh
 
-VERSION=0.1.0
+VERSION=1.1.0
 
 W=$(tput cols) H=$(tput lines)
 # maximal random value + 1
 M=32768
 
-SETS=('╱╲' '/\')
+SETS=('╱╲' '/\' '..' 'oo' '\/')
 COLORS=(31 32 33 34 35 36 37)
 
 # default values
@@ -45,6 +45,7 @@ Options:
 
   -n [1-]     number of pipes. (Default: $N)
   -t [0-$((${#SETS[@]} - 1))]    types of pipes, can be used more than once. (Default: $T)
+  -t c[2chs]  custom type of pipes.
   -i [float]  piping interval or maze generation interval. (Default: $I)
   -P [0-100]  probability of a turning pipe or of \\ in maze generation. (Default: $P)
   -r [LIMIT]  reset after x characters, 0 if no limit. (Default: $R)
@@ -61,7 +62,12 @@ while getopts "n:t:i:P:r:RCXhv" arg; do
       ((N = OPTARG > 0 ? OPTARG : N))
       ;;
     t)
-      T+=($(((OPTARG >= 0 && OPTARG < ${#SETS[@]}) ? OPTARG : T)))
+      if [[ "$OPTARG" = c?? ]]; then
+        T+=(${#SETS[@]})
+        SETS+=("${OPTARG:1}")
+      else
+        T+=($(((OPTARG >= 0 && OPTARG < ${#SETS[@]}) ? OPTARG : T)))
+      fi
       ;;
     i)
       I=$OPTARG
@@ -95,17 +101,26 @@ done
 ((${#T[@]})) || T=(0)
 
 do_exit() {
-  # Show cursor and echo stdin
-  echo -ne "\e[?25h"
+  # clear up standard input
+  read -t 0.001 && cat </dev/stdin>/dev/null
+
+  # terminal has no smcup and rmcup capabilities
+  ((FORCE_RESET)) && reset && exit 0
+
+  tput rmcup
+  tput cnorm
   stty echo
-  clear
+  ((NOCOLOR)) && echo -ne '\e[0m'
   exit 0
   }
-trap do_exit INT TERM
+trap do_exit HUP TERM
+trap 'break 2' INT
 
 # No echo stdin and hide the cursor
 stty -echo
-echo -ne "\e[?25l"
+tput smcup || FORCE_RESET=1
+tput civis
+tput clear
 
 # maze geneartion
 while [[ $MAZE ]] && clear; do
@@ -126,7 +141,7 @@ for ((n = 0; n < N; n++)); do
 done
 
 clear
-while :; do
+while REPLY=; read -t $I -n 1; [[ -z $REPLY ]] ; do
   for ((n = 0; n < N; n++, CC = 0)); do
     x=${X[n]} y=${Y[n]}
     d=${D[n]} c=${C[n]}
@@ -186,7 +201,6 @@ while :; do
     X[n]=$xn Y[n]=$yn
     D[n]=$d C[n]=$c
   done
-  read -t $I -n 1 && [[ $REPLY =~ q|Q ]] && do_exit
   ((R)) && ((r += N, r >= R)) && r=0 && clear
 done
 
