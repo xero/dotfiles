@@ -26,7 +26,6 @@ alias psef="ps -ef"
 alias mkdir="mkdir -p"
 alias cp="cp -r"
 alias scp="scp -r"
-alias mkdir="mkdir -p"
 alias xsel="xsel -b"
 alias fuck='sudo $(fc -ln -1)'
 alias v="vim"
