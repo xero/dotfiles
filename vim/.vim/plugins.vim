@@ -12,11 +12,6 @@
 " ░▓ mirror ▓ http://git.io/.files
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
-"
-"legacy
-"Plugin 'scrooloose/syntastic'
-"Plugin 'chrisbra/unicode.vim'
-"Plugin 'vim-scripts/Improved-AnsiEsc'
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent call system('mkdir -p ~/.vim/{autoload,bundle,cache,undo,backups,swaps}')
