@@ -14,7 +14,7 @@
 " ░░░░░░░░░░
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent call system('mkdir -p ~/.vim/{autoload,bundle,cache,undo,backups,swaps}')
+  silent call system('mkdir -p ~/.vim/{autoload,bundle,cache,undo,backups,swaps,plugged}')
   silent call system('curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
   execute 'source  ~/.vim/autoload/plug.vim'
   autocmd VimEnter * PlugInstall
