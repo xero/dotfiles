@@ -26,7 +26,7 @@ colorscheme blaquemagick
 
 " omnifuncs
 augroup omnifuncs
-  autocmd!
+  au!
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -36,6 +36,16 @@ augroup omnifuncs
 augroup end
 
 " completions
+let b:vcm_tab_complete = 'omni'
+set omnifunc=syntaxcomplete#Complete
+" select the completion with enter
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" close preview on completion complete
+augroup completionhide
+  au!
+  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+augroup end
+
 if has('nvim')
   let g:deoplete#enable_at_startup = 1
   " let g:deoplete#disable_auto_complete = 1
@@ -43,17 +53,8 @@ if has('nvim')
   if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
   endif
-  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 endif
-
-let b:vcm_tab_complete = 'omni'
-set omnifunc=syntaxcomplete#Complete
-" select the completion with enter
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" close preview on completion complete
-autocmd CompleteDone * pclose
-" set completeopt-=preview
 
 " linting
 let g:ale_completion_enabled = 1
@@ -69,6 +70,12 @@ let g:vim_json_syntax_conceal = 0
 
 " verticle diffs
 set diffopt+=vertical
+
+" close if final buffer is netrw or the quickfix
+augroup finalcountdown
+  au!
+  autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
+augroup END
 
 " speed optimizations
 let g:gitgutter_realtime = 1
@@ -89,7 +96,7 @@ highlight GitGutterDelete ctermfg=red ctermbg=234
 highlight GitGutterChangeDelete ctermfg=red ctermbg=234
 
 " use the silver searcher
-let g:agprg="ag -i --vimgrep"
+let g:ag_prg="ag -i --vimgrep"
 let g:ag_highlight=1
 " map \ to the ag command for quick searching
 nnoremap \ :Ag<SPACE>
@@ -119,11 +126,11 @@ function! s:goyo_leave()
   set scrolloff=0
 endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-" dont start spell checking until i ask!
-autocmd FileType markdown setlocal nospell
+augroup goyoactions
+  au!
+  autocmd! User GoyoEnter nested call <SID>goyo_enter()
+  autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup end
 
 " ┏━┓╺┳╸┏━┓╺┳╸╻ ╻┏━┓╻  ╻┏┓╻┏━╸
 " ┗━┓ ┃ ┣━┫ ┃ ┃ ┃┗━┓┃  ┃┃┗┫┣╸ 
@@ -212,7 +219,6 @@ function! WizName()
   if l:name =~ 'NetrwTreeListing'
     return ''
   endif
-
   return ('' != WizRO() ? WizRO() : WizMod()) .
         \ ('' != expand('%:t') ? expand('%:t') : '[none]') 
 endfunction
@@ -230,4 +236,7 @@ function! WizErrors() abort
   return l:counts.total == 0 ? '' : printf('×%d', l:counts.total)
 endfunction
 
-autocmd User ALELint call lightline#update()
+augroup alestatus
+  au!
+  autocmd User ALELint call lightline#update()
+augroup end

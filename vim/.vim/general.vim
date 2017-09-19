@@ -1,4 +1,4 @@
-
+"           ██
 "          ░░
 "  ██    ██ ██ ██████████  ██████  █████
 " ░██   ░██░██░░██░░██░░██░░██░░█ ██░░░██
@@ -63,22 +63,25 @@ set hlsearch
 set incsearch
 
 " use indents of 4 spaces
-set shiftwidth=2
+set shiftwidth=4
 
-" tabs are spaces, not tabs
-set expandtab
+" tabs are tabs
+set noexpandtab
 
 " an indentation every four columns
-set tabstop=2
+set tabstop=4
 
 " let backspace delete indent
-set softtabstop=2
+set softtabstop=4
 
 " enable auto indentation
 set autoindent
 
 " remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+augroup ws
+  au!
+  autocmd FileType c,cpp,java,php,js,json,css,scss,sass,py,rb,coffee,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+augroup end
 
 " set leader key to comma
 let mapleader=","
@@ -87,4 +90,4 @@ let mapleader=","
 "vnoremap <silent> <leader>y :w !xsel -i -b<CR>
 "nnoremap <silent> <leader>y V:w !xsel -i -b<CR>
 "nnoremap <silent> <leader>p :silent :r !xsel -o -b<CR>
-set clipboard+=unnamedplus
+set clipboard^=unnamedplus

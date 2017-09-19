@@ -24,9 +24,9 @@ set shortmess+=I
 "set noshowmode
 
 " syntax highlighting
-syntax off
+syntax on
 set synmaxcol=512
-filetype off
+filetype plugin on
 
 " stop unnecessary rendering
 "set lazyredraw
