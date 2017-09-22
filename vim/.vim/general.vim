@@ -61,6 +61,10 @@ set backspace=indent,eol,start
 " searching
 set hlsearch
 set incsearch
+if has("nvim")
+  set inccommand=split
+endif
+
 
 " use indents of 4 spaces
 set shiftwidth=4
