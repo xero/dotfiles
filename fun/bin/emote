@@ -11,7 +11,7 @@ usage() {
 
 case $1 in
     shrug)
-      printf "┐('-')┌"
+      printf "┐(\`-\`)┌"
     ;;
     shrug2)
       printf "┐('~'; )┌"
@@ -21,6 +21,9 @@ case $1 in
     ;;
     bear)
       printf "ʕ •ᴥ•ʔ"
+    ;;
+    shock)
+      printf "(´･_･\`)"
     ;;
     dissaprove)
       printf "(ಠ_ಠ)"
@@ -42,6 +45,9 @@ case $1 in
     ;;
     dance)
       printf "~(^3^)~"
+    ;;
+    dance2)
+      printf "(~‾▿‾)~"
     ;;
     party)
       printf "└[∵]┐└[∵]┘┌[∵]┘└[∵]┐└[∵]┘┌[∵]┘"
@@ -69,7 +75,7 @@ case $1 in
     ;;
     mad)
       printf "(⇀‸↼‶)"
-    ;;
+    ;; 
     flex)
       printf "ᕙ(⇀‸↼‶)ᕗ"
     ;;     
@@ -78,6 +84,9 @@ case $1 in
     ;;
     drown)
       printf "︵‿︵‿︵‿︵‿︵‿︵‿︵‿ヽ(゜□゜ )ノ︵‿︵‿︵‿︵‿︵‿"
+    ;;
+    facepalm)
+      printf "(－‸ლd"
     ;;
     squid)
       printf "<コ:彡"
@@ -98,10 +107,31 @@ case $1 in
       printf "(╥﹏╥)"
     ;;
     cry)
-      printf "(　-̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷄◞ω◟-̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷅ )"
+      printf "( -̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷄◞ω◟-̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥̥᷅ )"
+    ;;
+    cry2)
+      printf "｡･ﾟﾟ･(>д<)･ﾟﾟ･｡"
+    ;;
+    creep)
+      printf "┬┴┬┴┤_･)"
+    ;;
+    joy)
+      printf "\(^▽^)/"
     ;;
     lol)
       printf "┐(^0^)┌"
+    ;;
+    fart)
+      printf "εﾐ(っ≧ω≦)っ"
+    ;;
+    wink)
+      printf "( ´・‿-)"
+    ;;
+    zoidberg)
+      printf "(V)(°ωω°)(V)"
+    ;;
+    squad)
+      printf "ʕ•̫͡•ʕ*̫͡*ʕ•͓͡•ʔ-̫͡-ʕ•̫͡•ʔ*̫͡*ʔ-̫͡-ʔ"
     ;;
     smoke)
       printf "(_̅_̅_̅_̅_̅м̅a̅я̅i̅j̅u̅a̅n̅a̅_̅_̅_̅ () ด้้้้้็็็็็้้้้้็็็็็้้้้้้้้็็็็็้้้้้็็็็็้้้้้้้้็็็็็้้้้้็็็็็้้้้้้้้็็็็็้้้้้็็็็็"
@@ -118,8 +148,5 @@ case $1 in
     iotek)
       printf "⇌"
     ;;
-    # add more as you please
-    *)
-      usage
-    ;;
 esac
+exit 0
