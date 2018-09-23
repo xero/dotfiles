@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+#  ███     ██ ██████████    ██████████   █████  ███████  ██   ██
+# ░░██  █ ░██░░██░░██░░██  ░░██░░██░░██ ██░░░██░░██░░░██░██  ░██
+#  ░██ ███░██ ░██ ░██ ░██   ░██ ░██ ░██░███████ ░██  ░██░██  ░██
+#  ░████░████ ░██ ░██ ░██   ░██ ░██ ░██░██░░░░  ░██  ░██░██  ░██
+#  ███░ ░░░██ ███ ░██ ░██   ███ ░██ ░██░░██████ ███  ░██░░██████
+# ░░░    ░░░ ░░░  ░░  ░░   ░░░  ░░  ░░  ░░░░░░ ░░░   ░░  ░░░░░░
+#
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ xero <x@xero.nu>
+# ░▓ code   ▓ http://code.xero.nu/dotfiles
+# ░▓ mirror ▓ http://git.io/.files
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+#
+# dmenu launcher script
+#
+# requires:
+#	demnu (personal fork)
+#		https://github.com/xero/dmenu
+#	passmenu
+#		https://git.zx2c4.com/password-store/tree/contrib/dmenu/passmenu
+
+ln=32
+sb="#5E81AC"
+sf="#222222"
+nf="#c0c0c0"
+nb="#3B4252"
+_RICE="-dim 0.75 -l $ln -sb $sb -sf $sf -nf $nf -sb $sb -c -fn -gohu-gohufont-medium-r-normal--24-100-100-100-c-80-iso10646-1"
+
+exe=`echo -e "app\nwww\nvid\nnet\nclip\npass\ninvert\nquit" | dmenu $_RICE -p 'run'`
+
+case $exe in
+	app)
+		dmenu_run $_RICE -p 'run'
+	;;
+	www)
+		chromium
+	;;
+	vid*)
+		urxvt -e bash -c "`printf "%s'" ${exe} | sed "s!vid!mpv !"`"
+	;;
+	clip)
+		clipmenu $_RICE -p 'clipboard'
+	;;
+	pass)
+		passmenu $_RICE -p 'pass'
+	;;
+	net)
+		networkmanager_dmenu $_RICE -p 'innernetz'
+	;;
+	invert)
+		xcalib -i -a
+	;;
+	quit)
+		poweroff
+	;;
+#	*)
+#		notify-send "what?"
+#	;;
+esac
