@@ -1,0 +1,6 @@
+/*calculadora*/
+MathWindow .button,
+MathWindow .button:backdrop{background:none; border:5px solid transparent;}
+MathWindow GtkViewport.frame,
+MathWindow GtkViewport.frame:backdrop{padding:0px}
+MathWindow GtkTextView {background:@bg_color;}

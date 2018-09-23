@@ -1,0 +1,40 @@
+# ==============================================================================
+# CHROMIUM SPECIFIC SETTINGS
+# ==============================================================================
+
+style "chromium_toolbar_button" {
+	engine "murrine" {
+		roundness = 3
+		textstyle = 0
+	}
+}
+
+style "chrome-gtk-frame"
+{
+  ChromeGtkFrame::frame-color = @menu_bg_color
+  ChromeGtkFrame::inactive-frame-color = @menu_bg_color
+
+  ChromeGtkFrame::frame-gradient-size = 0
+  ChromeGtkFrame::frame-gradient-color = @menu_bg_color
+
+  ChromeGtkFrame::incognito-frame-color = @selected_bg_color
+  ChromeGtkFrame::incognito-inactive-frame-color = @menu_bg_color
+
+
+  ChromeGtkFrame::incognito-frame-gradient-size = 0
+  ChromeGtkFrame::incognito-frame-gradient-color = @selected_bg_color
+
+  ChromeGtkFrame::scrollbar-trough-color = @bg_color
+  ChromeGtkFrame::scrollbar-slider-prelight-color = shade (1.04, @bg_color)
+  ChromeGtkFrame::scrollbar-slider-normal-color = @bg_color
+}
+
+class "ChromeGtkFrame" style "chrome-gtk-frame"
+
+widget_class "*Chrome*Button*" style "chromium_toolbar_button"
+
+
+
+
+
+

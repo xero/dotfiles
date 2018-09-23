@@ -1,0 +1,73 @@
+@define-color cluebar_color alpha(@fg_color,0.1);
+
+NautilusWindow * {
+    -GtkPaned-handle-size: 1;
+}
+.nautilus-canvas-item {
+    border-radius: 4px;
+}
+
+/* desktop mode */
+.nautilus-desktop.nautilus-canvas-item {
+    color: @fg_color;
+    text-shadow: 1px 1px alpha (#000000, 0.8);
+    background:none;
+}
+
+.nautilus-desktop.nautilus-canvas-item:active {
+    background-image: none;
+    background-color: alpha (@bg_color, 0.84);
+
+    color: @fg_color;
+}
+
+.nautilus-desktop.nautilus-canvas-item:selected {
+    background-image: none;
+    background-color: alpha (@selected_bg_color, 0.84);
+
+    color: @selected_fg_color;
+}
+
+.nautilus-desktop.nautilus-canvas-item:active,
+.nautilus-desktop.nautilus-canvas-item:prelight,
+.nautilus-desktop.nautilus-canvas-item:selected {
+    text-shadow: none;
+}
+
+NautilusTrashBar.info,
+NautilusXContentBar.info,
+NautilusSearchBar.info,
+NautilusQueryEditor.info {
+    background-color: @cluebar_color;
+
+}
+
+NautilusWindow .toolbar,
+NautilusWindow .toolbar:backdrop{
+    background-image: url("../assets/toolbar.png");
+    background-position:left bottom;
+    background-repeat:repeat-x;
+    padding-bottom:10px;
+}
+NautilusWindow .frame,
+NautilusWindow .frame:backdrop{border:none; border-image:none;}
+
+NautilusWindow .sidebar row:selected {
+    background-color:alpha(@selected_bg_color,0.4);
+    background-image: url("../assets/sidebar-dark.png");
+    background-position:right top;
+    background-repeat:repeat-y;
+}
+NautilusWindow .sidebar,
+NautilusWindow .sidebar .view{background:@bg_color}
+
+NautilusWindow .sidebar:backdrop,
+NautilusWindow .sidebar .view:backdrop{background:@backdrop_bg_color;}
+
+NautilusWindow .sidebar .cell,
+NautilusWindow .sidebar .cell:backdrop{
+    background-image: url("../assets/sidebar-dark.png");
+    background-position:right top;
+    background-repeat:repeat-y;
+}
+

@@ -1,0 +1,23 @@
+style "cathexis-window"
+{
+    bg[NORMAL] = "#2E3440"
+    XfceNotifyWindow::border-color = "#2E3440"
+    XfceNotifyWindow::border-radius = 1
+    XfceNotifyWindow::border-width = 1
+}
+class "XfceNotifyWindow" style "cathexis-window"
+
+style "cathexis-text"
+{
+    font_name = "GohuFont 11"
+    fg[NORMAL] = "#ffffff"
+    GtkWidget::link-color = "#2E3440"
+}
+widget_class "XfceNotifyWindow.*.<GtkLabel>" style "cathexis-text"
+
+style "cathexis-btn"
+{
+    bg[NORMAL] = "#2E3440"
+    bg[PRELIGHT] = "#272822"
+}
+widget "XfceNotifyWindow.*.GtkButton" style "cathexis-btn"
