@@ -66,12 +66,13 @@ temp()
 }
 bat()
 {
-	BATPATH=/sys/class/power_supply/BAT1
+	BATPATH=/sys/class/power_supply/BAT0
 	STATUS=$BATPATH/status
 	BAT_FULL=$BATPATH/charge_full
 	BAT_NOW=$BATPATH/charge_now
 	bf=$(cat $BAT_FULL)
 	bn=$(cat $BAT_NOW)
+	bp=$(( 100 * $bn / $bf ))
 	stat=$(cat $STATUS)
 	case $stat in
 		Full)
@@ -84,7 +85,10 @@ bat()
 			st="+"
 			;;
 	esac
-	echo $st$(( 100 * $bn / $bf ))"%"
+	test "$bp" -lt 10  \
+	&& bc=$C3 \
+	|| bc=$C1
+	echo $st#[fg=$bc]$bp"%"
 }
 cpu()
 {
@@ -95,6 +99,10 @@ ram()
 {
 	free | awk '/Mem:/ {print int($3/$2 * 100.0)}'
 }
+vpn()
+{
+	pgrep openconnect >/dev/null 2>&1 && echo "#[fg=3]VPN"
+}
 clock()
 {
 	mtime=$(date +'%H:%M')
@@ -104,8 +112,8 @@ clock()
 }
 front()
 {
-	echo "#[bg=$C7]#[fg=$C1]▓░"
+	echo "#[bg=$C7]#[fg=0]▓░"
 }
 CPU_INFO=`cpu`
 RAM_INFO=`ram`
-echo `front` `bat` `draw $RAM_INFO 4` `temp` `draw $CPU_INFO 7` `clock`
+echo `front` `bat` `draw $RAM_INFO 4` `temp` `draw $CPU_INFO 7` `vpn` `clock`
