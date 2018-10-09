@@ -150,7 +150,7 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 - [lightline](https://github.com/itchyny/lightline.vim) - custom status line (for much rice)
 - [fugitive](https://github.com/tpope/vim-fugitive) - fast git integration
 - [GV](https://github.com/junegunn/gv.vim) - git commit browser (great for pr review)
-- [vim-tmux-clipboard](https://github.com/roxma/vim-tmux-clipboard) - seamless integration between, vim, tmux, and the xorg system clipboard
+- [vim-tmux-clipboard](https://github.com/roxma/vim-tmux-clipboard) - seamless integration between vim, tmux, and the system clipboard
 - [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) - seamless navigation between tmux panes and vim splits
 - [vim-tmux-resizer](https://github.com/melonmanchan/vim-tmux-resizer) - resize tmux panes and vim splits with same keybinds
 
