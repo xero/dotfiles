@@ -19,7 +19,7 @@
 set nocompatible
 
 " security
-set modelines=0
+set modelines=1
 
 " hide buffers, not close them
 set hidden
@@ -53,7 +53,7 @@ set smartcase
 set infercase
 
 " the /g flag on :s substitutions by default
-set gdefault
+"set gdefault <<--- need to break this habit
 
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
@@ -64,7 +64,6 @@ set incsearch
 if has("nvim")
   set inccommand=split
 endif
-
 
 " use indents of 4 spaces
 set shiftwidth=4
@@ -90,8 +89,5 @@ augroup end
 " set leader key to comma
 let mapleader=","
 
-" new coffee pasta commands
-"vnoremap <silent> <leader>y :w !xsel -i -b<CR>
-"nnoremap <silent> <leader>y V:w !xsel -i -b<CR>
-"nnoremap <silent> <leader>p :silent :r !xsel -o -b<CR>
+" coffee pasta
 set clipboard^=unnamedplus

@@ -19,7 +19,8 @@
 "colorscheme sourcerer
 
 " dark wizard colors http://git.io/blaquemagick.vim
-colorscheme blaquemagick
+"colorscheme blaquemagick
+colorscheme nord
 
 " use your shell colors
 "colorscheme noctu
@@ -59,11 +60,19 @@ endif
 " linting
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '× '
-let g:ale_sign_warning = '> '
+let g:ale_sign_error = ' '
+let g:ale_sign_warning = ' '
 "let g:ale_open_list = 1
 "let g:ale_lint_on_text_changed = 'never'
-highlight ALEErrorSign ctermbg=234 ctermfg=magenta
+highlight ALEErrorSign ctermbg=0 ctermfg=magenta
+
+" file browser
+let NERDTreeShowHidden = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 
 " disable folding
 let g:vim_json_syntax_conceal = 0
@@ -74,7 +83,10 @@ set diffopt+=vertical
 " close if final buffer is netrw or the quickfix
 augroup finalcountdown
   au!
-  autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
+  "autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
+  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) || &buftype == 'quickfix' | q | endif
+  "nmap - :Lexplore<cr>
+  nmap - :NERDTreeToggle<cr>
 augroup END
 
 " speed optimizations
@@ -90,10 +102,10 @@ let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = ':'
 " color overrrides
 highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green ctermbg=234
-highlight GitGutterChange ctermfg=yellow ctermbg=234
-highlight GitGutterDelete ctermfg=red ctermbg=234
-highlight GitGutterChangeDelete ctermfg=red ctermbg=234
+highlight GitGutterAdd ctermfg=green ctermbg=0
+highlight GitGutterChange ctermfg=yellow ctermbg=0
+highlight GitGutterDelete ctermfg=red ctermbg=0
+highlight GitGutterChangeDelete ctermfg=red ctermbg=0
 
 " use the silver searcher
 let g:ag_prg="ag -i --vimgrep"
@@ -101,8 +113,10 @@ let g:ag_highlight=1
 " map \ to the ag command for quick searching
 nnoremap \ :Ag<SPACE>
 
-" use ^{h,j} to move lines
-let g:move_key_modifier = 'A'
+" use {H,J,K,L} to move lines
+let g:move_key_modifier = 'S'
+" tmux/vim resize amount
+let g:window_resize_count = 2
 
 " distraction free writing mode
 let g:limelight_conceal_ctermfg = 240
@@ -139,11 +153,11 @@ augroup end
 " █▓▒░ wizard status line
 
 let s:base03 = [ '#151513', 233 ]
-let s:base02 = [ '#222222', 0 ]
+let s:base02 = [ '#303030', 0 ]
 let s:base01 = [ '#4e4e43', 239 ]
 let s:base00 = [ '#666656', 242  ]
 let s:base0 = [ '#808070', 244 ]
-let s:base1 = [ '#949484', 246 ]
+let s:base1 = [ '#949484', 242 ]
 let s:base2 = [ '#a8a897', 248 ]
 let s:base3 = [ '#e8e8d3', 253 ]
 let s:yellow = [ '#7A7A57', 11 ]
@@ -152,29 +166,30 @@ let s:red = [ '#5F8787', 1 ]
 let s:magenta = [ '#8181A6', 13 ]
 let s:cyan = [ '#87ceeb', 12 ]
 let s:green = [ '#7A7A57', 3 ]
+let s:none = [ 'none', 'none' ]
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
-let s:p.normal.left = [ [ s:base02, s:magenta ], [ s:base3, s:base01 ] ]
+let s:p.normal.left = [ [ s:base02, s:cyan ], [ s:base3, s:base01 ] ]
 let s:p.normal.right = [ [ s:base02, s:base1 ], [ s:base2, s:base01 ] ]
 let s:p.inactive.right = [ [ s:base02, s:base00 ], [ s:base0, s:base02 ] ]
 let s:p.inactive.left =  [ [ s:base0, s:base02 ], [ s:base00, s:base02 ] ]
-let s:p.insert.left = [ [ s:base02, s:cyan ], [ s:base3, s:base01 ] ]
+let s:p.insert.left = [ [ s:base02, s:magenta ], [ s:base3, s:base01 ] ]
 let s:p.replace.left = [ [ s:base02, s:red ], [ s:base3, s:base01 ] ]
 let s:p.visual.left = [ [ s:base02, s:green ], [ s:base3, s:base01 ] ]
-let s:p.normal.middle = [ [ s:base0, s:base02 ] ]
-let s:p.inactive.middle = [ [ s:base00, s:base02 ] ]
+let s:p.normal.middle = [ [ s:none, s:none ] ]
+let s:p.inactive.middle = copy(s:p.normal.middle)
 let s:p.tabline.left = [ [ s:base3, s:base00 ] ]
 let s:p.tabline.tabsel = [ [ s:base3, s:base02 ] ]
-let s:p.tabline.middle = [ [ s:base01, s:base1 ] ]
+let s:p.tabline.middle = copy(s:p.normal.middle)
 let s:p.tabline.right = copy(s:p.normal.right)
 let s:p.normal.error = [ [ s:base02, s:yellow ] ]
 let s:p.normal.warning = [ [ s:yellow, s:base01 ] ]
 
-let g:lightline#colorscheme#sourcerer#palette = lightline#colorscheme#flatten(s:p)
+let g:lightline#colorscheme#nord#palette = lightline#colorscheme#flatten(s:p)
 
 set laststatus=2
 let g:lightline = {
-  \ 'colorscheme': 'sourcerer',
+  \ 'colorscheme': 'nord',
   \ 'active': {
   \   'left': [ [ 'filename' ],
   \             [ 'linter',  'gitbranch' ] ],
@@ -207,24 +222,20 @@ function! WizMod()
 endfunction
 
 function! WizRO()
-  return &ft !~? 'help\|vimfiler' && &readonly ? '× ' : ''
+  " ×   
+  return &ft !~? 'help\|vimfiler' && &readonly ? ' ' : ''
 endfunction
 
 function! WizGit()
-  return exists('*fugitive#head') ? fugitive#head() : ''
+  return !IsTree() ? exists('*fugitive#head') ? fugitive#head() : '' : ''
 endfunction
 
 function! WizName()
-  let l:name = expand('%:t')
-  if l:name =~ 'NetrwTreeListing'
-    return ''
-  endif
-  return ('' != WizRO() ? WizRO() : WizMod()) .
-        \ ('' != expand('%:t') ? expand('%:t') : '[none]') 
+  return !IsTree() ? ('' != WizRO() ? WizRO() : WizMod()) . ('' != expand('%:t') ? expand('%:t') : '[none]') : ''
 endfunction
 
 function! WizType()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : '') : ''
+  return winwidth(0) > 70 ? (strlen(&filetype) ? ' ' . WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : '') : ''
 endfunction
 
 function! WizEncoding()
@@ -233,7 +244,13 @@ endfunction
 
 function! WizErrors() abort
   let l:counts = ale#statusline#Count(bufnr(''))
-  return l:counts.total == 0 ? '' : printf('×%d', l:counts.total)
+  " ×   
+  return l:counts.total == 0 ? '' : printf(' %d', l:counts.total)
+endfunction
+
+function! IsTree()
+  let l:name = expand('%:t')
+  return l:name =~ 'NetrwTreeListing\|undotree\|NERD' ? 1 : 0
 endfunction
 
 augroup alestatus

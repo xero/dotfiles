@@ -22,6 +22,16 @@ function! JSONify()
 endfunction
 command J :call JSONify()
 
+function! UnMinify()
+    %s/{\ze[^\r\n]/{\r/g
+    %s/){/) {/g
+    %s/};\?\ze[^\r\n]/\0\r/g
+    %s/;\ze[^\r\n]/;\r/g
+    %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
+    normal ggVG=
+endfunction
+command UnMinify :call UnMinify()
+
 " remove trailing white space
 command Nows :%s/\s\+$//
 
@@ -33,6 +43,9 @@ command Spell :setlocal spell! spell?
 
 " make current buffer executable
 command Chmodx :!chmod a+x %
+
+" fix syntax highlighting
+command FixSyntax :syntax sync fromstart
 
 " let's make some textmode art!
 function! AsciiMode()

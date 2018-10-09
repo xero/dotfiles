@@ -50,11 +50,11 @@ set cursorline
 " show invisibles
 set list
 set listchars=
-set listchars+=tab:𐄙\ 
+set listchars+=tab:·\ 
 set listchars+=trail:·
 set listchars+=extends:»
 set listchars+=precedes:«
-set listchars+=nbsp:⣿
+set listchars+=nbsp:░
 
 " split style
 set fillchars=vert:▒

@@ -14,9 +14,6 @@
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
 "
-"legacy
-"Plugin 'chrisbra/unicode.vim'
-"Plugin 'vim-scripts/Improved-AnsiEsc'
 set runtimepath+=~/.vim/
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -35,29 +32,39 @@ call plug#begin('~/.vim/plugged')
 Plug 'xero/sourcerer.vim'
 Plug 'xero/blaquemagick.vim'
 Plug 'xero/vim-noctu'
+Plug 'xero/nord-vim-mod'
 
-" features
-Plug 'shougo/deoplete.nvim', has('nvim') ? {} : { 'do': [':UpdateRemotePlugins', ':set runtimepath+=~/.vim/plugged/deoplete.nvim/'] }
+" programming
+Plug 'shougo/deoplete.nvim', has('nvim') ? {} : { 'do': [ ':UpdateRemotePlugins', ':set runtimepath+=~/.vim/plugged/deoplete.nvim/' ]}
 Plug 'ajh17/VimCompletesMe'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
-Plug 'isa/vim-matchit'
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'itchyny/lightline.vim'
-Plug 'lilydjwg/colorizer'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-vinegar'
-Plug 'rking/ag.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'simeji/winresizer'
-Plug 'junegunn/gv.vim', { 'on': 'GV' }
-Plug 'roxma/vim-tmux-clipboard'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-fugitive'
+
+" stylize
+Plug 'xero/nerdtree'
+Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'lilydjwg/colorizer'
+Plug 'chrisbra/unicode.vim'
+Plug 'powerman/vim-plugin-AnsiEsc'
+
+" features
+Plug 'rking/ag.vim'
+Plug 'matze/vim-move'
+Plug 'isa/vim-matchit'
+Plug 'godlygeek/tabular'
+Plug 'tpope/tpope-vim-abolish'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
-Plug 'matze/vim-move'
-Plug 'tpope/tpope-vim-abolish'
 Plug 'majutsushi/tagbar', { 'on': 'Tagbar' }
-Plug 'godlygeek/tabular'
+Plug 'junegunn/gv.vim', { 'on': 'GV' }
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+
+" multiplexer integration
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'melonmanchan/vim-tmux-resizer'
 
 call plug#end()
