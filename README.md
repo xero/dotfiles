@@ -1,13 +1,13 @@
 ```
-      ██            ██     ████ ██  ██                
-     ░██           ░██    ░██░ ░░  ░██                
+      ██            ██     ████ ██  ██
+     ░██           ░██    ░██░ ░░  ░██
      ░██  ██████  ██████ ██████ ██ ░██  █████   ██████
-  ██████ ██░░░░██░░░██░ ░░░██░ ░██ ░██ ██░░░██ ██░░░░ 
- ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████ 
+  ██████ ██░░░░██░░░██░ ░░░██░ ░██ ░██ ██░░░██ ██░░░░
+ ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████
 ░██  ░██░██   ░██  ░██    ░██  ░██ ░██░██░░░░  ░░░░░██
-░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████ 
- ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░  
- 
+░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████
+ ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░
+
   ▓▓▓▓▓▓▓▓▓▓
  ░▓ about  ▓ custom linux config files
  ░▓ author ▓ xero <x@xero.nu>
@@ -141,14 +141,18 @@ with it's tight integration to the unix shell, [vim](http://www.vim.org) has qui
 
 when you learn vim it's best to use a more vanilla config. if helps you focus on learning the editor and not the plugins. vim's vast and powerful plugin system can add many great features. i try to keep my editor slim and fast, but i find myself loving these plugins:
 
-- [vundle](https://github.com/gmarik/vundle.vim) - to manage other plugins
+- [plug](https://github.com/junegunn/vim-plug) - to manage other plugins
 - [vim completes me](https://github.com/ajh17/VimCompletesMe) - super lightweight completion system
 - [colorizer](https://github.com/lilydjwg/colorizer) - display color codes as their colors inline
-- [syntastic](https://github.com/scrooloose/syntastic) - syntax linting
+- [ale](https://github.com/w0rp/ale) - async syntax linting
 - [git gutter](https://github.com/airblade/vim-gitgutter) - git diff in the gutter
 - [match it](https://github.com/isa/vim-matchit) - extended word and regex matching
 - [lightline](https://github.com/itchyny/lightline.vim) - custom status line (for much rice)
 - [fugitive](https://github.com/tpope/vim-fugitive) - fast git integration
+- [GV](https://github.com/junegunn/gv.vim) - git commit browser (great for pr review)
+- [vim-tmux-clipboard](https://github.com/roxma/vim-tmux-clipboard) - seamless integration between, vim, tmux, and the xorg system clipboard
+- [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) - seamless navigation between tmux panes and vim splits
+- [vim-tmux-resizer](https://github.com/melonmanchan/vim-tmux-resizer) - resize tmux panes and vim splits with same keybinds
 
 # previews
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/coils.png)
