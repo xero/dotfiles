@@ -1,0 +1,33 @@
+#                     ██   ██
+#                    ░██  ░██
+#  ██████  ██████   ██████░██      ██   ██ ██████  ██████
+# ░░░░██  ░░░░░░██ ░░░██░ ░██████ ░██  ░██░░██░░█ ░░░░░░██
+#    ██    ███████   ░██  ░██░░░██░██  ░██ ░██ ░   ███████
+#   ██    ██░░░░██   ░██  ░██  ░██░██  ░██ ░██    ██░░░░██
+#  ██████░░████████  ░░██ ░██  ░██░░██████░███   ░░████████
+# ░░░░░░  ░░░░░░░░    ░░  ░░   ░░  ░░░░░░ ░░░     ░░░░░░░░
+
+# general
+set smooth-scroll "true"
+
+# colors
+set recolor true
+set default-bg "#2E3440"
+set default-fg "#D8DEE9"
+set recolor-lightcolor  "#2E3440"
+set recolor-darkcolor "#D8DEE9"
+set statusbar-fg "#000000"
+set statusbar-bg "#3B4252"
+set inputbar-fg "#D8DEE9"
+set inputbar-bg "#3B4252"
+set completion-highlight-fg "#000000"
+set completion-highlight-bg "#5E81AC"
+set highlight-color "#5E81AC"
+set highlight-active-color "#88C0D0"
+set notification-fg "#000000"
+set notification-bg "#5E81AC"
+
+# keybinds
+map [normal] ZZ quit
+map [normal] ZQ quit
+
