@@ -15,15 +15,15 @@
 # ░░░░░░░░░░
 #
 #█▓▒░ timestamps
-#HIST_STAMPS=mm/dd/yyyy
+#HIST_STAMPS=yyyy/mm/dd
 
 #█▓▒░ paths
-export PATH=$HOME/bin:/usr/local/bin:/home/xero/.gem/ruby/2.2.0/bin:$PATH
+export PATH=/usr/local/bin:$HOME/bin:$HOME/.gem/ruby/2.5.0/bin:$HOME/src/go/bin/:$HOME/.local/bin:$PATH
 #export MANPATH=/usr/local/man:$MANPATH
 
-#█▓▒░ preferred editor for local and remote sessions
-export EDITOR=vim
-export VISUAL=vim
+#█▓▒░ preferred text editor
+export EDITOR=nvim
+export VISUAL=nvim
 
 #█▓▒░ language
 export LC_COLLATE=en_US.UTF-8
@@ -36,3 +36,12 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LESSCHARSET=utf-8
+
+#█▓▒░ go lang
+export GOPATH=$HOME/src/go
+
+#█▓▒░ java fixes
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+#█▓▒░ no mosh titles
+export MOSH_TITLE_NOPREFIX=1

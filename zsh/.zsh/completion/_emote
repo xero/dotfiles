@@ -1,0 +1,59 @@
+#compdef emote
+_emote() {
+	local -a commands
+	commands=(
+		'shrug'
+		'shrug2'
+		'rage'
+		'bear'
+		'shock'
+		'dissaprove'
+		'thatguy'
+		'lenny'
+		'satan'
+		'yuno'
+		'whistle'
+		'dance'
+		'dance2'
+		'party'
+		'stare'
+		'kiss'
+		'shades'
+		'magic'
+		'magic2'
+		'shame'
+		'fu'
+		'mad'
+		'flex'
+		'trip'
+		'drown'
+		'facepalm'
+		'squid'
+		'walrus'
+		'fish'
+		'psp'
+		'nes'
+		'sad'
+		'cry'
+		'cry2'
+		'creep'
+		'joy'
+		'lol'
+		'fart'
+		'wink'
+		'zoidberg'
+		'squad'
+		'smoke'
+		'loot'
+		'glare'
+		'spooky'
+		'infinitesadness'
+		'shit'
+		'iotek'
+	)
+	if (( CURRENT == 2 )); then
+		_describe -t commands 'commands' commands
+	fi
+	return 0
+}
+_emote

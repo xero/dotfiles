@@ -14,16 +14,23 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
-#ICO_DIRTY="⚡"
+#ICO_DIRTY="*"
 #ICO_DIRTY="↯"
-ICO_DIRTY="*"
-#ICO_AHEAD="↑"
-ICO_AHEAD="🠙"
+ICO_DIRTY="⚡"
+
+ICO_AHEAD="↑"
+#ICO_AHEAD=""
 #ICO_AHEAD="▲"
-#ICO_BEHIND="↓"
-ICO_BEHIND="🠛"
+
+ICO_BEHIND="↓"
+#ICO_BEHIND=""
 #ICO_BEHIND="▼"
-ICO_DIVERGED="⥮"
+
+ICO_DIVERGED="↕"
+#ICO_DIVERGED=""
+#ICO_DIVERGED="נּ"
+
+
 COLOR_ROOT="%F{red}"
 COLOR_USER="%F{cyan}"
 COLOR_NORMAL="%F{white}"
@@ -57,7 +64,7 @@ GIT_PROMPT() {
     esac
     return
   fi
-  ref=$(git name-rev --name-only HEAD | sed 's!remotes/!!' 2> /dev/null)
+  ref=$(git name-rev --name-only HEAD | sed 's!remotes/!!;s!undefined!merging!' 2> /dev/null)
   dirty="" && [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && dirty=$ICO_DIRTY
   stat=$(git status | sed -n 2p)
   case "$stat" in
@@ -85,7 +92,7 @@ GIT_PROMPT() {
       echo "%{$bg[magenta]%}%F{cyan} %F{black}${ref}${dirty}${stat} $reset_color%F{magenta}"
     ;;
     *)
-    echo "${USER_LEVEL}─[${COLOR_NORMAL}"${ref}${dirty}${stat}"${USER_LEVEL}]"
+    echo "${USER_LEVEL}━[${COLOR_NORMAL}"${ref}${dirty}${stat}"${USER_LEVEL}]"
     ;;
   esac
 }
@@ -111,11 +118,11 @@ PROMPT='%F{white}
 ;;
 #█▓▒░ dual line
 dual)
-PROMPT='${USER_LEVEL}┌[${COLOR_NORMAL}%~${USER_LEVEL}]$(GIT_PROMPT)
-${USER_LEVEL}└─ - %f'
+PROMPT='${USER_LEVEL}┏[${COLOR_NORMAL}%~${USER_LEVEL}]$(GIT_PROMPT)
+${USER_LEVEL}┗━ ━ %f'
 ;;
 #█▓▒░ classic
 *)
-PROMPT='${USER_LEVEL}[${COLOR_NORMAL}%~${USER_LEVEL}]$(GIT_PROMPT)── - %f'
+PROMPT='${USER_LEVEL}[${COLOR_NORMAL}%~${USER_LEVEL}]$(GIT_PROMPT)━━ ━ %f'
 ;;
 esac
