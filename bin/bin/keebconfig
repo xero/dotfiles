@@ -1,0 +1,19 @@
+#!/bin/sh
+#  ██                     ██
+# ░██                    ░██
+# ░██  ██  █████   █████ ░██
+# ░██ ██  ██░░░██ ██░░░██░██████
+# ░████  ░███████░███████░██░░░██
+# ░██░██ ░██░░░░ ░██░░░░ ░██  ░██
+# ░██░░██░░██████░░██████░██████
+# ░░  ░░  ░░░░░░  ░░░░░░ ░░░░░
+
+# get uid
+USER_ID=`id -u $USER`
+# get diskname
+DISK=`lsblk -a | grep 4M | grep -o '^\s*\S\+'`
+[ -z "$DISK" ] &&  echo "v-drive not found" >&2 && exit 1
+# mount vdrive
+sudo mount -o umask=0022,gid=${USER_ID},uid=${USER_ID} /dev/${DISK} /mnt
+# run config tool
+wine /mnt/keebconfig.exe
