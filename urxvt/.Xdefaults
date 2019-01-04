@@ -15,13 +15,11 @@
 ! ░░░░░░░░░░
 !
 
-
 ! █▓▒░ color scheme
-#include </home/xero/miasma.Xcolors>
+#include </home/x0/nord.Xcolors>
 
 ! █▓▒░ fonts
-urxvt*font: xft:gohufont:size=12:antialias=true, \
-            xft:Symbola:pixelsize=14:antialias=true:hinting=slight
+!urxvt*font: xft:GohuFont:size=8:antialias=true, \
 !urxvt*font: xft:gohufont:size=11:antialias=false
 !urxvt*font: -*-creep-regular-*-*--16-*-*-*-*-*-*-1
 !urxvt*font: -*-lime-*-*-*--11-*-*-*-*-*-*-1
@@ -32,19 +30,21 @@ urxvt*font: xft:gohufont:size=12:antialias=true, \
 !urxvt*font: xft:neep:size=11:antialias=false
 !urxvt*font: xft:perfect dos vga 437:size=11:antialias=false
 !urxvt*font: xft:tewi:size=11:antialias=false
+urxvt*font: xft:Hack Nerd Font Mono:style=Regular:size=11:hinting=full, \
+            xft:Symbola:size=11:antialias=true:hinting=full
 
 urxvt*boldFont: 
 urxvt*italicFont: 
 urxvt*bolditalicFont: 
 
-urxvt*letterSpace: 0
-urxvt*lineSpace: 0
+urxvt*letterSpace: -1
+urxvt*lineSpace: -1
 
 ! █▓▒░ interface
 urxvt*scrollBar: false
 urxvt*transparent: false
 urxvt*internalBorder: 10
-urxvt*borderColor: #1c1c1c
+urxvt*borderColor: #3B4252
 urxvt*borderLess:false
 
 ! █▓▒░ extensions
@@ -63,3 +63,13 @@ urxvt.clipboard.pastecmd: xsel -ob
 urxvt.saveLines: 9999
 urxvt.iso14755: false
 !URxvt*altSendsEscape: true
+
+Xft.dpi: 190
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+twobwm.enable_compton: true
