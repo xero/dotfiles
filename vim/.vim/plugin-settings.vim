@@ -20,6 +20,8 @@
 
 " dark wizard colors http://git.io/blaquemagick.vim
 "colorscheme blaquemagick
+
+" icy chill
 colorscheme nord
 
 " use your shell colors
@@ -117,6 +119,11 @@ nnoremap \ :Ag<SPACE>
 let g:move_key_modifier = 'S'
 " tmux/vim resize amount
 let g:window_resize_count = 2
+
+" limit modelines
+set nomodeline
+let g:secure_modelines_verbose = 0
+let g:secure_modelines_modelines = 15
 
 " distraction free writing mode
 let g:limelight_conceal_ctermfg = 240

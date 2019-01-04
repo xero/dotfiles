@@ -46,7 +46,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'xero/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'lilydjwg/colorizer'
+Plug 'chrisbra/colorizer'
 Plug 'chrisbra/unicode.vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
 
@@ -56,6 +56,7 @@ Plug 'matze/vim-move'
 Plug 'isa/vim-matchit'
 Plug 'godlygeek/tabular'
 Plug 'tpope/tpope-vim-abolish'
+Plug 'xero/securemodelines'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
 Plug 'majutsushi/tagbar', { 'on': 'Tagbar' }

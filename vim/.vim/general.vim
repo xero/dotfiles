@@ -19,7 +19,7 @@
 set nocompatible
 
 " security
-set modelines=1
+set modelines=0
 
 " hide buffers, not close them
 set hidden
