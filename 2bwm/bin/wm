@@ -9,9 +9,10 @@
 # ░██████░██████  ███░ ░░░██ ███ ░██ ░██
 # ░░░░░░ ░░░░░   ░░░    ░░░ ░░░  ░░  ░░ 
 
+sxhkd &
 2bwm &
+dunst &
 
 ~/bin/display &
 ~/bin/tray &
-~/bin/clock &
-~/bin/xwait
+~/bin/clock
