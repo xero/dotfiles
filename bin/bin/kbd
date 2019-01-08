@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# laptop keyboard backlight tool
 case $1 in
 	on)
 		val=255

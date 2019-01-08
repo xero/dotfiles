@@ -21,6 +21,8 @@
 #		https://github.com/xero/dmenu
 #	passmenu
 #		https://git.zx2c4.com/password-store/tree/contrib/dmenu/passmenu
+#	networkmanager-dmenu
+#		https://github.com/firecat53/networkmanager-dmenu
 
 ln=32
 sb="#5E81AC"
