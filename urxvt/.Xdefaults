@@ -19,51 +19,53 @@
 #include </home/x0/nord.Xcolors>
 
 ! █▓▒░ fonts
-!urxvt*font: xft:GohuFont:size=8:antialias=true, \
-!urxvt*font: xft:gohufont:size=11:antialias=false
-!urxvt*font: -*-creep-regular-*-*--16-*-*-*-*-*-*-1
-!urxvt*font: -*-lime-*-*-*--11-*-*-*-*-*-*-1
-!urxvt*font: xft:creep:size=16:antialias=true
-!urxvt*font: xft:envy code r:size=9:antialias=false
-!urxvt*font: xft:lemon:size=16:antialias=false
-!urxvt*font: xft:lime:size=16:antialias=false
-!urxvt*font: xft:neep:size=11:antialias=false
-!urxvt*font: xft:perfect dos vga 437:size=11:antialias=false
-!urxvt*font: xft:tewi:size=11:antialias=false
-urxvt*font: xft:Hack Nerd Font Mono:style=Regular:size=11:hinting=full, \
+!URxvt*font: xft:GohuFont:size=8:antialias=true, \
+!URxvt*font: xft:gohufont:size=11:antialias=false
+!URxvt*font: -*-creep-regular-*-*--16-*-*-*-*-*-*-1
+!URxvt*font: -*-lime-*-*-*--11-*-*-*-*-*-*-1
+!URxvt*font: xft:creep:size=16:antialias=true
+!URxvt*font: xft:envy code r:size=9:antialias=false
+!URxvt*font: xft:lemon:size=16:antialias=false
+!URxvt*font: xft:lime:size=16:antialias=false
+!URxvt*font: xft:neep:size=11:antialias=false
+!URxvt*font: xft:perfect dos vga 437:size=11:antialias=false
+!URxvt*font: xft:tewi:size=11:antialias=false
+URxvt*font: xft:Hack Nerd Font Mono:style=Regular:size=11:hinting=full, \
             xft:Symbola:size=11:antialias=true:hinting=full
 
-urxvt*boldFont: 
-urxvt*italicFont: 
-urxvt*bolditalicFont: 
+URxvt*boldFont: 
+URxvt*italicFont: 
+URxvt*bolditalicFont: 
 
-urxvt*letterSpace: -1
-urxvt*lineSpace: -1
+URxvt*letterSpace: -1
+URxvt*lineSpace: -1
 
 ! █▓▒░ interface
-urxvt*scrollBar: false
-urxvt*transparent: false
-urxvt*internalBorder: 10
-urxvt*borderColor: #3B4252
-urxvt*borderLess:false
+URxvt*scrollBar: false
+URxvt*transparent: false
+URxvt*internalBorder: 10
+URxvt*borderColor: #3B4252
+URxvt*borderLess:false
 
 ! █▓▒░ extensions
-urxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
-urxvt.keysum.M-u: perl:url-select:select_next
-urxvt.url-select.autocopy: true
-urxvt.url-select.launcher: chromium
-urxvt.keysym.M-Escape: perl:keyboard-select:activate
-urxvt.keysym.M-c:   perl:clipboard:copy
-urxvt.keysym.C-v:   perl:clipboard:paste
-urxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-urxvt.clipboard.copycmd:  xsel -ib
-urxvt.clipboard.pastecmd: xsel -ob
+
+URxvt.perl-ext: default,clipboard,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.underline: false
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.autocopy: true
+URxvt.clipboard.autocopy: true
+URxvt.clipboard.copycmd: xsel -ib
+URxvt.clipboard.pastecmd: xsel -ob
+URxvt.keysym.C-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
 ! █▓▒░ misc
-urxvt.saveLines: 9999
-urxvt.iso14755: false
+URxvt.saveLines: 9999
+URxvt.iso14755: false
 !URxvt*altSendsEscape: true
 
+! █▓▒░ high dpi mode
 Xft.dpi: 190
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
