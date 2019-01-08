@@ -16,9 +16,6 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
-# made the magic happen
-sudo insmod /home/x0/src/Linux-Magic-Trackpad-2-Driver/linux/drivers/hid/hid-magicmouse.ko
-
 # display
 if [ $(xrandr | grep ' connected' | wc -l) -gt 1 ]; then
 	~/.screenlayout/multi.sh &
