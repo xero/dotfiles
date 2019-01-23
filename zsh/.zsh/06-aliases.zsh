@@ -74,12 +74,8 @@ alias record="ffmpeg -f x11grab -s 1366x768 -an -r 16 -loglevel quiet -i :0.0 -b
 alias nexus="jmtpfs ~/nexus"
 alias p="pass -c"
 alias doc="sudo docker"
-alias docclean="sudo docker rm $(sudo docker ps -a -q) &&  sudo docker rmi $(sudo docker images -q)"
+#alias docclean="sudo docker rm $(sudo docker ps -a -q) &&  sudo docker rmi $(sudo docker images -q)"
 alias docstats="sudo docker ps -q | xargs  docker stats --no-stream"
-#█▓▒░ dumb tmux trix
-alias tsad="printf '\033k┐(T_T)┌\033\\'"
-alias tshrug="printf '\033k┐(\`-\`)┌\033\\'"
-alias tlol="printf '\033k┐(^0^)┌\033\\'"
 #█▓▒░ update mpd database
 function genplaylist() {
   cd ~/music
@@ -97,16 +93,6 @@ function t() {
 #█▓▒░ cli mail
 function email() {
 	echo $3 | mutt -s $2 $1
-}
-#█▓▒░ colorize stuff
-function c() {
-  for file in "$@"
-  do
-    pygmentize -O style=sourcerer -f console256 -g "$file" 
-  done
-}
-function l() {
-  pygmentize -O style=sourcerer -f console256 -g $1 | less -r 
 }
 #█▓▒░ read stuff like manpages
 function md() {
