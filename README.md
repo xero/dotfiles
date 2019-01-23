@@ -20,7 +20,6 @@
  bin            > system automation scripts
  compton        > minimal composite config for opacity
  figlet         > custom 3d font
- fonts          > configs for gohu and other bitmap fonts
  fun            > term color, sys info, and other misc scripts
  git            > global git config and aliases
  interrobang    > a lightweight application launcher
@@ -135,6 +134,12 @@ i prefer a minimal setup, and choose to interact with my operating system via th
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/xero_shell.gif)
 
 my terminal emulator of choice is the lightweight, unicode, 256 color [urxvt](http://linux.die.net/man/1/urxvt). i use [zsh](http://linux.die.net/man/1/zsh) as my interactive shell. it's an extensible, bash like shell with awesome completion and correction engines. i manage multiple shell sessions with [tmux](http://linux.die.net/man/1/tmux). it's a feature packed terminal multiplexer with support for buffers, split windows, detached local and remote sessions, etc. i'm a member of the cult of [vim](http://linux.die.net/man/1/vim). sing phrases to the third reincarnation of the glorious ed! lel. [mpd](http://linux.die.net/man/1/mpd) is my music server and i use [ncmpcpp](http://ncmpcpp.rybczak.net/) as it's frontend. my configs for [urxvt](http://git.io/.urxvt), [zsh](http://git.io/.zsh), [tmux](http://git.io/.tmux), [vim](http://git.io/.vim), [mpd](http://git.io/.mpd) and [ncmpcpp](http://git.io/.ncmpcpp) shown above feature my [sourcerer](http://sourcerer.xero.nu) color scheme.
+
+when it comes to fonts i've been using the bitmap font [gohu](http://font.gohu.org/) + the ttf font [hack](https://sourcefoundry.org/hack/) (i use a [mod](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/readme.md) w/ extra icons) + [symbola](http://users.teilar.gr/~g1951d/) for extra unicode and emoji support.
+
+you can install all three of them from the aur: `yay -S gohufont ttf-nerd-fonts-hack-complete-git ttf-symbola`
+
+see [.Xdefaults](https://github.com/xero/dotfiles/blob/master/urxvt/.Xdefaults) + [xorg.conf.d/00-fonts.conf](https://github.com/xero/dotfiles/blob/master/xorg/etc/X11/xorg.conf.d/00-fonts.conf) for my fontconfig.
 
 # vim
 with it's tight integration to the unix shell, [vim](http://www.vim.org) has quickly become my editor of choice. once you start to master the movements and operators you quickly begin manipulating, not just editing source code files.
