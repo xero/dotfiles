@@ -23,6 +23,8 @@ else
 	~/.screenlayout/solo.sh &
 	# keyboard backlight
 	kbd on &
+	# caps is esc
+	setxkbmap -option caps:escape &
 fi
 
 # merge custom x resources
