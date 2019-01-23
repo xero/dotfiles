@@ -1,12 +1,12 @@
 #  ██                        ██
-# ░░                        ░░ 
+# ░░                        ░░
 #  ██ ██████  ██████  ██████ ██
 # ░██░░██░░█ ██░░░░  ██░░░░ ░██
 # ░██ ░██ ░ ░░█████ ░░█████ ░██
 # ░██ ░██    ░░░░░██ ░░░░░██░██
 # ░██░███    ██████  ██████ ░██
-# ░░ ░░░    ░░░░░░  ░░░░░░  ░░ 
-# 
+# ░░ ░░░    ░░░░░░  ░░░░░░  ░░
+#
 #  ▓▓▓▓▓▓▓▓▓▓
 # ░▓ author ▓ xero <x@xero.nu>
 # ░▓ code   ▓ http://code.xero.nu/dotfiles
@@ -22,19 +22,59 @@ servers = (
     chatnet = "unixchat";
     port = "6697";
     use_ssl = "yes";
-    ssl_verify = "yes";
-    ssl_capath = "/etc/ssl/certs/";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.mzima.net";
+    chatnet = "efnet";
+    port = "9999";
+    use_ssl = "yes";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.us.ircnet.net";
+    chatnet = "ircnet";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.cyberia.is";
+    chatnet = "cyberia";
+    port = "6697";
+    use_ssl = "yes";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.blackhats.ru";
+    chatnet = "blackhats";
+    port = "6697";
+    use_ssl = "yes";
     autoconnect = "yes";
   }
 );
 
-chatnets = { unixchat = { type = "IRC"; nick = "neongold"; }; };
+chatnets = {
+  unixchat = { type = "IRC"; nick = "neongold"; };
+  ircnet = { type = "IRC"; nick = "neongold"; };
+  efnet = { type = "IRC"; nick = "neongold"; };
+  cyberia = { type = "IRC"; nick = "neongold"; };
+  blackhats = { type = "IRC"; nick = "neongold"; };
+};
 
 channels = (
-  { name = "#unix"; chatnet = "unixchat"; autojoin = "Yes"; }
+  { name = "#2f30"; chatnet = "cyberia"; autojoin = "Yes"; },
+  { name = "#ascii"; chatnet = "ircnet"; autojoin = "Yes"; },
+  { name = "#askee"; chatnet = "efnet"; autojoin = "Yes"; },
+  { name = "#cyberia"; chatnet = "cyberia"; autojoin = "Yes"; },
+  { name = "#gentlemanloser"; chatnet = "unixchat"; autojoin = "Yes"; },
+  { name = "#security"; chatnet = "blackhats"; autojoin = "No"; }
+  { name = "#unix"; chatnet = "unixchat"; autojoin = "Yes"; },
+  { name = "#unixporn"; chatnet = "unixchat"; autojoin = "Yes"; },
 );
 
 aliases = {
+  graff = "exec -o graff";
   emote = "exec -o emote";
   ascii = "exec -o toilet -f future --irc";
   rusto = "exec -o toilet -f rusto --irc";
@@ -43,6 +83,8 @@ aliases = {
   toilet = "exec -o toilet";
   ns = "msg nickserv";
   cs = "msg chanserv";
+  os = "msg operserv";
+  w = "win";
 };
 
 settings = {
@@ -51,12 +93,17 @@ settings = {
     actlist_sort = "refnum";
     term_force_colors = "yes";
     indent = "12";
+    paste_verify_line_count = "0";
   };
   "fe-common/core" = {
     theme = "neongold.theme";
-    bell_beeps = "no";
-    autolog_path = "/var/logs/irc/$tag/$0.log";
+    autolog_path = "~/irc/$tag/$0.log";
     autolog = "yes";
+  };
+  "irc / core" = {
+    ctcp_userinfo_reply = "rip";
+    ctcp_version_reply = "rip";
+    max_ctcp_queue = "0";
   };
 };
 logs = { };
@@ -76,3 +123,15 @@ statusbar = {
     };
   };
 };
+
+ignores = (
+  { level = "JOINS PARTS QUITS"; channels = ( "#2f30" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#ascii" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#askee" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#cyberia" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#gentlemanloster" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#security" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#unixporn" ); },
+  { mask = "DCC"; level = "ALL"; },
+  { mask = "CTCPS"; level = "ALL"; }
+);
