@@ -51,6 +51,7 @@
  - [my shell](#my-shell)
  - [vim](#vim)
  - [previews](#previews)
+ - [license](#license)
 
 # dotfiles
 in the unix world programs are commonly configured in two different ways, via shell arguments or text based configuration files. programs with many options like window managers or text editors are configured on a per-user basis with files in your home directory `~`. in unix like operating systems any file or directory name that starts with a period or full stop character is considered hidden, and in a default view will not be displayed. thus the name dotfiles. 
@@ -195,3 +196,9 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 - [color scripts](http://git.io/.fun)
 
 i'm a mod on [/r/unixporn](https://reddit.com/r/unixporn/), and you can find [more of my stuff there](https://www.reddit.com/search?q=author%3Ax_ero+subreddit%3Aunixporn&restrict_sr=&sort=relevance&t=all).
+
+# license
+
+![kopimi logo](https://gist.githubusercontent.com/xero/cbcd5c38b695004c848b73e5c1c0c779/raw/6b32899b0af238b17383d7a878a69a076139e72d/kopimi-sm.png)
+
+all files and scripts in this repo are released [CC0](https://creativecommons.org/publicdomain/zero/1.0/) / [kopimi](https://kopimi.com)! in the spirit of _freedom of information_, i encourage you to fork, modify, change, share, or do whatever you like with this project! `^c^v`
