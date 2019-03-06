@@ -37,11 +37,11 @@ set color_titleline_fg=3
 
 # Color of the selected row which is also the currently playing track in active window.
 set color_win_cur_sel_bg=0
-set color_win_cur_sel_fg=12
+set color_win_cur_sel_fg=3
 
 # Color of the selected row which is also the currently playing track in inactive window.
 set color_win_inactive_cur_sel_bg=0
-set color_win_inactive_cur_sel_fg=8
+set color_win_inactive_cur_sel_fg=3
 
 # Color of selected row in active window.
 set color_win_sel_bg=0

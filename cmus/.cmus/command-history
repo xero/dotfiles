@@ -1,2 +1,5 @@
+update-cache f
+colorscheme  nord
+clear
 colorscheme blaquemagick
 add ~/music/
