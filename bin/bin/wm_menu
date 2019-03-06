@@ -1,37 +1,18 @@
 #!/bin/sh
-#
-#  ███     ██ ██████████    ██████████   █████  ███████  ██   ██
-# ░░██  █ ░██░░██░░██░░██  ░░██░░██░░██ ██░░░██░░██░░░██░██  ░██
-#  ░██ ███░██ ░██ ░██ ░██   ░██ ░██ ░██░███████ ░██  ░██░██  ░██
-#  ░████░████ ░██ ░██ ░██   ░██ ░██ ░██░██░░░░  ░██  ░██░██  ░██
-#  ███░ ░░░██ ███ ░██ ░██   ███ ░██ ░██░░██████ ███  ░██░░██████
-# ░░░    ░░░ ░░░  ░░  ░░   ░░░  ░░  ░░  ░░░░░░ ░░░   ░░  ░░░░░░
-#
-#  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.nu>
-# ░▓ code   ▓ http://code.xero.nu/dotfiles
-# ░▓ mirror ▓ http://git.io/.files
-# ░▓▓▓▓▓▓▓▓▓▓
-# ░░░░░░░░░░
-#
-# dmenu launcher script
-#
-# requires:
-#	demnu (personal fork)
-#		https://github.com/xero/dmenu
-#	passmenu
-#		https://git.zx2c4.com/password-store/tree/contrib/dmenu/passmenu
-#	networkmanager-dmenu
-#		https://github.com/firecat53/networkmanager-dmenu
-
 ln=32
 sb="#5E81AC"
 sf="#222222"
 nf="#c0c0c0"
 nb="#3B4252"
-_RICE="-dim 0.75 -l $ln -sb $sb -sf $sf -nf $nf -sb $sb -c -fn -gohu-gohufont-medium-r-normal--24-100-100-100-c-80-iso10646-1"
+fn="-misc-hack-nerd-font-mono-medium-i-normal--0-0-0-0-p-0-iso10646-1"
+_RICE="-dim 0.75 -l $ln -sb $sb -sf $sf -nf $nf -sb $sb -c -fn $fn"
 
-exe=`echo -e "app\nwww\nvid\nnet\nclip\npass\ninvert\nquit" | dmenu $_RICE -p 'run'`
+if [ ! -z "$1" ]; then
+	exe=$1
+else
+	exe=`echo -e "app\nwww\nvid\nimg\nnet\nclip\npass\ncam\npdf\nscrot\nburp\npablo\ninvert\nquit" | dmenu $_RICE -p 'run'`
+fi
+[ ! -z "$exe" ] || exit
 
 case $exe in
 	app)
@@ -43,6 +24,12 @@ case $exe in
 	vid*)
 		urxvt -e bash -c "`printf "%s'" ${exe} | sed "s!vid!mpv !"`"
 	;;
+	img*)
+		curl -o /tmp/img -s `echo ${exe} | sed "s!img !!"` && sxiv -a /tmp/img && rm /tmp/img
+	;;
+	pdf*)
+		curl -o /tmp/pdf -s `echo ${exe} | sed "s!pdf !!"` && zathura /tmp/pdf && rm /tmp/pdf
+	;;
 	clip)
 		clipmenu $_RICE -p 'clipboard'
 	;;
@@ -52,13 +39,36 @@ case $exe in
 	net)
 		networkmanager_dmenu $_RICE -p 'innernetz'
 	;;
+	cam)
+		~/bin/cam
+	;;
+	scrot)
+		scrot=`echo -e "fullscreen\narea\nvid" | dmenu $_RICE -p 'scrot'`
+		case $scrot in
+			fullscreen)
+				scrot -d 2 ~/lib/img/$(date "+%Y-%m-%d_%H-%M-%S")_scrot.png
+			;;
+			area)
+				import -window root -crop `slop -f "%g"` ~/lib/img/$(date "+%Y-%m-%d_%H-%M-%S")_slop_scrot.png
+			;;
+		esac
+	;;
+	burp)
+		~/src/burp/burppro
+	;;
+	pablo)
+		# fix function/media keys
+		echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
+		# launch pablodraw
+		TERM=xterm mono /usr/share/pablodraw/PabloDraw.exe
+	;;
 	invert)
 		xcalib -i -a
 	;;
 	quit)
 		poweroff
 	;;
-#	*)
-#		notify-send "what?"
-#	;;
+	*)
+		notify-send '❓ what ❓'
+	;;
 esac
