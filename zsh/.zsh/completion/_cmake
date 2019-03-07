@@ -1,5 +1,30 @@
 #compdef cmake
-
+# ------------------------------------------------------------------------------
+# Copyright (c) 2017 Github zsh-users - http://github.com/zsh-users
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the zsh-users nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL ZSH-USERS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# -------------------------------------------------------------------------
 # Description
 # -----------
 #
@@ -9,7 +34,8 @@
 # Authors
 # -------
 #
-#  * Scott M. Kroll <skroll@gmail.com>
+#  * Scott M. Kroll <skroll@gmail.com> (initial version)
+#  * Paul Seyfert <pseyfert.mathphys@gmail.com> (handling of --build and updates)
 #
 # -------------------------------------------------------------------------
 # Notes
@@ -24,10 +50,141 @@
 #
 # -------------------------------------------------------------------------
 
-_cmake() {
-  local context state line curcontext="$curcontext" cmake_args
+local context state line curcontext="$curcontext" cmake_args
 
-  local cmake_help_actions;cmake_help_actions=(
+local cmake_build_options;cmake_build_options=(
+    '-C[Pre-load a script to populate the cache]:script:_files'
+    '*-D-[Create a cmake cache entry]:property:_cmake_define_property'
+    '-U[Remove matching entries from CMake cache]:globbing expression'
+    '-G[Specify a makefile generator]:generator:_cmake_generators'
+    '-T[Specify toolset name if supported by generator]:toolset name'
+    '(-Wno-dev -Wdev)-Wno-dev[Suppress/Enable developer warnings]'
+    '(-Wno-dev -Wdev)-Wdev[Suppress/Enable developer warnings]'
+    '(-Wno-deprecated -Wdeprecated)-Wno-deprecated[Suppress/Enable deprecation warnings]'
+    '(-Wno-deprecated -Wdeprecated)-Wdeprecated[Suppress/Enable deprecation warnings]'
+    '(-Wno-error=dev -Werror=dev)-Wno-error=dev[Make developer warnings (not) errors]'
+    '(-Wno-error=dev -Werror=dev)-Werror=dev[Make developer warnings (not) errors]'
+    '(-Wno-error=deprecated -Werror=deprecated)-Werror=deprecated[Make deprecated macro and function warnings (not) errors]'
+    '(-Wno-error=deprecated -Werror=deprecated)-Wno-error=deprecated[Make deprecated macro and function warnings (not) errors]'
+    '--warn-uninitialized[Warn about uninitialized values.]'
+    '--warn-unused-vars[Warn about unused variables.]'
+    '--no-warn-unused-cli[Dont warn about command line options.]'
+    '-i[Run in wizard mode]'
+    '-L-[List cache variables]::_values "options" "[non-advanced cache variables]" "A[advanced cache variables]" "H[non-advanced cached variables with help]" "AH[advanced cache variables with help]"'
+    '--trace[Put cmake in trace mode]'
+    '--find-package[Run in pkg-config like mode.]'
+    ':cmake project:_files -/'
+)
+
+# ------------------------
+# _cmake_generator_options
+#
+# arguments are $1: build working directory (top level Makefile or build.ninja file)
+#               $2: position of "--" in the command line
+# ------------------------
+(( $+functions[_cmake_generator_options] )) ||
+_cmake_generator_options() {
+  # pass only the part of the command line starting at "--" to the completion
+  shift (( $2 - 1 )) words
+  (( CURRENT = $CURRENT + 1 - $2 ))
+  if [ -f $1/Makefile ]
+  then
+    $_comps[make]
+  elif [ -f $1/build.ninja ]
+  then
+    $_comps[ninja]
+  fi
+}
+
+# --------------
+# _cmake_targets
+# --------------
+(( $+functions[_cmake_targets] )) ||
+_cmake_targets() {
+  local -a targets
+  if [ -f $1/Makefile ]
+  then
+    # `make help` doesn't work for Makefiles in general, but for cmake generated makefiles it does.
+    i=1
+    for target in $(make help | \grep -e "\.\.\." | sed "s/\.\.\. //" | sed "s/ (the default.*//") ; do
+      targets[$i]=$target
+      (( i = $i + 1 ))
+    done
+  elif [ -f $1/build.ninja ]
+  then
+    # `ninja help` doesn't seem to be the list of targets we're interested in
+    i=1
+    for target in $(ninja -C $1 -t targets all 2&>/dev/null | awk -F: '{print $1}') ; do
+      targets[$i]="$target"
+      (( i++ ))
+    done
+  fi
+  _describe 'build targets' targets
+}
+
+_cmake_suggest_builddirs() {
+  _alternative ':current directory:(.)' 'directory::_directories' && return 0
+}
+
+_cmake_on_build() {
+  local build_extras;build_extras=(
+    '--[Native build tool options]'
+    '--target[specify build target]'
+    '--clean-first[build target clean first]'
+    '--config[For multi-configuration tools]'
+    '--use-stderr')
+  local -a undescribed_build_extras
+  i=1
+  for be in $build_extras ; do
+    undescribed_build_extras[$i]=$(echo $be | sed "s/\[.*//")
+    (( i++ ))
+  done
+  inbuild=false
+  dashdashposition=-1
+  for ((i = (($CURRENT - 1)); i > 1 ; i--)); do
+    if [[ $words[$i] == --build ]] ; then
+      inbuild=true
+      buildat=$i
+      (( difference = $CURRENT - $i ))
+    elif [[ $words[$i] == -- ]] ; then
+      dashdashposition=$i
+    fi
+  done
+  # check if build mode has been left
+  outofbuild=false
+  for ((i = (($CURRENT - 1)); i > (($buildat + 1)); i--)); do
+    # don't check the word after --build (should be a directory)
+    if [[ ${undescribed_build_extras[(r)$words[$i]]} == $words[$i] ]] ; then continue ; fi
+    if [[ $words[(($i - 1))] == --target ]] ; then continue ; fi
+    if [[ $words[(($i - 1))] == --config ]] ; then continue ; fi
+    outofbuild=true
+  done
+  if (( $dashdashposition > 0 )) ; then
+    _cmake_generator_options $words[(($buildat + 1))] $dashdashposition && return 0
+  fi
+  if [[ "$inbuild" == false || "$difference" -eq 1 ]] ; then
+    # either there is no --build or completing the directory after --build
+    _arguments -C -s \
+      - build_opts \
+      "$cmake_build_options[@]" \
+      - build_cmds \
+      "$cmake_suggest_build[@]" && return 0
+  elif [[ $words[(($CURRENT - 1))] == --target ]] ; then
+    # after --build <dir> --target, suggest targets
+    _cmake_targets $words[(($buildat + 1))] && return 0
+  elif [[ $words[(($CURRENT - 1))] == --config ]] ; then
+    # after --build <dir> --config, no idea
+    return 0
+  elif [ "$outofbuild" = true ] ; then
+    # after --build <dir> --<not a --build option>, suggest other cmake_build_options (like -Wno-dev)
+    _arguments "$cmake_build_options[@]" && return 0
+  else
+    # after --build <dir>, suggest other cmake_build_options (like -Wno-dev) or --build options (like --clean-first)
+    _arguments "$build_extras[@]" "$cmake_build_options[@]" && return 0
+  fi
+}
+
+local cmake_help_actions;cmake_help_actions=(
     '(- 1)--help-command[Print help for a single command and exit]:command-name:_cmake_command_names'
     '(- 1)--help-command-list[List available listfile commands and exit]'
     '(- 1)--help-commands[Print help for all commands and exit]'
@@ -47,33 +204,9 @@ _cmake() {
     '(- 1)--help-html[Print full help in HTML format]'
     '(- 1)--help-man[Print full help as a UNIX man page and exit]'
     '(- 1)'{--version,-version}'[Print full help as a UNIX man page and exit]'
-  )
-
-  local cmake_build_options;cmake_build_options=(
-    '-C[Pre-load a script to populate the cache]:script:_files'
-    '*-D-[Create a cmake cache entry]:property:_cmake_define_property'
-    '-U[Remove matching entries from CMake cache]:globbing expression'
-    '-G[Specify a makefile generator]:generator:_cmake_generators'
-    '-T[Specify toolset name if supported by generator]:toolset name'
-    '(-Wno-dev -Wdev)-Wno-dev[Suppress developer warnings]'
-    '(-Wno-dev -Wdev)-Wdev[Enable developer warnings]'
-    '-i[Run in wizard mode]'
-    '-L-[List cache variables]::_values "options" "[non-advanced cache variables]" "A[advanced cache variables]" "H[non-advanced cached variables with help]" "AH[advanced cache variables with help]"'
-    '--trace[Put cmake in trace mode]'
-    ':cmake project:_files -/'
-  )
-
-  local cmake_command_actions;cmake_command_actions=(
-    '-E[CMake command mode]:*:command'
-  )
-
-  _arguments -C -s \
-    - help \
-      "$cmake_help_actions[@]" \
-    - command \
-      "$cmake_command_actions[@]" \
-    - build_opts \
-      "$cmake_build_options[@]" && return 0
+)
+_cmake_help() {
+  _arguments -C -s - help "$cmake_help_actions[@]"
 }
 
 # -------------------
@@ -163,9 +296,12 @@ _cmake_define_lang_property_names() {
     "CMAKE_${cmake_lang}_COMPILER:${cmake_lang_desc} compiler"
     "CMAKE_${cmake_lang}_FLAGS:${cmake_lang_desc} compiler flags for all builds"
     "CMAKE_${cmake_lang}_FLAGS_DEBUG:${cmake_lang_desc} compiler flags for all Debug build"
-    "CMAKE_${cmake_lang}_FLAGS_RLEASE:${cmake_lang_desc} compiler flags for all Relase build"
+    "CMAKE_${cmake_lang}_FLAGS_RELEASE:${cmake_lang_desc} compiler flags for all Relase build"
     "CMAKE_${cmake_lang}_FLAGS_MINSIZREL:${cmake_lang_desc} compiler flags for all MinSizRel build"
     "CMAKE_${cmake_lang}_FLAGS_RELWITHDEBINFO:${cmake_lang_desc} compiler flags for all RelWithDebInfo build"
+    "CMAKE_${cmake_lang}_STANDARD:${cmake_lang_desc} language standard"
+    "CMAKE_${cmake_lang}_STANDARD_REQUIRED:${cmake_lang_desc} language standard is required"
+    "CMAKE_${cmake_lang}_EXTENSIONS:${cmake_lang_desc} enable compiler specific extensions"
   )
 
   _describe -t "${cmake_lang//:/-}-property-names" "${cmake_lang_desc} property name" properties $@[0,-3] && return 0
@@ -177,10 +313,15 @@ _cmake_define_lang_property_names() {
 (( $+functions[_cmake_define_common_property_names] )) ||
 _cmake_define_common_property_names() {
   local properties; properties=(
+    'CMAKE_MODULE_PATH:Search path for cmake modules (FindPROJECT.cmake)'
+    'CMAKE_PREFIX_PATH:Search path for installations (PROJECTConfig.cmake)'
     'CMAKE_BUILD_TYPE:Specifies the build type for make based generators'
     'CMAKE_TOOLCHAIN_FILE:Absolute or relative path to a cmake script which sets up toolchain related variables'
     'CMAKE_COLOR_MAKEFILE:Enables/disables color output when using the Makefile generator'
     'CMAKE_INSTALL_PREFIX:Install directory used by install'
+    'CMAKE_EXPORT_COMPILE_COMMANDS:Enable/disable output of compilation database during generation'
+    'CMAKE_RULE_MESSAGES:Specify whether to report a message for each make rule'
+    'CMAKE_VERBOSE_MAKEFILE:Enable verbose output from Makefile builds'
   )
 
   _describe -t 'common-property-names' 'common property name' properties $@
@@ -195,11 +336,18 @@ _cmake_define_property_values() {
   setopt localoptions extendedglob
   case $@[-1] in
     (CMAKE_BUILD_TYPE)     _wanted build-types expl 'build type' _cmake_build_types && ret=0;;
+    (CMAKE_CXX_STANDARD) _wanted cxx-standards expl 'cxx standard' _cmake_cxx_standars && ret=0;;
+    (CMAKE_C_STANDARD) _wanted c-standards expl 'c standard' _cmake_c_standars && ret=0;;
     (CMAKE_TOOLCHAIN_FILE) _wanted toolchain-files expl 'file' _cmake_toolchain_files && ret=0;;
     (CMAKE_COLOR_MAKEFILE) _wanted booleans expl 'boolean' _cmake_booleans && ret=0;;
+    (CMAKE_RULE_MESSAGES)  _wanted booleans expl 'boolean' _cmake_booleans && ret=0;;
+    (CMAKE_VERBOSE_MAKEFILE) _wanted booleans expl 'boolean' _cmake_booleans && ret=0;;
     (CMAKE_INSTALL_PREFIX) _files -/ && ret=0;;
+    (CMAKE_EXPORT_COMPILE_COMMANDS) _wanted booleans expl 'boolean' _cmake_booleans && ret=0;;
     (CMAKE_*_COMPILER)     _wanted compilers expl 'compiler' _cmake_compilers && ret=0;;
-    (CMAKE_*_FLAGS(|_?*))  _message -e compiler-flags 'compiler flags' && ret=0;;
+    (CMAKE_*_FLAGS(|_?*))  _message -e compiler-flags 'compiler flags' && _dispatch $service -value-,CPPFLAGS,-default- && ret=0;;
+    (CMAKE_*_STANDARD_REQUIRED) _wanted booleans expl 'boolean' _cmake_booleans && ret=0;;
+    (CMAKE_*_EXTENSIONS) _wanted booleans expl 'boolean' _cmake_booleans && ret=0;;
     (*)                    _files && ret=0;;
   esac
 
@@ -218,6 +366,33 @@ _cmake_build_types() {
     'MinSizeRel'
   )
   _values 'build type' ${build_types[@]}
+}
+
+# -------------------
+# _cmake_c_standars
+# -------------------
+(( $+functions[_cmake_c_standars] )) ||
+_cmake_c_standars() {
+  local c_standards; c_standards=(
+  '90'
+  '99'
+  '11'
+  )
+  _values 'c standard' ${c_standards[@]}
+}
+
+# -------------------
+# _cmake_cxx_standars
+# -------------------
+(( $+functions[_cmake_cxx_standars] )) ||
+_cmake_cxx_standars() {
+  local cxx_standards; cxx_standards=(
+  '98'
+  '11'
+  '14'
+  '17'
+  )
+  _values 'cxx standard' ${cxx_standards[@]}
 }
 
 # -----------------
@@ -269,6 +444,31 @@ _cmake_compilers() {
   _command_names -e
 }
 
+local cmake_command_actions;cmake_command_actions=(
+    '-E[CMake command mode]:*:command'
+)
+_cmake_command() {
+  _arguments -C -s - command "$cmake_command_actions[@]"
+}
 
-_cmake "$@"
+local cmake_suggest_build;cmake_suggest_build=(
+    '--build[build]:build dir:_cmake_suggest_builddirs'
+)
 
+if [ $CURRENT -eq 2 ] ; then
+  _arguments -C -s \
+    - help \
+      "$cmake_help_actions[@]" \
+    - command \
+      "$cmake_command_actions[@]" \
+    - build_opts \
+      "$cmake_build_options[@]" \
+    - build_cmds \
+      "$cmake_suggest_build[@]" && return 0
+elif [[ $words[2] = --help* ]] ; then
+  _cmake_help
+elif [[ $words[2] != -E ]] ; then
+  _cmake_on_build
+else
+  _cmake_command
+fi
