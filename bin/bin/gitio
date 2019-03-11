@@ -36,14 +36,14 @@ EOF
 
 err() {
   echo $1
-  usage 
+  usage
 }
 
 optstest() {
   found=0
   for arg in "$@"
   do
-    if echo $arg | cut -d/ -f3 | grep -q "github.com\|githubusercontent.com"
+    if echo $arg | awk -F '/' '$3 !~ /github.com|github.io|githubusercontent.com/ { exit 1 }'
     then
       GHURL=$arg
       found=1
@@ -74,9 +74,9 @@ esac
 
 if [ -z "$VANITY" ]
 then
-  url=`curl -is https://git.io -F "url=$GHURL" | grep -i "location" | cut -d' ' -f2`
+  url=`curl -is https://git.io -F "url=$GHURL" | awk '/Location:/ { print $2 }'`
 else
-  url=`curl -is https://git.io -F "url=$GHURL" -F "code=$VANITY" | grep -i "location" | cut -d' ' -f2`
+  url=`curl -is https://git.io -F "url=$GHURL" -F "code=$VANITY" | awk '/Location:/ { print $2 }'`
 fi
 
 if [ -z $url ]
