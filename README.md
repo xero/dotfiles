@@ -16,27 +16,6 @@
  ░▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░
 
- 2bwm           > fast floating wm
- bin            > system automation scripts
- compton        > minimal composite config for opacity
- figlet         > custom 3d font
- fun            > term color, sys info, and other misc scripts
- git            > global git config and aliases
- irssi          > neon gold irc theme
- mpd            > music player daemon setup
- mutt           > minimal mutt setup
- ncmpcpp        > ncurses mpc++ ui/color settings
- pacman         > pacman colors and progress bar animations
- previews       > unixporn screenshots
- ryu-login      > ryu ansi art for /etc/issue tty login
- ssh            > remote ssh server keep alive
- stalonetray    > stand alone tray for daemons
- themes         > mod of the cathexis dark theme for gtk/qt/xfce
- tmux           > terminal multiplexer with custom status bar
- urxvt          > sourcerer terminal colors and keyboard settings
- vim            > wizard status bar and sourcerer color scheme
- wallpaper      > the cool desktop background images i use
- zsh            > zshell settings, aliases, and custom prompts
 ```
 
 ## table of contents
@@ -160,37 +139,30 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 - [vim-tmux-resizer](https://github.com/melonmanchan/vim-tmux-resizer) - resize tmux panes and vim splits with same keybinds
 
 # previews
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/nord.png)
+- [details](https://github.com/xero/dotfiles/blob/master/previews/nord-setup.md)
+
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/solid_gold.png)
+
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/bbs_lyfe.png)
+
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/blaquemagick.png)
+
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/miasma.png)
+
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/coils.png)
-- [herbstluftwm](http://git.io/.herbstluftwm)
-- [urxvt](http://git.io/.urxvt)
-- [zsh](http://git.io/.zsh)
-- [tmux](http://git.io/.tmux)
-- [vim](http://git.io/.vim)
-- [ncmpcpp](http://git.io/.ncmpcpp)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/blizzard-orb.png)
-- [blizzard orb xcolors](https://github.com/xero/dotfiles/blob/master/urxvt/blizzard-orb.Xcolors)
+
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/work.png)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/sysinfo.png)
-- [sysinfo](http://git.io/v4aH5)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/neongold.png)
-- [irssi](http://git.io/.irssi)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_converge.png)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-1.png)
-- [sysinfo](http://git.io/.sysinfo)
-
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-2.png)
-- [sublime greybeard theme](http://git.io/sublimegreybeard)
-
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-3.png)
-- [chroimum with cathexis gtk](http://git.io/cathexis) & [greybeard devtools](http://git.io/greybeard-devtools)
-- figlet [-f 3d](http://git.io/3d) webdev | lolcat
-
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-5.png)
-- [color scripts](http://git.io/.fun)
 
 i'm a mod on [/r/unixporn](https://reddit.com/r/unixporn/), and you can find [more of my stuff there](https://www.reddit.com/search?q=author%3Ax_ero+subreddit%3Aunixporn&restrict_sr=&sort=relevance&t=all).
 
