@@ -146,6 +146,8 @@ when you learn vim it's best to use a more vanilla config. if helps you focus on
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/bbs_lyfe.png)
 
+![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/bridge-of-leaves.png)
+
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/blaquemagick.png)
 
 ![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/miasma.png)
