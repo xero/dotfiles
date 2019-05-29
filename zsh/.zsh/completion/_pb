@@ -4,23 +4,14 @@ _pb() {
 	commands=(
 		'ix.io'
 		'0x0.st'
-		'asis.io'
 		'catbox.moe'
 		'clbin.com'
 		'dmca.gripe'
-		'doko.me'
 		'dumpz.org'
 		'fiery.me'
-		'lewd.se'
-		'mixtape.moe'
-		'n33r.tk'
 		'p.iotek.org'
-		'pomf.cat'
-		'ptpb.pw'
-		'rokket.space'
 		'sprunge.us'
 		'uguu.se'
-		'w1r3.net'
 		'pastebin.com'
 	)
 	if (( CURRENT == 2 )); then
