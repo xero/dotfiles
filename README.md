@@ -45,6 +45,7 @@ stow is available for all linux and most other unix like distributions via your 
 
 - `sudo pacman -S stow`
 - `sudo apt-get install stow`
+- `sudo dnf install stow`
 - `brew install stow`
 
 or clone it [from source](https://savannah.gnu.org/git/?group=stow) and [build it](http://git.savannah.gnu.org/cgit/stow.git/tree/INSTALL) yourself.
