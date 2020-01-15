@@ -44,13 +44,6 @@ servers = (
     port = "6697";
     use_ssl = "yes";
     autoconnect = "yes";
-  },
-  {
-    address = "irc.blackhats.ru";
-    chatnet = "blackhats";
-    port = "6697";
-    use_ssl = "yes";
-    autoconnect = "yes";
   }
 );
 
@@ -59,7 +52,6 @@ chatnets = {
   ircnet = { type = "IRC"; nick = "neongold"; };
   efnet = { type = "IRC"; nick = "neongold"; };
   cyberia = { type = "IRC"; nick = "neongold"; };
-  blackhats = { type = "IRC"; nick = "neongold"; };
 };
 
 channels = (
@@ -68,7 +60,6 @@ channels = (
   { name = "#askee"; chatnet = "efnet"; autojoin = "Yes"; },
   { name = "#cyberia"; chatnet = "cyberia"; autojoin = "Yes"; },
   { name = "#gentlemanloser"; chatnet = "unixchat"; autojoin = "Yes"; },
-  { name = "#security"; chatnet = "blackhats"; autojoin = "No"; }
   { name = "#unix"; chatnet = "unixchat"; autojoin = "Yes"; },
   { name = "#unixporn"; chatnet = "unixchat"; autojoin = "Yes"; },
 );
@@ -130,7 +121,6 @@ ignores = (
   { level = "JOINS PARTS QUITS"; channels = ( "#askee" ); },
   { level = "JOINS PARTS QUITS"; channels = ( "#cyberia" ); },
   { level = "JOINS PARTS QUITS"; channels = ( "#gentlemanloster" ); },
-  { level = "JOINS PARTS QUITS"; channels = ( "#security" ); },
   { level = "JOINS PARTS QUITS"; channels = ( "#unixporn" ); },
   { mask = "DCC"; level = "ALL"; },
   { mask = "CTCPS"; level = "ALL"; }
