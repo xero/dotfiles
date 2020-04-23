@@ -24,7 +24,7 @@ nfg_color_dark:#dfdbd2  //color del los textos del sistema cuando se pide en osc
 /*color de las ventanas y sombras internas de las ventanas
 GtkWidget{background:@base_color; box-shadow: inset 0px 0px 48px 48px rgba(44, 44, 44, 0.28);}
 GtkWidget:backdrop{background:mix (@bg_color, #FFFFFF, 0.13);}
-GtkWidget *,    
+GtkWidget *,
 GtkWidget *:backdrop,
 GtkWidget *:insensitive{background:@transparent; box-shadow:none;}
 *:insensitive{color:alpha(@fg_color, 0.5); text-shadow: 0 1px alpha (shade (@bg_color, 1.25), 0.1);}
@@ -40,7 +40,7 @@ background blacks uncomment:
 .button,
 .button:focus,
 .button:hover,
-.button:hover:focus{ 
+.button:hover:focus{
     background:url("assets/metal.png") center center;
     border:4px solid transparent;
     border-image: url("assets/button.png") 6 4 4 4 / 6px 4px 4px 4px stretch;
@@ -245,7 +245,7 @@ background blacks uncomment:
     text-shadow: 0px -1px 0px rgba(0,0,0,0.5);
     background-clip: padding-box;
     box-shadow: none;
-    
+
 }
 .linked .button:active,
 .linked .button:active:hover,
@@ -304,7 +304,7 @@ background blacks uncomment:
 }
 .check:active,
 .check:active:hover{
-     background:alpha(@fg_color,0.1) url("assets/check-active.png") left center no-repeat;    
+     background:alpha(@fg_color,0.1) url("assets/check-active.png") left center no-repeat;
 }
 .check:hover,
 .check:inconsistent:hover{
@@ -328,7 +328,7 @@ background blacks uncomment:
 .check:inconsistent:insensitive,
 .check:backdrop:inconsistent,
 .check:backdrop:inconsistent:insensitive{
-    background:alpha(@fg_color,0.1) url("assets/check-mixed-disable.svg") center center no-repeat;  
+    background:alpha(@fg_color,0.1) url("assets/check-mixed-disable.svg") center center no-repeat;
 }
 /*radio*/
 .radio,
@@ -355,7 +355,7 @@ background blacks uncomment:
 }
 .radio:active,
 .radio:active:hover{
-     background:alpha(@fg_color,0.1) url("assets/radio-active.png") center center no-repeat;    
+     background:alpha(@fg_color,0.1) url("assets/radio-active.png") center center no-repeat;
 }
 .radio:hover,
 .radio:inconsistent:hover{
@@ -379,7 +379,7 @@ background blacks uncomment:
 .radio:inconsistent:insensitive,
 .radio:backdrop:inconsistent,
 .radio:backdrop:inconsistent:insensitive{
-    background:alpha(@fg_color,0.1) url("assets/check-mixed-disable.svg") center center no-repeat;  
+    background:alpha(@fg_color,0.1) url("assets/check-mixed-disable.svg") center center no-repeat;
 }
 
 /****************
@@ -580,7 +580,7 @@ GtkComboBox.combobox-entry .entry:last-child{
 GtkComboBox.combobox-entry .entry:insensitive{
     border-image: url("assets/entry-insensitive.svg") 0 0 1 1 / 0 0 1 1 stretch;
 }
-    
+
 GtkComboBox.combobox-entry .entry:focus,
 GtkComboBox.combobox-entry:active .entry{
     border-width:0px 0px 2px 2px;
@@ -688,7 +688,7 @@ GtkLabel:insensitive {
 GtkMenuToolButton.menu,
 .primary-toolbar .button .menu,
 .menu {
-    background:#373737; 
+    background:#373737;
     border:none;
     border-image:none;
     border:none;
@@ -718,7 +718,7 @@ GtkComboBox .menu {
 .menubar.menuitem:hover,
 .menubar .menuitem:hover {
     /*background:mix (@bg_color, #33b5e5, 0.15);*/
-    background:#373737; 
+    background:#373737;
     border-image:none;
     border-radius:0px;
     /*border-bottom:4px solid #33b5e5;*/
@@ -745,7 +745,7 @@ GtkComboBox .menuitem * {
 }
 .menuitem:hover,
 .menu .menuitem:hover {
-        background:rgba(0,0,0,0.2);
+        background:#00ff00;
         border-radius:0px;
         border:0px;
         background-image:none;
@@ -826,7 +826,7 @@ GtkProgressBar{
     -GtkRange-trough-border: 0;
     -GtkScale-slider-length: 28;
     -GtkWidget-focus-line-width: 0;
-    
+
 }
 .scale.slider,
 .scale.slider.horizontal,
@@ -886,7 +886,7 @@ GtkProgressBar{
     border-image: url("assets/scale-trough-highlight-left.png") 2 0 3 8 / 2px 0px 3px 8px stretch;
 }
 .scale.trough.highlight.left:insensitive{
- border-image: url("assets/scale-trough-disable.png") 2 0 3 8 / 2px 0px 3px 8px stretch;   
+ border-image: url("assets/scale-trough-disable.png") 2 0 3 8 / 2px 0px 3px 8px stretch;
 }
 
 GtkScale.vertical {
@@ -918,7 +918,7 @@ GtkScale.vertical {
     border-image: url("assets/scale-trough-highlight-left-v.png") 0 2 9 3 / 0px 2px 9px 3px stretch;
 }
 .scale.trough.highlight.bottom.vertical:insensitive{
- border-image: url("assets/scale-trough-disable-v.png") 0 2 9 3 / 0px 2px 9px 3px stretch;   
+ border-image: url("assets/scale-trough-disable-v.png") 0 2 9 3 / 0px 2px 9px 3px stretch;
 }
 
 /*progressbar*/
@@ -966,7 +966,7 @@ GtkSwitch {
     -GtkScale-slider-length: 27;
     -GtkWidget-focus-line-width: 0;
 
-    
+
 }
 
 GtkSwitch.trough,
@@ -1070,7 +1070,7 @@ Reproductor
 .inline-toolbar.toolbar {
     background:alpha(@fg_color, 0.1);
 }
-                 
+
 /*Unity*/
 .unity-panel{
     background-image:#bg_color;
@@ -1088,10 +1088,10 @@ Reproductor
 /*Nautilus*/
 NautilusWindow GtkContainer{background:@base_color; box-shadow: inset 0px 0px 48px 48px rgba(44, 44, 44, 0.28);}
 /* darle bg al contenededor
-NautilusWindow *{   background-color: #484848; 
+NautilusWindow *{   background-color: #484848;
     box-shadow: inset 0px 0px 48px 48px rgba(44, 44, 44, 0.28);}
 */
-.nautilus-desktop.nautilus-canvas-item 
+.nautilus-desktop.nautilus-canvas-item
 {    color: @fg_color;
     text-shadow: 0px 0px 1px @bg_color;
 }

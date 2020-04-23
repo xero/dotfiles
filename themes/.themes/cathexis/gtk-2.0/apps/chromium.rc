@@ -4,7 +4,7 @@
 
 style "chromium_toolbar_button" {
 	engine "murrine" {
-		roundness = 3
+		roundness = 0
 		textstyle = 0
 	}
 }
