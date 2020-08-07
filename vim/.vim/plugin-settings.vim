@@ -54,10 +54,12 @@ if has('nvim')
   " let g:deoplete#disable_auto_complete = 1
   let g:deoplete#enable_ignore_case = 1
   if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns = {}
+    "let g:deoplete#omni#input_patterns = {}
+    let g:deoplete#custom#var = {}
   endif
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 endif
+
 
 " linting
 let g:ale_completion_enabled = 1
@@ -192,7 +194,11 @@ let s:p.tabline.right = copy(s:p.normal.right)
 let s:p.normal.error = [ [ s:base02, s:yellow ] ]
 let s:p.normal.warning = [ [ s:yellow, s:base01 ] ]
 
+if has('nvim')
 let g:lightline#colorscheme#nord#palette = lightline#colorscheme#flatten(s:p)
+endif
+
+let g:nord_italic = 1
 
 set laststatus=2
 let g:lightline = {
