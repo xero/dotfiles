@@ -34,7 +34,7 @@ ICO_DIVERGED="↕"
 COLOR_ROOT="%F{red}"
 COLOR_USER="%F{cyan}"
 COLOR_NORMAL="%F{white}"
-PROMPT_STYLE="classic"
+PROMPT_STYLE="ascii"
 
 
 #█▓▒░ allow functions in the prompt
