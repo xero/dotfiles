@@ -16,9 +16,33 @@
 #
 #█▓▒░ aliases
 alias xyzzy="echo nothing happens"
-alias ls="ls -hF --color=auto"
-alias ll="ls -lahF --color=auto"
-alias lsl="ls -lhF --color=auto"
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# colorflag="-G"
+colorflag="--color"
+# export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
+# List all files colorized in long format
+alias l="gls -lhF ${colorflag}"
+
+# List all files colorized in long format, excluding . and ..
+alias la="gls -lAhF ${colorflag}"
+
+# List only directories
+alias lsd="gls -lhF ${colorflag} | grep --color=never '^d'"
+
+# Always use color output for `ls`
+# alias ls="command ls ${colorflag}"
+
+alias ls="gls -hF --color=auto"
+alias ll="gls -lahF --color=auto"
+alias lsl="gls -lhF --color=auto"
 alias "cd.."="cd ../"
 alias up="cd ../"
 alias rmrf="rm -rf"
