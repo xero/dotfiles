@@ -15,10 +15,10 @@
 # ░░░░░░░░░░
 #
 #█▓▒░ ssh keys
-export SSH_KEY_PATH="~/.ssh/personal"
+export SSH_KEY_PATH="~/.ssh/id_rsa"
 
 #█▓▒░ funtoo keychain
-eval `keychain -q --agents ssh,gpg --eval ~/.ssh/personal 0x0DA7AB45AC1D0000`
+eval `keychain -q --agents ssh,gpg --eval ~/.ssh/id_rsa 0x0DA7AB45AC1D0000`
 
 #█▓▒░ gpg agent
 GPG_TTY=$(tty)

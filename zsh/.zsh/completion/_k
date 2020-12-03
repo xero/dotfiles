@@ -1,0 +1,33 @@
+#compdef k
+_k() {
+	local state
+	_arguments '1: :(environment namespace files)' '2: :->environment' '3: :->namespace' '4: :->files'
+
+	case $state in
+		environment)
+			_arguments -s "1: :(- $(kubectl get namespaces -o=jsonpath='{range .items[*].metadata.name}{@}{"\n"}{end}'))"
+		;;
+		namespace)
+			local KUBECTX="${HOME}/.kube/kubectx"
+			PREV=""
+
+			local all_contexts="$(kubectl config get-contexts --output='name')"
+			if [ -f "$KUBECTX" ]; then
+				# show '-' only if there's a saved previous context
+				local PREV=$(cat "${KUBECTX}")
+
+				_arguments \
+					"-d:*: :(${all_contexts})" \
+					"(- *): :(- ${all_contexts})"
+			else
+				_arguments \
+					"-d:*: :(${all_contexts})" \
+					"(- *): :(${all_contexts})"
+			fi
+		;;
+		files)
+			_files
+		;;
+	esac
+}
+_k

@@ -18,7 +18,8 @@
 #HIST_STAMPS=yyyy/mm/dd
 
 #█▓▒░ paths
-export PATH=/usr/local/bin:$HOME/bin:$HOME/.gem/ruby/2.5.0/bin:$HOME/src/go/bin/:$HOME/.local/bin:$PATH
+export PATH=/usr/local/bin:$HOME/bin:$HOME/bin/build-wrapper-linux-x86:$HOME/.gem/ruby/2.5.0/bin:$HOME/.gem/ruby/2.6.0/bin/:$HOME/src/go/bin/:$HOME/.local/bin:$PATH
+export MANPAGER="nvim -c 'set ft=man' -"
 #export MANPATH=/usr/local/man:$MANPATH
 
 #█▓▒░ preferred text editor
