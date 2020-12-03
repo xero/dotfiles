@@ -25,33 +25,30 @@
 
 FULL=▓
 EMPTY=░
-EOL=▒ 
+EOL=▒
 SIZE=7
 C0="#000000"
 C1="#222222"
-C2="#1C596E"
+C2="#8FBCBB"
 C3="#B3291C"
 C4="#3A3A3A"
 C5="#efefef"
 C6="#878787"
 C7="#666666"
 
-draw()
-{
+draw(){
 	perc=$1
 	SIZE=$2
 	inc=$(( perc * SIZE / 100 ))
 	out=
-	thiscolor=
-	for v in `seq 0 $(( SIZE - 1 ))`; do
+	for v in $(seq 0 $(( SIZE - 1 ))); do
 		test "$v" -le "$inc"   \
 		&& out="${out}#[fg=$C1]${FULL}" \
 		|| out="${out}#[fg=$C1]${EMPTY}"
 	done
-	echo $out
+	echo "$out"
 }
-temp()
-{
+temp(){
 	t=$(sensors | awk '/Core\ 0/ {gsub(/\+/,"",$3); gsub(/\..+/,"",$3)    ; print $3}')
 	tc=$C0
 	case 1 in
@@ -64,15 +61,14 @@ temp()
 	esac
 	echo "#[fg=$tc]$t°c"
 }
-bat()
-{
+bat(){
 	BATPATH=/sys/class/power_supply/BAT0
 	STATUS=$BATPATH/status
 	BAT_FULL=$BATPATH/charge_full
 	BAT_NOW=$BATPATH/charge_now
 	bf=$(cat $BAT_FULL)
 	bn=$(cat $BAT_NOW)
-	bp=$(( 100 * $bn / $bf ))
+	bp=$(( 100 * bn / bf ))
 	stat=$(cat $STATUS)
 	case $stat in
 		Full)
@@ -86,34 +82,30 @@ bat()
 			;;
 	esac
 	test "$bp" -lt 10  \
-	&& bc=$C3 \
-	|| bc=$C1
+		&& bc=$C3 \
+		|| bc=$C1
 	echo $st#[fg=$bc]$bp"%"
 }
-cpu()
-{
+cpu(){
 	CPU_USE=$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}')
-	printf "%.0f" $CPU_USE
+	printf "%.0f" "$CPU_USE"
 }
-ram()
-{
+ram(){
 	free | awk '/Mem:/ {print int($3/$2 * 100.0)}'
 }
-vpn()
-{
+vpn(){
 	pgrep openconnect >/dev/null 2>&1 && echo "#[fg=3]VPN"
+	nmcli | \grep -i 'vpn connection' >/dev/null 2>&1 && echo "#[fg=3]VPN"
 }
-clock()
-{
+clock(){
 	mtime=$(date +'%H:%M')
 	myear=$(date +'%Y-%m-')
 	mday=$(date +'%d')
 	echo "#[fg=$C5]#[bg=$C4] $mtime #[fg=$C6]$myear#[fg=$C5]$mday #[fg=$C6]$EOL"
 }
-front()
-{
+front(){
 	echo "#[bg=$C7]#[fg=0]▓░"
 }
-CPU_INFO=`cpu`
-RAM_INFO=`ram`
+CPU_INFO=$(cpu)
+RAM_INFO=$(ram)
 echo `front` `bat` `draw $RAM_INFO 4` `temp` `draw $CPU_INFO 7` `vpn` `clock`
