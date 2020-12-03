@@ -1,0 +1,79 @@
+#!/bin/bash
+#                         ██
+#                        ░░
+#  ██████  █████   █████  ██ ██████   █████
+# ░░██░░█ ██░░░██ ██░░░██░██░██░░░██ ██░░░██
+#  ░██ ░ ░███████░██  ░░ ░██░██  ░██░███████
+#  ░██   ░██░░░░ ░██   ██░██░██████ ░██░░░░
+# ░███   ░░██████░░█████ ░██░██░░░  ░░██████
+# ░░░     ░░░░░░  ░░░░░  ░░ ░██      ░░░░░░
+#                            ░░
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ xero <x@xero.nu>
+# ░▓ code   ▓ http://code.xero.nu/dotfiles
+# ░▓ mirror ▓ http://git.io/.files
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+
+usage() {
+	printf "${0##*/} <action> <direction>\n" >&2
+	exit 1
+}
+
+action=$1
+direction=$2
+
+[ -z "$action" ] || [ -z "$direction" ] && usage
+case $action in
+	focus)
+		waitron window_cardinal_focus "$direction"
+		xdotool mousemove $(wattr "xywh" $(pfw) | awk '{x=$1+($3/2); y=$2+($4/2); print x, y}')
+	;;
+	monocle)
+		waitron window_monocle
+		read -r x y w h <<<$(wattr xywh $(pfw))
+		waitron window_resize_absolute "$w" "$h"
+		waitron window_move_absolute "$x" "$y"
+	;;
+	mvmon)
+		GAP=60
+		MON=$(pfd)
+		MX=$(dattr x "$MON")
+		MY=$(dattr y "$MON")
+		NEXT=
+		NEXTX=
+		PREV=
+		PREVX=
+
+		while read -r DISP; do
+			DH=$(dattr h "$DISP")
+			DX=$(dattr x "$DISP")
+			DY=$(dattr y "$DISP")
+			[ "$DX" -gt "$MX" ]&&{
+				NEXT=$DISP
+				NEXTX=$DX
+				[ "$MY" -gt "$DH" ] && NEXTY=$DY || NEXTY=$MY
+			}
+			[ "$DX" -lt "$MX" ]&&{
+				PREV=$DISP
+				PREVX=$DX
+				[ "$MY" -gt "$DH" ] && PREVY=$DY || PREVY=$MY
+			}
+		done <<<"$(lsd)"
+
+		case $direction in
+			next)
+				test "$NEXT" && waitron window_move_absolute $(((NEXTX+GAP))) $(((NEXTY+GAP)))
+			;;
+			prev)
+				test "$PREV" && waitron window_move_absolute $(((PREVX+GAP))) $(((PREVY+GAP)))
+			;;
+			*)
+				usage
+			;;
+		esac
+	;;
+	*)
+		usage
+	;;
+esac

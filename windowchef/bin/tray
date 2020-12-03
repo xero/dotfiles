@@ -1,0 +1,22 @@
+#!/bin/sh
+#    ██                   
+#   ░██                   
+#  ██████ ██████  ██████    ██   ██
+# ░░░██░ ░░██░░█ ░░░░░░██  ░░██ ██ 
+#   ░██   ░██ ░   ███████   ░░███  
+#   ░██   ░██    ██░░░░██    ░██   
+#   ░░██ ░███   ░░████████   ██    
+#    ░░  ░░░     ░░░░░░░░   ██     
+#                          ░░      
+
+# simple tray
+stalonetray --kludges fix_window_pos --dockapp-mode simple --geometry 1x1+333 --background "#222222" &
+
+# sound mixer
+pnmixer &
+
+# networking
+nm-applet &
+
+# bluetooth
+#blueberry-tray &

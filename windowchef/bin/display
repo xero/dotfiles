@@ -1,0 +1,34 @@
+#!/bin/sh
+#                       ██   ██   ██ ██                             ██
+#                      ░██  ░██  ░░ ░██                            ░██
+#  ██████████  ██   ██ ░██ ██████ ██░██       █████   ██████       ░██
+# ░░██░░██░░██░██  ░██ ░██░░░██░ ░██░██████  ██░░░██ ░░░░░░██   ██████
+#  ░██ ░██ ░██░██  ░██ ░██  ░██  ░██░██░░░██░███████  ███████  ██░░░██
+#  ░██ ░██ ░██░██  ░██ ░██  ░██  ░██░██  ░██░██░░░░  ██░░░░██ ░██  ░██
+#  ███ ░██ ░██░░██████ ███  ░░██ ░██░██  ░██░░██████░░████████░░██████
+# ░░░  ░░  ░░  ░░░░░░ ░░░    ░░  ░░ ░░   ░░  ░░░░░░  ░░░░░░░░  ░░░░░░
+
+# display
+if [ "$(xrandr | grep -c ' connected')" -gt 1 ]; then
+	~/.screenlayout/triple_lab.sh &
+	#~/.screenlayout/multi.sh &
+else
+	~/.screenlayout/solo2.sh &
+	# keyboard backlight
+	kbd on &
+	# forsake caps for vi
+	setxkbmap -option caps:escape &
+fi
+
+# keep monitors alive
+#caffeine &
+
+# composting
+#picom
+
+# wallpaper
+#nitrogen --restore &
+#~/bin/hashwall -f '#3b4252' -b '#2e3440' -s 12 &
+#~/bin/hashwall -f '#111111' -b '#222222' -s 12 &
+#hsetroot -fill ~/lib/img/walls/clacks/y.jpg &
+hsetroot -tile ~/lib/img/walls/topo.png &

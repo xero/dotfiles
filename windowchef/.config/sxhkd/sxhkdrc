@@ -1,0 +1,83 @@
+# core
+## term
+super + Return
+	wm_term
+
+# menu
+## run
+super + space
+	wm_menu
+## pass
+super + p
+	wm_menu pass
+## clipboard
+super + e
+	wm_menu clip
+
+## lock
+alt + Escape
+	glitchlock
+
+## ditch x
+super + r
+	waitron wm_quit 0
+#pkill Xorg
+
+## adjust volume
+alt + u
+	amixer sset Master 600+
+alt + d
+	amixer sset Master 600-
+
+# windowchef
+## move
+super + {h,j,k,l}
+	waitron window_move {-20 0, 0 20, 0 -20, 20 0}
+## faster
+super + control + {h,j,k,l}
+	waitron window_move {-40 0, 0 40, 0 -40, 40 0}
+## resize
+super + shift + {h,j,k,l}
+	waitron window_resize {-20 0, 0 20, 0 -20, 20 0}
+## focus
+super + alt + {h,j,k,l}
+	recipe focus {left,down,up,right}
+## fullscreen
+super + f
+	waitron window_maximize
+## monocle
+super + m
+	recipe monocle 0
+## kill ☠
+super + x
+	waitron window_close
+super + comma
+	recipe mvmon prev
+super + period
+	recipe mvmon next
+## groups
+super + {_,shift +}{1-9}
+	waitron {group_toggle,group_add_window} {1-9}
+super + ctrl + r
+	waitron group_remove_window
+super + alt + ctrl + {1-4}
+	waitron group_remove_all_windows {1-4}
+## snapping
+super + {Insert,Prior,Delete,Next,End}
+	waitron window_snap {topleft,topright,bottomleft,bottomright,middle}
+## toggling
+super + tab
+	waitron window_cycle
+super + shift + tab
+	waitron window_rev_cycle
+super + ctrl + tab
+	waitron window_focus_last
+## max
+#super + v
+#	waitron window_hor_maximize
+#super + h
+#	waitron window_ver_maximize
+
+# test
+super + space + 0
+	notify-send ' hotkey 🔥🔑 '
