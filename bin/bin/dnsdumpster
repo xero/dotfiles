@@ -1,0 +1,109 @@
+#!/usr/bin/env python
+# coding=utf-8
+#
+#  ▓█████▄  ███▄    █   ██████    ▓█████▄  █    ██  ███▄ ▄███▓ ██▓███    ██████ ▄▄▄█████▓▓█████  ██▀███
+#  ▒██▀ ██▌ ██ ▀█   █ ▒██    ▒    ▒██▀ ██▌ ██  ▓██▒▓██▒▀█▀ ██▒▓██░  ██▒▒██    ▒ ▓  ██▒ ▓▒▓█   ▀ ▓██ ▒ ██▒
+#  ░██   █▌▓██  ▀█ ██▒░ ▓██▄      ░██   █▌▓██  ▒██░▓██    ▓██░▓██░ ██▓▒░ ▓██▄   ▒ ▓██░ ▒░▒███   ▓██ ░▄█ ▒
+#  ░▓█▄   ▌▓██▒  ▐▌██▒  ▒   ██▒   ░▓█▄   ▌▓▓█  ░██░▒██    ▒██ ▒██▄█▓▒ ▒  ▒   ██▒░ ▓██▓ ░ ▒▓█  ▄ ▒██▀▀█▄
+#  ░▒████▓ ▒██░   ▓██░▒██████▒▒   ░▒████▓ ▒▒█████▓ ▒██▒   ░██▒▒██▒ ░  ░▒██████▒▒  ▒██▒ ░ ░▒████▒░██▓ ▒██▒
+#   ▒▒▓  ▒ ░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░    ▒▒▓  ▒ ░▒▓▒ ▒ ▒ ░ ▒░   ░  ░▒▓▒░ ░  ░▒ ▒▓▒ ▒ ░  ▒ ░░   ░░ ▒░ ░░ ▒▓ ░▒▓░
+#   ░ ▒  ▒ ░ ░░   ░ ▒░░ ░▒  ░ ░    ░ ▒  ▒ ░░▒░ ░ ░ ░  ░      ░░▒ ░     ░ ░▒  ░ ░    ░     ░ ░  ░  ░▒ ░ ▒░
+#   ░ ░  ░    ░   ░ ░ ░  ░  ░      ░ ░  ░  ░░░ ░ ░ ░      ░   ░░       ░  ░  ░    ░         ░     ░░   ░
+#     ░             ░       ░        ░       ░            ░                  ░              ░  ░   ░
+#
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ xero / https://0w.nz
+# ░▓ code   ▓ CC0 / posted to pastebin
+# ░▓ ver    ▓ v0.1.5
+# ░▓ info   ▓ in just learning py so gimmie a break
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+#
+import os
+import sys
+import socket
+from greynoise.api import GreyNoise
+from dnsdumpster.DNSDumpsterAPI import DNSDumpsterAPI
+
+if len(sys.argv) < 2:
+    print("who we creepin on m80?")
+    sys.exit()
+
+# drop protocol
+domain = sys.argv[1]
+if domain.count("://") > 0:
+    domain = domain.split("://")[1]
+
+# ip/dns resolving
+if socket.gethostbyname(domain) == domain:
+    ip = domain
+    domain = socket.gethostbyaddr(ip)[0]
+else:
+    ip = socket.gethostbyname(domain)
+
+print(f'IP: {ip}\nHN: {domain}')
+
+c = {
+    'reset': '\033[0m',
+    'black': '\033[30m',
+    'red': '\033[31m',
+    'green': '\033[32m',
+    'orange': '\033[33m',
+    'blue': '\033[34m',
+    'purple': '\033[35m',
+    'cyan': '\033[36m',
+    'lightgrey': '\033[37m',
+    'darkgrey': '\033[90m',
+    'lightred': '\033[91m',
+    'lightgreen': '\033[92m',
+    'yellow': '\033[93m',
+    'lightblue': '\033[94m',
+    'pink': '\033[95m',
+    'lightcyan': '\033[96m'
+}
+def x0(x):
+    print(("{cyan}╓───── {} \n╙────────────────────────────────────── ─ ─{reset}".format(x, **c)))
+
+def gn(ip):
+    noise = gnapi.ip(ip)
+    if noise['seen']:
+      if noise['classification'] == "malicious":
+        print(("   {darkgrey}greynoise: {red}{classification}\n   {lightcyan}{tags}".format(**c, **noise)))
+      else:
+        if 'tags' in noise:
+          print(("   {darkgrey}greynoise: {green}{classification}\n   {lightcyan}{tags}".format(**c, **noise)))
+        else:
+          print(("   {darkgrey}greynoise: {green}{classification}".format(**c, **noise)))
+
+try:
+    res = DNSDumpsterAPI().search(domain)
+    gnapi = GreyNoise()
+    x0(res['domain'])
+    print(" " + ip)
+    gn(ip)
+
+    x0("dns servers")
+    for entry in res['dns_records']['dns']:
+      print((" {reset}{domain} {darkgrey}({green}{ip}{darkgrey})\n   {blue}{as} {provider} {country}".format(**c, **entry)))
+      gn(ip)
+
+    x0("mx records")
+    for entry in res['dns_records']['mx']:
+      print((" {reset}{domain} {darkgrey}({green}{ip}{darkgrey})\n   {blue}{as} {provider} {country}".format(**c, **entry)))
+      gn(ip)
+
+    x0("host records")
+    for entry in res['dns_records']['host']:
+      if entry['reverse_dns']:
+        print((" {reset}{domain} {darkgrey}({lightblue}{reverse_dns}{darkgrey}) {darkgrey}({green}{ip}{darkgrey})\n   {blue}{as} {provider} {country}".format(**c, **entry)))
+      else:
+        print((" {reset}{domain} {darkgrey}({green}{ip}{darkgrey})\n   {blue}{as} {provider} {country}".format(**c, **entry)))
+      gn(ip)
+
+    x0("txt records")
+    for entry in res['dns_records']['txt']:
+      print((" {reset}{0}".format(entry, **c)))
+
+except Exception as e:
+    print(e)
+

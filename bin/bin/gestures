@@ -1,0 +1,84 @@
+#!/bin/sh
+#                            ██
+#                           ░██
+#   █████   █████   ██████ ██████ ██   ██ ██████  █████   ██████
+#  ██░░░██ ██░░░██ ██░░░░ ░░░██░ ░██  ░██░░██░░█ ██░░░██ ██░░░░
+# ░██  ░██░███████░░█████   ░██  ░██  ░██ ░██ ░ ░███████░░█████
+# ░░██████░██░░░░  ░░░░░██  ░██  ░██  ░██ ░██   ░██░░░░  ░░░░░██
+#  ░░░░░██░░██████ ██████   ░░██ ░░██████░███   ░░██████ ██████
+#   █████  ░░░░░░ ░░░░░░     ░░   ░░░░░░ ░░░     ░░░░░░ ░░░░░░
+#  ░░░░░
+#
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ xero <x@xero.nu>
+# ░▓ code   ▓ http://code.xero.nu/dotfiles
+# ░▓ mirror ▓ http://git.io/.files
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+#
+# █▓▒░ cheatsheet
+# https://gitlab.com/cunidev/gestures/wikis/xdotool-list-of-key-codes
+
+usage() {
+	printf "${0##*/} <action> <direction> <finger count:3>\n" >&2
+	exit 1
+}
+
+action=$1
+direction=$2
+count=${3:-3}
+
+[ -z "$action" ] || [ -z "$direction" ] && usage
+
+case $action in
+	pinch)
+		case $direction in
+			out)
+				xdotool key Ctrl+minus
+			;;
+			in)
+				xdotool key Ctrl+plus
+			;;
+			*)
+				usage
+			;;
+		esac
+	;;
+	swipe)
+		case $direction in
+			left)
+				if [ "$count" = "3" ]; then
+					xdotool key Alt+Left
+				else
+					recipe focus left
+				fi
+			;;
+			right)
+				if [ "$count" = "3" ]; then
+					xdotool key Alt+Right
+				else
+					recipe focus right
+				fi
+			;;
+			up)
+				wmctrl -s `wmctrl -d | awk '$2=="*"{cur=NR} END{print cur % NR}'`
+			;;
+			down)
+				if [ "$count" = "3" ]; then
+					wmctrl -s `wmctrl -d | awk '$2=="*"{cur=NR} END{print cur % NR}'`
+				else
+					notify-send "∼≈≋ locking ≋≈∼" -t 250
+					xdotool key Alt+Escape
+				fi
+			;;
+			*)
+				usage
+			;;
+		esac
+	;;
+	*)
+		notify-send "┐('~'; )┌"
+		usage
+	;;
+esac
+exit 0

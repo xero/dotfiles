@@ -1,0 +1,22 @@
+#!/bin/sh
+# menu wrapper
+
+rice() {
+	ARGS=
+	contains "-fn"  "$@" || FONT="hax"
+	contains "-nb"  "$@" || ARGS="$ARGS -nb #3B4252"
+	contains "-nf"  "$@" || ARGS="$ARGS -nf #c0c0c0"
+	contains "-sb"  "$@" || ARGS="$ARGS -sb #5E81AC"
+	contains "-sf"  "$@" || ARGS="$ARGS -sf #222222"
+	contains "-l"   "$@" || ARGS="$ARGS -l 32"
+	contains "-dim" "$@" || ARGS="$ARGS -dim 0.75"
+	dmenu -fn "$FONT" $ARGS "$@"
+}
+contains() {
+	str="$1"
+	sub="$2"
+	test "${str#*$sub}" != "$str" \
+		&& return 0 \
+		|| return 1
+}
+rice "$@"

@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# (c) GPL nai https://git.monade.li/nai/dotfiles
+# templum - a bash template engine
+# edited by neeasade to assume {{value}} -> {{$value}}
+
+delim_expression=('{{' '}}')
+delim_block=('{{{' '}}}')
+
+while getopts :s:o: o; do
+    case $o in
+        s) source "$OPTARG" || exit 1;;
+        o) exec > "$OPTARG" || exit 1;;
+        *) echo "usage: ${0##*/} [-s <source>]... [-o <output>] [<input>]" >&2; exit 1;;
+    esac
+done
+shift "$(( OPTIND - 1 ))"
+
+if (( $# )); then
+    exec < "$1" || exit 1
+fi
+
+while IFS= read -r line; do
+    while
+        type=
+        if [[ $line == !(*"${delim_expression[0]}"*)"${delim_block[0]}"* ]]; then
+            type=block
+        elif [[ $line == *"${delim_expression[0]}"* ]]; then
+            type=expression
+        fi
+        [[ $type ]]
+    do
+        declare -n delim=delim_$type
+        printf '%s' "${line%%"${delim[0]}"*}"
+        code=
+        code_line=${line#*"${delim[0]}"}
+        while [[ $code_line != *"${delim[1]}"* ]]; do
+            code+=$code_line$'\n'
+            IFS= read -r code_line || exit
+        done
+        code+=${code_line%%"${delim[1]}"*}
+        line=${code_line#*"${delim[1]}"}
+        if [[ $type == block ]]; then
+            eval "$code"
+        else
+            eval "printf '%s' \"\$$code\""
+        fi
+    done
+    printf '%s\n' "$line"
+done

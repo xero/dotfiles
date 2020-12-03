@@ -1,0 +1,50 @@
+#!/bin/sh
+ln=32
+sb="#5E81AC"
+sf="#222222"
+nf="#c0c0c0"
+nb="#3B4252"
+fn="-misc-hack-nerd-font-mono-medium-i-normal--0-0-0-0-p-0-iso10646-1"
+_RICE="-dim 0.75 -l $ln -sb $sb -sf $sf -nf $nf -sb $sb -c -fn $fn"
+cam_img="/tmp/cam.jpg"
+epoch=`date +%s`
+
+cam=`echo -e "I-279 (Fort Pitt Brdg Lower Deck to robinson)\nFort Pitt Brdg @ Fort Pitt Blvd\nI-376 @ Stanwix St.\nPA-2128 10 st. bypass\nI-376 (Penn Lincoln Pkwy) @ Birmingham Bridge\nSteuben St w/o PA-60 (ss loop)\nUS-19 @ West End Bridge S (work)\nUS-19 @ West End Bridge N (home)" | dmenu $_RICE -p 'cam'`
+case $cam in
+	'I-279 (Fort Pitt Brdg Lower Deck to robinson)')
+		cam_id="D11-832"
+	;;
+	'Fort Pitt Brdg @ Fort Pitt Blvd')
+		cam_id="D11-305"
+	;;
+	'I-376 @ Stanwix St.')
+		cam_id="CAM-11-196"
+	;;
+	'PA-2128 10 st. bypass')
+		cam_id="D11-841"
+	;;
+	'I-376 (Penn Lincoln Pkwy) @ Birmingham Bridge')
+		cam_id="CAM-11-045"
+	;;
+	'Steuben St w/o PA-60 (ss loop)')
+		cam_id="D11-852"
+	;;
+	'US-19 @ West End Bridge S (work)')
+		cam_id="D11-856"
+	;;
+	'US-19 @ West End Bridge N (home)')
+		cam_id="D11-858"
+	;;
+esac
+[ -z "$cam_id" ] && exit 1
+function get_img() {
+	while :; do
+		curl "https://pa511cams.ilchost.com/cameras/d11/${cam_id}.jpg?nocache=${epoch}" -H 'Referer: https://www.511pa.com/CameraListing.aspx' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36' --compressed > $cam_img
+		sleep 2
+	done
+}
+get_img &
+sleep 2
+sxiv -z 200 $cam_img
+[ -e "$cam_id" ] && rm $cam_img
+pkill cam

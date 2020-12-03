@@ -9,7 +9,7 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
-file="~/.todo"
+file="/home/x0/.todo"
 ( [ -e "$file" ] || touch "$file" ) && [ ! -w "$file" ] && echo cannot write to $file && exit 1
 if [[ -z $1 || $1 == "--help" || $1 == "-h" || $1 == "help" ]]; then
 	echo "┌──────[ todo ]──[ version 0.0.1 ]─────── ─ ─"
@@ -47,7 +47,7 @@ elif [[ $1 = '--delete' || $1 = '-d' || $1 == "delete" ]]; then
 		sed -e $2'd' -i $file
 	fi
 elif [[ $1 = '--add' || $1 = '-a' || $1 == "add" ]]; then
-        if [[ -z $2 ]]; then
+	if [[ -z $2 ]]; then
 		echo "missing option"
 		echo "pass an item to add"
 	else

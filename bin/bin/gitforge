@@ -1,0 +1,18 @@
+#!/bin/sh
+export GIT_AUTHOR_DATE="2018-11-26 16:47:13"
+export GIT_COMMITTER_DATE="2018-11-26 16:47:13"
+
+if [ "$1" == "stark" ]; then
+	export GIT_AUTHOR_EMAIL="thestarknight@tutanota.com"
+	export GIT_AUTHOR_NAME="stark"
+	export GIT_COMMITTER_EMAIL=${GIT_AUTHOR_EMAIL}
+	export GIT_COMMITTER_NAME=${GIT_AUTHOR_NAME}
+	git commit -m "$2"
+else
+	export GIT_AUTHOR_EMAIL="x@xero.nu"
+	export GIT_AUTHOR_NAME="xero"
+	export GIT_COMMITTER_EMAIL=${GIT_AUTHOR_EMAIL}
+	export GIT_COMMITTER_NAME=${GIT_AUTHOR_NAME}
+	git commit -S -m "$2"
+fi
+

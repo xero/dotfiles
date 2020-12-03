@@ -27,13 +27,13 @@ EMPTY=┄
 
 name=$USER
 host=`hostname`
-battery=/sys/class/power_supply/BAT1
+battery=/sys/class/power_supply/BAT0
 distro="arch linux"
-kernel=`uname -r`
-pkgs=`pacman -Qqs | wc -l`
-colors='miasma'
-font='gohufont 11'
-wm='2bwm'
+kernel=`uname -r | sed 's/ARCH/0x0/'`
+pkgs=`yay -Qqs | wc -l`
+colors='blaquemagick'
+font='hack'
+wm='windowchef'
 
 #█▓▒░ progress bar
 draw()
@@ -57,7 +57,7 @@ draw()
 }
 
 #█▓▒░ colors
-printf "\n"
+printf "\n  "
 i=0
 while [ $i -le 6 ]
 do
@@ -107,7 +107,7 @@ esac
 printf "   \e[0;${color}m%-4s \e[1;${color}m%-5s %-25s \n" " bat" "$charge%" `draw $charge 15 $color`
 
 #█▓▒░ volume
-vol=`amixer get Master | awk '$0~/%/{print $4}' | tr -d '[]%'`
+vol=`amixer get Master | awk '$0~/%/{print $5}' | tr -d '[]%' | head -1`
 if amixer get Master | grep -q '\[off\]' 
 then
   color='31'
@@ -117,7 +117,7 @@ fi
 printf "   \e[0;${color}m%-4s \e[1;${color}m%-5s %-25s \n" " vol" "$vol%" `draw $vol 15 $color` 
 
 #█▓▒░ temperature
-temp=`sensors | awk '/Core\ 0/ {gsub(/\+/,"",$3); gsub(/\..+/,"",$3)    ; print $3}'`
+temp=`sensors | awk '/Core 0/ {gsub(/\+/,"",$3); gsub(/\..+/,"",$3)    ; print $3}'`
 case 1 in
   $(($temp <= 50)))
     color='34'
@@ -129,4 +129,4 @@ case 1 in
     color='36'
     ;;
 esac
-printf "   \e[0;${color}m%-4s \e[1;${color}m%-5s %-25s \n\n" "temp" "$temp°c " `draw $temp 15 $color`
+printf "   \e[0;${color}m%-4s \e[1;${color}m%-5s %-25s \n\n" "temp" "$temp°c " `draw $temp 15 $color \e[0;`

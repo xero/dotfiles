@@ -1,19 +1,20 @@
 #!/bin/sh
-# laptop keyboard backlight tool
+
 case $1 in
 	on)
 		val=255
-	;;
+		;;
 	off)
 		val=0
-	;;
+		;;
 	*)
 		cur=`cat /sys/class/leds/smc\:\:kbd_backlight/brightness`
-		if [ $cur -gt 0 ]; then
+		if [ $cur -gt 0 ]
+		then
 			val=0
 		else
 			val=255
 		fi
-	;;
+		;;
 esac
 echo $val | sudo tee  /sys/class/leds/smc\:\:kbd_backlight/brightness >> /dev/null

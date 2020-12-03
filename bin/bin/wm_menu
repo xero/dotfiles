@@ -1,25 +1,29 @@
 #!/bin/sh
 ln=32
-sb="#5E81AC"
+sb="#87875F"
 sf="#222222"
 nf="#c0c0c0"
-nb="#3B4252"
 fn="-misc-hack-nerd-font-mono-medium-i-normal--0-0-0-0-p-0-iso10646-1"
+fn="hax"
 _RICE="-dim 0.75 -l $ln -sb $sb -sf $sf -nf $nf -sb $sb -c -fn $fn"
 
-if [ ! -z "$1" ]; then
+wat(){
+	notify-send '❓ what ❓'
+}
+
+if [ -n "$1" ]; then
 	exe=$1
 else
-	exe=`echo -e "app\nwww\nvid\nimg\nnet\nclip\npass\ncam\npdf\nscrot\nburp\npablo\ninvert\nquit" | dmenu $_RICE -p 'run'`
+	exe=`echo -e "app\nwww\nvid\nimg\nnet\ndisplay\nclip\npass\ncam\npdf\nscrot\nemoji\nburp\npablo\ninvert\nquit" | dmenu $_RICE -p '▎▍▌▋▊'`
 fi
-[ ! -z "$exe" ] || exit
+[ -n "$exe" ] || exit
 
 case $exe in
 	app)
 		dmenu_run $_RICE -p 'run'
 	;;
 	www)
-		chromium
+		chromium --allow-file-access-from-files --allow-file-access --allow-cross-origin-auth-prompt
 	;;
 	vid*)
 		urxvt -e bash -c "`printf "%s'" ${exe} | sed "s!vid!mpv !"`"
@@ -39,6 +43,24 @@ case $exe in
 	net)
 		networkmanager_dmenu $_RICE -p 'innernetz'
 	;;
+	display)
+		display=`echo -e "alone\nlab\nwork" | dmenu $_RICE -p 'where am i?'`
+		case $display in
+			alone)
+				~/.screenlayout/solo2.sh
+			;;
+			lab)
+				~/.screenlayout/lab.sh
+			;;
+			work)
+				~/.screenlayout/multi.sh.old
+			;;
+			*)
+				wat
+			;;
+		esac
+		~/bin/display
+	;;
 	cam)
 		~/bin/cam
 	;;
@@ -51,7 +73,13 @@ case $exe in
 			area)
 				import -window root -crop `slop -f "%g"` ~/lib/img/$(date "+%Y-%m-%d_%H-%M-%S")_slop_scrot.png
 			;;
+			*)
+				wat
+			;;
 		esac
+	;;
+	emoji)
+		~/bin/emoji
 	;;
 	burp)
 		~/src/burp/burppro
@@ -69,6 +97,6 @@ case $exe in
 		poweroff
 	;;
 	*)
-		notify-send '❓ what ❓'
+		wat
 	;;
 esac
