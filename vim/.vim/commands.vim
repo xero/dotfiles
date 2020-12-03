@@ -85,3 +85,10 @@ function! AsciiMode()
   set colorcolumn=80
 endfunction
 command Ascii :call AsciiMode()
+
+
+function! URLdecode(str) abort
+  let str = substitute(substitute(substitute(a:str,'%0[Aa]\n$','%0A',''),'%0[Aa]','\n','g'),'+',' ','g')
+  return iconv(substitute(str,'%\(\x\x\)','\=nr2char("0x".submatch(1))','g'), 'utf-8', 'latin1')
+endfunction
+command URLdecode :call URLdecode()

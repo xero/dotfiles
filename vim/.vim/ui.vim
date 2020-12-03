@@ -34,14 +34,17 @@ filetype plugin on
 " show line numbers
 set number
 
-" no line wrapping
+" default no line wrapping
 set nowrap
 
+" set indents when wrapped
+set breakindent
+
 " no folding
-set nofoldenable
-set foldlevel=99
-set foldminlines=99
-set foldlevelstart=99
+"set nofoldenable
+"set foldlevel=99
+"set foldminlines=99
+"set foldlevelstart=99
 
 " highlight cursor
 set cursorline
@@ -63,3 +66,8 @@ set fillchars=vert:▒
 let g:netrw_liststyle=3
 let g:netrw_browse_split=4
 let g:netrw_winsize=25
+
+" darken inactive panes
+hi SignColumn   ctermbg=234
+hi ActiveWindow ctermbg=0 | hi InactiveWindow ctermbg=234
+set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow

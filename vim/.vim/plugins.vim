@@ -28,6 +28,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'mattn/vim-sl'
+
 " colors
 Plug 'xero/sourcerer.vim'
 Plug 'xero/blaquemagick.vim'
@@ -44,6 +46,7 @@ Plug 'tpope/vim-fugitive'
 
 " stylize
 Plug 'xero/nerdtree'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'chrisbra/colorizer'
@@ -52,15 +55,16 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 
 " features
 Plug 'rking/ag.vim'
-Plug 'matze/vim-move'
-Plug 'isa/vim-matchit'
+Plug 'xero/vim-move'
+Plug 'andymass/vim-matchup'
 Plug 'godlygeek/tabular'
 Plug 'tpope/tpope-vim-abolish'
 Plug 'xero/securemodelines'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
 Plug 'majutsushi/tagbar', { 'on': 'Tagbar' }
-Plug 'junegunn/gv.vim', { 'on': 'GV' }
+"Plug 'junegunn/gv.vim', { 'on': 'GV' }
+Plug 'rbong/vim-flog', { 'on': 'Flog' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " multiplexer integration

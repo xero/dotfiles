@@ -19,10 +19,10 @@
 "colorscheme sourcerer
 
 " dark wizard colors http://git.io/blaquemagick.vim
-"colorscheme blaquemagick
+colorscheme blaquemagick
 
 " icy chill
-colorscheme nord
+"colorscheme nord
 
 " use your shell colors
 "colorscheme noctu
@@ -53,9 +53,6 @@ if has('nvim')
   let g:deoplete#enable_at_startup = 1
   " let g:deoplete#disable_auto_complete = 1
   let g:deoplete#enable_ignore_case = 1
-  if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns = {}
-  endif
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 endif
 
@@ -73,8 +70,8 @@ let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:webdevicons_enable_nerdtree = 1
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeDirArrowExpandable = '⬥'
+let g:NERDTreeDirArrowCollapsible = '⬦'
 
 " disable folding
 let g:vim_json_syntax_conceal = 0
@@ -104,10 +101,11 @@ let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = ':'
 " color overrrides
 highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green ctermbg=0
-highlight GitGutterChange ctermfg=yellow ctermbg=0
-highlight GitGutterDelete ctermfg=red ctermbg=0
-highlight GitGutterChangeDelete ctermfg=red ctermbg=0
+highlight SignColumn ctermbg=234
+highlight GitGutterAdd ctermfg=green ctermbg=234
+highlight GitGutterChange ctermfg=yellow ctermbg=234
+highlight GitGutterDelete ctermfg=red ctermbg=234
+highlight GitGutterChangeDelete ctermfg=red ctermbg=234
 
 " use the silver searcher
 let g:ag_prg="ag -i --vimgrep"
@@ -115,8 +113,6 @@ let g:ag_highlight=1
 " map \ to the ag command for quick searching
 nnoremap \ :Ag<SPACE>
 
-" use {H,J,K,L} to move lines
-let g:move_key_modifier = 'S'
 " tmux/vim resize amount
 let g:window_resize_count = 2
 
@@ -154,30 +150,30 @@ augroup goyoactions
 augroup end
 
 " ┏━┓╺┳╸┏━┓╺┳╸╻ ╻┏━┓╻  ╻┏┓╻┏━╸
-" ┗━┓ ┃ ┣━┫ ┃ ┃ ┃┗━┓┃  ┃┃┗┫┣╸ 
+" ┗━┓ ┃ ┣━┫ ┃ ┃ ┃┗━┓┃  ┃┃┗┫┣╸
 " ┗━┛ ╹ ╹ ╹ ╹ ┗━┛┗━┛┗━╸╹╹ ╹┗━╸
 " lightline http://git.io/lightline
 " █▓▒░ wizard status line
 
-let s:base03 = [ '#151513', 233 ]
-let s:base02 = [ '#303030', 0 ]
+let s:base03 = [ '#151513', 232 ]
+let s:base02 = [ '#3B4252', 234 ]
 let s:base01 = [ '#4e4e43', 239 ]
 let s:base00 = [ '#666656', 242  ]
 let s:base0 = [ '#808070', 244 ]
 let s:base1 = [ '#949484', 242 ]
 let s:base2 = [ '#a8a897', 248 ]
-let s:base3 = [ '#e8e8d3', 253 ]
-let s:yellow = [ '#7A7A57', 11 ]
+let s:base3 = [ '#e8e8d3', 234 ]
+let s:yellow = [ '#EBCB8B', 11 ]
 let s:orange = [ '#7A7A57', 3 ]
-let s:red = [ '#5F8787', 1 ]
-let s:magenta = [ '#8181A6', 13 ]
-let s:cyan = [ '#87ceeb', 12 ]
-let s:green = [ '#7A7A57', 3 ]
+let s:red = [ '#BF616A', 1 ]
+let s:magenta = [ '#B48EAD', 13 ]
+let s:cyan = [ '#87ceeb', 4 ]
+let s:green = [ '#A3BE8C', 3 ]
 let s:none = [ 'none', 'none' ]
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
-let s:p.normal.left = [ [ s:base02, s:cyan ], [ s:base3, s:base01 ] ]
-let s:p.normal.right = [ [ s:base02, s:base1 ], [ s:base2, s:base01 ] ]
+let s:p.normal.left = [ [ s:base02, s:cyan ], [ s:base3, s:base02 ] ]
+let s:p.normal.right = [ [ s:base02, s:base00 ], [ s:base2, s:base02 ] ]
 let s:p.inactive.right = [ [ s:base02, s:base00 ], [ s:base0, s:base02 ] ]
 let s:p.inactive.left =  [ [ s:base0, s:base02 ], [ s:base00, s:base02 ] ]
 let s:p.insert.left = [ [ s:base02, s:magenta ], [ s:base3, s:base01 ] ]
