@@ -1,0 +1,12 @@
+Section "InputClass"
+	Identifier "logic trackpad"
+	MatchIsTouchpad "on"
+	MatchProduct "Logitech Rechargeable Trackpad T651"
+	MatchDevicePath "/dev/input/event*"
+	Driver "libinput"
+	Option "Tapping" "on"
+	Option "TappingDrag" "off"
+	Option "NaturalScrolling" "off"
+	Option "AccelProfile" "flat"
+	Option "AccelSpeed" "-0.15"
+EndSection
