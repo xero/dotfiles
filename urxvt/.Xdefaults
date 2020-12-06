@@ -16,7 +16,7 @@
 !
 
 ! █▓▒░ color scheme
-#include </home/x0/nord.Xcolors>
+#include </home/x0/blaquemagick.Xcolors>
 
 ! █▓▒░ fonts
 !URxvt*font: xft:GohuFont:size=8:antialias=true, \
@@ -30,8 +30,7 @@
 !URxvt*font: xft:neep:size=11:antialias=false
 !URxvt*font: xft:perfect dos vga 437:size=11:antialias=false
 !URxvt*font: xft:tewi:size=11:antialias=false
-URxvt*font: xft:Hack Nerd Font Mono:style=Regular:size=11:hinting=full, \
-            xft:Symbola:size=11:antialias=true:hinting=full
+URxvt*font: xft:hax:style=Regular:size=11:hinting=full:antialias=true
 
 URxvt*boldFont: 
 URxvt*italicFont: 
@@ -43,12 +42,11 @@ URxvt*lineSpace: -1
 ! █▓▒░ interface
 URxvt*scrollBar: false
 URxvt*transparent: false
-URxvt*internalBorder: 10
-URxvt*borderColor: #3B4252
+URxvt*internalBorder: 14
+URxvt*borderColor: #222
 URxvt*borderLess:false
 
 ! █▓▒░ extensions
-
 URxvt.perl-ext: default,clipboard,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.underline: false
@@ -60,13 +58,8 @@ URxvt.clipboard.pastecmd: xsel -ob
 URxvt.keysym.C-v: perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
-! █▓▒░ misc
-URxvt.saveLines: 9999
-URxvt.iso14755: false
-!URxvt*altSendsEscape: true
-
-! █▓▒░ high dpi mode
-Xft.dpi: 190
+! █▓▒░ dpi modes
+Xft.dpi: 140
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintfull
@@ -74,4 +67,8 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
+! █▓▒░ misc
+URxvt.saveLines: 9999
+URxvt.iso14755: false
+!URxvt*altSendsEscape: true
 twobwm.enable_compton: true
