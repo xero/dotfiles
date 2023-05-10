@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+#   █████  ██   ██  ██████  ██████  █████
+#  ██░░░██░░██ ██  ██░░░░██░░██░░█░██  ░██
+# ░███████ ░░███  ░██   ░██ ░██ ░ ░░██████
+# ░██░░░░   ██░██ ░██   ░██ ░██    ░░░░░██
+# ░░██████ ██ ░░██░░██████ ░███     █████
+#  ░░░░░░ ░░   ░░  ░░░░░░  ░░░     ░░░░░
+#
+# Xvfb session for a headless xorg clipboard
+
+if ! pgrep -x "Xvfb" >/dev/null; then
+	export DISPLAY=:0
+	Xvfb :0 -screen 0 1x1x8 &
+	systemctl --user import-environment DISPLAY
+	systemctl --user restart clipmenud.service
+fi
