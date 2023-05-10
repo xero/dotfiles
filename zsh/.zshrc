@@ -1,18 +1,18 @@
-#                 ██                    
-#                ░██                    
-#  ██████  ██████░██      ██████  █████ 
+#                 ██
+#                ░██
+#  ██████  ██████░██      ██████  █████
 # ░░░░██  ██░░░░ ░██████ ░░██░░█ ██░░░██
-#    ██  ░░█████ ░██░░░██ ░██ ░ ░██  ░░ 
+#    ██  ░░█████ ░██░░░██ ░██ ░ ░██  ░░
 #   ██    ░░░░░██░██  ░██ ░██   ░██   ██
-#  ██████ ██████ ░██  ░██░███   ░░█████ 
-# ░░░░░░ ░░░░░░  ░░   ░░ ░░░     ░░░░░  
+#  ██████ ██████ ░██  ░██░███   ░░█████
+# ░░░░░░ ░░░░░░  ░░   ░░ ░░░     ░░░░░
 #
 #  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.nu>
-# ░▓ code   ▓ http://code.xero.nu/dotfiles
-# ░▓ mirror ▓ http://git.io/.files
+# ░▓ author ▓ xero <x@xero.style>
+# ░▓ code   ▓ https://code.x-e.ro/dotfiles
+# ░▓ mirror ▓ https://git.io/.files
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 #
 #█▓▒░ load configs
-for config (~/.zsh/*.zsh) source $config
+for config (~/.config/zsh/*.zsh) source $config

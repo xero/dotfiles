@@ -8,17 +8,17 @@
 # ░░░░░░ ░░░░░░  ░░   ░░  
 #
 #  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.nu>
-# ░▓ code   ▓ http://code.xero.nu/dotfiles
-# ░▓ mirror ▓ http://git.io/.files
+# ░▓ author ▓ xero <x@xero.style>
+# ░▓ code   ▓ https://code.x-e.ro/dotfiles
+# ░▓ mirror ▓ https://git.io/.files
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 #
-#█▓▒░ source: https://github.com/imkira/dotfiles/blob/master/.zsh/colored-man-pages.zsh
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[38;33;246m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[04;38;5;146m'
+#█▓▒░ history
+HISTFILE=~/.zhistory
+HISTSIZE=120000
+SAVEHIST=100000
+setopt append_history
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt share_history

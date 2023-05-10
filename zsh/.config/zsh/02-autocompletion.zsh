@@ -1,25 +1,26 @@
-#                 ██      
-#                ░██      
-#  ██████  ██████░██      
-# ░░░░██  ██░░░░ ░██████  
-#    ██  ░░█████ ░██░░░██ 
-#   ██    ░░░░░██░██  ░██ 
-#  ██████ ██████ ░██  ░██ 
-# ░░░░░░ ░░░░░░  ░░   ░░  
+#                 ██
+#                ░██
+#  ██████  ██████░██
+# ░░░░██  ██░░░░ ░██████
+#    ██  ░░█████ ░██░░░██
+#   ██    ░░░░░██░██  ░██
+#  ██████ ██████ ░██  ░██
+# ░░░░░░ ░░░░░░  ░░   ░░
 #
 #  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.nu>
-# ░▓ code   ▓ http://code.xero.nu/dotfiles
-# ░▓ mirror ▓ http://git.io/.files
+# ░▓ author ▓ xero <x@xero.style>
+# ░▓ code   ▓ https://code.x-e.ro/dotfiles
+# ░▓ mirror ▓ https://git.io/.files
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 #
 #█▓▒░ autocompletion systems
-fpath=($HOME/.zsh/completion $fpath)
-autoload -Uz compinit
-compinit -u
-source $HOME/.zsh/completion/_aws
-#autoload -U ~/.zsh/completion/*(:t)
+fpath=($HOME/.config/zsh/completion $fpath)
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit -u
+complete -C '/usr/bin/aws_completer' aws
+
+#█▓▒░stylez
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
