@@ -1,11 +1,11 @@
-#                 ██      
-#                ░██      
-#  ██████  ██████░██      
-# ░░░░██  ██░░░░ ░██████  
-#    ██  ░░█████ ░██░░░██ 
-#   ██    ░░░░░██░██  ░██ 
-#  ██████ ██████ ░██  ░██ 
-# ░░░░░░ ░░░░░░  ░░   ░░  
+#                 ██
+#                ░██
+#  ██████  ██████░██
+# ░░░░██  ██░░░░ ░██████
+#    ██  ░░█████ ░██░░░██
+#   ██    ░░░░░██░██  ░██
+#  ██████ ██████ ░██  ░██
+# ░░░░░░ ░░░░░░  ░░   ░░
 #
 #  ▓▓▓▓▓▓▓▓▓▓
 # ░▓ author ▓ xero <x@xero.style>
@@ -16,11 +16,8 @@
 #
 #█▓▒░ aliases
 alias c="clear"
-alias g="grep -i"
 alias l="ls -hF --color=auto"
 alias ll="ls -lahF --color=auto"
-alias cb="xsel -b"
-alias p="pass -c"
 alias e="$EDITOR"
 alias se="sudo $EDITOR"
 alias g="git"
@@ -53,7 +50,6 @@ alias cp="cp -r"
 alias scp="scp -r"
 alias xsel="xsel -b"
 alias vimdiff="nvim -d -u ~/.vimrc"
-alias vim="nvim"
 alias apt="sudo apt"
 alias doc="sudo docker"
 alias docker="sudo docker"
