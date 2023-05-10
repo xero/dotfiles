@@ -1,9 +1,17 @@
-icons/
-mpd/.config/mpd/mpd.log
-ncmpcpp/.ncmpcpp/error.log
-ranger/.config/ranger/bookmarks
-ranger/.config/ranger/colorschemes/__init__.py
-ranger/.config/ranger/colorschemes/__pycache__/
-ranger/.config/ranger/history
-ranger/.config/ranger/tagged
-vim/.vim/bundle/
+# 𝙄𝙂𝙉𝙊𝙍𝙀 𝙈𝙀!
+gpg/.gnupg/crls.d/
+gpg/.gnupg/private-keys-v1.d
+gpg/.gnupg/pubring.kbx
+gpg/.gnupg/pubring.kbx~
+gpg/.gnupg/tofu.db
+gpg/.gnupg/trustdb.gpg
+ssh/.ssh/*.pub
+ssh/.ssh/0xAC1D0000
+ssh/.ssh/authorized_keys
+ssh/.ssh/id_ed25519
+ssh/.ssh/known_hosts
+tmux/.config/tmux/plugins/
+vim/.config/gh/
+vim/.config/nvim/*/
+zsh/.zhistory
+zsh/.zcompdump
