@@ -17,9 +17,9 @@
 #░░░░░░     ░░   ░░░░░░░░    ░░   ░░░░░░ ░░░░░░
 #
 #  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.nu>
-# ░▓ code   ▓ http://code.xero.nu/dotfiles
-# ░▓ mirror ▓ http://git.io/.files
+# ░▓ author ▓ xero <x@xero.style>
+# ░▓ code   ▓ https://code.x-e.ro/dotfiles
+# ░▓ mirror ▓ https://git.io/.files
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
@@ -108,4 +108,4 @@ front(){
 }
 CPU_INFO=$(cpu)
 RAM_INFO=$(ram)
-echo `front` `bat` `draw $RAM_INFO 4` `temp` `draw $CPU_INFO 7` `vpn` `clock`
+echo `front` ${RAM_INFO}% `draw $RAM_INFO 4` ${CPU_INFO}% `draw $CPU_INFO 7` `clock`
