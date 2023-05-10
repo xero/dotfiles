@@ -1,4 +1,0 @@
-#!/usr/bin/fontforge
-Open($1)
-BitmapsAvail([12])
-Generate($1:r + ".bdf", "bdf")

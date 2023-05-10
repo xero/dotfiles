@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # metroid: a metroid ascii banner generator
-# MMXVI xero (http://xero.nu)
+# MMXVI xero (https://x-e.ro)
 
 usage() {
 printf "usage: `basename $0` \n\

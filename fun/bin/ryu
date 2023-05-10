@@ -14,8 +14,8 @@
 # ansi art of ryu hayabusa from ninja gaiden
 # 
 #  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.nu>
-# ░▓ code   ▓ http://code.xero.nu/ryu
+# ░▓ author ▓ xero <x@xero.style>
+# ░▓ code   ▓ https://code.x-e.ro/ryu
 # ░▓ mirror ▓ http://git.io/ryu
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
@@ -174,7 +174,7 @@ else
 		echo "▜▒░░░░░░░▟▛▟▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▛"
 		echo "        ▜▛"
 		echo ""
-		echo "  author:  xero harrison > http://xero.nu"
+		echo "  author:  xero harrison > https://x-e.ro"
 		echo "        homepage: http://git.io/ryu"
 		echo "  crew: http://github.com/syntax-samurai"
 		echo ""
