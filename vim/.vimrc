@@ -8,21 +8,21 @@
 "    ░░    ░░ ░░░  ░░  ░░ ░░░     ░░░░░
 "
 "  ▓▓▓▓▓▓▓▓▓▓
-" ░▓ author ▓ xero <x@xero.nu>
-" ░▓ code   ▓ http://code.xero.nu/dotfiles
-" ░▓ mirror ▓ http://git.io/.files
+" ░▓ author ▓ xero <x@xero.style>
+" ░▓ code   ▓ https://code.x-e.ro/dotfiles
+" ░▓ mirror ▓ https://git.io/.files
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
 
 let configs = [
-\  "general",
-\  "ui",
-\  "commands",
-\  "plugins",
-\  "plugin-settings",
+\  "01-general",
+\  "02-ui",
+\  "03-commands",
+\  "04-install-plugins",
+\  "05-plugin-settings",
 \]
 for file in configs
-  let x = expand("~/.vim/".file.".vim")
+  let x = expand("~/.config/nvim/".file.".vim")
   if filereadable(x)
     execute 'source' x
   endif

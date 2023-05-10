@@ -8,27 +8,25 @@
 "    ░░    ░░ ░░░  ░░  ░░ ░░░     ░░░░░
 "
 "  ▓▓▓▓▓▓▓▓▓▓
-" ░▓ author ▓ xero <x@xero.nu>
-" ░▓ code   ▓ http://code.xero.nu/dotfiles
-" ░▓ mirror ▓ http://git.io/.files
+" ░▓ author ▓ xero <x@xero.style>
+" ░▓ code   ▓ https://code.x-e.ro/dotfiles
+" ░▓ mirror ▓ https://git.io/.files
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
 "
-set runtimepath+=~/.vim/
+set runtimepath+=~/.config/nvim/
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent call system('mkdir -p ~/.vim/{autoload,bundle,cache,undo,backups,swaps}')
-  silent call system('curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-  execute 'source  ~/.vim/autoload/plug.vim'
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent call system('mkdir -p ~/.config/nvim/{autoload,bundle,cache,undo,backups,swaps,plugged}')
+  silent call system('curl -fLo ~/.config/nvim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+  execute 'source  ~/.config/nvim/autoload/plug.vim'
   augroup plugsetup
     au!
     autocmd VimEnter * PlugInstall
   augroup end
 endif
 
-call plug#begin('~/.vim/plugged')
-
-Plug 'mattn/vim-sl'
+call plug#begin('~/.config/nvim/plugged')
 
 " colors
 Plug 'xero/sourcerer.vim'
@@ -37,8 +35,12 @@ Plug 'xero/vim-noctu'
 Plug 'xero/nord-vim-mod'
 
 " programming
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'roxma/nvim-yarp', { 'do': 'pip install -r requirements.txt' }
+Plug 'ojroques/nvim-osc52'
+Plug 'ojroques/vim-oscyank'
 Plug 'shougo/deoplete.nvim', has('nvim') ? {} : { 'do': [ ':UpdateRemotePlugins', ':set runtimepath+=~/.vim/plugged/deoplete.nvim/' ]}
-Plug 'ajh17/VimCompletesMe'
+Plug 'vim-scripts/VimCompletesMe'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
@@ -52,6 +54,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'chrisbra/colorizer'
 Plug 'chrisbra/unicode.vim'
 Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'mattn/vim-sl'
 
 " features
 Plug 'rking/ag.vim'
@@ -63,12 +66,13 @@ Plug 'xero/securemodelines'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on': 'Goyo' }
 Plug 'majutsushi/tagbar', { 'on': 'Tagbar' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "Plug 'junegunn/gv.vim', { 'on': 'GV' }
-Plug 'rbong/vim-flog', { 'on': 'Flog' }
+Plug 'rbong/vim-flog'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " multiplexer integration
-Plug 'roxma/vim-tmux-clipboard'
+"Plug 'roxma/vim-tmux-clipboard'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'melonmanchan/vim-tmux-resizer'
 

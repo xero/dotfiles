@@ -8,9 +8,9 @@
 "    ░░    ░░ ░░░  ░░  ░░ ░░░     ░░░░░
 "
 "  ▓▓▓▓▓▓▓▓▓▓
-" ░▓ author ▓ xero <x@xero.nu>
-" ░▓ code   ▓ http://code.xero.nu/dotfiles
-" ░▓ mirror ▓ http://git.io/.files
+" ░▓ author ▓ xero <x@xero.style>
+" ░▓ code   ▓ https://code.x-e.ro/dotfiles
+" ░▓ mirror ▓ https://git.io/.files
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
 "
@@ -56,7 +56,23 @@ if has('nvim')
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 endif
 
+" ios clipboard
+if has('clipboard') && has('vim_starting')
+  set clipboard& clipboard^=unnamed,unnamedplus
+endif
+
+if exists('##TextYankPost')
+  augroup BlinkClipboardIntegration
+    autocmd!
+    autocmd TextYankPost * silent!
+    \ if v:event.operator is 'y'  |
+    \ execute 'OSCYankRegister +' |
+    \ endif
+  augroup END
+endif
+
 " linting
+let g:ale_completion_enabled = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = ' '

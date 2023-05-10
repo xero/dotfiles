@@ -8,20 +8,12 @@
 "    ░░    ░░ ░░░  ░░  ░░ ░░░     ░░░░░
 "
 "  ▓▓▓▓▓▓▓▓▓▓
-" ░▓ author ▓ xero <x@xero.nu>
-" ░▓ code   ▓ http://code.xero.nu/dotfiles
-" ░▓ mirror ▓ http://git.io/.files
+" ░▓ author ▓ xero <x@xero.style>
+" ░▓ code   ▓ https://code.x-e.ro/dotfiles
+" ░▓ mirror ▓ https://git.io/.files
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
 "
-
-" json pretty print
-function! JSONify()
-  %!python -mjson.tool
-  set syntax=json
-endfunction
-command J :call JSONify()
-nnoremap <silent> <leader>j <esc>:call JSONify()<cr><esc>
 
 " make inline more readable
 function! UnMinify( )
@@ -32,30 +24,41 @@ function! UnMinify( )
     %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
     normal ggVG=
 endfunction
-command UnMinify :call UnMinify()
+command! UnMinify :call UnMinify()
 nnoremap <silent> <leader>u <esc>:call UnMinify()<cr><esc>
 
+" json pretty print
+nnoremap <silent> <leader>j <esc>:%!jq .<cr><esc>
+
 " remove highlighting
-nnoremap <silent> <esc><esc> <esc>:nohlsearch<cr><esc>
+nnoremap <silent> <esc><esc> :nohlsearch<cr><esc>
 
 " remove trailing white space
-command Nows :%s/\s\+$//
+command! Nows :%s/\s\+$//
 
 " remove blank lines
-command Nobl :g/^\s*$/d
+command! Nobl :g/^\s*$/d
 
 " toggle spellcheck
-command Spell :setlocal spell! spell?
-nnoremap <silent> <leader>s :setlocal spell! spell?
+command! Spell :setlocal spell! spell?
+nnoremap <leader>s :Spell<cr>
+
+" ios home key hax
+nnoremap <a-left> 0
+inoremap <a-left> 0
+
+" reload configs
+command! ReloadVIMRC :source $MYVIMRC
+nnoremap <silent> <leader>r <esc>:source $MYVIMRC<cr><esc>
 
 " make current buffer executable
-command Chmodx :!chmod a+x %
+command! Chmodx :!chmod a+x %
 
 " fix syntax highlighting
-command FixSyntax :syntax sync fromstart
+command! FixSyntax :syntax sync fromstart
 
 " pseudo tail functionality
-command Tail :set autoread | au CursorHold * checktime | call feedkeys("G")
+command! Tail :set autoread | au CursorHold * checktime | call feedkeys("G")
 
 " zoom
 function! Zoom() abort
@@ -73,22 +76,22 @@ function! Zoom() abort
     execute "silent !tmux resize-pane -Z"
   endif
 endfunction
-command Zoom call s:Zoom()
+command! Zoom call s:Zoom()
 nnoremap <leader>z :call Zoom()<cr>
 inoremap <leader>z <ESC>:call Zoom()<cr>a
 
-" let's make some textmode art!
+" textmode art!
 function! AsciiMode()
   e ++enc=cp850
   set nu!
   set virtualedit=all
   set colorcolumn=80
 endfunction
-command Ascii :call AsciiMode()
+command! Ascii :call AsciiMode()
 
-
+" ascii percent decoding
 function! URLdecode(str) abort
   let str = substitute(substitute(substitute(a:str,'%0[Aa]\n$','%0A',''),'%0[Aa]','\n','g'),'+',' ','g')
   return iconv(substitute(str,'%\(\x\x\)','\=nr2char("0x".submatch(1))','g'), 'utf-8', 'latin1')
 endfunction
-command URLdecode :call URLdecode()
+command! URLdecode :call URLdecode()

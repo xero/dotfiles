@@ -8,9 +8,9 @@
 "    ░░    ░░ ░░░  ░░  ░░ ░░░     ░░░░░
 "
 "  ▓▓▓▓▓▓▓▓▓▓
-" ░▓ author ▓ xero <x@xero.nu>
-" ░▓ code   ▓ http://code.xero.nu/dotfiles
-" ░▓ mirror ▓ http://git.io/.files
+" ░▓ author ▓ xero <x@xero.style>
+" ░▓ code   ▓ https://code.x-e.ro/dotfiles
+" ░▓ mirror ▓ https://git.io/.files
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
 "
@@ -39,12 +39,6 @@ set nowrap
 
 " set indents when wrapped
 set breakindent
-
-" no folding
-"set nofoldenable
-"set foldlevel=99
-"set foldminlines=99
-"set foldlevelstart=99
 
 " highlight cursor
 set cursorline

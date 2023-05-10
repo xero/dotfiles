@@ -8,9 +8,9 @@
 "    ░░    ░░ ░░░  ░░  ░░ ░░░     ░░░░░
 "
 "  ▓▓▓▓▓▓▓▓▓▓
-" ░▓ author ▓ xero <x@xero.nu>
-" ░▓ code   ▓ http://code.xero.nu/dotfiles
-" ░▓ mirror ▓ http://git.io/.files
+" ░▓ author ▓ xero <x@xero.style>
+" ░▓ code   ▓ https://code.x-e.ro/dotfiles
+" ░▓ mirror ▓ https://git.io/.files
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
 "
@@ -26,7 +26,7 @@ set hidden
 
 " maintain undo history between sessions
 set undofile
-set undodir=~/.vim/undo
+set undodir=~/.config/nvim/undo
 set noswapfile
 
 " fuzzy find
@@ -89,5 +89,5 @@ augroup end
 " set leader key to comma
 let mapleader=","
 
-" coffee pasta
-set clipboard^=unnamedplus
+" ipad
+set mouse=a
