@@ -1,0 +1,9 @@
+# ┳━┓┳  o┏┓┓┳┏   ┓━┓┳ ┳┳━┓┳  ┳
+# ┃━┃┃  ┃┃┃┃┣┻┓  ┗━┓┃━┫┣━ ┃  ┃
+# ┇━┛┇━┛┇┇┗┛┇ ┛  ━━┛┇ ┻┻━┛┇━┛┇━┛
+#
+# run `config` in blink shell
+# to set appearance options
+
+screen mode: fill
+font size: 16px
