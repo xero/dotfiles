@@ -15,3 +15,4 @@ vim/.config/gh/
 vim/.config/nvim/*/
 zsh/.zhistory
 zsh/.zcompdump
+zsh/.config/zsh/secrets.zsh

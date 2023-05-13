@@ -18,3 +18,6 @@ export DISPLAY=:0
 
 #█▓▒░ ssh & gpg keychain init
 eval `keychain -q --agents ssh,gpg --eval ~/.ssh/id_ed25519 0x0DA7AB45AC1D0000`
+
+#█▓▒░ 1password
+eval `op signin`
