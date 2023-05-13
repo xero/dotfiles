@@ -102,12 +102,12 @@ etc, etc, etc...
 
 recently i've been using an 11" m1 ipad pro and a bluetooth 68% mechanical keyboard, usually on my lap, as my main computer. i use the [community edition of the blink shell](https://community.blink.sh) connected to a vps.
 
-when it comes to fonts i've been using [hack](https://sourcefoundry.org/hack/) (i use a [mod](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/readme.md) w/ extra icons) in conjunction with [symbola](http://users.teilar.gr/~g1951d/) for extended unicode and emoji support. it's included in base64 encoded css form, along with color schemes, in the `blink` directory. 
+when it comes to fonts i've been using [hack](https://sourcefoundry.org/hack/) (i use a [mod](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/readme.md) w/ extra icons for extended unicode and emoji support.) it's included in base64 encoded css form, along with color schemes, in the `blink` directory. 
 
 run blink `config` under appearance, set the screen mode set to `cover` then setup your server identity and keys. beyond that the only command i ever run in blink is `mosh x`. x being my server alias.
 
 # vps & local clipboard
-idk why, but i chose debian 11 on aws for some reason. _personal note:_ here's all the packages i have installed, you the reader don't need them all.
+idk why, but i chose debian 11 on aws for some reason. _personal note:_ here's [a script to install all the package](https://gist.github.com/xero/8ba2223cbbdbf4987857a176b4793fb9s) i use. but you the reader don't need them all, this list is for me.
 
 build [mosh server from this pr](https://github.com/mobile-shell/mosh/pull/1104#issuecomment-710754740) for osc 52 clipboard support.
 
