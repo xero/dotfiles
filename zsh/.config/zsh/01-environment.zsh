@@ -19,7 +19,9 @@
 
 #█▓▒░ paths
 export PATH=/usr/local/bin:$HOME/bin:$HOME/.local/bin:$PATH
-export MANPAGER="nvim -c 'set ft=man' -"
+export MANPAGER="nvim +Man!"
+export MANWIDTH=999
+export LESSHISTFILE=-
 #export MANPATH=/usr/local/man:$MANPATH
 
 #█▓▒░ preferred text editor
