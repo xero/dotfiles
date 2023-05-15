@@ -108,4 +108,4 @@ front(){
 }
 CPU_INFO=$(cpu)
 RAM_INFO=$(ram)
-echo `front` ${RAM_INFO}% `draw $RAM_INFO 4` ${CPU_INFO}% `draw $CPU_INFO 7` `clock`
+echo `front` ${RAM_INFO}% `draw $RAM_INFO 4` ${CPU_INFO}% `draw $CPU_INFO 7` `vpn` `clock`

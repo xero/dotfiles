@@ -96,6 +96,7 @@ function parse_arguments() {
 	done
 	[ -z "$host" ] && usage
 	[[ "$host" =~ ^(quit|exit|disconnect)$ ]] && disconnect
+    eval $(op signin)
 	echo "getting credentials"
 	user="$(get_user $secret)"
 	login="$(get_login $secret)"
