@@ -22,6 +22,7 @@ usage() {
     \\_______/    /l_____X___\\______\\
            \\____/
 x0
+	me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 	echo "usage: ${me} [-h|-s|-d|-p|-c|-P|-q] host"
 	echo "  -s|--secret   : 1password secret item for login"
 	echo "  -d|--dns      : private ipv4 dns server"
@@ -60,13 +61,13 @@ function connect() {
 		--passwd-on-stdin \
 		--protocol=${protocol} \
 		${cert} \
-		-S --script "/usr/bin/ocproxy -D ${port} ${dns}" \
+        -S --script "vpnns --attach" \
 		"${host}"
 }
 function disconnect() {
 	echo "killing vpn processes"
 	pkill openconnect
-	pkill ocproxy
+	pkill vpnns
 	exit
 }
 
