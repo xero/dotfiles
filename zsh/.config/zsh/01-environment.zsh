@@ -17,8 +17,13 @@
 #█▓▒░ timestamps
 #HIST_STAMPS=yyyy/mm/dd
 
+#█▓▒░ clean home
+export XDG_CONFIG_HOME="$HOME/.config"
+
 #█▓▒░ paths
-export PATH=/usr/local/bin:$HOME/bin:$HOME/.local/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.local/bin:$PATH
+
+#█▓▒░ man
 export MANPAGER="nvim +Man!"
 export MANWIDTH=999
 export LESSHISTFILE=-
