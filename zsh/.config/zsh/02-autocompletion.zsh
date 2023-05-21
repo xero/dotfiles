@@ -19,6 +19,7 @@ fpath=($HOME/.config/zsh/completion $fpath)
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit -u
 complete -C '/usr/bin/aws_completer' aws
+source /usr/share/doc/fzf/examples/completion.zsh
 
 #█▓▒░stylez
 zstyle ':completion:*' auto-description 'specify: %d'

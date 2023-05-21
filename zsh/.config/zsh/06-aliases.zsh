@@ -27,6 +27,7 @@ alias u="node ~/src/unicoder/unicoder.js "
 alias "cd.."="cd ../"
 alias rmrf="rm -rf"
 alias psef="ps -ef"
+alias ZZ="exit"
 
 #git
 alias ga="git add"
@@ -63,14 +64,6 @@ alias curlh="curl -sILX GET"
 alias curld="curl -A \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36\""
 alias curlm="curl -A \"Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.12 Mobile/10B329 Safari/8536.25\""
 
-#ascii
-alias toiletlist='for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf; do j=${i##*/}; echo ""; echo "╓───── "$j; echo "╙────────────────────────────────────── ─ ─ "; echo ""; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done'
-alias tdlist='for i in ${TD_FONT_PATH:=/usr/local/share/tdfiglet/fonts}/*.tdf; do j=${i##*/}; echo ""; echo "╓───── "$j; echo "╙────────────────────────────────────── ─ ─ "; echo ""; tdfiglet -f "$j" "${j%.*}"; done'
-alias ascii="toilet -t -f 3d"
-alias future="toilet -t -f future"
-alias rusto="toilet -t -f rusto"
-alias rustofat="toilet -t -f rustofat"
-
 #security
 alias checkrootkits="sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check"
 alias checkvirus="clamscan --recursive=yes --infected /home"
@@ -82,17 +75,16 @@ alias up="cd ../"
 alias fuck='sudo $(fc -ln -1)'
 alias lol="base64 </dev/urandom | lolcat"
 alias matrix="cmatrix -b"
-
+alias zen="while :; do bonsai -l -b 2 -c oO0 -t 0.5; sleep 10; done"
 alias k8s="kubectl"
-alias ZZ="exit"
+
 alias disks='echo "╓───── m o u n t . p o i n t s"; \
 			 echo "╙────────────────────────────────────── ─ ─ "; \
 			 lsblk -a; echo ""; \
 			 echo "╓───── d i s k . u s a g e";\
 			 echo "╙────────────────────────────────────── ─ ─ "; \
 			 df -h;'
-alias zen="while :; do bonsai -l -b 2 -c oO0 -t 0.5; sleep 10; done"
-
+#█▓▒░ revive your drive
 function docclean() {
 	sudo docker rm $(sudo docker ps -a -q)
 	sudo docker rmi $(sudo docker images -q)
@@ -102,6 +94,22 @@ function t() {
 	X=$#
 	[[ $X -eq 0 ]] || X=X
 	tmux new-session -A -s $X
+}
+#ascii
+alias ascii="toilet -t -f 3d"
+alias future="toilet -t -f future"
+alias rusto="toilet -t -f rusto"
+alias rustofat="toilet -t -f rustofat"
+function toiletlist() {
+	TXT=$1
+	[ -z "$TXT" ] && TXT="{}"
+	ls ${TOILET_FONT_PATH:=/usr/share/figlet} | sed 's/\.[^.]*$//' | fzf --preview="toilet -f {} ${TXT}" --preview-window=right:80%:noborder --color preview-bg:#1c1c1c
+}
+#█▓▒░ ansi
+function tdlist() {
+	TXT=$1
+	[ -z "$TXT" ] && TXT="{}"
+	ls /home/x0/.config/tdfgo/fonts | sed 's/\.[^.]*$//' | fzf --preview="tdfgo print -f {} ${TXT}" --preview-window=right:80%:noborder --color preview-bg:#1c1c1c
 }
 #█▓▒░ read stuff like manpages
 function md() {
@@ -147,13 +155,12 @@ function greynoise() {
 	curl -sX GET "https://api.greynoise.io/v2/noise/context/${IP}" -H "Accept: application/json" -H "key: ${GREY_TOKEN}"
 }
 function dnsdumpster() {
-	TMP=`mktemp dnsdumpXXX`
+	TMP=`mktemp /tmp/dnsdumpXXX`
 	DNS="${1:-/dev/stdin}"
 	cat << EOF > $TMP
 #!env python
 from dnsdumpster.DNSDumpsterAPI import DNSDumpsterAPI
 domain = '$DNS'
-
 res = DNSDumpsterAPI().search(domain)
 
 print("\n╓───── domain: \n╙────────────────────────────────────── ─ ─")
@@ -178,5 +185,5 @@ print("\n╓───── txt records: \n╙───────────�
 for entry in res['dns_records']['txt']:
     print(entry)
 EOF
-	chmod +x $TMP && python $TMP && rm $TMP
+	chmod +x $TMP && python3 $TMP; rm $TMP
 }

@@ -24,7 +24,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PATH=/usr/local/bin:$HOME/.local/bin:$PATH
 
 #█▓▒░ man
-export MANPAGER="nvim +Man!"
+export MANPAGER="nvim +Man! --clean"
 export MANWIDTH=999
 export LESSHISTFILE=-
 #export MANPATH=/usr/local/man:$MANPATH
