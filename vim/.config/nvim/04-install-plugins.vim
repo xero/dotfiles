@@ -39,7 +39,7 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'roxma/nvim-yarp', { 'do': 'pip install -r requirements.txt' }
 Plug 'ojroques/nvim-osc52'
 Plug 'ojroques/vim-oscyank'
-Plug 'shougo/deoplete.nvim', has('nvim') ? {} : { 'do': [ ':UpdateRemotePlugins', ':set runtimepath+=~/.vim/plugged/deoplete.nvim/' ]}
+Plug 'shougo/deoplete.nvim', has('nvim') ? {} : { 'do': [ ':UpdateRemotePlugins', ':set runtimepath+=~/.config/nvim/plugged/deoplete.nvim/' ]}
 Plug 'vim-scripts/VimCompletesMe'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
