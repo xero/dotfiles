@@ -1,0 +1,5 @@
+#!/bin/bash
+# pip install emoji-fzf
+e=$(emoji-fzf preview --prepend | fzf | awk '{ print $1 }')
+[ ! -z "$TMUX" ] && c="tmux loadb - " || c="xsel -i"
+[ ! -z "$e" ] && printf %s $e | $c
