@@ -21,7 +21,7 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 
 #█▓▒░ paths
-export PATH=/usr/local/bin:$HOME/.local/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 
 #█▓▒░ man
 export MANPAGER="nvim +Man! --clean"

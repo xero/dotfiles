@@ -49,7 +49,6 @@ alias gpr="gh pr create"
 alias mkdir="mkdir -p"
 alias cp="cp -r"
 alias scp="scp -r"
-alias xsel="xsel -b"
 alias vimdiff="nvim -d -u ~/.vimrc"
 alias apt="sudo apt"
 alias doc="sudo docker"
@@ -94,6 +93,8 @@ function t() {
 	X=$#
 	[[ $X -eq 0 ]] || X=X
 	tmux new-session -A -s $X
+	tmux set-environment LC_ALL 'en_US.UTF-8'
+	tmux set-environment LANG 'en_US.UTF-8'
 }
 #ascii
 alias ascii="toilet -t -f 3d"
