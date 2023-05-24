@@ -21,7 +21,14 @@ alias ll="ls -lahF --color=auto"
 alias e="$EDITOR"
 alias se="sudo $EDITOR"
 alias g="git"
-alias u="node ~/src/unicoder/unicoder.js "
+alias k="kubectl"
+alias kx="kubectx"
+alias disks='echo "╓───── m o u n t . p o i n t s"; \
+			 echo "╙────────────────────────────────────── ─ ─ "; \
+			 lsblk -a; echo ""; \
+			 echo "╓───── d i s k . u s a g e";\
+			 echo "╙────────────────────────────────────── ─ ─ "; \
+			 df -h;'
 
 #lazy
 alias "cd.."="cd ../"
@@ -75,19 +82,13 @@ alias fuck='sudo $(fc -ln -1)'
 alias lol="base64 </dev/urandom | lolcat"
 alias matrix="cmatrix -b"
 alias zen="while :; do bonsai -l -b 2 -c oO0 -t 0.5; sleep 10; done"
-alias k8s="kubectl"
 
-alias disks='echo "╓───── m o u n t . p o i n t s"; \
-			 echo "╙────────────────────────────────────── ─ ─ "; \
-			 lsblk -a; echo ""; \
-			 echo "╓───── d i s k . u s a g e";\
-			 echo "╙────────────────────────────────────── ─ ─ "; \
-			 df -h;'
 #█▓▒░ revive your drive
 function docclean() {
 	sudo docker rm $(sudo docker ps -a -q)
 	sudo docker rmi $(sudo docker images -q)
 }
+
 #█▓▒░ tmux
 function t() {
 	X=$#
@@ -96,22 +97,26 @@ function t() {
 	tmux set-environment LC_ALL 'en_US.UTF-8'
 	tmux set-environment LANG 'en_US.UTF-8'
 }
-#ascii
+
+#█▓▒░ ascii
 alias ascii="toilet -t -f 3d"
 alias future="toilet -t -f future"
 alias rusto="toilet -t -f rusto"
 alias rustofat="toilet -t -f rustofat"
+alias u="node ~/.local/src/unicoder/unicoder.js "
 function toiletlist() {
 	TXT=$1
 	[ -z "$TXT" ] && TXT="{}"
 	ls ${TOILET_FONT_PATH:=/usr/share/figlet} | sed 's/\.[^.]*$//' | fzf --preview="toilet -f {} ${TXT}" --preview-window=right:80%:noborder --color preview-bg:#1c1c1c
 }
+
 #█▓▒░ ansi
 function tdlist() {
 	TXT=$1
 	[ -z "$TXT" ] && TXT="{}"
 	ls /home/x0/.config/tdfgo/fonts | sed 's/\.[^.]*$//' | fzf --preview="tdfgo print -f {} ${TXT}" --preview-window=right:80%:noborder --color preview-bg:#1c1c1c
 }
+
 #█▓▒░ read stuff like manpages
 function md() {
 	pandoc -s -f markdown -t man "$*" | man -l -
@@ -119,6 +124,7 @@ function md() {
 function manwww() {
 	curl -skL "$*" | pandoc -s -f html -t man | man -l -
 }
+
 #█▓▒░ hack time
 function gitforge() {
 	[ ! -d .git ] && echo "not a git repo" && return
@@ -149,6 +155,8 @@ function gitforge() {
 	unset GIT_COMMITTER_EMAIL
 	unset GIT_COMMITTER_NAME
 }
+
+#█▓▒░ osint
 function greynoise() {
 	IP="${1:-/dev/stdin}"
 	[[ "$IP" =~ "stdin" ]] && read IP < "$IP"
