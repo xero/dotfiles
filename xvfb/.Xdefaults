@@ -1,39 +1,37 @@
 XTerm*disallowedWindowOps: 20,21,SetXprop
-
-// ┏┓ ╻  ┏━┓┏━┓╻ ╻┏━╸   ┏┳┓┏━┓┏━╸╻┏━╸╻┏
-// ┣┻┓┃  ┣━┫┃┓┃┃ ┃┣╸    ┃┃┃┣━┫┃╺┓┃┃  ┣┻┓
-// ┗━┛┗━╸╹ ╹┗┻┛┗━┛┗━╸   ╹ ╹╹ ╹┗━┛╹┗━╸╹ ╹
-// blaque magick by xero harrison (https://x-e.ro)
+!  ┏┏┓o┳━┓┓━┓┏┏┓┳━┓
+!  ┃┃┃┃┃━┫┗━┓┃┃┃┃━┫
+!  ┛ ┇┇┛ ┇━━┛┛ ┇┛ ┇
+!   miasma by xero (https://x-e.ro)
 
 *.foreground:   #c2c2b0
 *.background:   #222222
-*.cursorColor:  #c2c2b0
+*.cursorColor:  #918f6e
 ! black
-*.color0:       #1c1c1c
-*.color8:       #1c1c1c
+*.color0:       #222222
+*.color8:       #666666
 ! red
-*.color1:       #5F8787
-*.color9:       #5F8787
+*.color1:       #685742
+*.color9:       #685742
 ! green
-*.color2:       #666666
-*.color10:      #a8a8a8
+*.color2:       #5f875f
+*.color10:      #5f875f
 ! yellow
-*.color3:       #87875f
-*.color11:      #87875f
+*.color3:       #B36D43
+*.color11:      #B36D43
 ! blue
-*.color4:       #8787af
-*.color12:      #8787af
+*.color4:       #78824B
+*.color12:      #78824b
 ! magenta
-*.color5:       #808080
-*.color13:      #c2c2b0
+*.color5:       #bb7744
+*.color13:      #bb7744
 ! cyan
-*.color6:       #666666
-*.color14:      #666666
+*.color6:       #C9A554
+*.color14:      #C9A554
 ! white
-*.color7:       #cccccc
-*.color15:      #cccccc
+*.color7:       #D7C483
+*.color15:      #D7C483
 ! others
-URxvt.colorIT:  #444444
-URxvt.colorBD:  #444444
-URxvt.colorUL:  #444444
-
+URxvt.colorIT:  #78824B
+URxvt.colorBD:  #d3d3d3
+URxvt.colorUL:  #40413E
