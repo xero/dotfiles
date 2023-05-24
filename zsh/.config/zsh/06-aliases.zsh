@@ -83,6 +83,33 @@ alias lol="base64 </dev/urandom | lolcat"
 alias matrix="cmatrix -b"
 alias zen="while :; do bonsai -l -b 2 -c oO0 -t 0.5; sleep 10; done"
 
+#█▓▒░ 1password
+function 1pwaccount() {
+	domain="${3:-my}.1password.com"
+	op account add \
+		--address "$domain" \
+		--email "$2" \
+		--shorthand "$1"
+}
+function 1pwsignin() {
+	# muliuser fun times
+	echo "unlock your keychain 🔐"
+	read -rs _pw
+	if [ ! -z "$_pw" ]; then
+		echo "logging in"
+		eval `echo "$_pw" | op signin --account x0`
+		eval `echo "$_pw" | op signin --account bb`
+	fi
+}
+function 1pw() {
+	f="${2:-notesPlain}"
+	a="${3:-x0}"
+	# only get item if signed in to preserve shell pipelines
+	op vault user list private --account "$a" &> /dev/null \
+		|| 1pwsignin \
+		&& op item get "$1" --account "$a" --fields "$f" --format json | jq -rM '.value'
+}
+
 #█▓▒░ revive your drive
 function docclean() {
 	sudo docker rm $(sudo docker ps -a -q)
