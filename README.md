@@ -107,7 +107,7 @@ when it comes to fonts i've been using [hack](https://sourcefoundry.org/hack/) (
 run blink `config` under appearance, set the screen mode set to `cover` then setup your server identity and keys. beyond that the only command i ever run in blink is `mosh x`. x being my server alias.
 
 # vps & local clipboard
-idk why, but i chose debian 11 on aws for some reason. _personal note:_ here's [a script to install all the package](https://gist.github.com/xero/8ba2223cbbdbf4987857a176b4793fb9s) i use. but you the reader don't need them all, this list is for me.
+idk why, but i chose debian 11 on aws for some reason. ive been working on [two scripts to setup the vps and install all the packages](https://gist.github.com/xero/2abb51674b224fbdf6e06c130ae3de7c) i use. but you the reader don't need them all to run my dots, this is for me. beware there be dragons here.
 
 build [mosh server from this pr](https://github.com/mobile-shell/mosh/pull/1104#issuecomment-710754740) for osc 52 clipboard support.
 
