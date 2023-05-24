@@ -100,14 +100,14 @@ function 1pwsignin() {
 		eval `echo "$_pw" | op signin --account x0`
 		eval `echo "$_pw" | op signin --account bb`
 	fi
+	return 0
 }
 function 1pw() {
-	f="${2:-notesPlain}"
-	a="${3:-x0}"
-	# only get item if signed in to preserve shell pipelines
-	op vault user list private --account "$a" &> /dev/null \
-		|| 1pwsignin \
-		&& op item get "$1" --account "$a" --fields "$f" --format json | jq -rM '.value'
+	f="${3:-notesPlain}"
+	# only get item if signed in, to preserve shell pipelines
+	[ -z "$(op vault user list private --account $1 2>/dev/null)" ] \
+		&& 1pwsignin \
+		|| op item get "$2" --account "$1" --fields "$f" --format json | jq -rM '.value'
 }
 
 #█▓▒░ revive your drive
