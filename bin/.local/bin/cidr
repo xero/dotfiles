@@ -1,0 +1,128 @@
+#!/bin/bash
+# CIDR - the CIDR block calc & cheatsheet
+# CC0 xero | https://x-e.ro | https://github.com/xero
+
+usage() {
+	EXITCODE=0
+	if [ -n "$1" ] && [ "$1" -eq "$1" ] 2>/dev/null; then
+		EXITCODE=$1
+	fi
+	me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
+	echo "usage: ${me} [-c|-i IP CIDR|-n IP]"
+	echo "  [--chart] display the CIDR chart"
+	echo "  [--in IP CIDR] checks if an ip in a given CIDR"
+	echo "  [--netmask IP] returns the netmask of a given CIDR"
+	exit "$EXITCODE"
+}
+
+# check if required commands/bins exist
+function isinstalled() {
+	builtin type -P "$1" &> /dev/null || {
+        echo >&2 "'$1' dependancy required"; exit 1
+    }
+}
+
+# print the CIDR cheatsheet
+chart() {
+cat << X0
+Netmask              Netmask (binary)                 CIDR     Notes
+_____________________________________________________________________________
+255.255.255.255  11111111.11111111.11111111.11111111  /32  Host (single addr)
+255.255.255.254  11111111.11111111.11111111.11111110  /31  Unuseable
+255.255.255.252  11111111.11111111.11111111.11111100  /30    2  useable
+255.255.255.248  11111111.11111111.11111111.11111000  /29    6  useable
+255.255.255.240  11111111.11111111.11111111.11110000  /28   14  useable
+255.255.255.224  11111111.11111111.11111111.11100000  /27   30  useable
+255.255.255.192  11111111.11111111.11111111.11000000  /26   62  useable
+255.255.255.128  11111111.11111111.11111111.10000000  /25  126  useable
+255.255.255.0    11111111.11111111.11111111.00000000  /24 "Class C" 254 useable
+
+255.255.254.0    11111111.11111111.11111110.00000000  /23    2x Class C's = 510 usable
+255.255.252.0    11111111.11111111.11111100.00000000  /22    4x Class C's = 1022 usable
+255.255.248.0    11111111.11111111.11111000.00000000  /21    8x Class C's = 2046 usable
+255.255.240.0    11111111.11111111.11110000.00000000  /20   16x Class C's = 4094 usable
+255.255.224.0    11111111.11111111.11100000.00000000  /19   32x Class C's = 8190 usable
+255.255.192.0    11111111.11111111.11000000.00000000  /18   64x Class C's = 16382 usable
+255.255.128.0    11111111.11111111.10000000.00000000  /17  128x Class C's = 32766 usable
+255.255.0.0      11111111.11111111.00000000.00000000  /16  "Class B" 65534 usable
+
+255.254.0.0      11111111.11111110.00000000.00000000  /15    2x Class B's = 131070 usable
+255.252.0.0      11111111.11111100.00000000.00000000  /14    4x Class B's = 262142 usable
+255.248.0.0      11111111.11111000.00000000.00000000  /13    8x Class B's = 524286 usable
+255.240.0.0      11111111.11110000.00000000.00000000  /12   16x Class B's = 1048574 usable
+255.224.0.0      11111111.11100000.00000000.00000000  /11   32x Class B's = 2097150 usable
+255.192.0.0      11111111.11000000.00000000.00000000  /10   64x Class B's = 4194302 usable
+255.128.0.0      11111111.10000000.00000000.00000000  /9   128x Class B's = 8388606 usable
+255.0.0.0        11111111.00000000.00000000.00000000  /8   "Class A" 16777214
+
+254.0.0.0        11111110.00000000.00000000.00000000  /7
+252.0.0.0        11111100.00000000.00000000.00000000  /6
+248.0.0.0        11111000.00000000.00000000.00000000  /5
+240.0.0.0        11110000.00000000.00000000.00000000  /4
+224.0.0.0        11100000.00000000.00000000.00000000  /3
+192.0.0.0        11000000.00000000.00000000.00000000  /2
+128.0.0.0        10000000.00000000.00000000.00000000  /1
+0.0.0.0          00000000.00000000.00000000.00000000  /0   IP space
+
+                                   Net     Host    Total
+Net      Addr                      Addr    Addr    Number
+Class   Range      NetMask         Bits    Bits   of hosts
+----------------------------------------------------------
+A        0-127    255.0.0.0         /8     24     16777216   (i.e. 114.0.0.0)
+B      128-191    255.255.0.0      /16     16        65536   (i.e. 150.0.0.0)
+C      192-254    255.255.255.0    /24      8          256   (i.e. 199.0.0.0)
+D      224-239    (multicast)
+E      240-255    (reserved)
+F      208-215    255.255.255.240  28       4           16
+G      216/8      ARIN - North America
+G      217/8      RIPE NCC - Europe
+G      218-219/8  APNIC
+H      220-221    255.255.255.248  29       3            8   (reserved)
+K      222-223    255.255.255.254  31       1            2   (reserved)
+(ref: RFC1375 & http://www.iana.org/assignments/ipv4-address-space )
+(               http://www.iana.org/numbers.htm                    )
+----------------------------------------------------------
+X0
+}
+
+# calcuate minimum netmask for a given ip
+netmask () {
+   c=0 x=0$( printf '%o' ${1//./ } )
+   while [ "$x" -gt 0 ]; do
+       let c+=$((x%2)) 'x>>=1'
+   done
+   echo /$c
+}
+
+# check if ip is inside a given cidr block
+inside() {
+	[ -z "$1" ] && usage 1
+	[ -z "$2" ] && usage 1
+	IP=$1
+	CIDR=$2
+	isinstalled nmap
+	if [ $(nmap -sL -n "$CIDR" | awk '/Nmap scan report/{print $NF}' | grep "$IP") ]; then 
+		echo "true"
+		exit 0
+	else
+		echo "false"
+		exit 1
+	fi
+}
+
+# parse command arguments
+case "$1" in
+	--chart|"chart"|-c)
+		chart
+	;;
+	--in|"in"|-i)
+		inside "$2" "$3"
+	;;
+	--netmask|"netmask"|-n)
+		netmask "$2"
+	;;
+	*)
+		usage
+	;;
+esac
+# EOF
