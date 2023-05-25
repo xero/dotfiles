@@ -104,12 +104,16 @@ function 1pwsignin() {
 }
 function 1pw() {
 	f="${3:-notesPlain}"
+	[[ "$2" =~ "^http" ]] && i=$(1pwurl "$2") || i="$2"
 	# only get item if signed in, to preserve shell pipelines
 	[ -z "$(op vault user list private --account $1 2>/dev/null)" ] \
 		&& 1pwsignin \
-		|| op item get "$2" --account "$1" --fields "$f" --format json | jq -rM '.value'
+		|| op item get "$i" --account "$1" --fields "$f" --format json | jq -rM '.value'
 }
-
+# get item uuid from 1password share urls
+function 1pwurl() {
+	echo "$1" | sed 's/^.*i=//;s/\&.*$//'
+}
 #█▓▒░ revive your drive
 function docclean() {
 	sudo docker rm $(sudo docker ps -a -q)
