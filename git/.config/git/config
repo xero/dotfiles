@@ -10,6 +10,7 @@
 	stat = status -sb
 	last = log -1 --stat
 	unstage = reset HEAD --
+	u = reset HEAD --
 	cached = diff --cached
 	d = difftool
 	c = clone
@@ -23,3 +24,5 @@
 	prompt = false
 [gpg]
 	program = gpg
+[core]
+     attributesFile = ~/.config/git/gitattributes
