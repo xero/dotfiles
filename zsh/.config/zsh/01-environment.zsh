@@ -24,10 +24,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PATH=/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 
 #█▓▒░ man
-export MANPAGER="nvim +Man! --clean"
+export MANPAGER="nvim +Man!"
 export MANWIDTH=999
 export LESSHISTFILE=-
-#export MANPATH=/usr/local/man:$MANPATH
 
 #█▓▒░ preferred text editor
 export EDITOR=nvim
@@ -57,4 +56,4 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 #█▓▒░ node versions
-NAVE_DIR=~/bin/.node/
+export NAVE_DIR="$HOME/.config/node"
