@@ -107,11 +107,11 @@ when it comes to fonts i've been using [hack](https://sourcefoundry.org/hack/) (
 run blink `config` under appearance, set the screen mode set to `cover` then setup your server identity and keys. beyond that the only command i ever run in blink is `mosh x`. x being my server alias.
 
 # vps & local clipboard
-idk why, but i chose debian 11 on aws for some reason. ive been working on [two scripts to setup the vps and install all the packages](https://gist.github.com/xero/2abb51674b224fbdf6e06c130ae3de7c) i use. but you the reader don't need them all to run my dots, this is for me. beware there be dragons here.
+idk why, but i chose debian 11 on aws for some reason. ive been working on [a scripts to setup the vps and install all the packages, create my user, setup keys, etc](https://gist.github.com/xero/2abb51674b224fbdf6e06c130ae3de7c) i use. but you the reader don't need them all to run my dots, this is for me. beware there be dragons here.
 
-build [mosh server from this pr](https://github.com/mobile-shell/mosh/pull/1104#issuecomment-710754740) for osc 52 clipboard support.
+it builds [mosh-server from this pr](https://github.com/mobile-shell/mosh/pull/1104#issuecomment-710754740) for osc 52 clipboard support.
 
-i use [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a headless xorg enviroment for the clipboard. you can then use tools like [xsel](https://linux.die.net/man/1/xsel) and [xclip](https://linux.die.net/man/1/xclip) to pipe `{in/out}` of it in the tty. i have a personal fork on clipmenu that uses [fzf](https://github.com/junegunn/fzf) and a an osc52 [yank script](https://github.com/xero/dotfiles/blob/vps/xvfb/bin/yank) to syncromize the x and ipad clipboards. there are other osc52 plugins for neovim and tmux included in these dotfiles to bing the whole thing together.
+i use [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a headless xorg enviroment for the clipboard. you can then use tools like [xsel](https://linux.die.net/man/1/xsel) and [xclip](https://linux.die.net/man/1/xclip) to pipe `{in/out}` of it in the tty. i have a personal fork on clipmenu that uses [fzf](https://github.com/junegunn/fzf) and a an osc52 [yank script](https://github.com/xero/dotfiles/blob/vps/xvfb/bin/yank) to syncromize the x and ipad clipboards. there are other osc52 plugins for neovim and tmux included in these dotfiles to bring the whole thing together.
 
 # shell
 i prefer a minimal setup, and choose to interact with my operating system via the so-called "terminal" or "command line", (read that quoting sarcastically) over a gui interface 2 times out of 3. with the web browser and video player among the noted outliers. in my opinion, using your computer should be a very personal experience. your colors, aliases, key-bindings, etc meticulously crafted to your exacting specifications. so for me, the unix shell is the most important part of my environment.
