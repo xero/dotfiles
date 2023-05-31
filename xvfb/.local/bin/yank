@@ -30,14 +30,14 @@ if installed pbcopy; then
 elif installed reattach-to-user-namespace; then
   copy_backend="reattach-to-user-namespace pbcopy"
 elif [ -n "${DISPLAY-}" ] && installed xsel; then
-  copy_backend="xsel -i --clipboard"
+  copy_backend="xsel -i"
 elif [ -n "${DISPLAY-}" ] && installed xclip; then
   copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
 elif [ -n "${copy_backend_remote_tunnel_port-}" ] && [ "$(ss -n -4 state listening "( sport = $copy_backend_remote_tunnel_port )" | tail -n +2 | wc -l)" -eq 1 ]; then
   copy_backend="nc localhost $copy_backend_remote_tunnel_port"
 fi
 # if copy backend is resolved, copy to local clipboard
-[ -n "$copy_backend" ] && echo -ne"$buf" | eval "$copy_backend"
+[ -n "$copy_backend" ] && echo -ne "$buf" | eval "$copy_backend"
 
 # copy via OSC 52 ANSI escape sequence to controlling terminal
 # https://sunaku.github.io/tmux-yank-osc52.html
@@ -69,4 +69,3 @@ else
   # print that shiz raw
   printf "$esc"
 fi
-# EOF
