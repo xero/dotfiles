@@ -13,16 +13,14 @@
 " ░▓ mirror ▓ https://git.io/.files
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
-"
-set runtimepath+=~/.config/nvim/
 
+set runtimepath+=~/.config/nvim/
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent call system('mkdir -p ~/.config/nvim/{autoload,bundle,cache,undo,backups,swaps,plugged}')
   silent call system('curl -fLo ~/.config/nvim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
   execute 'source  ~/.config/nvim/autoload/plug.vim'
-  augroup plugsetup
-    au!
-    autocmd VimEnter * PlugInstall
+  augroup plugsetup | au!
+    autocmd VimEnter * silent!  PlugInstall <ZZ>
   augroup end
 endif
 
