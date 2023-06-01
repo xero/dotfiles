@@ -97,8 +97,10 @@ function 1pwsignin() {
 	read -rs _pw
 	if [ ! -z "$_pw" ]; then
 		echo "logging in"
-		eval `echo "$_pw" | op signin --account x0`
-		eval `echo "$_pw" | op signin --account bb`
+		accounts=("${(f)$(op account list | tail -n +2 | sed 's/ .*//')}")
+		for acct in "${accounts[@]}" ;do
+			eval $(echo "$_pw" | op signin --account "$acct")
+		done
 	fi
 	return 0
 }
@@ -114,6 +116,7 @@ function 1pw() {
 function 1pwurl() {
 	echo "$1" | sed 's/^.*i=//;s/\&.*$//'
 }
+
 #█▓▒░ revive your drive
 function docclean() {
 	sudo docker rm $(sudo docker ps -a -q)
