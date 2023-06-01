@@ -23,7 +23,11 @@ eval `keychain -q --agents ssh,gpg --eval ~/.ssh/id_ed25519 0x0DA7AB45AC1D0000`
 echo "unlock your keychain 🔐"
 read -rs _pw
 if [ ! -z "$_pw" ]; then
-	echo "logging in"
-	eval `echo "$_pw" | op signin --account x0`
-	eval `echo "$_pw" | op signin --account bb`
+	printf "logging in: "
+	accounts=("${(f)$(op account list | tail -n +2 | sed 's/ .*//')}")
+	for acct in "${accounts[@]}" ;do
+		printf "%s " "$acct"
+		eval $(echo "$_pw" | op signin --account "$acct")
+	done
+	echo
 fi
