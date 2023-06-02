@@ -98,22 +98,32 @@ function 1pwsignin() {
 	read -rs _pw
 	if [ ! -z "$_pw" ]; then
 		printf "logging in: "
-		accounts=("${(f)$(op account list | tail -n +2 | sed 's/ .*//')}")
+		accounts=("${(f)$(op account list | tail -n +2 | cut -d' ' -f1)}")
 		for acct in "${accounts[@]}" ;do
 			printf "%s " "$acct"
 			eval $(echo "$_pw" | op signin --account "$acct")
 		done
 		echo
 	fi
-	return 0
+}
+function 1pwcheck() {
+	[ -z "$(op vault user list private --account $1 2>/dev/null)" ] && 1pwsignin || return true
 }
 function 1pw() {
 	f="${3:-notesPlain}"
 	[[ "$2" =~ "^http" ]] && i=$(1pwurl "$2") || i="$2"
-	# only get item if signed in, to preserve shell pipelines
-	[ -z "$(op vault user list private --account $1 2>/dev/null)" ] \
-		&& 1pwsignin \
-		|| op item get "$i" --account "$1" --fields "$f" --format json | jq -rM '.value'
+	1pwcheck "$1" && op item get "$i" --account "$1" --fields "$f" --format json | jq -rM '.value'
+}
+function 1pwedit() {
+	[ -z "$4" ] && { read val; } || { val=$4; }
+	1pwcheck "$1" && op item edit --account "$1" "$2" "${3}=${val}"
+}
+function 1pwfile() {
+	f="${4:-notesPlain}"
+	1pwcheck "$1" && op --account "$1" read "op://$2/$3/$f"
+}
+function 1pweditfile() {
+	1pwcheck "$1" && op item edit --account "$1" "$2" "files.[file]=$3"
 }
 # get item uuid from 1password share urls
 function 1pwurl() {
@@ -198,7 +208,7 @@ function greynoise() {
 	IP="${1:-/dev/stdin}"
 	[[ "$IP" =~ "stdin" ]] && read IP < "$IP"
 	[[ "$IP" =~ "([0-9]{1,3}[\.]){3}[0-9]{1,3}" ]] || IP=`dig +short ${IP}`
-	curl -sX GET "https://api.greynoise.io/v2/noise/context/${IP}" -H "Accept: application/json" -H "key: ${GREY_TOKEN}"
+	curl -sX GET "https://api.greynoise.io/v3/community/${IP}" -H "Accept: application/json" -H "key: ${GREY_TOKEN}"
 }
 function dnsdumpster() {
 	TMP=`mktemp /tmp/dnsdumpXXX`
