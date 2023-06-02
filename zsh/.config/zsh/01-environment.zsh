@@ -29,6 +29,7 @@ export XDG_STATE_HOME="$HOME"/.local/state
 export ZDOTDIR="$HOME"/.config/zsh
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+export GNUPGHOME="$XDG_DATA_HOME"/gpg
 
 #█▓▒░  history
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
