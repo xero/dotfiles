@@ -17,11 +17,8 @@
 #█▓▒░ timestamps
 #HIST_STAMPS=yyyy/mm/dd
 
-#█▓▒░ clean home
-export XDG_CONFIG_HOME="$HOME/.config"
-
 #█▓▒░ paths
-export PATH=/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$HOME/.local/lib/cargo/bin:$HOME/.local/lib/go/bin:$PATH
 
 #█▓▒░ man
 export MANPAGER="nvim +Man!"
@@ -55,5 +52,9 @@ export MOSH_TITLE_NOPREFIX=1
 GPG_TTY=$(tty)
 export GPG_TTY
 
-#█▓▒░ node versions
-export NAVE_DIR="$HOME/.config/node"
+#█▓▒░ clean home
+export XDG_CONFIG_HOME="$HOME/.config"
+export NAVE_DIR="$HOME/.local/lib/nodejs"
+export CARGO_HOME="$HOME/.local/lib/cargo"
+export RUSTUP_HOME="$HOME/.local/lib/rustup"
+export GOPATH="$HOME/.local/lib/go"

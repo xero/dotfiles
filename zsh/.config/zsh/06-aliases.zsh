@@ -21,7 +21,8 @@ alias ll="ls -lahF --color=auto"
 alias e="$EDITOR"
 alias se="sudo $EDITOR"
 alias g="git"
-alias k="kubectl"
+alias y="yank"
+alias k="vpnns -- kubectl"
 alias kx="kubectx"
 alias disks='echo "╓───── m o u n t . p o i n t s"; \
 			 echo "╙────────────────────────────────────── ─ ─ "; \
@@ -63,6 +64,7 @@ alias docker="sudo docker"
 alias systemctl="sudo systemctl"
 alias proxychains="proxychains -q"
 alias ag="ag --color --color-line-number '0;35' --color-match '46;30' --color-path '4;36'"
+alias aga="ag --hidden --color --color-line-number '0;35' --color-match '46;30' --color-path '4;36'"
 alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules|bower_components" --dirsfirst'
 
 #curl
@@ -77,7 +79,6 @@ alias updateantivirus="sudo freshclam"
 
 #silly
 alias xyzzy="echo nothing happens"
-alias up="cd ../"
 alias fuck='sudo $(fc -ln -1)'
 alias lol="base64 </dev/urandom | lolcat"
 alias matrix="cmatrix -b"
@@ -96,11 +97,13 @@ function 1pwsignin() {
 	echo "unlock your keychain 🔐"
 	read -rs _pw
 	if [ ! -z "$_pw" ]; then
-		echo "logging in"
+		printf "logging in: "
 		accounts=("${(f)$(op account list | tail -n +2 | sed 's/ .*//')}")
 		for acct in "${accounts[@]}" ;do
+			printf "%s " "$acct"
 			eval $(echo "$_pw" | op signin --account "$acct")
 		done
+		echo
 	fi
 	return 0
 }
