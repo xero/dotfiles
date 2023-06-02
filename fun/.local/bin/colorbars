@@ -1,8 +1,6 @@
 #!/bin/sh
-#
 # colorbars - smpte color bars in sh
-# http://git.io/colorbars 
-
+# https://gitlab.com/jschx/bin/-/blob/master/colorbars
 echo
 
 for y in $(seq 0 13); do

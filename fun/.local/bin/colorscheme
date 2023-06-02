@@ -1,14 +1,15 @@
 #!/bin/bash
-#
 # This file echoes a bunch of color codes to the
 # terminal to demonstrate what's available.  Each
 # line is the color code of one forground color,
 # out of 17 (default + 16 escapes), followed by a
 # test use of that color on all nine background
 # colors (default + 8 escapes).
+#
+# source: https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
+# mods by xero
 
-T='niX'   # The test text
-
+T='niX'
 echo -e "\n                 40m     41m     42m     43m\
      44m     45m     46m     47m";
 for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
@@ -21,6 +22,5 @@ for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
   done
   echo;
 done
-echo -e "\033[1m                 blk     red     grn     ylw\
-     blu     mag     cyn     gry\033[0m";
-
+echo -e "                 BLK     RED     GRN     YLW\
+     BLU     MAG     CYN     WHT\n";

@@ -1,4 +1,7 @@
 #!/bin/sh
+# colorbars-sm - smpte color bars in sh (only smaller)
+# sauce: https://gitlab.com/jschx/bin/-/blob/master/colorbars
+# shrunk by xeR0
 echo
 
 # mini smpte color bars
