@@ -16,6 +16,23 @@
 #
 #█▓▒░ timestamps
 #HIST_STAMPS=yyyy/mm/dd
+#
+#█▓▒░ clean home
+export XDG_CONFIG_HOME="$HOME"/.config
+export NAVE_DIR="$HOME"/.local/lib/nodejs
+export CARGO_HOME="$HOME"/.local/lib/cargo
+export RUSTUP_HOME="$HOME"/.local/lib/rustup
+export GOPATH="$HOME"/.local/lib/go
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_STATE_HOME="$HOME"/.local/state
+export ZDOTDIR="$HOME"/.config/zsh
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+
+#█▓▒░  history
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
+export LESSHISTFILE=-
 
 #█▓▒░ paths
 export PATH=/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$HOME/.local/lib/cargo/bin:$HOME/.local/lib/go/bin:$PATH
@@ -23,13 +40,12 @@ export PATH=/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$HOME/.local/lib/car
 #█▓▒░ man
 export MANPAGER="nvim +Man!"
 export MANWIDTH=999
-export LESSHISTFILE=-
 
 #█▓▒░ preferred text editor
 export EDITOR=nvim
 export VISUAL=nvim
 
-#█▓▒░ clipboard menu
+#█▓▒░ fzf & clipboard menu
 export CM_LAUNCHER="fzf"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#c1c1c1,bg:#2b2b2b,hl:#5f8787 --color=fg+:#ffffff,bg+:#1c1c1c,hl+:#3ea3a3 --color=info:#87875f,prompt:#87875f,pointer:#8787af --color=marker:#8787af,spinner:#8787af,header:#5f8787 --color=gutter:#2b2b2b,border:#222222 --padding=1 --prompt=❯ --marker=❯ --pointer=❯ --reverse'
 
@@ -51,10 +67,3 @@ export MOSH_TITLE_NOPREFIX=1
 #█▓▒░ gpg cli in the tty
 GPG_TTY=$(tty)
 export GPG_TTY
-
-#█▓▒░ clean home
-export XDG_CONFIG_HOME="$HOME/.config"
-export NAVE_DIR="$HOME/.local/lib/nodejs"
-export CARGO_HOME="$HOME/.local/lib/cargo"
-export RUSTUP_HOME="$HOME/.local/lib/rustup"
-export GOPATH="$HOME/.local/lib/go"
