@@ -1,10 +1,10 @@
 # 𝙄𝙂𝙉𝙊𝙍𝙀 𝙈𝙀!
-gpg/.gnupg/crls.d/
-gpg/.gnupg/private-keys-v1.d
-gpg/.gnupg/pubring.kbx
-gpg/.gnupg/pubring.kbx~
-gpg/.gnupg/tofu.db
-gpg/.gnupg/trustdb.gpg
+gpg/.local/share/gpg/crls.d/
+gpg/.local/share/gpg/private-keys-v1.d/
+gpg/.local/share/gpg/tofu.db
+gpg/.local/share/gpg/pubring.kbx
+gpg/.local/share/gpg/pubring.kbx~
+gpg/.local/share/gpg/trustdb.gpg
 ssh/.ssh/authorized_keys
 ssh/.ssh/id_*
 ssh/.ssh/*.pub
