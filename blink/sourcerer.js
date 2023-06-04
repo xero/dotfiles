@@ -7,8 +7,8 @@
 //  r  e  a  d     c  o  d  e     l  i  k  e     a     w  i  z  a  r  d
 //
 // sourcerer by xero harrison (https://x-e.ro)
-//  ├─ based on sorcerer by Jeet Sukumaran (http://jeetworks.org)
-//  └─ based on mustang by Henrique C. Alves (hcarvalhoalves@gmail.com)
+//  ├─ based on sorcerer by jeet sukumaran (http://jeetworks.org)
+//  └─ based on mustang by henrique c. alves (hcarvalhoalves@gmail.com)
 
 // █▓▒░ scorcerer colors
 black       = '#000000';
