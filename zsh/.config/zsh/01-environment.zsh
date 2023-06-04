@@ -1,5 +1,4 @@
 #                 ██
-#                ░██
 #  ██████  ██████░██
 # ░░░░██  ██░░░░ ░██████
 #    ██  ░░█████ ░██░░░██
@@ -13,10 +12,7 @@
 # ░▓ mirror ▓ https://git.io/.files
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
-#
-#█▓▒░ timestamps
-#HIST_STAMPS=yyyy/mm/dd
-#
+
 #█▓▒░ clean home
 export XDG_CONFIG_HOME="$HOME"/.config
 export NAVE_DIR="$HOME"/.local/lib/nodejs
@@ -30,10 +26,6 @@ export ZDOTDIR="$HOME"/.config/zsh
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export GNUPGHOME="$XDG_DATA_HOME"/gpg
-
-#█▓▒░  history
-export HISTFILE="$XDG_STATE_HOME"/zsh/history
-export LESSHISTFILE=-
 
 #█▓▒░ paths
 export PATH=/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$HOME/.local/lib/cargo/bin:$HOME/.local/lib/go/bin:$PATH
