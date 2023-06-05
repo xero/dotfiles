@@ -28,7 +28,7 @@ export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export GNUPGHOME="$XDG_DATA_HOME"/gpg
 
 #█▓▒░ paths
-export PATH=/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$HOME/.local/lib/cargo/bin:$HOME/.local/lib/go/bin:$PATH
+export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$PATH
 
 #█▓▒░ man
 export MANPAGER="nvim +Man!"
