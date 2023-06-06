@@ -11,6 +11,7 @@
 # henious edit of an osc52 clipboard script by samoshkin
 # https://github.com/samoshkin/tmux-config/blob/master/tmux/yank.sh
 # this version tries to push to every clipboard is possible can xD
+# cc0 mmxxiii xero (https://x-e.ro | https://git.io/.files)
 
 set -eu
 shopt -s extglob
@@ -37,7 +38,7 @@ elif [ -n "${copy_backend_remote_tunnel_port-}" ] && [ "$(ss -n -4 state listeni
   copy_backend="nc localhost $copy_backend_remote_tunnel_port"
 fi
 # if copy backend is resolved, copy to local clipboard
-[ -n "$copy_backend" ] && echo -ne "$buf" | eval "$copy_backend"
+[ -n "$copy_backend" ] && printf "$buf" | eval "$copy_backend"
 
 # copy via OSC 52 ANSI escape sequence to controlling terminal
 # https://sunaku.github.io/tmux-yank-osc52.html
@@ -53,16 +54,16 @@ if [ "$buflen" -gt "$maxlen" ]; then
 fi
 
 # build OSC 52 ANSI escape sequence
-esc="\033]52;c;$( printf %s "$buf" | head -c $maxlen | base64 | tr -d '\r\n' )\a"
+esc="\033]52;c;$(printf "$buf" | head -c $maxlen | base64 | tr -d '\r\n')\a"
 
 # sent directly to the ssh tty (requires root?)
 #[ -n "$SSH_TTY" ] && printf "$esc" > "$SSH_TTY"
 
 # multiplexin? update the eascape sequence
-if $(tmux has-session 2> /dev/null); then
+if (tmux has-session 2> /dev/null); then
   esc="\033Ptmux;\033$esc\033\\"
  # send to all terminals \o/
-  for pts in /dev/pts/[0-999]; do
+  for pts in /dev/pts/[0-9]; do
     printf "$esc" > "$pts"
   done
 else
