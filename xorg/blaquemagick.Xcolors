@@ -1,0 +1,36 @@
+! ┏┓ ╻  ┏━┓┏━┓╻ ╻┏━╸   ┏┳┓┏━┓┏━╸╻┏━╸╻┏
+! ┣┻┓┃  ┣━┫┃┓┃┃ ┃┣╸    ┃┃┃┣━┫┃╺┓┃┃  ┣┻┓
+! ┗━┛┗━╸╹ ╹┗┻┛┗━┛┗━╸   ╹ ╹╹ ╹┗━┛╹┗━╸╹ ╹
+! blaque magick by xero harrison (https://x-e.ro)
+
+*.foreground:   #c2c2b0
+*.background:   #222222
+*.cursorColor:  #c2c2b0
+! black
+*.color0:       #1c1c1c
+*.color8:       #1c1c1c
+! red
+*.color1:       #5F8787
+*.color9:       #5F8787
+! green
+*.color2:       #666666
+*.color10:      #a8a8a8
+! yellow
+*.color3:       #87875f
+*.color11:      #87875f
+! blue
+*.color4:       #8787af
+*.color12:      #8787af
+! magenta
+*.color5:       #808080
+*.color13:      #c2c2b0
+! cyan
+*.color6:       #666666
+*.color14:      #666666
+! white
+*.color7:       #cccccc
+*.color15:      #cccccc
+! others
+URxvt.colorIT:  #444444
+URxvt.colorBD:  #444444
+URxvt.colorUL:  #444444
