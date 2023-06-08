@@ -59,7 +59,7 @@ function connect() {
 		--passwd-on-stdin \
 		--protocol=${protocol} \
 		${cert} \
-        -S --script "vpnns --attach" \
+        -S --script "HOME=$XDG_STATE_HOME vpnns --attach" \
 		"${host}"
 }
 function disconnect() {
@@ -94,7 +94,7 @@ function parse_arguments() {
 		shift
 	done
 	[ -z "$host" ] && usage
-	[[ "$host" =~ ^(quit|exit|disconnect)$ ]] && disconnect
+	[[ "$host" =~ ^(q|quit|exit|disconnect)$ ]] && disconnect
 	[ -z "$account" ] || account="--account ${account}"
     eval $(op signin ${account})
 	echo "getting credentials"
