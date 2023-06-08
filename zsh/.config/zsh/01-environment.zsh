@@ -27,6 +27,8 @@ export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export GNUPGHOME="$XDG_DATA_HOME"/gpg
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export NPM_CONFIG_PREFIX="${XDG_DATA_HOME}"/npm
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
 
 #█▓▒░ paths
 export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$XDG_DATA_HOME/npm/bin:$PATH
