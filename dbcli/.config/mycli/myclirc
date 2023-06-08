@@ -1,0 +1,96 @@
+# vi: ft=dosini
+[main]
+smart_completion = True
+multi_line = False
+destructive_warning = True
+log_file = ~/.config/mycli/log
+log_level = INFO
+timing = True
+beep_after_seconds = 0
+table_format = ascii
+# Syntax coloring style. Possible values (many support the "-dark" suffix):
+# manni, igor, xcode, vim, autumn, vs, rrt, native, perldoc, borland, tango, emacs,
+# friendly, monokai, paraiso, colorful, murphy, bw, pastie, paraiso, trac, default, fruity
+syntax_style = default
+key_bindings = vi
+# Enabling this option will show the suggestions in a wider menu. Thus more items are suggested.
+wider_completion_menu = False
+# MySQL prompt
+# \D - The full current date
+# \d - Database name
+# \h - Hostname of the server
+# \m - Minutes of the current time
+# \n - Newline
+# \P - AM/PM
+# \p - Port
+# \R - The current time, in 24-hour military time (0-23)
+# \r - The current time, standard 12-hour time (1-12)
+# \s - Seconds of the current time
+# \t - Product type (Percona, MySQL, MariaDB, TiDB)
+# \A - DSN alias name (from the [alias_dsn] section)
+# \u - Username
+# \x1b[...m - insert ANSI escape sequence
+prompt = '\t \u@\h:\d> '
+prompt_continuation = '->'
+# Skip intro info on startup and outro info on exit
+less_chatty = True
+login_path_as_host = False
+auto_vertical_output = False
+keyword_casing = auto
+enable_pager = True
+pager = 'less'
+# Custom colors for the completion menu, toolbar, etc.
+[colors]
+completion-menu.completion.current = 'bg:#ffffff #000000'
+completion-menu.completion = 'bg:#008888 #ffffff'
+completion-menu.meta.completion.current = 'bg:#44aaaa #000000'
+completion-menu.meta.completion = 'bg:#448888 #ffffff'
+completion-menu.multi-column-meta = 'bg:#aaffff #000000'
+scrollbar.arrow = 'bg:#003333'
+scrollbar = 'bg:#00aaaa'
+selected = '#ffffff bg:#6666aa'
+search = '#ffffff bg:#4444aa'
+search.current = '#ffffff bg:#44aa44'
+bottom-toolbar = 'bg:#222222 #aaaaaa'
+bottom-toolbar.off = 'bg:#222222 #888888'
+bottom-toolbar.on = 'bg:#222222 #ffffff'
+search-toolbar = 'noinherit bold'
+search-toolbar.text = 'nobold'
+system-toolbar = 'noinherit bold'
+arg-toolbar = 'noinherit bold'
+arg-toolbar.text = 'nobold'
+bottom-toolbar.transaction.valid = 'bg:#222222 #00ff5f bold'
+bottom-toolbar.transaction.failed = 'bg:#222222 #ff005f bold'
+# style classes for colored table output
+output.header = "#00ff5f bold"
+output.odd-row = ""
+output.even-row = ""
+output.null = "#808080"
+# SQL syntax highlighting overrides
+# sql.comment = 'italic #408080'
+# sql.comment.multi-line = ''
+# sql.comment.single-line = ''
+# sql.comment.optimizer-hint = ''
+# sql.escape = 'border:#FF0000'
+# sql.keyword = 'bold #008000'
+# sql.datatype = 'nobold #B00040'
+# sql.literal = ''
+# sql.literal.date = ''
+# sql.symbol = ''
+# sql.quoted-schema-object = ''
+# sql.quoted-schema-object.escape = ''
+# sql.constant = '#880000'
+# sql.function = '#0000FF'
+# sql.variable = '#19177C'
+# sql.number = '#666666'
+# sql.number.binary = ''
+# sql.number.float = ''
+# sql.number.hex = ''
+# sql.number.integer = ''
+# sql.operator = '#666666'
+# sql.punctuation = ''
+# sql.string = '#BA2121'
+# sql.string.double-quouted = ''
+# sql.string.escape = 'bold #BB6622'
+# sql.string.single-quoted = ''
+# sql.whitespace = ''
