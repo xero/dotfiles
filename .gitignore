@@ -1,4 +1,6 @@
 # 𝙄𝙂𝙉𝙊𝙍𝙀 𝙈𝙀!
+dbcli/.config/pgcli/log
+dbcli/.config/mycli/log
 gpg/.local/share/gpg/crls.d/
 gpg/.local/share/gpg/private-keys-v1.d/
 gpg/.local/share/gpg/tofu.db
@@ -11,6 +13,5 @@ ssh/.ssh/*.pub
 ssh/.ssh/known_hosts
 tmux/.config/tmux/plugins/
 vim/.config/nvim/*/
-zsh/.zhistory
 zsh/.zcompdump
 zsh/.config/zsh/secrets.zsh
