@@ -7,11 +7,7 @@
 [alias]
 	graphgpg = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%C(blue)%x20(%ce)%x20%C(cyan)[gpg:%GK%x20%G?]%C(reset)%n%x20%s%n"
 	graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%C(blue)%x20(%ce)%x20%C(cyan)%C(reset)%n%x20%s%n"
-	stat = status -sb
-	last = log -1 --stat
 	unstage = reset HEAD --
-	u = reset HEAD --
-	cached = diff --cached
 	d = difftool
 	c = clone
 [color]
@@ -19,7 +15,7 @@
 [diff]
 	tool = nvimdiff
 [difftool "nvimdiff"]
-	cmd = "nvim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
+	cmd = "nvim -d -u ~/.config/nvim/init.vim \"$LOCAL\" \"$REMOTE\""
 [difftool]
 	prompt = false
 [gpg]
