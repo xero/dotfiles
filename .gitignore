@@ -7,6 +7,7 @@ gpg/.local/share/gpg/tofu.db
 gpg/.local/share/gpg/pubring.kbx
 gpg/.local/share/gpg/pubring.kbx~
 gpg/.local/share/gpg/trustdb.gpg
+gpg/.local/share/gpg/.*.*
 ssh/.ssh/authorized_keys
 ssh/.ssh/id_*
 ssh/.ssh/*.pub
