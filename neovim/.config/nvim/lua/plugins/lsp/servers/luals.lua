@@ -1,5 +1,3 @@
-local api = vim.api
-
 return function(on_attach)
 	return {
 		on_attach = function(client, bufnr)
@@ -17,7 +15,7 @@ return function(on_attach)
 					version = "LuaJIT",
 				},
 				diagnostics = {
-					globals = { "vim", "hs", "spoon" },
+					globals = { "vim" },
 				},
 				workspace = {
 					-- Make the server aware of Neovim runtime files

@@ -3,14 +3,14 @@ return {
 	init = function()
 		vim.keymap.set(
 			"",
-			"<Leader>l",
+			"<Leader>ll",
 			require("lsp_lines").toggle,
-			{ desc = "Toggle lsp_lines" }
+			{ desc = "toggle LSP lines" }
 		)
 	end,
 	config = function()
 		local lsp_lines = require("lsp_lines")
 		lsp_lines.setup()
 	end,
-	keys = "<leader>l",
+	keys = "<leader>ll",
 }
