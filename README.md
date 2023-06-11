@@ -43,10 +43,11 @@ i manage mine with [gnu stow](http://www.gnu.org/software/stow/), a free, portab
 # installing
 stow is available for all linux and most other unix like distributions via your package manager.
 
-- `pacman -S stow`
 - `apt install stow`
-- `yum install stow`
 - `brew install stow`
+- `dnf install stow`
+- `pacman -S stow`
+- `yum install stow`
 
 or clone it [from source](https://savannah.gnu.org/git/?group=stow) and [build it](http://git.savannah.gnu.org/cgit/stow.git/tree/INSTALL) yourself.
 
@@ -58,8 +59,7 @@ to install most of my configs you execute the stow command with the folder name 
 to install my **zsh** configs use the command:
 
 `stow zsh`
-
-this will symlink files to `~/.zshrc`, `~/.config/zsh` and various other places.
+this will symlink files like `.zshrc` to `~/.config/zsh`
 
 but you can override the default behavior and symlink files to another location with the `-t` (target) argument flag.
 
@@ -121,7 +121,7 @@ i prefer a minimal setup, and choose to interact with my operating system via th
 i use [zsh](http://linux.die.net/man/1/zsh) as my interactive shell. it's an extensible, bash like shell with awesome completion and correction engines. i manage multiple shell sessions with [tmux](http://linux.die.net/man/1/tmux). it's a feature packed terminal multiplexer with support for buffers, split windows, detached local and remote sessions, etc. i'm a member of the cult of [vim](http://linux.die.net/man/1/vim). sing phrases to the third reincarnation of the glorious ed! lel.
 
 # editor
-with it's tight integration to the unix shell, [vim](http://www.vim.org) has been my editor of choice. once you start to grok movements and operators you quickly begin manipulating, not just editing text files. and in the shell, everything is just text ;D these days i'm a full time [neovim](https://neovim.io) user. it's just better than normal vim at this point imho. i think my configs should still work.
+with it's tight integration to the unix shell, [vim](http://www.vim.org) has been my editor of choice. once you start to grok movements and operators you quickly begin manipulating, not just editing text files. and in the shell, everything is just text ;D these days i'm a full time [neovim](https://neovim.io) user. it's just better than normal vim at this point imho.
 
 with [my asliases](https://github.com/xero/dotfiles/blob/vps/zsh/.config/zsh/06-aliases.zsh#L21) `e` is `$EDITOR` and `se` is `sudo $EDITOR` so `se /etc/hosts` is `sudo nvim /etc/hosts`
 
