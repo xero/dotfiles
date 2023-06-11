@@ -16,22 +16,6 @@ return {
 				enable_default_keybindings = false,
 			},
 		})
--- zoom
--- function! Zoom() abort
---   if winnr('$') > 1
---     if exists('t:zoomed') && t:zoomed
---         execute t:zoom_winrestcmd
---         let t:zoomed = 0
---     else
---         let t:zoom_winrestcmd = winrestcmd()
---         resize
---         vertical resize
---         let t:zoomed = 1
---     endif
---   else
---     execute "silent !tmux resize-pane -Z"
---   endif
--- endfunction
 		local zoom = function()
 			if vim.fn.winnr('$') > 1 then
 				if vim.g.zoomed ~= nil then

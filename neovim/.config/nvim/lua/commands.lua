@@ -25,20 +25,20 @@ key('n', '<esc><esc>', ':nohlsearch<cr>', { silent = true })
 
 -- remove trailing white space
 cmd("Nows",
-  "%s/\\s\\+$//e",
-  { desc = "remove trailing whitespace" }
+	"%s/\\s\\+$//e",
+	{ desc = "remove trailing whitespace" }
 )
 
 -- remove blank lines
 cmd("Nobl",
-  "g/^\\s*$/d",
-  { desc = "remove blank lines" }
+	"g/^\\s*$/d",
+	{ desc = "remove blank lines" }
 )
 
 -- spell check
 cmd("Sp",
-  "setlocal spell! spell?",
-  { desc = "toggle spell check" }
+	"setlocal spell! spell?",
+	{ desc = "toggle spell check" }
 )
 key('n', '<leader>s', ':Sp<cr>')
 
@@ -47,20 +47,23 @@ key('n', '<a-left>', '0')
 key('i', '<a-left>', '0')
 
 -- pseudo tail functionality
-cmd("Tail",
-  'set autoread | au CursorHold * checktime | call feedkeys("G")',
-  { desc = "pseudo tail functionality" }
+cmd(
+	"Tail",
+	'set autoread | au CursorHold * checktime | call feedkeys("G")',
+	{ desc = "pseudo tail functionality" }
 )
 
 -- make current buffer executable
-cmd("Chmodx",
-  '!chmod a+x %',
-  { desc = "make current buffer executable" }
+cmd(
+	"Chmodx",
+	'!chmod a+x %',
+	{ desc = "make current buffer executable" }
 )
 
 -- fix syntax highlighting
-cmd("FixSyntax",
-  'syntax sync fromstart',
-  { desc = "reload syntax highlighting" }
+cmd(
+	"FixSyntax",
+	'syntax sync fromstart',
+	{ desc = "reload syntax highlighting" }
 )
 

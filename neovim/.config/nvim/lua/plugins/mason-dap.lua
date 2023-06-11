@@ -3,7 +3,6 @@ return {
 	cmd = "Mason",
 	config = function()
 		local mason_dap = require("mason-nvim-dap")
-
 		mason_dap.setup({
 			ensure_installed = {
 				"bash",
@@ -17,7 +16,6 @@ return {
 			run_on_start = false,
 			automatic_setup = true,
 		})
-
 		mason_dap.setup_handlers {}
 	end,
 	dependencies = { "williamboman/mason.nvim" },
