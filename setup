@@ -2,6 +2,10 @@
 # setup.sh by xero (http://git.io/.files)
 # a script to setup a new deb 11 vps with
 # all my tools and configs, ready to roll
+#
+# usage:
+# curl -L https://raw.githubusercontent.com/xero/dotfiles/vps/setup > x && chmod +x x && sudo ./x
+#
 # it relies heavily on my 1password vault
 # so...
 #   ▄▄▄▄  ▓█████ █     █ ▄████ ██▀██▄▓█████

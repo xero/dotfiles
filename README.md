@@ -30,9 +30,9 @@
  - [license](#license)
 
 # dotfiles
-in the unix world programs are commonly configured in two different ways, via shell arguments or text based configuration files. programs with many options like text editors are configured on a per-user basis with files in your home directory `~`. in unix like operating systems any file or directory name that starts with a period or full stop character is considered hidden, and in a default view will not be displayed. thus the name dotfiles. 
+in the unix world programs are commonly configured in two different ways, via shell arguments or text based configuration files. programs with many options like text editors are configured on a per-user basis with files in your home directory `~`. in unix like operating systems any file or directory name that starts with a period or full stop character is considered hidden, and in a default view will not be displayed. thus the name dotfiles.
 
-it's been said of every console user: 
+it's been said of every console user:
 > _"you are your dotfiles"_.
 
 since they dictate how your system will look and function. to many users (see [ricers](http://unixporn.net) and [beaners](http://nixers.net)) these files are very important, and need to be backed up and shared. people who create custom themes have the added challenge of managing multiple versions of them. i have tried many organization techniques. and just take my word for it when i say, keeping a git repo in the root of your home directory is a bad idea. i've written custom shell scripts for moving or symlinking files into place. there are even a few dotfile managers, but they all seem to have lots of dependencies. i knew there had to be a simple tool to help me.
@@ -53,7 +53,7 @@ or clone it [from source](https://savannah.gnu.org/git/?group=stow) and [build i
 # how it works
 by default the stow command will create symlinks for files in the parent directory of where you execute the command. so my dotfiles setup assumes this repo is located in the root of your home directory `~/dotfiles`. and all stow commands should be executed in that directory. otherwise you'll need to use the `-d` flag with the repo directory location.
 
-to install most of my configs you execute the stow command with the folder name as the only argument. 
+to install most of my configs you execute the stow command with the folder name as the only argument.
 
 to install my **zsh** configs use the command:
 
@@ -61,7 +61,7 @@ to install my **zsh** configs use the command:
 
 this will symlink files to `~/.zshrc`, `~/.config/zsh` and various other places.
 
-but you can override the default behavior and symlink files to another location with the `-t` (target) argument flag. 
+but you can override the default behavior and symlink files to another location with the `-t` (target) argument flag.
 
 to install the **fun scripts** to `/usr/local/bin` execute the command:
 
@@ -102,12 +102,12 @@ etc, etc, etc...
 
 recently i've been using an 11" m1 ipad pro and a bluetooth 68% mechanical keyboard, usually on my lap, as my main computer. i use the [community edition of the blink shell](https://community.blink.sh) connected to a vps.
 
-when it comes to fonts i've been using [hack](https://sourcefoundry.org/hack/) (i use a [mod](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/readme.md) w/ extra icons for extended unicode and emoji support.) it's included in base64 encoded css form, along with color schemes, in the `blink` directory. 
+when it comes to fonts i've been using [hack](https://sourcefoundry.org/hack/) (i use a [mod](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/readme.md) w/ extra icons for extended unicode and emoji support.) it's included in base64 encoded css form, along with color schemes, in the `blink` directory.
 
 run blink `config` under appearance, set the screen mode set to `cover` then setup your server identity and keys. beyond that the only command i ever run in blink is `mosh x`. x being my server alias.
 
 # vps & local clipboard
-idk why, but i chose debian 11 on aws for some reason. ive been working on [a scripts to setup the vps and install all the packages, create my user, setup keys, etc](https://gist.github.com/xero/2abb51674b224fbdf6e06c130ae3de7c) i use. but you the reader don't need them all to run my dots, this is for me. beware there be dragons here.
+idk why, but i chose debian 11 on aws for some reason. there's [a scripts to setup a fresh vps and install all the packages, tools, & services, create my user, setup keys, etc](https://github.com/xero/dotfiles/blob/vps/setup) i use. but you the reader don't need them all to run my dots, this is for me. beware there be dragons here.
 
 it builds [mosh-server from this pr](https://github.com/mobile-shell/mosh/pull/1104#issuecomment-710754740) for osc 52 clipboard support.
 
