@@ -1,0 +1,441 @@
+#!/bin/bash
+# setup.sh by xero (http://git.io/.files)
+# a script to setup a new deb 11 vps with
+# all my tools and configs, ready to roll
+# it relies heavily on my 1password vault
+# so...
+#   ▄▄▄▄  ▓█████ █     █ ▄████ ██▀██▄▓█████
+#  ▓█████▄▓█░  ▀▓█░ █ ░█▓█ ▒ █▓██ ▒ █▓█▒░ ▓
+#  ▒██▒ ▄█▒███  ▒█░ █ ░█▓█ ░ █▓██ ░▄█▒███
+#  ▒██░█▀ ▒▓█  ▄░█▄ █░▄█▒█▀▀▀█▒██▀▀█▄▒▓█  ▄
+#  ░▓█  ▀█░▒████░░██▒██░██▓ ▒█░██▓ ▒█░▒████▒
+#  ░▒▓███▀░░ ▒░ ░ ▓░▒ ▒░ ▒▓ ░▒░ ▒▓ ░▒░░ ▒░ ░
+#  ▒░▒   ░ ░ ░  ░ ▒ ░ ░  ░▒ ░ ▒ ░▒ ░ ▒░ ░  ░
+#   ░    ░   ░    ░   ░  ░░   ░ ░░   ░  ░
+#   ░  ░     ░  ░   ░     ░      ░         ░
+#         this is how i setup my shiz    ░
+#      ░ it might not be great for you  ░
+
+# user vars
+export ME='x0'
+export X_UID=10806
+export PORT=60806
+export HOSTNAME='thirteen'
+# script vars
+MYHOME="/home/$ME"
+ASME="sudo -u $ME"
+
+# helper functions
+function _echo() { printf "\n╓───── %s \n╙────────────────────────────────────── ─ ─ \n" "$1"; }
+function get() {
+	f="${3:-notesPlain}"
+	op item get "$2" --account "$1" --fields "$f" --format json | jq -rM '.value'
+}
+function getfile() {
+	f="${4:-notesPlain}"
+	op --account "$1" read "op://$2/$3/$f"
+}
+function account() {
+	domain="${3:-my}.1password.com"
+	op account add \
+		--address "$domain" \
+		--email "$2" \
+		--shorthand "$1"
+}
+
+[ "$(id -u)" -ne 0 ] && { _echo "got root?" >&2; exit 1; }
+
+_echo "installing runtime deps"
+apt update && apt install -y git gpg bash curl
+
+_echo "adding apt sources"
+# add backports
+echo "deb http://deb.debian.org/debian bullseye-backports main" >/etc/apt/sources.list.d/backports.list
+
+# add makedeb prebuilt-mpr
+curl -sS https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub | gpg --dearmor | tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1>/dev/null
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | tee /etc/apt/sources.list.d/prebuilt-mpr.list >/dev/null
+
+# add github
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
+	chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
+	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list >/dev/null
+
+#add 1pw
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg &&
+	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | tee /etc/apt/sources.list.d/1password.list >/dev/null
+mkdir -p /etc/debsig/policies/AC2D62742012EA22/ &&
+	curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 &&
+	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+
+# install all the things \o/
+_echo "installing packages"
+apt update &&
+DEBIAN_FRONTEND=noninteractive apt install -y \
+	1password-cli \
+	apparmor \
+	apt-utils \
+	automake \
+	awscli \
+	bash \
+	bash-completion \
+	bc \
+	bind9-host \
+	bsdutils \
+	build-essential \
+	ca-certificates \
+	cmake \
+	cmatrix \
+	coreutils \
+	curl \
+	dash \
+	dbus \
+	dbus-user-session \
+	debianutils \
+	diffutils \
+	dnsutils \
+	docker.io \
+	dpkg \
+	e2fsprogs \
+	ethtool \
+	expect \
+	fail2ban \
+	findutils \
+	fzf \
+	gawk \
+	gcc-10-base \
+	gcc-9-base \
+	gh \
+	git \
+	golang \
+	golang-doc \
+	golang-src \
+	gpg \
+	gpg-agent \
+	gpgv \
+	gzip \
+	htop \
+	iptables \
+	iputils-ping \
+	isc-dhcp-client \
+	jq \
+	keychain \
+	kubernetes-client \
+	libncurses5-dev \
+	libprotobuf-dev \
+	libssl-dev \
+	libutempter-dev \
+	libx11-dev \
+	libxfixes-dev \
+	locales \
+	lsb-base \
+	lua5.4 \
+	luajit \
+	luarocks \
+	man-db \
+	manpages \
+	mawk \
+	ncurses-base \
+	ncurses-bin \
+	ncurses-term \
+	neovim/prebuilt-mpr \
+	net-tools \
+	netbase \
+	nmap \
+	ocproxy \
+	openconnect \
+	openssh-client \
+	openssh-server \
+	openssl \
+	pciutils \
+	perl \
+	perl-base \
+	pkg-config \
+	protobuf-compiler \
+	protobuf-compiler \
+	proxychains4 \
+	psmisc \
+	python3 \
+	python3-boto \
+	python3-pip \
+	resolvconf \
+	rsyslog \
+	shellcheck \
+	silversearcher-ag \
+	socat \
+	stow \
+	sudo \
+	tar \
+	tcpdump \
+	tmux/bullseye-backports \
+	toilet \
+	traceroute \
+	tree \
+	tzdata \
+	unzip \
+	util-linux \
+	uuid-runtime \
+	vim-tiny \
+	vpnc \
+	whiptail \
+	whois \
+	xsel \
+	xvfb \
+	xz-utils \
+	zlib1g \
+	zlib1g-dev \
+	zsh \
+  eslint \
+  python3-venv \
+  shellcheck \
+	zsh-syntax-highlighting
+
+_echo "systemd housekeeping"
+rm /etc/resolv.conf
+ln -s  /run/resolvconf/resolv.conf  /etc/resolv.conf
+systemctl restart networking.service
+systemctl restart resolvconf.service
+systemctl stop docker.service
+systemctl stop containerd.service
+
+_echo "setting up timezone and hostname"
+timedatectl set-timezone America/New_York
+hostname "$HOSTNAME"
+hostnamectl set-hostname "$HOSTNAME"
+sed -i '/^127\.0\.0\.1\s/s/$/ '"$HOSTNAME"'/' /etc/hosts
+sed -i '/^127\.0\.0\.1\s/s/$/ '"$HOSTNAME"'/' /etc/cloud/templates/hosts.debian.tmpl
+
+_echo "setting up locales and console"
+locale-gen "en_US.UTF-8"
+localectl set-locale en_US.UTF-8
+dpkg-reconfigure locales
+dpkg-reconfigure console-setup
+systemctl daemon-reload
+systemctl restart console-setup.service
+
+_echo "creating local user"
+adduser --uid "$X_UID" --shell "$(which zsh)" "$ME"
+
+_echo "granting root access"
+echo "${ME} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/"$ME"
+
+_echo "setting up 1password"
+account x0 "x@xero.style"
+eval "$(op signin --account x0)"
+
+_echo "setting up key keychain"
+get x0 GH_TOKEN | $ASME gh auth login -p ssh --with-token
+mkdir -p $MYHOME/.ssh
+cp /home/admin/.ssh/authorized_keys $MYHOME/.ssh/authorized_keys
+get x0 id_ed25519_github privateKey >$MYHOME/.ssh/id_ed25519
+get x0 id_ed25519_github publicKey >$MYHOME/.ssh/id_ed25519.pub
+ssh-keyscan -p 22 -H github.com gist.github.com >/root/.ssh/known_hosts
+$ASME ssh-keyscan -p 22 -H github.com gist.github.com >$MYHOME/.ssh/known_hosts
+chown -R $ME:$ME /home/$ME/.ssh
+chmod 700 $MYHOME/.ssh
+chmod 600 $MYHOME/.ssh/*
+
+# i do not want these dirs to be symlinks
+_echo "creating directory skeletons"
+$ASME mkdir -p $MYHOME/.{config,local} $MYHOME/.local/{src,bin,lib,state,share}
+
+_echo "setting up python + pip"
+$ASME pip3 -V
+$ASME pip3 install --upgrade pip
+$ASME pip3 install --no-warn-script-location \
+	boto3 \
+	cryptography \
+	docutils \
+	emoji-fzf \
+	greynoise \
+	https://github.com/PaulSec/API-dnsdumpster.com/archive/master.zip \
+	json-spec \
+	mycli \
+	neovim \
+	pgcli \
+	six \
+	urllib3 \
+	wcwidth \
+	yamllint
+
+_echo "setting up rust"
+curl https://sh.rustup.rs -sSf | $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" sh -s -- -y --default-toolchain stable --profile default &&
+$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo install cargo-quickinstall &&
+$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall starship lolcat
+
+_echo "setting up dotfiles"
+$ASME git clone git@github.com:xero/dotfiles.git -b vps $MYHOME/.local/src/dotfiles &&
+	cd $MYHOME/.local/src/dotfiles &&
+	$ASME stow bin fun git gpg ssh tmux vim zsh -t $MYHOME
+$ASME mkdir $MYHOME/.config/tmux/plugins &&
+	$ASME git clone --depth=1 https://github.com/tmux-plugins/tpm $MYHOME/.config/tmux/plugins/tpm &&
+	$ASME $MYHOME/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
+	cd $MYHOME/.config/tmux/plugins/tmux-thumbs &&
+		expect -c "spawn ./tmux-thumbs-install.sh; send \"\r2\r\"; expect complete" 1>/dev/null
+$ASME nvim --headless +PlugInstall +qa &>/dev/null
+$ASME nvim +UpdateRemotePlugins +qa &>/dev/null
+# shellcheck disable=SC2016
+echo 'export ZDOTDIR="$HOME"/.config/zsh' >>/etc/zsh/zshenv
+
+_echo "creating ~src and ~dotfiles aliases"
+useradd -g src -d $MYHOME/.local/src src
+useradd -d $MYHOME/.local/src/dotfiles dotfiles
+
+_echo "setting up mosh"
+# OSC52 clipboard support - https://github.com/mobile-shell/mosh/pull/1104
+$ASME git clone --depth=1 https://github.com/mgulick/mosh.git -b osc-52-clipboard-types $MYHOME/.local/src/mosh &&
+	cd $MYHOME/.local/src/mosh &&
+	./autogen.sh &&
+	./configure &&
+	make &&
+	make install
+
+_echo "setting up clipmenu"
+$ASME git clone --recurse-submodules git@github.com:xero/clipmenu.git $MYHOME/.local/src/clipmenu &&
+	cd $MYHOME/.local/src/clipmenu/clipnotify &&
+	make install && cd .. && make install &&
+	$ASME systemctl --user daemon-reload &&
+	$ASME systemctl --user restart clipmenud.service &>/dev/null
+
+_echo "setting up kubectx"
+$ASME git clone --depth=1 https://github.com/ahmetb/kubectx.git $MYHOME/.local/src/kubectx &&
+	mv $MYHOME/.local/src/kubectx/kubectx $MYHOME/.local/src/kubectx/kubens $MYHOME/.local/bin/ &&
+	chmod +x $MYHOME/.local/bin/kubens $MYHOME/.local/bin/kubectx
+
+_echo "setting up k9s"
+$ASME curl -L https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_amd64.tar.gz -o $MYHOME/.local/src/k9s.tar.gz &&
+	tar xzf $MYHOME/.local/src/k9s.tar.gz k9s -C $MYHOME/.local/bin/ &&
+	chmod +x $MYHOME/.local/bin/k9s &&
+	rm $MYHOME/.local/src/k9s.tar.gz
+
+echo "updating the  aws cli to v2"
+curl -L https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o /tmp/awscliv2.zip &&
+	cd /tmp && unzip awscliv2.zip &&
+	./aws/install --bin-dir /usr/bin --install-dir /usr/local/aws-cli --update &&
+	rm /tmp/awscliv2.zip
+
+_echo "setting up node with nave"
+$ASME mkdir -p $MYHOME/.config/node
+curl -L https://raw.githubusercontent.com/isaacs/nave/main/nave.sh >$MYHOME/.local/bin/nave &&
+	chmod +x $MYHOME/.local/bin/nave &&
+	NAVE_DIR="$MYHOME/.local/lib/nodejs" $MYHOME/.local/bin/nave usemain lts &&
+	$ASME npm i -g neovim @fsouza/prettierd bash-language-server
+
+_echo "setting up ascii/ansi art tools"
+rm -rf /usr/share/figlet/
+git clone --depth=1 https://github.com/xero/figlet-fonts.git /usr/share/figlet/
+$ASME git clone --depth=1 https://github.com/digitallyserviced/tdfgo.git $MYHOME/.local/src/tdfgo &&
+	cd $MYHOME/.local/src/tdfgo &&
+	$ASME go build &&
+	mv ./tdfgo $MYHOME/.local/bin/tdfgo &&
+	chmod +x $MYHOME/.local/bin/tdfgo &&
+	mkdir -p $MYHOME/.config/tdfgo &&
+	mv ./fonts $MYHOME/.config/tdfgo/fonts
+
+_echo "updating motd"
+rm /etc/motd /etc/update-motd.d/*
+cat << 'X0' > /etc/update-motd.d/00-banner
+#!/bin/bash
+draw() {
+  out=
+  perc=$1
+  size=$2
+  inc=$(( perc * size / 100 ))
+  color=36
+  color2=95
+  for v in $(seq 0 $(( size - 1 ))); do
+    [ "$v" -le "$inc" ] && out="${out}\e[1;${color}m${FULL}" || out="${out}\e[0;${color2}m${EMPTY}"
+  done
+  printf "$out"
+}
+
+i=1
+c=$(printf "\e[0m\e[31m░▒")
+while [ $i -le 6 ];do
+  c=${c}$(printf "\e[$((i+41))m\e[$((i+30))m█▓▒░")
+  i=$((i+1))
+done
+COLORS=${c}$(printf "\e[37m█\e[0m▒░")
+
+FULL=━
+EMPTY=┄
+HOST=$(hostname)
+IP=$(curl -s icanhazip.com) #$(hostname -I | cut -d' ' -f1)
+DISTRO=$(grep PRETTY </etc/os-release | sed 's/PRETTY_NAME=//;s/"//g;s/GNU.Linux / /') # TAKE THAT RMS ;P
+KERNEL=$(uname -r)
+PKGS=$(apt list --installed 2>/dev/null | grep -c 'installed')
+UPTIME=$(uptime -p | cut -d " " -f2-)
+[[ ${#UPTIME} -ge 22 ]] && UPTIME=$(echo "$UPTIME" | sed 's/ hours/hrs/;s/ minutes/mins/')
+
+c_lvl=$(printf "%.0f" `grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}'`)
+CPU=$(printf "\e[0;36m%-4s \e[1;95m%-5s %-25s \n" "cpu" "$c_lvl%" `draw "$c_lvl" 18`)
+
+ram_lvl=$(free | awk '/Mem:/ {print int($3/$2 * 100.0)}')
+RAM=$(printf "\e[0;36m%-4s \e[1;95m%-5s %-25s \n" "ram" "$ram_lvl%" `draw "$ram_lvl" 18`)
+
+disk_lvl=$(df -h | grep '/$' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
+DISK=$(printf "\e[0;36m%-4s \e[1;95m%-5s %-25s \n" "disk" "$disk_lvl%" `draw "$disk_lvl" 18`)
+
+PPID1=$(grep PPid <"/proc/$PPID/status" | awk '{ print $2 }')
+PPID2=$(grep PPid <"/proc/$PPID1/status" | awk '{ print $2 }')
+USERNAME=$(pgrep "$PPID2" | awk '{ print $6 }' | head -1)
+[ -z "$USERNAME" ] && USERNAME=$USER
+
+files=0
+IFS=':' read -r -a PATHS <<<"$PATH"
+mapfile -t DIRS <<<"$(printf "%s\n" "${PATHS[@]}" | sort -u)"
+for d in "${DIRS[@]}"; do
+  [ -d "$d" ] && { new=$(find "$d" -maxdepth 1 -type f -executable -print | wc -l); files=$(( files+new )); }
+done
+
+cat << EOF
+
+ [37;40m [95;40m▄[95;45m██[95;40m██[37;40m  [37;40m [37;40m  [37;40m [95;40m▄█[95;40m██[95;40m▄[37;40m  [37;40m
+ [90;40m▄▄[37;40m [95;45m▒▓[95;45m█[37;40m [90;40m▄▄[90;40m▀[37;40m [95;40m█[95;45m▓░[37;40m [95;45m░▓[95;40m█[37;40m [90;40m▀[90;40m▄▄[37;40m    welcome to [95;40m$HOST[37;40m, $USERNAME
+ [36;40m▒▒[37;40m [95;45m░▒[95;45m▓[37;40m [36;40m▒▒[37;40m [95;45m▓▓[95;45m░[35;40m▌[90;40m▄[35;40m▐[95;45m░▓[95;45m▓[37;40m [36;40m▒▒ $COLORS
+ [90;40m▀▀[37;40m [96;46m░[95;45m░▒[37;40m [90;40m▀▀[37;40m [95;45m▓▒[95;45m░[37;40m [90;40m▀[37;40m [96;46m░[95;45m▒▓[37;40m [90;40m▀▀[95;40m distro: $DISTRO
+ [34;40m░░[37;40m [96;46m░░[95;45m░[37;40m [34;40m░░[34;40m▄▄[34;40m▄▄[37;40m [34;40m▀[37;40m [96;46m░░[95;45m░[37;40m [34;40m░░[37;40m kernel: $KERNEL
+ [34;40m▒▒[37;40m [96;46m▒░[96;46m░[37;40m [34;40m▒▒[34;40m▓▓[34;40m▓▓[37;40m [96;46m░░[96;46m░░[96;46m▒[37;40m [34;40m▒▒[34;40m public address:  $IP
+ [34;40m▓▓[37;40m [96;46m▒▒[96;46m░[37;40m [34;40m▓▓[34;40m▀▀[34;40m▀▀[37;40m [34;40m▄[37;40m [96;46m▒▒[96;46m▓[37;40m [34;40m▓▓[90;40m uptime:  $UPTIME
+ [34;40m██[37;40m [96;46m▓▒[96;46m▒[37;40m [34;40m██[37;40m [96;46m▓▓[96;46m▓[37;40m [34;40m▓[37;40m [96;40m██[96;40m▓[37;40m [34;40m██ packages: $PKGS  [95;40m+  [34;40m bins: $files
+ [90;40m▄▄[37;40m [96;46m█▓[96;46m▓[37;40m [90;40m▄▄[37;40m [96;40m█[96;46m▓▓[37;40m [90;40m▄[37;40m [96;46m▓█[96;46m█[37;40m [90;40m▄▄ $CPU
+ [36;40m▒▒[37;40m [96;46m██[96;46m▓[37;40m [36;40m▒▒[37;40m [96;40m██[96;46m▓[37;40m [90;40m▀[37;40m [96;46m██[96;46m█[37;40m [36;40m▒▒ $RAM
+ [90;40m▀▀[37;40m [96;46m██[96;46m█[37;40m [90;40m▀▀[90;40m▄[37;40m [96;40m█[96;46m██[37;40m [96;46m██[96;46m█[37;40m [90;40m▄[90;40m▀▀ $DISK
+ [37;40m [96;40m██[96;40m██[96;40m██[96;40m█[37;40m [37;40m  [37;40m [96;40m▀[96;46m██[96;46m█[96;40m▀[37;40m  [37;40m [37;40m  [37;40m
+
+EOF
+X0
+chmod +x /etc/update-motd.d/00-banner
+
+# run ssh on a non-standard port
+_echo "setting up ssh"
+echo "Port $PORT" >>/etc/ssh/sshd_config
+sed -i "s!\t22/tcp!\t$PORT/tcp!" /etc/services
+systemctl restart ssh.service
+systemctl restart sshd
+
+_echo "setting up fail2ban"
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+fail2ban-client reload
+
+_echo "final user setup stuff"
+getfile x0 keys runme runme >$MYHOME/runme
+op signout --account x0 --forget
+$ASME rm $MYHOME/.profile $MYHOME/.bash*
+mv $MYHOME/go $MYHOME/.local/lib/
+chmod +x $MYHOME/runme
+chown -R $ME:$ME /home/$ME
+
+_echo "removing default user"
+userdel -rf admin &>/dev/null
+rm /etc/sudoers.d/90-cloud-init-users
+
+_echo "setup complete. rebooting the vps. reconnect as yourself via mosh"
+IP=$(curl -sL icanhazip.com)
+echo "$HOSTNAME: $ME@$IP:$PORT"
+echo "mosh location: $(which mosh-server)"
+
+# self destruct
+shred -u "$0" &>/dev/null
+systemctl reboot
