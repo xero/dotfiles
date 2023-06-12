@@ -10,7 +10,6 @@ return {
 		"hrsh7th/cmp-nvim-lua",
 		"windwp/nvim-autopairs",
 		"onsails/lspkind-nvim",
-		"roobert/tailwindcss-colorizer-cmp.nvim"
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -57,9 +56,14 @@ return {
 			},
 			formatting = {
 				format = function(entry, vim_item)
-					-- fancy icons and a name of kind
-					vim_item.kind = lsp_kind.presets.default[vim_item.kind] .. " " .. vim_item.kind
-
+					if vim.tbl_contains({ 'path' }, entry.source.name) then
+						local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
+						if icon then
+							vim_item.kind = icon
+							vim_item.kind_hl_group = hl_group
+							return vim_item
+						end
+					end
 					-- set a name for each source
 					vim_item.menu = ({
 						-- copilot = "[cop]",
@@ -70,8 +74,9 @@ return {
 						path = "[path]",
 					})[entry.source.name]
 
-					return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
-				end,
+					return require('lspkind').cmp_format({ with_text = false })(entry, vim_item)
+				end
+
 			},
 			sources = {
 				-- { name = "copilot", priority = 1, group_index = 1 },
