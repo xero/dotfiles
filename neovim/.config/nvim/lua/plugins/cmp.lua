@@ -10,14 +10,24 @@ return {
 		"hrsh7th/cmp-nvim-lua",
 		"windwp/nvim-autopairs",
 		"onsails/lspkind-nvim",
+		"roobert/tailwindcss-colorizer-cmp.nvim",
 	},
 	config = function()
 		local cmp = require("cmp")
 		local lsp_kind = require("lspkind")
-
 		lsp_kind.init()
-
 		cmp.setup({
+			window = {
+				completion = cmp.config.window.bordered({
+					winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
+				}),
+				documentation =  cmp.config.window.bordered({
+					winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
+				}),
+			},
+			view = {
+				entries = 'bordered'
+			},
 			snippet = {
 				expand = function(args)
 					require("luasnip").lsp_expand(args.body)
@@ -56,30 +66,11 @@ return {
 			},
 			formatting = {
 				format = function(entry, vim_item)
-					if vim.tbl_contains({ 'path' }, entry.source.name) then
-						local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
-						if icon then
-							vim_item.kind = icon
-							vim_item.kind_hl_group = hl_group
-							return vim_item
-						end
-					end
-					-- set a name for each source
-					vim_item.menu = ({
-						-- copilot = "[cop]",
-						nvim_lsp = "[LSP]",
-						luasnip = "[snp]",
-						buffer = "[buf]",
-						nvim_lua = "[lua]",
-						path = "[path]",
-					})[entry.source.name]
-
-					return require('lspkind').cmp_format({ with_text = false })(entry, vim_item)
+					vim_item.kind = lsp_kind.presets.default[vim_item.kind] .. " "
+					return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
 				end
-
 			},
 			sources = {
-				-- { name = "copilot", priority = 1, group_index = 1 },
 				{ name = "nvim_lsp_signature_help", group_index = 1 },
 				{ name = "luasnip",                 max_item_count = 5,  group_index = 1 },
 				{ name = "nvim_lsp",                max_item_count = 20, group_index = 1 },
@@ -87,14 +78,11 @@ return {
 				{ name = "path",                    group_index = 2 },
 				{ name = "buffer",                  keyword_length = 2,  max_item_count = 5, group_index = 2 },
 			},
-			experimental = { native_menu = false, ghost_text = false },
 		})
-
 		local presentAutopairs, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
 		if not presentAutopairs then
 			return
 		end
-
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 	end,
 }

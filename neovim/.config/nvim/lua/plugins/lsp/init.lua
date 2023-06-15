@@ -7,7 +7,6 @@ return {
 		"b0o/schemastore.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		require("plugins.lsp-lines"),
-		require("plugins.aerial"),
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()

@@ -37,11 +37,15 @@ function M.set_default_on_buffer(client, bufnr)
 	-- end
 	if cap.implementationProvider then
 		buf_set_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
-		buf_set_keymap("n", "gI", function() require("fzf-lua").lsp_implementations() end, "Search implementations")
+		buf_set_keymap("n", "gI", function()
+			require("fzf-lua").lsp_implementations()
+		end, "Search implementations")
 	end
 
 	if cap.referencesProvider then
-		buf_set_keymap("n", "gr", function() require("fzf-lua").lsp_references() end, "Show references")
+		buf_set_keymap("n", "gr", function()
+			require("fzf-lua").lsp_references()
+		end, "Show references")
 	end
 
 	if cap.hoverProvider then
@@ -50,16 +54,15 @@ function M.set_default_on_buffer(client, bufnr)
 
 	if cap.documentSymbolProvider then
 		-- buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-		buf_set_keymap("n", "<leader>tO", function() require("fzf-lua").lsp_document_symbols() end, "Document symbols")
-
-		if pcall(require, "aerial") then
-			buf_set_keymap("n", "<leader>to", "<cmd>AerialToggle!<CR>", "(Aerial) Document symbols")
-		end
+		buf_set_keymap("n", "<leader>tO", function()
+			require("fzf-lua").lsp_document_symbols()
+		end, "Document symbols")
 	end
 
 	buf_set_keymap("n", "<leader>ts", vim.lsp.buf.signature_help, "Show signature")
-
-	buf_set_keymap("n", "<leader>te", function() require("fzf-lua").diagnostics_document() end, "Show diagnostics")
+	buf_set_keymap("n", "<leader>te", function()
+		require("fzf-lua").diagnostics_document()
+	end, "Show diagnostics")
 	buf_set_keymap("n", "<leader>tE", vim.diagnostic.open_float, "Show line diagnostics")
 
 	-- if cap.workspaceSymbolProvider then
@@ -89,14 +92,11 @@ function M.set_default_on_buffer(client, bufnr)
 			filter = function(format_client)
 				if is_typescript then
 					if format_client.name == "null-ls" then
-						--[[ vim.notify("format " .. filetype .. " with " .. format_client.name) ]]
 						return true
 					else
 						return false
 					end
 				end
-
-				--[[ vim.notify("format " .. filetype .. " with " .. format_client.name) ]]
 				return true
 			end,
 		})
@@ -139,19 +139,8 @@ function M.set_default_on_buffer(client, bufnr)
 	end, "Show log path")
 
 	buf_set_keymap("n", "<leader>lsa", ":LspInfo()<CR>", "LSP Info")
-	buf_set_keymap("n", "<leader>lt", function()
-		if vim.diagnostic.is_disabled() then
-			vim.diagnostic.enable()
-		else
-			vim.diagnostic.disable()
-		end
-	end, "toggle LSP")
-	buf_set_keymap("n", "<leader>le", function()
-		vim.diagnostic.enable()
-	end, "enable LSP")
-	buf_set_keymap("n", "<leader>ld", function()
-		vim.diagnostic.disable()
-	end, "disable LSP")
+	buf_set_keymap("n", "<leader>le", ":LspStart<CR>", "enable LSP")
+	buf_set_keymap("n", "<leader>ld", ":LspStop<CR>", "disable LSP")
 end
 
 r.which_key("<leader>ls", "LSP servers")

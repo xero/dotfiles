@@ -20,13 +20,14 @@ end
 
 lazy.setup({
 	{
-		"xero/vim-noctu",
+		"xero/sourcerer",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd([[colorscheme noctu]])
+			vim.cmd([[colorscheme miasma]])
 		end
 	},
+	{ 'xero/vim-noctu' },
 	require("plugins.osc52-yank"),
 	require("plugins.git"),
 	require("plugins.tmux"),
@@ -41,15 +42,13 @@ lazy.setup({
 	require("plugins.mason-null-ls"),
 	require("plugins.null-ls"),
 	require("plugins.lsp"),
-	require("plugins.lsp-lines"),
 	require("plugins.cmp"),
-	require("plugins.aerial"),
+  require("plugins.colorizer"),
+	require("plugins.undotree"),
+	require("plugins.ansi"),
+	require("plugins.lualine"),
 	{ 'nvim-tree/nvim-web-devicons' },
-	{ 'chrisbra/colorizer' },
-	{ 'chrisbra/unicode.vim' },
-	{ 'powerman/vim-plugin-AnsiEsc' },
-	--  { 'mattn/vim-sl' },
-	--  require("plugins.colorizer"),
-	--  require("plugins.autopairs"),
-	--  require("plugins.copilot"),
+--  { 'mattn/vim-sl' },
+--  require("plugins.autopairs"),
+--  require("plugins.copilot"),
 })

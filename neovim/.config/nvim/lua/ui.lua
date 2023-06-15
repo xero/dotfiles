@@ -27,6 +27,8 @@ vim.opt.shortmess:append 'sI'
 vim.cmd [[
 	syntax on
 	filetype plugin on
+	set t_Co=256
+	set termguicolors
 ]]
 vim.opt.synmaxcol=512
 

@@ -7,7 +7,7 @@ return {
 			handle = {
 				blend = 0,
 				text = " ",
-				color = "#202020",
+				color = "#1c1c1c",
 				color_nr = 234,
 			},
 			marks = {
