@@ -19,7 +19,6 @@
 ```
 
 ## table of contents
- - [preview](#preview)
  - [introduction](#dotfiles)
  - [managing](#managing)
  - [installing](#installing)
@@ -29,7 +28,6 @@
  - [vim](#vim)
  - [license](#license)
 
-# preview
 ![](https://raw.githubusercontent.com/xero/dotfiles/vps/preview.jpg)
 
 # dotfiles
