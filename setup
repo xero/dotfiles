@@ -309,7 +309,7 @@ $ASME git clone --depth=1 https://github.com/ahmetb/kubectx.git $MYHOME/.local/s
 
 _echo "setting up k9s"
 $ASME curl -L https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_amd64.tar.gz -o $MYHOME/.local/src/k9s.tar.gz &&
-	tar xzf $MYHOME/.local/src/k9s.tar.gz k9s -C $MYHOME/.local/bin/ &&
+	tar xzf $MYHOME/.local/src/k9s.tar.gz -C $MYHOME/.local/bin/ k9s &&
 	chmod +x $MYHOME/.local/bin/k9s &&
 	rm $MYHOME/.local/src/k9s.tar.gz
 
