@@ -23,12 +23,8 @@ alias g="git"
 alias y="yank"
 alias k="vpnns -- kubectl"
 alias kx="kubectx"
-alias disks='echo "╓───── m o u n t . p o i n t s"; \
-			 echo "╙────────────────────────────────────── ─ ─ "; \
-			 lsblk -a; echo ""; \
-			 echo "╓───── d i s k . u s a g e";\
-			 echo "╙────────────────────────────────────── ─ ─ "; \
-			 df -h;'
+alias k9s="vpnns -- k9s"
+alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e";echo "╙────────────────────────────────────── ─ ─ "; df -h;'
 
 #lazy
 alias "cd.."="cd ../"
