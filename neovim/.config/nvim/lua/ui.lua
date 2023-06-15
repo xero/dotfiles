@@ -52,6 +52,9 @@ vim.opt.list = true
 -- split style
 vim.opt.fillchars = { vert = '▒' }
 
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 -- tree style file explorer
 vim.g['netrw_liststyle'] = 3
 vim.g['netrw_browse_split'] = 4

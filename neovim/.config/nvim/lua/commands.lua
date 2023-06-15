@@ -16,6 +16,7 @@
 --
 local key = vim.keymap.set
 local cmd = vim.api.nvim_create_user_command
+local r = require("utils.remaps")
 
 -- json pretty print
 key('n', '<leader>j', ':%!jq .<cr>')
@@ -54,16 +55,24 @@ cmd(
 )
 
 -- make current buffer executable
-cmd(
-	"Chmodx",
+cmd("Chmodx",
 	'!chmod a+x %',
 	{ desc = "make current buffer executable" }
 )
 
 -- fix syntax highlighting
-cmd(
-	"FixSyntax",
+cmd("FixSyntax",
 	'syntax sync fromstart',
 	{ desc = "reload syntax highlighting" }
 )
 
+-- vertical term
+cmd("T",
+	':vs | :set nu! | :term' ,
+	{ desc = "vertical terminal" }
+)
+-- term mode remaps
+r.noremap("t", "<c-h>", "<c-\\><c-n><c-w>h", "focus left")
+r.noremap("t", "<c-h>", "<c-\\><c-n><c-w>j", "focus down")
+r.noremap("t", "<c-h>", "<c-\\><c-n><c-w>k", "focus up")
+r.noremap("t", "<c-h>", "<c-\\><c-n><c-w>l", "focus right")

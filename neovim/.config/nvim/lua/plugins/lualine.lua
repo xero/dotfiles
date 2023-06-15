@@ -23,8 +23,11 @@ return {
 			buffer_not_empty = function()
 				return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
 			end,
-			hide_in_width = function()
+			hide_in_width_first = function()
 				return vim.fn.winwidth(0) > 80
+			end,
+			hide_in_width = function()
+				return vim.fn.winwidth(0) > 70
 			end,
 			check_git_workspace = function()
 				local filepath = vim.fn.expand("%:p:h")
@@ -85,6 +88,7 @@ return {
 				lualine_b = {},
 				lualine_y = {},
 				lualine_z = {},
+				-- These will be filled later
 				lualine_c = {},
 				lualine_x = {},
 			},
@@ -95,9 +99,19 @@ return {
 			table.insert(config.sections.lualine_c, component)
 		end
 
+		-- Inserts a component in lualine_c at left section
+		local function ins_inactive_left(component)
+			table.insert(config.inactive_sections.lualine_c, component)
+		end
+
 		-- Inserts a component in lualine_x at right section
 		local function ins_right(component)
 			table.insert(config.sections.lualine_x, component)
+		end
+
+		-- Inserts a component in lualine_x at right section
+		local function ins_inactive_right(component)
+			table.insert(config.inactive_sections.lualine_x, component)
 		end
 
 		ins_left({
@@ -135,6 +149,32 @@ return {
 			separator = { right = "▓▒░", left = "░▒▓" },
 		})
 
+		ins_inactive_left({
+			"filetype",
+			cond = conditions.buffer_not_empty,
+			icon_only = true,
+			colored = false,
+			icon = { color = { fg = colors.white } },
+			color = function()
+				return { bg = colors.black, fg = colors.white }
+			end,
+			padding = { left = 1, right = 1 },
+		})
+		ins_inactive_left({
+			"filename",
+			cond = conditions.buffer_not_empty,
+			color = function()
+				return { bg = colors.black, fg = colors.white }
+			end,
+			padding = { left = 1, right = 1 },
+			separator = { right = "▓▒░" },
+			symbols = {
+				modified = "",
+				readonly = "",
+				unnamed = "",
+				newfile = "",
+			},
+		})
 		ins_right({
 			function()
 				local msg = "n/a"
@@ -152,9 +192,9 @@ return {
 				return msg
 			end,
 			icon = " ",
-			color = { bg = colors.green,  fg = colors.black },
+			color = { bg = colors.green, fg = colors.black },
 			padding = { left = 1, right = 1 },
-			cond = conditions.hide_in_width,
+			cond = conditions.hide_in_width_first,
 			separator = { right = "▓▒░", left = "░▒▓" },
 		})
 
@@ -170,34 +210,26 @@ return {
 
 		ins_right({
 			"searchcount",
-			color = { bg = colors.cyan, fg = colors.black},
+			color = { bg = colors.cyan, fg = colors.black },
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░", left = "░▒▓" },
 		})
 		ins_right({
 			"location",
-			color = { bg = colors.red, fg = colors.white},
+			color = { bg = colors.red, fg = colors.white },
 			padding = { left = 1, right = 0 },
 			separator = { left = "░▒▓" },
 		})
 		ins_right({
-			"progress",
-			color = { bg = colors.red, fg = colors.white},
+			function()
+				local cur = vim.fn.line(".")
+				local total = vim.fn.line("$")
+				return string.format("%2d%%%%", math.floor(cur / total * 100))
+			end,
+			color = { bg = colors.red, fg = colors.white },
 			padding = { left = 1, right = 1 },
-			separator = { right = "▓▒░" },
-		})
-
-		ins_right({
-			"diff",
-			symbols = { added = " ", modified = "󰝤 ", removed = " " },
-			diff_color = {
-				added = { fg = colors.green },
-				modified = { fg = colors.orange },
-				removed = { fg = colors.red },
-			},
 			cond = conditions.hide_in_width,
-			padding = { left = 1, right = 1 },
-			separator = { right = "▓▒░", left = "▒▓" },
+			separator = { right = "▓▒░" },
 		})
 
 		ins_right({
@@ -218,6 +250,28 @@ return {
 			padding = { left = 0, right = 1 },
 		})
 
+		ins_inactive_right({
+			"location",
+			color = { bg = colors.black, fg = colors.white },
+			padding = { left = 1, right = 0 },
+			separator = { left = "░▒▓" },
+		})
+		ins_inactive_right({
+			"progress",
+			color = { bg = colors.black, fg = colors.white },
+			cond = conditions.hide_in_width,
+			padding = { left = 1, right = 1 },
+			separator = { right = "▓▒░" },
+		})
+		ins_inactive_right({
+			"fileformat",
+			fmt = string.lower,
+			icons_enabled = false,
+			cond = conditions.hide_in_width,
+			color = { bg = colors.black, fg = colors.white },
+			separator = { right = "▓▒░" },
+			padding = { left = 0, right = 1 },
+		})
 		--		ins_right({
 		--			function()
 		--				return "░▒▓"
