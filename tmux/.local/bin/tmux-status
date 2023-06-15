@@ -33,8 +33,9 @@ C2="#8FBCBB"
 C3="#B3291C"
 C4="#685742"
 C5="#d7c483"
-C6="#d9b960"
+C6="#C9A554"
 C7="#78824b"
+C8="#B36D43"
 
 draw(){
 	perc=$1
@@ -93,8 +94,7 @@ ram(){
 	free | awk '/Mem:/ {print int($3/$2 * 100.0)}'
 }
 vpn(){
-	pgrep openconnect >/dev/null 2>&1 && echo "#[fg=3]VPN"
-	nmcli | \grep -i 'vpn connection' >/dev/null 2>&1 && echo "#[fg=3]VPN"
+	pgrep 'vpn/|openvpn/|openconnect' >/dev/null 2>&1 && echo "#[bg=$C8]#[fg=$C7]▓▒░#[fg=0]" || echo "#[bg=$C8]#[fg=$C7]▓▒░#[fg=0]"
 }
 clock(){
 	mtime=$(date +'%H:%M')
@@ -106,7 +106,6 @@ front(){
 	echo "#[bg=$C7]#[fg=0]▓▒░"
 }
 separator(){
-#▓▒░ lock the doors on the way out
 	echo "#[bg=$C9]#[fg=$C4]░▒#[bg=$C9]#[fg=$C9]▓"
 }
 CPU_INFO=$(cpu)
