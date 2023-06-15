@@ -12,7 +12,7 @@
 # ░░░░░░░░░░
 
 #█▓▒░  dont run as root
-[ "$(id -u)" -eq 0 ] && { echo "just be yourself"; exit 0; }
+[[ "$(id -u)" -eq 0	]] && { echo "just be yourself"; exit 0; }
 
 usage() {
 	me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
@@ -40,8 +40,8 @@ function get_login() {
 }
 function get_user() {
 	user=$(op item get "$1" --fields email)
-	[ -z "$user" ] && echo "failed to get user, op signin?" && exit 1
-	[[ $user =~ @ ]] && user=$(echo "$user" | sed 's/@.*//')
+	[[ -z "$user"	]] && echo "failed to get user, op signin?" && exit 1
+	[[ $user =~ @	]] && user=$(echo "$user" | sed 's/@.*//')
 	echo "$user"
 }
 function connect() {
@@ -51,21 +51,23 @@ function connect() {
 	dns=$4
 	protocol=$5
 	cert=$6
-	[ -z "$cert" ] || cert="--servercert $cert"
-	[ -z "$dns" ] || export INTERNAL_IP4_DNS=$dns
+	[[ -z "$cert"	]] || cert="--servercert $cert"
+	[[ -z "$dns"	]] || export INTERNAL_IP4_DNS=$dns
 	echo "starting vpn processes"
 	echo "${login}" | /usr/sbin/openconnect \
 		-b -u "${user}" \
 		--passwd-on-stdin \
 		--protocol=${protocol} \
 		${cert} \
-        -S --script "HOME=$XDG_STATE_HOME vpnns --attach" \
+        -S --script "vpnns --attach" \
 		"${host}"
 }
 function disconnect() {
 	echo "killing vpn processes"
 	pkill openconnect
 	pkill vpnns
+	[[ -d "$HOME/.vpnns-default" ]] && rm -rf "$HOME/.vpnns-default"
+
 	exit
 }
 
@@ -78,7 +80,7 @@ function parse_arguments() {
 	cert=''
 	options=$(getopt -o ha:s:d:p:c:q -l help,account:,secret:,dns:,protocol:,cert:,quit -- "$@") || exit 1
 	set -- $options
-	while [ $# -gt 0 ];do
+	while [[ $# -gt 0	]];do
 		case $1 in
 		-h|--help) usage ;;
 		-a|--account) account="${2//\'/}" ; shift;;
@@ -93,9 +95,9 @@ function parse_arguments() {
 		esac
 		shift
 	done
-	[ -z "$host" ] && usage
-	[[ "$host" =~ ^(q|quit|exit|disconnect)$ ]] && disconnect
-	[ -z "$account" ] || account="--account ${account}"
+	[[ -z "$host"	]] && usage
+	[[ "$host" =~ ^(q|quit|exit|disconnect)$	]] && disconnect
+	[[ -z "$account"	]] || account="--account ${account}"
     eval $(op signin ${account})
 	echo "getting credentials"
 	user="$(get_user $secret)"
