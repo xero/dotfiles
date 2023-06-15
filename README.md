@@ -19,6 +19,7 @@
 ```
 
 ## table of contents
+ - [preview](#preview)
  - [introduction](#dotfiles)
  - [managing](#managing)
  - [installing](#installing)
@@ -26,8 +27,10 @@
  - [tl;dr](#tldr)
  - [my shell](#my-shell)
  - [vim](#vim)
- - [previews](#previews)
  - [license](#license)
+
+# preview
+![](https://raw.githubusercontent.com/xero/dotfiles/vps/preview.jpg)
 
 # dotfiles
 in the unix world programs are commonly configured in two different ways, via shell arguments or text based configuration files. programs with many options like text editors are configured on a per-user basis with files in your home directory `~`. in unix like operating systems any file or directory name that starts with a period or full stop character is considered hidden, and in a default view will not be displayed. thus the name dotfiles.
@@ -115,8 +118,6 @@ i use [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to cr
 
 # shell
 i prefer a minimal setup, and choose to interact with my operating system via the so-called "terminal" or "command line", (read that quoting sarcastically) over a gui interface 2 times out of 3. with the web browser and video player among the noted outliers. in my opinion, using your computer should be a very personal experience. your colors, aliases, key-bindings, etc meticulously crafted to your exacting specifications. so for me, the unix shell is the most important part of my environment.
-
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/xero_shell.gif)
 
 i use [zsh](http://linux.die.net/man/1/zsh) as my interactive shell. it's an extensible, bash like shell with awesome completion and correction engines. i manage multiple shell sessions with [tmux](http://linux.die.net/man/1/tmux). it's a feature packed terminal multiplexer with support for buffers, split windows, detached local and remote sessions, etc. i'm a member of the cult of [vim](http://linux.die.net/man/1/vim). sing phrases to the third reincarnation of the glorious ed! lel.
 
