@@ -20,8 +20,8 @@ vim.opt.showmatch = true
 -- disable startup message
 vim.opt.shortmess:append 'sI'
 
--- hide mode display
--- set showmode = false
+-- cmd display (set to zero to autohide)
+vim.opt.cmdheight = 1
 
 -- syntax highlighting
 vim.cmd [[
@@ -51,18 +51,5 @@ vim.opt.list = true
 
 -- split style
 vim.opt.fillchars = { vert = '▒' }
-
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-
--- tree style file explorer
-vim.g['netrw_liststyle'] = 3
-vim.g['netrw_browse_split'] = 4
-vim.g['netrw_winsize'] = 25
-
--- darken inactive panes
-vim.cmd [[
-	hi SignColumn   ctermbg=234
-	hi ActiveWindow ctermbg=0 | hi InactiveWindow ctermbg=234
-]]
-vim.opt.winhighlight = 'Normal:ActiveWindow,NormalNC:InactiveWindow'

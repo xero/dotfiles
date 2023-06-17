@@ -20,13 +20,14 @@ end
 
 lazy.setup({
 	{
-		"xero/sourcerer",
+		"xero/miasma.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.cmd([[colorscheme miasma]])
 		end
 	},
+	{ "xero/sourcerer.vim" },
 	{ 'xero/vim-noctu' },
 	require("plugins.osc52-yank"),
 	require("plugins.git"),
@@ -44,6 +45,7 @@ lazy.setup({
 	require("plugins.lsp"),
 	require("plugins.cmp"),
   require("plugins.colorizer"),
+	require("plugins.tint"),
 	require("plugins.undotree"),
 	require("plugins.ansi"),
 	require("plugins.lualine"),

@@ -156,7 +156,7 @@ return {
 			colored = false,
 			icon = { color = { fg = colors.white } },
 			color = function()
-				return { bg = colors.black, fg = colors.white }
+				return { bg = colors.black, fg = colors.grey }
 			end,
 			padding = { left = 1, right = 1 },
 		})
@@ -164,7 +164,7 @@ return {
 			"filename",
 			cond = conditions.buffer_not_empty,
 			color = function()
-				return { bg = colors.black, fg = colors.white }
+				return { bg = colors.black, fg = colors.grey }
 			end,
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
@@ -175,28 +175,27 @@ return {
 				newfile = "",
 			},
 		})
-		ins_right({
-			function()
-				local msg = "n/a"
-				local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-				local clients = vim.lsp.get_active_clients()
-				if next(clients) == nil then
-					return msg
-				end
-				for _, client in ipairs(clients) do
-					local filetypes = client.config.filetypes
-					if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-						return client.name
+
+		-- check for lsp
+		local clients = vim.lsp.get_active_clients()
+		if next(clients) ~= nil then
+			ins_right({
+				function()
+					local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+					for _, client in ipairs(clients) do
+						local filetypes = client.config.filetypes
+						if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+							return client.name
+						end
 					end
-				end
-				return msg
-			end,
-			icon = " ",
-			color = { bg = colors.green, fg = colors.black },
-			padding = { left = 1, right = 1 },
-			cond = conditions.hide_in_width_first,
-			separator = { right = "▓▒░", left = "░▒▓" },
-		})
+				end,
+				icon = " ",
+				color = { bg = colors.green, fg = colors.black },
+				padding = { left = 1, right = 1 },
+				cond = conditions.hide_in_width_first,
+				separator = { right = "▓▒░", left = "░▒▓" },
+			})
+	end
 
 		ins_right({
 			"diagnostics",
@@ -252,13 +251,13 @@ return {
 
 		ins_inactive_right({
 			"location",
-			color = { bg = colors.black, fg = colors.white },
+			color = { bg = colors.black, fg = colors.grey},
 			padding = { left = 1, right = 0 },
 			separator = { left = "░▒▓" },
 		})
 		ins_inactive_right({
 			"progress",
-			color = { bg = colors.black, fg = colors.white },
+			color = { bg = colors.black, fg = colors.grey},
 			cond = conditions.hide_in_width,
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
@@ -268,7 +267,7 @@ return {
 			fmt = string.lower,
 			icons_enabled = false,
 			cond = conditions.hide_in_width,
-			color = { bg = colors.black, fg = colors.white },
+			color = { bg = colors.black, fg = colors.grey },
 			separator = { right = "▓▒░" },
 			padding = { left = 0, right = 1 },
 		})
