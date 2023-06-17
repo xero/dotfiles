@@ -16,6 +16,7 @@
 --
 local key = vim.keymap.set
 local cmd = vim.api.nvim_create_user_command
+local cmd = vim.api.nvim_create_user_command
 local r = require("utils.remaps")
 
 local function reload_config()
@@ -62,3 +63,13 @@ r.noremap("t", "<c-h>", "<c-\\><c-n><c-w>h", "focus left")
 r.noremap("t", "<c-h>", "<c-\\><c-n><c-w>j", "focus down")
 r.noremap("t", "<c-h>", "<c-\\><c-n><c-w>k", "focus up")
 r.noremap("t", "<c-h>", "<c-\\><c-n><c-w>l", "focus right")
+
+
+-- show treesitter capture group for textobject under cursor.
+r.noremap("n",    "<C-e>",
+    function()
+        local result = vim.treesitter.get_captures_at_cursor(0)
+        print(vim.inspect(result))
+    end,
+    { "show treesitter capture group" }
+)

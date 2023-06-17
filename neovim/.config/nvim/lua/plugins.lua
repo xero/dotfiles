@@ -49,6 +49,7 @@ lazy.setup({
 	require("plugins.undotree"),
 	require("plugins.ansi"),
 	require("plugins.lualine"),
+	require("plugins.increname"),
 	{ 'nvim-tree/nvim-web-devicons' },
 --  { 'mattn/vim-sl' },
 --  require("plugins.autopairs"),

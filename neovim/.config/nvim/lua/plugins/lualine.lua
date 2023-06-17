@@ -58,63 +58,62 @@ return {
 			["!"] = colors.red,
 			t = colors.red,
 		}
-		-- Config
+		-- config
 		local config = {
 			options = {
-				-- Disable sections and component separators
+				-- remove default sections and component separators
 				component_separators = "",
 				section_separators = "",
 				theme = {
-					-- We are going to use lualine_c an lualine_x as left and
-					-- right section. Both are highlighted by c theme .  So we
-					-- are just setting default looks o statusline
+					-- setting defaults to statusline
 					normal = { c = { fg = colors.fg, bg = colors.bg } },
 					inactive = { c = { fg = colors.fg, bg = colors.bg } },
 				},
 			},
 			sections = {
-				-- these are to remove the defaults
+				-- clear defaults
 				lualine_a = {},
 				lualine_b = {},
 				lualine_y = {},
 				lualine_z = {},
-				-- These will be filled later
+				-- clear for later use
 				lualine_c = {},
 				lualine_x = {},
 			},
 			inactive_sections = {
-				-- these are to remove the defaults
+				-- clear defaults
 				lualine_a = {},
 				lualine_b = {},
 				lualine_y = {},
 				lualine_z = {},
-				-- These will be filled later
+				-- clear for later use
 				lualine_c = {},
 				lualine_x = {},
 			},
 		}
 
-		-- Inserts a component in lualine_c at left section
-		local function ins_left(component)
+		-- insert active component in lualine_c at left section
+		local function active_left(component)
 			table.insert(config.sections.lualine_c, component)
 		end
 
-		-- Inserts a component in lualine_c at left section
-		local function ins_inactive_left(component)
+		-- insert inactive component in lualine_c at left section
+		local function inactive_left(component)
 			table.insert(config.inactive_sections.lualine_c, component)
 		end
 
-		-- Inserts a component in lualine_x at right section
-		local function ins_right(component)
+		-- insert active component in lualine_x at right section
+		local function active_right(component)
 			table.insert(config.sections.lualine_x, component)
 		end
 
-		-- Inserts a component in lualine_x at right section
-		local function ins_inactive_right(component)
+		-- insert inactive component in lualine_x at right section
+		local function inactive_right(component)
 			table.insert(config.inactive_sections.lualine_x, component)
 		end
 
-		ins_left({
+		-- active left section
+		active_left({
 			"filetype",
 			cond = conditions.buffer_not_empty,
 			icon_only = true,
@@ -126,7 +125,7 @@ return {
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
 		})
-		ins_left({
+		active_left({
 			"filename",
 			cond = conditions.buffer_not_empty,
 			color = function()
@@ -141,7 +140,7 @@ return {
 				newfile = "",
 			},
 		})
-		ins_left({
+		active_left({
 			"branch",
 			icon = "",
 			color = { bg = colors.blue, fg = colors.black },
@@ -149,7 +148,8 @@ return {
 			separator = { right = "▓▒░", left = "░▒▓" },
 		})
 
-		ins_inactive_left({
+		-- inactive left section
+		inactive_left({
 			"filetype",
 			cond = conditions.buffer_not_empty,
 			icon_only = true,
@@ -160,7 +160,7 @@ return {
 			end,
 			padding = { left = 1, right = 1 },
 		})
-		ins_inactive_left({
+		inactive_left({
 			"filename",
 			cond = conditions.buffer_not_empty,
 			color = function()
@@ -176,10 +176,10 @@ return {
 			},
 		})
 
-		-- check for lsp
+		-- active right section
 		local clients = vim.lsp.get_active_clients()
 		if next(clients) ~= nil then
-			ins_right({
+			active_right({
 				function()
 					local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 					for _, client in ipairs(clients) do
@@ -195,9 +195,8 @@ return {
 				cond = conditions.hide_in_width_first,
 				separator = { right = "▓▒░", left = "░▒▓" },
 			})
-	end
-
-		ins_right({
+		end
+		active_right({
 			"diagnostics",
 			sources = { "nvim_diagnostic" },
 			symbols = { error = " ", warn = " ", info = " " },
@@ -206,20 +205,19 @@ return {
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░", left = "░▒▓" },
 		})
-
-		ins_right({
+		active_right({
 			"searchcount",
 			color = { bg = colors.cyan, fg = colors.black },
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░", left = "░▒▓" },
 		})
-		ins_right({
+		active_right({
 			"location",
 			color = { bg = colors.red, fg = colors.white },
 			padding = { left = 1, right = 0 },
 			separator = { left = "░▒▓" },
 		})
-		ins_right({
+		active_right({
 			function()
 				local cur = vim.fn.line(".")
 				local total = vim.fn.line("$")
@@ -230,16 +228,14 @@ return {
 			cond = conditions.hide_in_width,
 			separator = { right = "▓▒░" },
 		})
-
-		ins_right({
+		active_right({
 			"o:encoding",
 			fmt = string.upper,
 			cond = conditions.hide_in_width,
 			padding = { left = 1, right = 1 },
 			color = { bg = colors.blue, fg = colors.black },
 		})
-
-		ins_right({
+		active_right({
 			"fileformat",
 			fmt = string.lower,
 			icons_enabled = false,
@@ -249,20 +245,21 @@ return {
 			padding = { left = 0, right = 1 },
 		})
 
-		ins_inactive_right({
+		-- inactive right section
+		inactive_right({
 			"location",
-			color = { bg = colors.black, fg = colors.grey},
+			color = { bg = colors.black, fg = colors.grey },
 			padding = { left = 1, right = 0 },
 			separator = { left = "░▒▓" },
 		})
-		ins_inactive_right({
+		inactive_right({
 			"progress",
-			color = { bg = colors.black, fg = colors.grey},
+			color = { bg = colors.black, fg = colors.grey },
 			cond = conditions.hide_in_width,
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
 		})
-		ins_inactive_right({
+		inactive_right({
 			"fileformat",
 			fmt = string.lower,
 			icons_enabled = false,
@@ -271,13 +268,7 @@ return {
 			separator = { right = "▓▒░" },
 			padding = { left = 0, right = 1 },
 		})
-		--		ins_right({
-		--			function()
-		--				return "░▒▓"
-		--			end,
-		--			color = { bg = colors.blue, fg = colors.black },
-		--			padding = { left = 1 },
-		--		})
+		--
 		return config
 	end,
 }
