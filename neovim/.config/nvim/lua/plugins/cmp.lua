@@ -15,18 +15,36 @@ return {
 	config = function()
 		local cmp = require("cmp")
 		local lsp_kind = require("lspkind")
+		local cmp_next = function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif require("luasnip").expand_or_jumpable() then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+			else
+				fallback()
+			end
+		end
+		local cmp_prev = function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif require("luasnip").jumpable(-1) then
+				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+			else
+				fallback()
+			end
+		end
 		lsp_kind.init()
 		cmp.setup({
 			window = {
 				completion = cmp.config.window.bordered({
 					winhighlight = "Normal:Normal,FloatBorder:LspBorderBG,CursorLine:PmenuSel,Search:None",
 				}),
-				documentation =  cmp.config.window.bordered({
+				documentation = cmp.config.window.bordered({
 					winhighlight = "Normal:Normal,FloatBorder:LspBorderBG,CursorLine:PmenuSel,Search:None",
 				}),
 			},
 			view = {
-				entries = 'bordered'
+				entries = "bordered",
 			},
 			snippet = {
 				expand = function(args)
@@ -34,7 +52,7 @@ return {
 				end,
 			},
 			mapping = {
-				["<C-d>"] = cmp.mapping.scroll_docs( -4),
+				["<C-d>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<S-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.close(),
@@ -42,33 +60,16 @@ return {
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = true,
 				}),
-				["<tab>"] = function(fallback)
-					if cmp.visible() then
-						cmp.select_next_item()
-					elseif require("luasnip").expand_or_jumpable() then
-						vim.fn.feedkeys(
-						vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
-						""
-						)
-					else
-						fallback()
-					end
-				end,
-				["<C-p>"] = function(fallback)
-					if cmp.visible() then
-						cmp.select_prev_item()
-					elseif require("luasnip").jumpable( -1) then
-						vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-					else
-						fallback()
-					end
-				end,
+				["<tab>"] = cmp_next,
+				["<down>"] = cmp_next,
+				["<C-p>"] = cmp_prev,
+				["<up>"] = cmp_prev,
 			},
 			formatting = {
 				format = function(entry, vim_item)
 					vim_item.kind = lsp_kind.presets.default[vim_item.kind] .. " "
 					return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
-				end
+				end,
 			},
 			sources = {
 				{ name = "nvim_lsp_signature_help", group_index = 1 },

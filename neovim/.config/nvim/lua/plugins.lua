@@ -1,6 +1,6 @@
 local pluginspath = vim.fn.stdpath("data") .. "/lazy"
 local lazypath = pluginspath .. "/lazy.nvim"
-
+-- install lazy
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git", "clone",
@@ -8,16 +8,16 @@ if not vim.loop.fs_stat(lazypath) then
 		"https://github.com/folke/lazy.nvim.git", lazypath,
 	})
 end
-
 vim.opt.runtimepath:prepend(lazypath)
 
--- Use a protected call so we don't error out on first use
+-- use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
 	print("lazy just installed, please restart neovim")
 	return
 end
 
+-- install plugins
 lazy.setup({
 	{
 		"xero/miasma.nvim",
@@ -27,8 +27,6 @@ lazy.setup({
 			vim.cmd([[colorscheme miasma]])
 		end
 	},
-	{ "xero/sourcerer.vim" },
-	{ 'xero/vim-noctu' },
 	require("plugins.osc52-yank"),
 	require("plugins.git"),
 	require("plugins.tmux"),
@@ -50,8 +48,10 @@ lazy.setup({
 	require("plugins.ansi"),
 	require("plugins.lualine"),
 	require("plugins.increname"),
-	{ 'nvim-tree/nvim-web-devicons' },
---  { 'mattn/vim-sl' },
---  require("plugins.autopairs"),
---  require("plugins.copilot"),
+	require("plugins.devicons"),
+--{ "xero/sourcerer.vim" },
+--{ 'xero/vim-noctu' },
+--{ 'mattn/vim-sl' }, -- train
+--require("plugins.autopairs"),
+--require("plugins.copilot"),
 })
