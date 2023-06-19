@@ -1,5 +1,6 @@
 return {
 	"jay-babu/mason-nvim-dap.nvim",
+	dependencies = { "williamboman/mason.nvim" },
 	cmd = "Mason",
 	config = function()
 		local mason_dap = require("mason-nvim-dap")
@@ -18,5 +19,4 @@ return {
 		})
 		mason_dap.setup_handlers {}
 	end,
-	dependencies = { "williamboman/mason.nvim" },
 }

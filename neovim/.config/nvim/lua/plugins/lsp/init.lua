@@ -121,7 +121,6 @@ return {
 		for server_name, _ in pairs(servers) do
 			table.insert(server_names, server_name)
 		end
-		--[[ setupped by typescript package so we need to ensure installed by mason ]]
 		table.insert(server_names, "tsserver")
 
 		local present_mason, mason = pcall(require, "mason-lspconfig")

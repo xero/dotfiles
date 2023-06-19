@@ -18,14 +18,9 @@ return {
 				diagnostics.gitlint,
 				diagnostics.jsonlint,
 				formatting.stylua,
---				formatting.prettierd.with({
---				  condition = function(utils)
---				    return utils.has_file({ ".prettierrc*" })
---				  end,
---				}),
 				formatting.prettierd,
 				formatting.jq,
-				-- code_actions.gitsigns,
+				code_actions.gitsigns,
 				code_actions.refactoring,
 				code_actions.shellcheck,
 			},

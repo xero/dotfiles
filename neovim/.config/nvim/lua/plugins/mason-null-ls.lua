@@ -1,5 +1,6 @@
 return {
 	"jay-babu/mason-null-ls.nvim",
+	dependencies = { "williamboman/mason.nvim" },
 	cmd = "Mason",
 	config = function()
 		local mason_null_ls = require("mason-null-ls")
@@ -14,5 +15,4 @@ return {
 			automatic_setup = false,
 		})
 	end,
-	dependencies = { "williamboman/mason.nvim" },
 }
