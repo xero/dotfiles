@@ -23,6 +23,9 @@ vim.opt.shortmess:append 'sI'
 -- cmd display (set to zero to autohide)
 vim.opt.cmdheight = 1
 
+-- gutter sizing
+vim.opt.signcolumn = "auto:2"
+
 -- syntax highlighting
 vim.cmd [[
 	syntax on
