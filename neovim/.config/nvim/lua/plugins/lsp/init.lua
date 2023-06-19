@@ -6,12 +6,12 @@ return {
 		"jose-elias-alvarez/typescript.nvim",
 		"b0o/schemastore.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		require("plugins.lsp-lines"),
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("neodev").setup({})
-
+		require("lsp_lines").setup()
 		local lspconfig = require("lspconfig")
 
 		local remaps = require("plugins.lsp.remaps")

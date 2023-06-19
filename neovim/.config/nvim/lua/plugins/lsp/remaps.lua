@@ -137,10 +137,15 @@ function M.set_default_on_buffer(client, bufnr)
 	buf_set_keymap("n", "<leader>lsl", function()
 		print(vim.lsp.get_log_path())
 	end, "Show log path")
-
 	buf_set_keymap("n", "<leader>lsa", ":LspInfo()<CR>", "LSP Info")
 	buf_set_keymap("n", "<leader>le", ":LspStart<CR>", "enable LSP")
 	buf_set_keymap("n", "<leader>ld", ":LspStop<CR>", "disable LSP")
+	vim.g.vtxt = 1
+	buf_set_keymap("n", "<leader>ll", function()
+		vim.g.vtxt = 1 - vim.g.vtxt
+		vim.diagnostic.config({ virtual_text = (vim.g.vtxt)==1 and true or false })
+		require("lsp_lines").toggle()
+	end, "toggle lsp lines")
 end
 
 r.which_key("<leader>ls", "LSP servers")
