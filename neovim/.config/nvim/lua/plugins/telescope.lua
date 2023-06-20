@@ -55,5 +55,8 @@ return {
 		telescope.load_extension("live_grep_args")
 		key("n", "<leader>u", ":Telescope undo<cr>")
 		key("n", "\\", ":Telescope live_grep_args<cr>")
+		key("n", "<leader>gc", function()
+			require("telescope-live-grep-args.shortcuts").grep_word_under_cursor({ postfix = " --hidden " })
+		end)
 	end,
 }
