@@ -1,11 +1,11 @@
-#                 ██      
-#                ░██      
-#  ██████  ██████░██      
-# ░░░░██  ██░░░░ ░██████  
-#    ██  ░░█████ ░██░░░██ 
-#   ██    ░░░░░██░██  ░██ 
-#  ██████ ██████ ░██  ░██ 
-# ░░░░░░ ░░░░░░  ░░   ░░  
+#                 ██
+#                ░██
+#  ██████  ██████░██
+# ░░░░██  ██░░░░ ░██████
+#    ██  ░░█████ ░██░░░██
+#   ██    ░░░░░██░██  ░██
+#  ██████ ██████ ░██  ░██
+# ░░░░░░ ░░░░░░  ░░   ░░
 #
 #  ▓▓▓▓▓▓▓▓▓▓
 # ░▓ author ▓ xero <x@xero.style>
@@ -14,28 +14,18 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
-#ICO_DIRTY="*"
-#ICO_DIRTY="↯"
+if [[ `command -v starship` ]]; then
+  eval "$(starship init zsh)"
+else
+
 ICO_DIRTY="⚡"
-
 ICO_AHEAD="↑"
-#ICO_AHEAD=""
-#ICO_AHEAD="▲"
-
 ICO_BEHIND="↓"
-#ICO_BEHIND=""
-#ICO_BEHIND="▼"
-
 ICO_DIVERGED="↕"
-#ICO_DIVERGED=""
-#ICO_DIVERGED="נּ"
-
-
 COLOR_ROOT="%F{red}"
 COLOR_USER="%F{cyan}"
 COLOR_NORMAL="%F{white}"
 PROMPT_STYLE="classic"
-
 
 #█▓▒░ allow functions in the prompt
 setopt PROMPT_SUBST
@@ -99,12 +89,12 @@ GIT_PROMPT() {
 case "$PROMPT_STYLE" in
 #█▓▒░ ascii
 ascii)
-PROMPT='%{$bg[cyan]%} %F{black}%~ $(GIT_PROMPT)$reset_color 
+PROMPT='%{$bg[cyan]%} %F{black}%~ $(GIT_PROMPT)$reset_color
 %f'
 ;;
 #█▓▒░ arrows
 arrows)
-PROMPT='%{$bg[cyan]%}%F{black} %~ $(GIT_PROMPT)$reset_color 
+PROMPT='%{$bg[cyan]%}%F{black} %~ $(GIT_PROMPT)$reset_color
 %f'
 ;;
 #█▓▒░ ninja
@@ -113,7 +103,7 @@ PROMPT='%F{white}
         ▟▙  ${USER_LEVEL}%~   %F{white}$(GIT_PROMPT) %F{white}
 ▟▒${USER_LEVEL}░░░░░░░%F{white}▜▙▜████████████████████████████████▛
 ▜▒${USER_LEVEL}░░░░░░░%F{white}▟▛▟▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▛
-        ▜▛  
+        ▜▛
             %f'
 ;;
 #█▓▒░ dual line
@@ -126,3 +116,4 @@ ${USER_LEVEL}┗━ ━ %f'
 PROMPT='${USER_LEVEL}[${COLOR_NORMAL}%~${USER_LEVEL}]$(GIT_PROMPT)━━ ━ %f'
 ;;
 esac
+fi
