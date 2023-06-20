@@ -3,17 +3,30 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"debugloop/telescope-undo.nvim",
+		"nvim-telescope/telescope-live-grep-args.nvim",
 	},
 	config = function()
-		require("telescope").setup({
+		local key = vim.keymap.set
+		local telescope = require("telescope")
+		local lga_actions = require("telescope-live-grep-args.actions")
+		telescope.setup({
+			defaults = {
+				layout_strategy = "horizontal",
+				layout_config = {
+					horizontal = { width = 0.8, preview_width = 0.65, anchor = "CENTER" },
+				},
+			},
 			extensions = {
 				undo = {
 					use_delta = true,
-					use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
-					side_by_side = false,
-					diff_context_lines = vim.o.scrolloff,
+					side_by_side = true,
+					diff_context_lines = 6, -- vim.o.scrolloff,
 					entry_format = "state #$ID, $STAT, $TIME",
 					time_format = "",
+					layout_strategy = "vertical",
+					layout_config = {
+						vertical = { preview_width = 0.65 },
+					},
 					mappings = {
 						i = {
 							["<cr>"] = require("telescope-undo.actions").yank_additions,
@@ -22,8 +35,19 @@ return {
 						},
 					},
 				},
+				live_grep_args = {
+					auto_quoting = true,
+					mappings = {
+						i = {
+							["<C-\\>"] = lga_actions.quote_prompt({ postfix = " --hidden " }),
+						}
+					},
+				},
 			},
 		})
-		require("telescope").load_extension("undo")
+		telescope.load_extension("undo")
+		telescope.load_extension("live_grep_args")
+		key("n", "<leader>u", ":Telescope undo<cr>")
+		key("n", "\\", ":Telescope live_grep_args<cr>")
 	end,
 }

@@ -20,6 +20,7 @@ return {
 				formatting.stylua,
 				formatting.prettierd,
 				formatting.jq,
+				formatting.shfmt,
 				code_actions.gitsigns,
 				code_actions.refactoring,
 				code_actions.shellcheck,

@@ -93,19 +93,18 @@ return {
 
 		local servers = {
 			bashls = require("plugins.lsp.servers.bashls")(on_attach),
-			yamlls = require("plugins.lsp.servers.yamlls")(capabilities),
-			jsonls = require("plugins.lsp.servers.jsonls")(capabilities),
-			html = {},
-			cssls = {},
-			lua_ls = require("plugins.lsp.servers.luals")(on_attach),
-			dockerls = {},
-			graphql = {},
-			-- rust_analyzer = {},
-			eslint = require("plugins.lsp.servers.eslint")(on_attach),
-			angularls = {},
-			gopls = {},
-			terraformls = {},
 			clangd = {},
+			cssls = {},
+			dockerls = {},
+			eslint = require("plugins.lsp.servers.eslint")(on_attach),
+			gopls = {},
+			graphql = {},
+			html = {},
+			jsonls = require("plugins.lsp.servers.jsonls")(capabilities),
+			lua_ls = require("plugins.lsp.servers.luals")(on_attach),
+			rust_analyzer = {},
+			terraformls = {},
+			yamlls = require("plugins.lsp.servers.yamlls")(capabilities),
 		}
 
 		local default_lsp_config = {

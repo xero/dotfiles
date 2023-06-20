@@ -49,7 +49,6 @@ lazy.setup({
 		require("plugins.cmp"),
 		require("plugins.colorizer"),
 		require("plugins.tint"),
-		require("plugins.undotree"),
 		require("plugins.ansi"),
 		require("plugins.lualine"),
 		require("plugins.increname"),

@@ -1,7 +1,17 @@
 local r = require("utils.remaps")
 local vim = vim
-
 local M = {}
+
+local function LspToggle()
+	if (vim.diagnostic.is_disabled(0) == true) then
+		vim.diagnostic.enable()
+		vim.diagnostic.config({ virtual_text = true })
+		vim.cmd [[LspStart]]
+	else
+		vim.diagnostic.disable()
+		vim.cmd [[LspStop]]
+	end
+end
 
 local function generate_buf_keymapper(bufnr)
 	return function(type, input, output, description, extraOptions)
@@ -25,9 +35,6 @@ function M.set_default_on_buffer(client, bufnr)
 	local cap = client.server_capabilities
 
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-	-- gives definition & references
-	-- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
 	if cap.definitionProvider then
 		buf_set_keymap("n", "gd", vim.lsp.buf.definition, "Preview definition")
@@ -53,7 +60,6 @@ function M.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.documentSymbolProvider then
-		-- buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
 		buf_set_keymap("n", "<leader>tO", function()
 			require("fzf-lua").lsp_document_symbols()
 		end, "Document symbols")
@@ -70,8 +76,7 @@ function M.set_default_on_buffer(client, bufnr)
 	-- end
 
 	if cap.codeActionProvider then
-		buf_set_keymap({ "n", "v" }, "<leader>ra", vim.lsp.buf.code_action, "Code actions")
-		buf_set_keymap({ "n", "v" }, "<leader>rA", function()
+		buf_set_keymap({ "n", "v" }, "<leader>ra", function()
 			local line_count = vim.api.nvim_buf_line_count(bufnr)
 			--[[ local range = vim.lsp.util.make_given_range_params({ 1, 1 }, { line_count, 1 }, bufnr) ]]
 			local range = {
@@ -125,9 +130,7 @@ function M.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.renameProvider then
-		-- buf_set_keymap("n", "<leader>rr", vim.lsp.buf.rename, "Rename")
 		buf_set_keymap("n", "<leader>rr", ":IncRename ", "Rename")
-		-- function() return ":IncRename " .. vim.fn.expand("<cword>") end, desc = "Rename", expr = true },
 	end
 
 	buf_set_keymap("n", "<leader>lsc", function()
@@ -137,13 +140,19 @@ function M.set_default_on_buffer(client, bufnr)
 	buf_set_keymap("n", "<leader>lsl", function()
 		print(vim.lsp.get_log_path())
 	end, "Show log path")
+
 	buf_set_keymap("n", "<leader>lsa", ":LspInfo()<CR>", "LSP Info")
-	buf_set_keymap("n", "<leader>le", ":LspStart<CR>", "enable LSP")
-	buf_set_keymap("n", "<leader>ld", ":LspStop<CR>", "disable LSP")
-	vim.g.vtxt = 1
+
+	buf_set_keymap("n", "<leader>lt", function()
+		LspToggle()
+	end, "toggle LSP")
+
 	buf_set_keymap("n", "<leader>ll", function()
-		vim.g.vtxt = 1 - vim.g.vtxt
-		vim.diagnostic.config({ virtual_text = (vim.g.vtxt)==1 and true or false })
+		if (vim.diagnostic.is_disabled(0) == true) then
+			vim.diagnostic.config({ virtual_text = false })
+			vim.diagnostic.enable()
+			vim.cmd [[LspStart]]
+		end
 		require("lsp_lines").toggle()
 	end, "toggle lsp lines")
 end
