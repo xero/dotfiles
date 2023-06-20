@@ -20,6 +20,7 @@ alias ll="ls -lahF --color=auto"
 alias lll="ls -lahF "$@" | sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/^[d-]//g'"
 alias e="$EDITOR"
 alias se="sudo $EDITOR"
+alias ec='nvim --cmd ":lua vim.g.noplugins=1" ' #nvim --clean
 alias g="git"
 alias y="yank"
 alias k="vpnns -- kubectl"

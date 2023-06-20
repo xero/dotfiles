@@ -121,4 +121,8 @@ M.get_color_from_terminal = function(num, default)
 	return vim.g[key] and vim.g[key] or default
 end
 
+M.cmd = function(name, command, desc)
+	vim.api.nvim_create_user_command(name, command, desc)
+end
+
 return M
