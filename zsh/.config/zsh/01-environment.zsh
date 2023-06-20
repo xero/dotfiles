@@ -43,7 +43,7 @@ export VISUAL=nvim
 
 #█▓▒░ fzf & clipboard menu
 export CM_LAUNCHER="fzf"
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#c1c1c1,bg:#2b2b2b,hl:#5f8787 --color=fg+:#ffffff,bg+:#1c1c1c,hl+:#3ea3a3 --color=info:#87875f,prompt:#87875f,pointer:#8787af --color=marker:#8787af,spinner:#8787af,header:#5f8787 --color=gutter:#2b2b2b,border:#222222 --padding=1 --prompt=❯ --marker=❯ --pointer=❯ --reverse'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#c1c1c1,bg:#2b2b2b,hl:#78824B --color=fg+:#ffffff,bg+:#1c1c1c,hl+:#C9A554 --color=info:#5f875f,prompt:#5f875f,pointer:#78824B --color=marker:#78824B,spinner:#78824B,header:#78824B --color=gutter:#2b2b2b,border:#222222 --padding=1 --prompt=❯ --marker=❯ --pointer=❯ --reverse'
 
 #█▓▒░ language
 export LC_COLLATE=en_US.UTF-8
