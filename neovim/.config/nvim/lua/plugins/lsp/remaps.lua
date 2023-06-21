@@ -60,16 +60,16 @@ function M.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.documentSymbolProvider then
-		buf_set_keymap("n", "<leader>tO", function()
+		buf_set_keymap("n", "<leader>lO", function()
 			require("fzf-lua").lsp_document_symbols()
 		end, "Document symbols")
 	end
 
-	buf_set_keymap("n", "<leader>ts", vim.lsp.buf.signature_help, "Show signature")
-	buf_set_keymap("n", "<leader>te", function()
+	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "Show signature")
+	buf_set_keymap("n", "<leader>le", function()
 		require("fzf-lua").diagnostics_document()
 	end, "Show diagnostics")
-	buf_set_keymap("n", "<leader>tE", vim.diagnostic.open_float, "Show line diagnostics")
+	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "Show line diagnostics")
 
 	-- if cap.workspaceSymbolProvider then
 	--   map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)

@@ -49,7 +49,7 @@ vim.opt.cursorline = true
 -- set cursorcolumn = true
 
 -- show invisibles
-vim.opt.listchars = { tab = '··', trail = '·', extends = '»',  precedes = '«', nbsp = '░' }
+vim.opt.listchars = { tab = '  ', trail = '·', extends = '»',  precedes = '«', nbsp = '░' }
 vim.opt.list = true
 
 -- split style
