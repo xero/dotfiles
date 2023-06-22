@@ -33,7 +33,7 @@ return {
 		init = " ",
 		import = " ",
 		keys = " ",
-		lazy = "󰒲 󱄲",
+		lazy = "󰒲 ",
 		loaded = "󱄲",
 		not_loaded = "󱄯",
 		plugin = " ",

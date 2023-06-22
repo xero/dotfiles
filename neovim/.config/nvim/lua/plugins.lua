@@ -28,7 +28,7 @@ lazy.setup({
 			lazy = false,
 			priority = 1000,
 			config = function()
-				vim.cmd([[colorscheme miasma]])
+				vim.cmd("colorscheme miasma")
 			end,
 		},
 		require("plugins.osc52-yank"),
@@ -56,6 +56,7 @@ lazy.setup({
 		require("plugins.fzf"),
 		require("plugins.devicons"),
 		require("plugins.matchparen"),
+		require("plugins.lush"),
 		--{ "xero/sourcerer.vim" },
 		--{ 'xero/vim-noctu' },
 		--{ 'mattn/vim-sl' }, -- train

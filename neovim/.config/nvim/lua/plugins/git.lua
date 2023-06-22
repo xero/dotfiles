@@ -4,6 +4,7 @@ return {
 		'tpope/vim-fugitive',
 		lazy = false,
 	},
+	verylazy = true,
 	cmd = {
 		'Flog',
 	},

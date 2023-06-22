@@ -149,11 +149,11 @@ function M.set_default_on_buffer(client, bufnr)
 
 	buf_set_keymap("n", "<leader>ll", function()
 		if (vim.diagnostic.is_disabled(0) == true) then
-			vim.diagnostic.config({ virtual_text = false })
 			vim.diagnostic.enable()
 			vim.cmd [[LspStart]]
 		end
 		require("lsp_lines").toggle()
+		vim.diagnostic.config({ virtual_text = false })
 	end, "toggle lsp lines")
 end
 
