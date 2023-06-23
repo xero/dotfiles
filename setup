@@ -272,13 +272,18 @@ _echo "setting up dotfiles"
 $ASME git clone git@github.com:xero/dotfiles.git -b vps $MYHOME/.local/src/dotfiles &&
 	cd $MYHOME/.local/src/dotfiles &&
 	$ASME stow bin fun git gpg ssh tmux vim zsh -t $MYHOME
+# tmux
 $ASME mkdir $MYHOME/.config/tmux/plugins &&
 	$ASME git clone --depth=1 https://github.com/tmux-plugins/tpm $MYHOME/.config/tmux/plugins/tpm &&
 	$ASME $MYHOME/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
 	cd $MYHOME/.config/tmux/plugins/tmux-thumbs &&
 		expect -c "spawn ./tmux-thumbs-install.sh; send \"\r2\r\"; expect complete" 1>/dev/null
-$ASME nvim --headless +PlugInstall +qa &>/dev/null
-$ASME nvim +UpdateRemotePlugins +qa &>/dev/null
+# nvim
+$ASME mkdir $MYHOME/.local/nvim &&
+  $ASME git clone --filter=blob:none --single-branch https://github.com/folke/lazy.nvim.git $MYHOME/.local/share/nvim/lazy
+$ASME nvim --headless "+Lazy! sync" +qa
+$ASME nvim --headless "+MasonUpdate" +qa
+
 # shellcheck disable=SC2016
 echo 'export ZDOTDIR="$HOME"/.config/zsh' >>/etc/zsh/zshenv
 
