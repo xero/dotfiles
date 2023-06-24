@@ -34,7 +34,7 @@ export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
 export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$XDG_DATA_HOME/npm/bin:$PATH
 
 #█▓▒░ man
-export MANPAGER="nvim +Man!"
+export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
 export MANWIDTH=999
 
 #█▓▒░ preferred text editor
