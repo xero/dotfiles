@@ -57,11 +57,10 @@ lazy.setup({
 		require("plugins.devicons"),
 		require("plugins.matchparen"),
 		require("plugins.lush"),
+		require("plugins.copilot"),
 		--{ "xero/sourcerer.vim" },
 		--{ 'xero/vim-noctu' },
 		--{ 'mattn/vim-sl' }, -- train
-		--require("plugins.autopairs"),
-		--require("plugins.copilot"),
 	},
 	dev = {
 		path = "~src",
@@ -81,7 +80,6 @@ lazy.setup({
 		rtp = {
 			disabled_plugins = {
 				"gzip",
-				"matchit",
 				"matchparen",
 				"netrwPlugin",
 				"tarPlugin",

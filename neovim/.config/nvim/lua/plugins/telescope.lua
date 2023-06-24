@@ -18,7 +18,7 @@ return {
 					horizontal = { width = 0.8, preview_width = 0.65, anchor = "CENTER" },
 				},
 				borderchars = {
-					prompt  = dashed,
+					prompt = dashed,
 					results = dashed,
 					preview = dashed,
 				},

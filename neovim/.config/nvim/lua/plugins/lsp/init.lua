@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"folke/neodev.nvim",
 		"nvim-lua/lsp-status.nvim",
-		"jose-elias-alvarez/typescript.nvim",
+		--"jose-elias-alvarez/typescript.nvim",
 		"b0o/schemastore.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -127,17 +127,16 @@ return {
 			mason.setup({ ensure_installed = server_names })
 		end
 
-		local present_typescript, typescript = pcall(require, "typescript")
-
-		if present_typescript then
-			typescript.setup({
-				server = {
-					on_attach = function(client, bufnr)
-						on_attach(client, bufnr)
-					end,
-				},
-			})
-		end
+		--		local present_typescript, typescript = pcall(require, "typescript")
+		--		if present_typescript then
+		--			typescript.setup({
+		--				server = {
+		--					on_attach = function(client, bufnr)
+		--						on_attach(client, bufnr)
+		--					end,
+		--				},
+		--			})
+		--		end
 
 		for server_name, server_config in pairs(servers) do
 			local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_config)

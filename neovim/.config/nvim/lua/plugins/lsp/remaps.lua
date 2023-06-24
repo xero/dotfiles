@@ -112,22 +112,22 @@ function M.set_default_on_buffer(client, bufnr)
 
 	r.which_key("<leader>ri", "import")
 
-	if is_typescript then
-		buf_set_keymap("n", "<leader>rio", function()
-			local typescript = require("typescript")
-			typescript.actions.organizeImports()
-		end, "Organize imports (TS)")
-
-		buf_set_keymap("n", "<leader>riu", function()
-			local typescript = require("typescript")
-			typescript.actions.removeUnused()
-		end, "Remove unused variables (TS)")
-
-		buf_set_keymap("n", "<leader>rim", function()
-			local typescript = require("typescript")
-			typescript.actions.addMissingImports()
-		end, "Import all (TS)")
-	end
+--	if is_typescript then
+--		buf_set_keymap("n", "<leader>rio", function()
+--			local typescript = require("typescript")
+--			typescript.actions.organizeImports()
+--		end, "Organize imports (TS)")
+--
+--		buf_set_keymap("n", "<leader>riu", function()
+--			local typescript = require("typescript")
+--			typescript.actions.removeUnused()
+--		end, "Remove unused variables (TS)")
+--
+--		buf_set_keymap("n", "<leader>rim", function()
+--			local typescript = require("typescript")
+--			typescript.actions.addMissingImports()
+--		end, "Import all (TS)")
+--	end
 
 	if cap.renameProvider then
 		buf_set_keymap("n", "<leader>rr", ":IncRename ", "Rename")
