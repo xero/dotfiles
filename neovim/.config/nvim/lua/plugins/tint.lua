@@ -1,5 +1,6 @@
 return {
 	"levouh/tint.nvim",
+	event = "VeryLazy",
 	config = function()
 		local tint = require("tint")
 		local transforms = require("tint.transforms")

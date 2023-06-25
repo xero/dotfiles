@@ -22,6 +22,7 @@ return {
 		dependencies = {
 			{
 				"zbirenbaum/copilot-cmp",
+				verylazy = true,
 				dependencies = "copilot.lua",
 				opts = {},
 				config = function(_, opts)

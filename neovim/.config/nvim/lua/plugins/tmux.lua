@@ -1,5 +1,6 @@
 return {
 	"aserowy/tmux.nvim",
+	event = "VeryLazy",
 	config = function()
 		local tmux = require("tmux")
 		local r = require("utils.remaps")

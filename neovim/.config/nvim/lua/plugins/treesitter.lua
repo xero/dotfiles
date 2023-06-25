@@ -117,6 +117,10 @@ return {
 			vim.treesitter.inspect_tree({ command = "botright 60vnew" })
 		end, "Treesitter playground")
 
+		r.noremap("n", "<C-e>", function()
+			local result = vim.treesitter.get_captures_at_cursor(0)
+			print(vim.inspect(result))
+		end, "show treesitter capture group")
 
 		r.map_virtual("zi", "Init selection")
 		r.map_virtual("zi", "Expand node")

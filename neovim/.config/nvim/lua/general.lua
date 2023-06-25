@@ -28,7 +28,7 @@ vim.opt.swapfile = false
 -- fuzzy find
 vim.opt.path:append("**")
 -- lazy file name tab completion
-vim.opt.wildmode = "longest,list,full"
+vim.opt.wildmode = "list:longest,list:full"
 vim.opt.wildmenu = true
 vim.opt.wildignorecase = true
 -- ignore files vim doesnt use
@@ -57,16 +57,16 @@ vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 
 -- use indents of 2 spaces
-vim.opt.shiftwidth = 2
+vim.opt.shiftwidth = 4
 
 -- tabs are tabs
 vim.opt.expandtab = false
 
 -- an indentation every 2 columns
-vim.opt.tabstop = 2
+vim.opt.tabstop = 4
 
 -- let backspace delete indent
-vim.opt.softtabstop = 2
+vim.opt.softtabstop = 4
 
 -- enable auto indentation
 vim.opt.autoindent = true
@@ -74,7 +74,7 @@ vim.opt.autoindent = true
 -- remove trailing whitespaces and ^M chars
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	pattern = { "*" },
-	callback = function(ev)
+	callback = function(_)
 		local save_cursor = vim.fn.getpos(".")
 		vim.cmd([[%s/\s\+$//e]])
 		vim.fn.setpos(".", save_cursor)

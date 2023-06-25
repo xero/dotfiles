@@ -49,8 +49,3 @@ f.cmd("FixSyntax", "syntax sync fromstart", { desc = "reload syntax highlighting
 -- vertical term
 f.cmd("T", ":vs | :set nu! | :term", { desc = "vertical terminal" })
 
--- show treesitter capture group for textobject under cursor.
-r.noremap("n", "<C-e>", function()
-	local result = vim.treesitter.get_captures_at_cursor(0)
-	print(vim.inspect(result))
-end, "show treesitter capture group")

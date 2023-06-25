@@ -1,6 +1,6 @@
 local r = require("utils.remaps")
 local vim = vim
-local M = {}
+local X = {}
 
 local function LspToggle()
 	if (vim.diagnostic.is_disabled(0) == true) then
@@ -23,7 +23,7 @@ local function generate_buf_keymapper(bufnr)
 	end
 end
 
-function M.set_default_on_buffer(client, bufnr)
+function X.set_default_on_buffer(client, bufnr)
 	local buf_set_keymap = generate_buf_keymapper(bufnr)
 	local filetype = vim.api.nvim_buf_get_option(bufnr or 0, "filetype")
 	local is_typescript = filetype == "typescript" or filetype == "typescriptreact"
@@ -160,4 +160,4 @@ end
 r.which_key("<leader>ls", "LSP servers")
 r.noremap("n", "<leader>lsi", "<cmd>LspInstallInfo<CR>", "LSP servers install info")
 
-return M
+return X

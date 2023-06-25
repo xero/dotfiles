@@ -1,11 +1,12 @@
 return {
 	"brenoprata10/nvim-highlight-colors",
+	verylazy = true,
 	config = function()
 		local r = require("utils.remaps")
-		local c =require('nvim-highlight-colors')
-		c.setup {}
+		local c = require("nvim-highlight-colors")
+		c.setup({})
 		r.which_key("<leader>c", "colorizer")
-		r.noremap("n", "<leader>c", function ()
+		r.noremap("n", "<leader>c", function()
 			c.toggle()
 		end, "toggle colorizer")
 	end,
