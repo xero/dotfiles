@@ -18,7 +18,7 @@
 vim.opt.showmatch = true
 
 -- disable startup message
-vim.opt.shortmess:append 'sI'
+vim.opt.shortmess:append("sI")
 
 -- cmd display (set to zero to autohide)
 vim.opt.cmdheight = 1
@@ -27,13 +27,8 @@ vim.opt.cmdheight = 1
 vim.opt.signcolumn = "auto:2"
 
 -- syntax highlighting
-vim.cmd [[
-	syntax on
-	filetype plugin on
-	set t_Co=256
-	set termguicolors
-]]
-vim.opt.synmaxcol=512
+vim.opt.termguicolors = true
+vim.opt.synmaxcol = 512
 
 -- show line numbers
 vim.opt.number = true
@@ -49,10 +44,10 @@ vim.opt.cursorline = true
 -- set cursorcolumn = true
 
 -- show invisibles
-vim.opt.listchars = { tab = '  ', trail = '·', extends = '»',  precedes = '«', nbsp = '░' }
+vim.opt.listchars = { tab = "  ", trail = "·", extends = "»", precedes = "«", nbsp = "░" }
 vim.opt.list = true
 
 -- split style
-vim.opt.fillchars = { vert = '▒' }
+vim.opt.fillchars = { vert = "▒" }
 vim.opt.splitbelow = true
 vim.opt.splitright = true

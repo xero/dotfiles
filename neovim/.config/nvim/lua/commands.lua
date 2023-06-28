@@ -49,3 +49,12 @@ f.cmd("FixSyntax", "syntax sync fromstart", { desc = "reload syntax highlighting
 -- vertical term
 f.cmd("T", ":vs | :set nu! | :term", { desc = "vertical terminal" })
 
+-- remove trailing whitespaces and ^M chars
+f.autocmd({ "BufWritePre" }, {
+	pattern = { "*" },
+	callback = function(_)
+		local save_cursor = vim.fn.getpos(".")
+		vim.cmd([[%s/\s\+$//e]])
+		vim.fn.setpos(".", save_cursor)
+	end,
+})
