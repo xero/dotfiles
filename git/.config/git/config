@@ -15,7 +15,7 @@
 [diff]
 	tool = nvimdiff
 [difftool "nvimdiff"]
-	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+	cmd = "nvim --cmd \":lua vim.g.noplugins=1\" -d \"$LOCAL\" \"$REMOTE\""
 [difftool]
 	prompt = false
 [gpg]
