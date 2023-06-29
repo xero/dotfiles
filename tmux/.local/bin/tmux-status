@@ -25,8 +25,6 @@
 
 FULL=━
 EMPTY=┄
-EOL=▒
-SIZE=7
 C0="#000000"
 C1="#222222"
 C2="#8FBCBB"
@@ -39,10 +37,10 @@ C8="#B36D43"
 
 draw() {
 	perc=$1
-	SIZE=$2
-	inc=$((perc * SIZE / 100))
+	size=$2
+	inc=$((perc * size / 100))
 	out=
-	for v in $(seq 0 $((SIZE - 1))); do
+	for v in $(seq 0 $((size - 1))); do
 		test "$v" -le "$inc" &&
 			out="${out}#[fg=$C1]${FULL}" ||
 			out="${out}#[fg=$C6]${EMPTY}"
@@ -92,14 +90,18 @@ cpu() {
 ram() {
 	free | awk '/Mem:/ {print int($3/$2 * 100.0)}'
 }
+disk() {
+	df -h | grep '/$' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//'
+}
 vpn() {
+	#   󰘺 󱢡 󰇌 󰝮
 	pgrep 'vpn/|openvpn/|openconnect' >/dev/null 2>&1 && echo "#[bg=$C8]#[fg=$C7]▓▒░#[fg=0]" || echo "#[bg=$C8]#[fg=$C7]▓▒░#[fg=0]"
 }
 clock() {
 	mtime=$(date +'%H:%M')
 	myear=$(date +'%Y-%m-')
 	mday=$(date +'%d')
-	echo "#[fg=$C5]#[bg=$C4] $mtime #[fg=$C6]$myear#[fg=$C5]$mday #[fg=$C6]$EOL"
+	echo "#[fg=$C5]#[bg=$C4] $mtime #[fg=$C6]$myear#[fg=$C5]$mday #[fg=$C6]▒"
 }
 front() {
 	echo "#[bg=$C7]#[fg=0]▓▒░"
@@ -109,4 +111,5 @@ separator() {
 }
 CPU_INFO=$(cpu)
 RAM_INFO=$(ram)
-echo "$(front)""$(temp)" "#[fg=0] ${RAM_INFO}%" "$(draw "$RAM_INFO" 5)" "#[fg=0] ${CPU_INFO}%" "$(draw "$CPU_INFO" 5)" "$(vpn)" "$(separator)""$(clock)"
+DISK_INFO=$(disk)
+echo "$(front)" "#[fg=0] ${RAM_INFO}%" "$(draw "$RAM_INFO" 4)" "#[fg=0] ${CPU_INFO}%" "$(draw "$CPU_INFO" 4)" "#[fg=0]󰽄 ${DISK_INFO}%" "$(draw "${DISK_INFO}" 4)" "$(vpn)" "$(separator)""$(clock)"
