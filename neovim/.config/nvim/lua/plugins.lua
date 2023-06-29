@@ -25,6 +25,7 @@ lazy.setup({
 	spec = {
 		{
 			"xero/miasma.nvim",
+			-- branch = "dev",
 			lazy = false,
 			priority = 1000,
 			config = function()
@@ -55,6 +56,7 @@ lazy.setup({
 		require("plugins.devicons"),
 		require("plugins.matchparen"),
 		require("plugins.lush"),
+		require("plugins.alpha"),
 		--require("plugins.copilot"),
 		--require("plugins.mason-null-ls"),
 		--require("plugins.null-ls"),
