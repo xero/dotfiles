@@ -129,7 +129,6 @@ return {
 		-- active left section
 		active_left({
 			"filetype",
-			cond = conditions.buffer_not_empty,
 			icon_only = true,
 			colored = false,
 			icon = { color = { fg = colors.white } },
@@ -164,10 +163,10 @@ return {
 
 		-- inactive left section
 		inactive_left({
-			"filename",
+			function()
+				return ''
+			end,
 			cond = conditions.buffer_not_empty,
-			icon_only = true,
-			icon = '',
 			color = function()
 				return { bg = colors.black, fg = colors.grey }
 			end,
@@ -197,7 +196,8 @@ return {
 				for _, client in pairs(clients) do
 					table.insert(clients_list, client.name)
 				end
-				return dump(clients_list):gsub("(.*),", "%1")
+				local lsp_lbl = dump(clients_list):gsub("(.*),", "%1")
+				return lsp_lbl:gsub(",", ", ")
 			end,
 			icon = " ",
 			color = { bg = colors.green, fg = colors.black },

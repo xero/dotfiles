@@ -17,6 +17,11 @@
 local f = require("utils.functions")
 local r = require("utils.remaps")
 
+-- buffers
+r.noremap("n", "<C-n>", ":bn<cr>", "next buffer")
+r.noremap("n", "<C-p>", ":bp<cr>", "prev buffer")
+r.noremap("n", "<C-d>", ":bd<cr>", "exit buffer")
+
 -- json pretty print
 r.noremap("n", "<leader>j", ":%!jq .<cr>", "jq format")
 

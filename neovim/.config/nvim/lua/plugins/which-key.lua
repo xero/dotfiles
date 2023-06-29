@@ -4,31 +4,45 @@ return {
 	config = function()
 		local which_key = require("which-key")
 
+		which_key.setup({
+			plugins = {
+				spelling = {
+					enabled = true,
+					suggestions = 20,
+				},
+			},
+			window = {
+				border = "shadow",
+				position = "bottom",
+				margin = { 0, 1, 1, 5 },
+				padding = { 1, 2, 1, 2 },
+			},
+			triggers_nowait = {
+				"`",
+				"'",
+				"g`",
+				"g'",
+				'"',
+				"<c-r>",
+				"z=",
+			},
+		})
+
 		local opts = {
 			prefix = "<leader>",
 		}
 
-		which_key.setup()
-
 		local groups = {
 			b = { name = "buffer" },
 			s = { name = "search" },
-			p = { name = "project" },
-			["ps"] = { name = "session" },
-			w = { name = "window" },
 			g = { name = "git" },
-			t = { name = "types" },
 			r = { name = "refactor" },
 			l = { name = "lsp" },
 			d = { name = "debug" },
-			z = { name = "zen" },
 			m = { name = "macro/markdown" },
 			n = { name = "notifications" },
-			q = { name = "quick switcher" },
-			k = { name = "terminal" },
 			[";"] = { name = "test" },
 			["'"] = { name = "marks" },
-			['"'] = { name = "registers" },
 			["/"] = { name = "search" },
 			["/g"] = { name = "git" },
 			["/gd"] = { name = "diff" },
