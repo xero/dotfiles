@@ -13,11 +13,24 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 #
+#█▓▒░ octal list
+function l() {
+		ls -lahF "$@" --color=always \
+		| sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/^[d-]//g;'
+}
+
+#█▓▒░ tmux
+function t() {
+	X=$#
+	[[ $X -eq 0 ]] || X=X
+	tmux new-session -A -s $X
+	tmux set-environment LC_ALL 'en_US.UTF-8'
+	tmux set-environment LANG 'en_US.UTF-8'
+}
+
 #█▓▒░ aliases
 alias c="clear"
-alias l="ls -hF --color=auto"
-alias ll="ls -lahF --color=auto"
-alias lll="ls -lahF "$@" | sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/^[d-]//g'"
+alias ll="ls -lahF --color=always"
 alias e="$EDITOR"
 alias se="sudo $EDITOR"
 alias ec='nvim --cmd ":lua vim.g.noplugins=1" ' #nvim --clean
@@ -53,14 +66,14 @@ alias gpr="gh pr create"
 alias gr="git rebase -i"
 alias gs="git status -sb"
 alias gt="git tag"
-alias gu="git reset HEAD -- "
+alias gu="git reset HEAD --"
 alias gx="git reset --HARD @"
 
 #overrides
 alias mkdir="mkdir -p"
 alias cp="cp -r"
 alias scp="scp -r"
-alias vimdiff="nvim -d -u ~/.vimrc"
+alias vimdiff="nvim -d --cmd ':lua vim.g.noplugins=1'"
 alias apt="sudo apt"
 alias doc="sudo docker"
 alias docker="sudo docker"
@@ -128,7 +141,6 @@ function 1pwfile() {
 function 1pweditfile() {
 	1pwcheck "$1" && op item edit --account "$1" "$2" "files.[file]=$3"
 }
-# get item uuid from 1password share urls
 function 1pwurl() {
 	echo "$1" | sed 's/^.*i=//;s/\&.*$//'
 }
@@ -137,15 +149,6 @@ function 1pwurl() {
 function docclean() {
 	sudo docker rm $(sudo docker ps -a -q)
 	sudo docker rmi $(sudo docker images -q)
-}
-
-#█▓▒░ tmux
-function t() {
-	X=$#
-	[[ $X -eq 0 ]] || X=X
-	tmux new-session -A -s $X
-	tmux set-environment LC_ALL 'en_US.UTF-8'
-	tmux set-environment LANG 'en_US.UTF-8'
 }
 
 #█▓▒░ ascii
@@ -213,36 +216,4 @@ function greynoise() {
 	[[ "$IP" =~ "([0-9]{1,3}[\.]){3}[0-9]{1,3}" ]] || IP=`dig +short ${IP}`
 	curl -sX GET "https://api.greynoise.io/v3/community/${IP}" -H "Accept: application/json" -H "key: ${GREY_TOKEN}"
 }
-function dnsdumpster() {
-	TMP=`mktemp /tmp/dnsdumpXXX`
-	DNS="${1:-/dev/stdin}"
-	cat << EOF > $TMP
-#!env python
-from dnsdumpster.DNSDumpsterAPI import DNSDumpsterAPI
-domain = '$DNS'
-res = DNSDumpsterAPI().search(domain)
 
-print("\n╓───── domain: \n╙────────────────────────────────────── ─ ─")
-print(res['domain'])
-
-print("\n╓───── dns servers: \n╙────────────────────────────────────── ─ ─")
-for entry in res['dns_records']['dns']:
-    print(("{domain} ({ip})\n   {as} {provider} {country}".format(**entry)))
-
-print("\n╓───── mx records: \n╙────────────────────────────────────── ─ ─")
-for entry in res['dns_records']['mx']:
-    print(("{domain} ({ip})\n   {as} {provider} {country}".format(**entry)))
-
-print("\n╓───── host records: \n╙────────────────────────────────────── ─ ─")
-for entry in res['dns_records']['host']:
-    if entry['reverse_dns']:
-        print(("{domain} ({reverse_dns}) ({ip})\n   {as} {provider} {country}".format(**entry)))
-    else:
-        print(("{domain} ({ip})\n   {as} {provider} {country}".format(**entry)))
-
-print("\n╓───── txt records: \n╙────────────────────────────────────── ─ ─")
-for entry in res['dns_records']['txt']:
-    print(entry)
-EOF
-	chmod +x $TMP && python3 $TMP; rm $TMP
-}
