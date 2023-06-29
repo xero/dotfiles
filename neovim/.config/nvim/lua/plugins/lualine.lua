@@ -112,6 +112,20 @@ return {
 			table.insert(config.inactive_sections.lualine_x, component)
 		end
 
+		-- dump object contents
+		local function dump(o)
+			if type(o) == 'table' then
+				local s = ''
+				for k, v in pairs(o) do
+					if type(k) ~= 'number' then k = '"' .. k .. '"' end
+					s = s .. dump(v) .. ','
+				end
+				return s
+			else
+				return tostring(o)
+			end
+		end
+
 		-- active left section
 		active_left({
 			"filetype",
@@ -150,11 +164,10 @@ return {
 
 		-- inactive left section
 		inactive_left({
-			"filetype",
+			"filename",
 			cond = conditions.buffer_not_empty,
 			icon_only = true,
-			colored = false,
-			icon = { color = { fg = colors.white } },
+			icon = '',
 			color = function()
 				return { bg = colors.black, fg = colors.grey }
 			end,
@@ -177,25 +190,22 @@ return {
 		})
 
 		-- active right section
-		local clients = vim.lsp.get_active_clients()
-		if next(clients) ~= nil then
-			active_right({
-				function()
-					local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-					for _, client in ipairs(clients) do
-						local filetypes = client.config.filetypes
-						if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-							return client.name
-						end
-					end
-				end,
-				icon = " ",
-				color = { bg = colors.green, fg = colors.black },
-				padding = { left = 1, right = 1 },
-				cond = conditions.hide_in_width_first,
-				separator = { right = "▓▒░", left = "░▒▓" },
-			})
-		end
+		active_right({
+			function()
+				local clients = vim.lsp.get_active_clients()
+				local clients_list = {}
+				for _, client in pairs(clients) do
+					table.insert(clients_list, client.name)
+				end
+				return dump(clients_list):gsub("(.*),", "%1")
+			end,
+			icon = " ",
+			color = { bg = colors.green, fg = colors.black },
+			padding = { left = 1, right = 1 },
+			cond = conditions.hide_in_width_first,
+			separator = { right = "▓▒░", left = "░▒▓" },
+		})
+
 		active_right({
 			"diagnostics",
 			sources = { "nvim_diagnostic" },

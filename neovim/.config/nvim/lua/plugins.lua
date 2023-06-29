@@ -44,8 +44,6 @@ lazy.setup({
 		require("plugins.guess-indent"),
 		require("plugins.mason"),
 		require("plugins.mason-dap"),
-		require("plugins.mason-null-ls"),
-		require("plugins.null-ls"),
 		require("plugins.lsp"),
 		require("plugins.cmp"),
 		require("plugins.colorizer"),
@@ -58,6 +56,8 @@ lazy.setup({
 		require("plugins.matchparen"),
 		require("plugins.lush"),
 		--require("plugins.copilot"),
+		--require("plugins.mason-null-ls"),
+		--require("plugins.null-ls"),
 		--{ "xero/sourcerer.vim" },
 		--{ 'xero/vim-noctu' },
 		--{ 'mattn/vim-sl' }, -- train
