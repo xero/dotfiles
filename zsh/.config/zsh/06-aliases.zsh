@@ -66,8 +66,8 @@ alias gpr="gh pr create"
 alias gr="git rebase -i"
 alias gs="git status -sb"
 alias gt="git tag"
-alias gu="git reset HEAD --"
-alias gx="git reset --HARD @"
+alias gu="git reset @ --"
+alias gx="git reset --hard @"
 
 #overrides
 alias mkdir="mkdir -p"
