@@ -36,9 +36,11 @@ alias ZZ="exit"
 
 #git
 alias ga="git add"
+alias gb="git branch"
 alias gc="git clone"
 alias gcm="git commit -m"
 alias gco="git checkout"
+alias gcob="git checkout -b"
 alias gcs="git commit -S -m"
 alias gd="git difftool"
 alias gdc="git difftool --cached"
@@ -50,7 +52,9 @@ alias gp="git push"
 alias gpr="gh pr create"
 alias gr="git rebase -i"
 alias gs="git status -sb"
+alias gt="git tag"
 alias gu="git reset HEAD -- "
+alias gx="git reset --HARD @"
 
 #overrides
 alias mkdir="mkdir -p"
