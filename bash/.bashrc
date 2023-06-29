@@ -15,10 +15,12 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
+# interactive
 case $- in
   *i*) ;;
   *) return;;
 esac
+# options
 PS1='\n\w\n\$ '
 set -o noclobber
 shopt -s checkwinsize
@@ -45,6 +47,7 @@ shopt -s autocd 2> /dev/null
 shopt -s dirspell 2> /dev/null
 shopt -s cdspell 2> /dev/null
 CDPATH="."
+# aliases
 function l() {
 		ls -lahF "$@" --color=always \
 		| sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/^[d-]//g;'
@@ -99,6 +102,7 @@ alias curld="curl -A \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML
 alias curlm="curl -A \"Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.12 Mobile/10B329 Safari/8536.25\""
 alias fuck='sudo "$BASH" -c "$(history -p !!)"'
 alias xyzzy="echo nothing happens"
+# completionion hail mary
 if ! shopt -oq posix; then
 	if [ -f /usr/share/bash-completion/bash_completion ]; then
 		. /usr/share/bash-completion/bash_completion
