@@ -94,14 +94,13 @@ disk() {
 	df -h | grep '/$' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//'
 }
 vpn() {
-	#   󰘺 󱢡 󰇌 󰝮
 	pgrep 'vpn/|openvpn/|openconnect' >/dev/null 2>&1 && echo "#[bg=$C8]#[fg=$C7]▓▒░#[fg=0]" || echo "#[bg=$C8]#[fg=$C7]▓▒░#[fg=0]"
 }
 clock() {
 	mtime=$(date +'%H:%M')
 	myear=$(date +'%Y-%m-')
 	mday=$(date +'%d')
-	echo "#[fg=$C5]#[bg=$C4] $mtime #[fg=$C6]$myear#[fg=$C5]$mday #[fg=$C6]▒"
+	echo "#[fg=$C5]#[bg=$C4] $mtime #[fg=$C6]$myear#[fg=$C5]$mday #[bg=0]#[fg=$C4]▒░"
 }
 front() {
 	echo "#[bg=$C7]#[fg=0]▓▒░"
