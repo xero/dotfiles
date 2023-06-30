@@ -1,4 +1,6 @@
 #!/bin/sh
+# neovim logo by @sunjon https://github.com/nvimdev/dashboard-nvim/wiki/Ascii-Header-Text
+# color variations and script by @xero https://git.io/.files
 case "$1" in
 -b) cat << x0
                                               
@@ -52,11 +54,11 @@ x0
 x0
 ;;
 *) cat << x0
- nvim-logo: display a cool text mode art banner in your shell/editor
+ nvim-logo: display cool text mode art banners in your shell/editor
  usage: ./nvim-logo [-t|-l|-b|-h]
  flags:
    -t  display in miasma true colors
-	 -o  display in origional true colors
+   -o  display in origional true colors
    -l  display in limited 246 colors
    -b  display in black and white (text only)
    -h  display this message
@@ -65,8 +67,8 @@ x0
   please view in a patched font https://www.nerdfonts.com/
  credits:
   neovim logo by @sunjon https://github.com/nvimdev/dashboard-nvim/wiki/Ascii-Header-Text
-  converted to miasma theme colors by @xero https://git.io/.files
+  color variations and script by @xero https://git.io/.files
 x0
-	;;
+;;
 esac
 exit 0
