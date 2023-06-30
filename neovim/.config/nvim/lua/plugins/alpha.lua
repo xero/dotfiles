@@ -4,23 +4,31 @@ return {
 	opts = function()
 		local dashboard = require('alpha.themes.dashboard')
 		require("alpha.term")
-		dashboard.section.terminal.command = "cat | " .. vim.fn.stdpath("config") .. "/logo-truecolor.sh"
+		dashboard.section.terminal.command = vim.fn.stdpath("config") .. "/nvim-logo -t"
 		dashboard.section.terminal.width = 70
 		dashboard.section.terminal.height = 10
 		dashboard.section.terminal.opts.redraw = true
-		dashboard.section.header.val = ''
-		-- stylua: ignore
+		dashboard.section.terminal.opts.window_config.zindex = 1
 		dashboard.section.buttons.val = {
-			dashboard.button('i', '  new file', ':ene <BAR> startinsert<CR>'),
-			dashboard.button('r', '  recent files', ':Telescope oldfiles<CR>'),
-			dashboard.button('f', '󰥨  find file', ':Telescope file_browser<CR>'),
-			dashboard.button('g', '󰱼  find text', ':Telescope live_grep_args<CR>'),
-			dashboard.button('l', '󰒲  lazy', ':Lazy<CR>'),
-			dashboard.button('m', '󱌣  mason', ':Mason<CR>'),
-			dashboard.button('q', '󰭿  quit', ':qa<CR>'),
+			dashboard.button('i', '    new file', ':ene <BAR> startinsert<CR>'),
+			dashboard.button('r', '    recent files', ':Telescope oldfiles<CR>'),
+			dashboard.button('f', '󰥨    find file', ':Telescope file_browser<CR>'),
+			dashboard.button('g', '󰱼    find text', ':Telescope live_grep_args<CR>'),
+			dashboard.button('l', '󰒲    lazy', ':Lazy<CR>'),
+			dashboard.button('m', '󱌣    mason', ':Mason<CR>'),
+			dashboard.button('q', '󰭿    quit', ':qa<CR>'),
 		}
-		dashboard.opts.layout[1].val = 6 -- padding
-		dashboard.opts.layout[3] = dashboard.section.terminal
+		for _, button in ipairs(dashboard.section.buttons.val) do
+			button.opts.hl = 'Normal'
+			button.opts.hl_shortcut = 'Function'
+		end
+		dashboard.section.footer.opts.hl = "Special"
+		dashboard.opts.layout = {
+			dashboard.section.terminal,
+			{ type = "padding", val = 4 },
+			dashboard.section.buttons,
+			dashboard.section.footer,
+		}
 		return dashboard
 	end,
 	config = function(_, dashboard)
@@ -41,7 +49,7 @@ return {
 			callback = function()
 				local stats = require('lazy').stats()
 				local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-				dashboard.section.footer.val = '⚡ ' .. stats.count .. ' plugins loaded in ' .. ms .. 'ms'
+				dashboard.section.footer.val = '󱐋 ' .. stats.count .. ' plugins loaded in ' .. ms .. 'ms'
 				pcall(vim.cmd.AlphaRedraw)
 			end,
 		})
