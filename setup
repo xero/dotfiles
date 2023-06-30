@@ -48,6 +48,14 @@ function account() {
 
 [ "$(id -u)" -ne 0 ] && { _echo "got root?" >&2; exit 1; }
 
+_echo "creating swap"
+dd if=/dev/zero of=/swapmeet bs=128M count=32
+chmod 600 /swapmeet
+mkswap /swapmeet
+swapon /swapmeet
+swapon -s
+echo "/swapmeet swap swap defaults 0 0" >> /etc/fstab
+
 _echo "installing runtime deps"
 apt update && apt install -y git gpg bash curl
 
