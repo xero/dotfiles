@@ -21,6 +21,10 @@ complete -C '/usr/bin/aws_completer' aws
 source /usr/share/doc/fzf/examples/completion.zsh
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
+#█▓▒░ override complex aliases
+compdef k='kubectl'
+setopt complete_aliases
+
 #█▓▒░stylez
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
