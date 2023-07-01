@@ -98,6 +98,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	ca-certificates \
 	cmake \
 	cmatrix \
+  clamav-base \
 	coreutils \
 	curl \
 	dash \
@@ -172,7 +173,9 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	python3-pip \
 	resolvconf \
 	ripgrep \
+  rkhunter \
 	rsyslog \
+  secure-delete \
 	shellcheck \
 	silversearcher-ag \
 	socat \
@@ -210,6 +213,7 @@ systemctl restart networking.service
 systemctl restart resolvconf.service
 systemctl stop docker.service
 systemctl stop containerd.service
+systemctl enable clamav-freshclam.service
 
 _echo "setting up timezone and hostname"
 timedatectl set-timezone America/New_York
