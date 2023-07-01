@@ -49,8 +49,9 @@ shopt -s cdspell 2> /dev/null
 CDPATH="."
 # aliases
 function l() {
-		ls -lahF "$@" --color=always \
-		| sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/^[d-]//g;'
+		ls -gGAhF --color=always "$@" \
+		| sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/rwt/7/g' \
+		| sed 's/^\(....\) [[:digit:]] /\1 /'
 }
 function t() {
 	X=$#
