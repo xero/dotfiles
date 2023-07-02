@@ -55,6 +55,8 @@ mkswap /swapmeet
 swapon /swapmeet
 swapon -s
 echo "/swapmeet swap swap defaults 0 0" >> /etc/fstab
+echo "vm.swappiness=0" >> /etc/sysctl.conf
+sysctl vm.swappiness=0
 
 _echo "installing runtime deps"
 apt update && apt install -y git gpg bash curl
