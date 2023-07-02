@@ -147,7 +147,7 @@ return {
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
 			symbols = {
-				modified = "»",
+				modified = "󰶻",
 				readonly = "",
 				unnamed = "",
 				newfile = "",
@@ -167,17 +167,13 @@ return {
 				return ''
 			end,
 			cond = conditions.buffer_not_empty,
-			color = function()
-				return { bg = colors.black, fg = colors.grey }
-			end,
+			color = { bg = colors.black, fg = colors.grey },
 			padding = { left = 1, right = 1 },
 		})
 		inactive_left({
 			"filename",
 			cond = conditions.buffer_not_empty,
-			color = function()
-				return { bg = colors.black, fg = colors.grey }
-			end,
+			color = { bg = colors.black, fg = colors.grey },
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
 			symbols = {

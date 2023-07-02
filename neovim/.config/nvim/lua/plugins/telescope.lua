@@ -17,10 +17,13 @@ return {
 		local dashed = { "┄", "┊", "┄", "┊", "╭", "╮", "╯", "╰" }
 		telescope.setup({
 			defaults = {
-				layout_strategy = "flex",
+				theme = 'ivy',
 				layout_config = {
-					horizontal = { width = 0.95, preview_width = 0.65, anchor = "NE" },
-					vertical = { width = 0.95, preview_height = 0.65, anchor = "NE" },
+					anchor = "center",
+					height = 0.90,
+					width = 0.90,
+					preview_width = 0.6,
+					prompt_position = "bottom",
 				},
 				borderchars = {
 					prompt = dashed,
@@ -37,7 +40,6 @@ return {
 				undo = {
 					use_delta = true,
 					side_by_side = true,
-					diff_context_lines = 8, -- vim.o.scrolloff,
 					entry_format = "󰣜 #$ID, $STAT, $TIME",
 					layout_strategy = "flex",
 					mappings = {
@@ -64,16 +66,13 @@ return {
 					collapse_dirs = false,
 					prompt_path = false,
 					quiet = false,
-					dir_icon = "",
+					dir_icon = "󰉓 ",
 					dir_icon_hl = "Default",
 					display_stat = { date = true, size = true, mode = true },
 					git_status = true,
 				},
 			},
 		})
-		telescope.load_extension("undo")
-		telescope.load_extension("file_browser")
-		telescope.load_extension("live_grep_args")
 		r.noremap("n", "<leader>u", ":Telescope undo<cr>", "undo tree")
 		r.noremap("n", "\\", ":Telescope live_grep_args<cr>", "live grep")
 		r.noremap("n", "<leader>o", ":Telescope oldfiles<cr>", "old files")
@@ -88,5 +87,8 @@ return {
 				path = vim.fn.stdpath("config")
 			})
 		end, "nvim configs")
+		telescope.load_extension("undo")
+		telescope.load_extension("file_browser")
+		telescope.load_extension("live_grep_args")
 	end,
 }

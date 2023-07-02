@@ -20,16 +20,19 @@ vim.opt.modelines = 0
 -- set leader key to comma
 vim.g.mapleader = ","
 
--- ipad
-vim.opt.mouse = "a"
-
 -- hide buffers, not close them
 vim.opt.hidden = true
 
 -- maintain undo history between sessions
+vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
-vim.opt.swapfile = false
+
+-- scroll bounds
+vim.o.scrolloff = 13
+
+-- ipad scrolling
+vim.opt.mouse = "a"
 
 -- fuzzy find
 vim.opt.path:append("**")
