@@ -17,7 +17,6 @@ return {
 		local dashed = { "┄", "┊", "┄", "┊", "╭", "╮", "╯", "╰" }
 		telescope.setup({
 			defaults = {
-				theme = 'ivy',
 				layout_config = {
 					anchor = "center",
 					height = 0.90,
