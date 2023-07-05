@@ -15,9 +15,9 @@
 #
 #█▓▒░ shorter octal list
 function l() {
-		ls -gGAhF --color=always "$@" \
+		sudo ls -gGAhF --color=always "$@" \
 		| sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/rwt/7/g' \
-		| sed 's/^\(....\) [[:digit:]] /\1 /'
+		| sed -e 's/^\(....\) [[:digit:]] /\1 /'
 }
 
 #█▓▒░ tmux
@@ -71,6 +71,7 @@ alias gu="git reset @ --"
 alias gx="git reset --hard @"
 
 #overrides
+alias sudo="sudo "  # expand aliases with sudo
 alias mkdir="mkdir -p"
 alias cp="cp -r"
 alias scp="scp -r"
