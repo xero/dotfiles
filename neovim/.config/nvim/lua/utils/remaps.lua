@@ -20,10 +20,8 @@ local function try_add_to_which_key_by_input(input, description)
 		if present_which_key then
 			if which_key_lazy_registers ~= nil then
 				which_key.register(which_key_lazy_registers)
-
 				which_key_lazy_registers = nil
 			end
-
 			which_key.register({
 				[input] = description,
 			})
@@ -38,9 +36,7 @@ function X.map(type, input, output, description, additional_options)
 	if additional_options then
 		options = vim.tbl_deep_extend("force", options, additional_options)
 	end
-
 	keymap.set(type, input, output, options)
-
 	check_duplicates(type, input, description)
 end
 
@@ -49,7 +45,6 @@ function X.noremap(type, input, output, description, additional_options)
 	if additional_options then
 		options = vim.tbl_deep_extend("force", options, additional_options)
 	end
-
 	X.map(type, input, output, description, options)
 end
 

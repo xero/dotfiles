@@ -14,13 +14,7 @@ return {
 		local lga_shortcuts = require("telescope-live-grep-args.shortcuts")
 		local undo_actions = require("telescope-undo.actions")
 		local r = require("utils.remaps")
-		local borders = {
-				dashed = { "┄", "┊", "┄", "┊", "╭", "╮", "╯", "╰",},
-        double = { "═", "║", "═", "║", "╔", "╗", "╝", "╚",},
-        single = { "─", "│", "─", "│", "╭", "╮", "╯", "╰",},
-        blocks = { "▀", "▐", "▄", "▌", "▛", "▜", "▟", "▙",},
-        blocky = { "▀", "▐", "▄", "▌", "▄", "▄", "▓", "▀",},
-      }
+		local i = require("utils.icons")
 		telescope.setup({
 			defaults = {
 				layout_config = {
@@ -30,11 +24,7 @@ return {
 					preview_width = 0.6,
 					prompt_position = "bottom",
 				},
-				borderchars = {
-					prompt = borders.dashed,
-					results = { "┄", " ", "┄", "┊", "╭", "┄", "┄", "╰",},
-					preview = { "┄", "┊", "┄", "┊", "┄", "╮", "╯", "╰",},
-				},
+				borderchars = i.telescope,
 				mappings = {
 					i = {
 						["<esc>"] = tele_actions.close,
@@ -79,7 +69,12 @@ return {
 			},
 		})
 		r.noremap("n", "<leader>u", ":Telescope undo<cr>", "undo tree")
-		r.noremap("n", "\\", ":Telescope live_grep_args<cr>", "live grep")
+		r.noremap("n", "\\", function()
+			telescope.extensions.live_grep_args.live_grep_args({
+				prompt_title = 'grep',
+				additional_args = '-i',
+			})
+		end, "live grep")
 		r.noremap("n", "<leader>o", ":Telescope oldfiles<cr>", "old files")
 		r.noremap("n", "<leader>gc", function()
 			lga_shortcuts.grep_word_under_cursor({ postfix = " --hidden " })

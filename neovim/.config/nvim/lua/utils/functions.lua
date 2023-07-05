@@ -27,7 +27,6 @@ function X.has_key(t, key)
 			return true
 		end
 	end
-
 	return false
 end
 
@@ -37,7 +36,6 @@ function X.has_value(t, val)
 			return true
 		end
 	end
-
 	return false
 end
 
@@ -59,14 +57,11 @@ X.reload = function()
 		for moduleName in pairs(package.loaded) do
 			if X.starts_with(moduleName, "lt.") then
 				reload.reload_module(moduleName)
-
 				counter = counter + 1
 			end
 		end
-
 		-- clear nvim-mapper keys
 		vim.g.mapper_records = nil
-
 		vim.notify("Reloaded " .. counter .. " modules!")
 	end
 end
@@ -126,6 +121,6 @@ X.cmd = function(name, command, desc)
 end
 
 X.autocmd = function(evt, opts)
-		vim.api.nvim_create_autocmd(evt, opts)
+	vim.api.nvim_create_autocmd(evt, opts)
 end
 return X
