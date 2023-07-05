@@ -14,20 +14,26 @@ return {
 		local lga_shortcuts = require("telescope-live-grep-args.shortcuts")
 		local undo_actions = require("telescope-undo.actions")
 		local r = require("utils.remaps")
-		local dashed = { "┄", "┊", "┄", "┊", "╭", "╮", "╯", "╰" }
+		local borders = {
+				dashed = { "┄", "┊", "┄", "┊", "╭", "╮", "╯", "╰",},
+        double = { "═", "║", "═", "║", "╔", "╗", "╝", "╚",},
+        single = { "─", "│", "─", "│", "╭", "╮", "╯", "╰",},
+        blocks = { "▀", "▐", "▄", "▌", "▛", "▜", "▟", "▙",},
+        blocky = { "▀", "▐", "▄", "▌", "▄", "▄", "▓", "▀",},
+      }
 		telescope.setup({
 			defaults = {
 				layout_config = {
 					anchor = "center",
-					height = 0.90,
-					width = 0.90,
+					height = 0.8,
+					width = 0.9,
 					preview_width = 0.6,
 					prompt_position = "bottom",
 				},
 				borderchars = {
-					prompt = dashed,
-					results = dashed,
-					preview = dashed,
+					prompt = borders.dashed,
+					results = { "┄", " ", "┄", "┊", "╭", "┄", "┄", "╰",},
+					preview = { "┄", "┊", "┄", "┊", "┄", "╮", "╯", "╰",},
 				},
 				mappings = {
 					i = {
@@ -81,11 +87,11 @@ return {
 		r.noremap("n", "<leader>f", function()
 			telescope.extensions.file_browser.file_browser()
 		end, "browse files")
-		r.noremap("n", "<leader>v", function()
+		r.noremap("n", "<leader>.", function()
 			telescope.extensions.file_browser.file_browser({
 				path = vim.fn.stdpath("config")
 			})
-		end, "nvim configs")
+		end, "nvim dotfiles")
 		telescope.load_extension("undo")
 		telescope.load_extension("file_browser")
 		telescope.load_extension("live_grep_args")
