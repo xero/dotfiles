@@ -1,6 +1,6 @@
 #!/bin/bash
 # usage:
-# curl -L https://raw.githubusercontent.com/xero/dotfiles/vps/setup > x && chmod +x x && sudo ./x
+# curl -L https://raw.githubusercontent.com/xero/dotfiles/main/setup > x && chmod +x x && sudo ./x
 #
 # setup.sh by xero (http://git.io/.files)
 # a script to setup a new deb 11 vps with
@@ -59,7 +59,15 @@ echo "vm.swappiness=0" >> /etc/sysctl.conf
 sysctl vm.swappiness=0
 
 _echo "installing runtime deps"
-apt update && apt install -y git gpg bash curl
+apt update && apt install -y git gpg bash curl locales
+
+_echo "setting up locales and console"
+locale-gen "en_US.UTF-8"
+localectl set-locale en_US.UTF-8
+dpkg-reconfigure locales
+dpkg-reconfigure console-setup
+systemctl daemon-reload
+systemctl restart console-setup.service
 
 _echo "adding apt sources"
 # add backports
@@ -142,7 +150,6 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	libutempter-dev \
 	libx11-dev \
 	libxfixes-dev \
-	locales \
 	lsb-base \
 	lua5.4 \
 	luajit \
@@ -224,14 +231,6 @@ hostnamectl set-hostname "$HOSTNAME"
 sed -i '/^127\.0\.0\.1\s/s/$/ '"$HOSTNAME"'/' /etc/hosts
 sed -i '/^127\.0\.0\.1\s/s/$/ '"$HOSTNAME"'/' /etc/cloud/templates/hosts.debian.tmpl
 
-_echo "setting up locales and console"
-locale-gen "en_US.UTF-8"
-localectl set-locale en_US.UTF-8
-dpkg-reconfigure locales
-dpkg-reconfigure console-setup
-systemctl daemon-reload
-systemctl restart console-setup.service
-
 _echo "creating local user"
 adduser --uid "$X_UID" --shell "$(which zsh)" "$ME"
 
@@ -245,7 +244,11 @@ eval "$(op signin --account x0)"
 _echo "setting up key keychain"
 get x0 GH_TOKEN | $ASME gh auth login -p ssh --with-token
 mkdir -p $MYHOME/.ssh
-cp /home/admin/.ssh/authorized_keys $MYHOME/.ssh/authorized_keys
+if [[ -d /home/admin/.ssh ]]; then
+		cp /home/admin/.ssh/authorized_keys $MYHOME/.ssh/authorized_keys
+else
+		cp /root/.ssh/authorized_keys $MYHOME/.ssh/authorized_keys
+fi
 get x0 id_ed25519_github privateKey >$MYHOME/.ssh/id_ed25519
 get x0 id_ed25519_github publicKey >$MYHOME/.ssh/id_ed25519.pub
 ssh-keyscan -p 22 -H github.com gist.github.com >/root/.ssh/known_hosts
@@ -451,8 +454,8 @@ chmod +x $MYHOME/runme
 chown -R $ME:$ME /home/$ME
 
 _echo "removing default user"
-userdel -rf admin &>/dev/null
-rm /etc/sudoers.d/90-cloud-init-users
+userdel -rf admin &>/dev/null &&
+  rm /etc/sudoers.d/90-cloud-init-users
 
 _echo "setup complete. rebooting the vps. reconnect as yourself via mosh"
 IP=$(curl -sL icanhazip.com)
