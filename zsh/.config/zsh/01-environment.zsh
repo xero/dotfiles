@@ -30,6 +30,8 @@ export GNUPGHOME="$XDG_DATA_HOME"/gpg
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export NPM_CONFIG_PREFIX="${XDG_DATA_HOME}"/npm
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
+export KUBECONFIG="$XDG_CONFIG_HOME"/kube/config
+export KUBECACHEDIR="$XDG_RUNTIME_DIR"/kube
 
 #█▓▒░ paths
 export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$XDG_DATA_HOME/npm/bin:$PATH
