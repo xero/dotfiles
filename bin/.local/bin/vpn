@@ -41,7 +41,7 @@ function get_login() {
 function get_user() {
 	user=$(op item get "$1" --fields email)
 	[[ -z "$user"	]] && echo "failed to get user, op signin?" && exit 1
-	[[ $user =~ @	]] && user=$(echo "$user" | sed 's/@.*//')
+	[[ $user =~ @	]] && user=${user//@.*//}
 	echo "$user"
 }
 function connect() {
@@ -57,18 +57,17 @@ function connect() {
 	echo "${login}" | /usr/sbin/openconnect \
 		-b -u "${user}" \
 		--passwd-on-stdin \
-		--protocol=${protocol} \
-		${cert} \
+		--protocol=$protocol \
+		$cert \
         -S --script "vpnns --attach" \
-		"${host}"
+		"$host"
 }
 function disconnect() {
 	echo "killing vpn processes"
 	pkill openconnect
 	pkill vpnns
 	[[ -d "$HOME/.vpnns-default" ]] && rm -rf "$HOME/.vpnns-default"
-
-	exit
+	exit 0
 }
 
 function parse_arguments() {
@@ -98,7 +97,7 @@ function parse_arguments() {
 	[[ -z "$host"	]] && usage
 	[[ "$host" =~ ^(q|quit|exit|disconnect)$	]] && disconnect
 	[[ -z "$account"	]] || account="--account ${account}"
-    eval $(op signin ${account})
+  eval "$(op signin ${account})"
 	echo "getting credentials"
 	user="$(get_user $secret)"
 	login="$(get_login $secret)"
