@@ -22,14 +22,8 @@ end
 
 -- install plugins
 lazy.setup({
-	spec = {{
-			"xero/miasma.nvim",
-			lazy = false,
-			priority = 1000,
-			config = function()
-				vim.cmd("colorscheme miasma")
-			end,
-		},
+	spec = {
+		require("plugins.miasma"),
 		require("plugins.osc52-yank"),
 		require("plugins.git"),
 		require("plugins.tmux"),
