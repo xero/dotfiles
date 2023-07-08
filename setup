@@ -94,126 +94,126 @@ mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 &&
 _echo "installing packages"
 apt update &&
 DEBIAN_FRONTEND=noninteractive apt install -y \
-	1password-cli \
-	apparmor \
-	apt-utils \
-	automake \
-	awscli \
-	bash \
-	bash-completion \
-	bc \
-	bind9-host \
-	bsdutils \
-	build-essential \
-	ca-certificates \
-	cmake \
-	cmatrix \
-  clamav-base \
-	coreutils \
-	curl \
-	dash \
-	dbus \
-	dbus-user-session \
-	debianutils \
-	diffutils \
-	dnsutils \
-	docker.io \
-	dpkg \
-	e2fsprogs \
-	ethtool \
-	expect \
-	fail2ban \
-	findutils \
-	fzf \
-	gawk \
-	gcc-10-base \
-	gcc-9-base \
-	gh \
-	git \
-	golang \
-	golang-doc \
-	golang-src \
-	gpg \
-	gpg-agent \
-	gpgv \
-	gzip \
-	htop \
-	iptables \
-	iputils-ping \
-	isc-dhcp-client \
-	jq \
-	keychain \
-	kubernetes-client \
-	libncurses5-dev \
-	libprotobuf-dev \
-	libssl-dev \
-	libutempter-dev \
-	libx11-dev \
-	libxfixes-dev \
-	lsb-base \
-	lua5.4 \
-	luajit \
-	luarocks \
-	man-db \
-	manpages \
-	mawk \
-	ncurses-base \
-	ncurses-bin \
-	ncurses-term \
-	neovim/prebuilt-mpr \
-	net-tools \
-	netbase \
-	nmap \
-	ocproxy \
-	openconnect \
-	openssh-client \
-	openssh-server \
-	openssl \
-	pciutils \
-	perl \
-	perl-base \
-	pkg-config \
-	protobuf-compiler \
-	protobuf-compiler \
-	proxychains4 \
-	psmisc \
-	python3 \
-	python3-boto \
-	python3-pip \
-	resolvconf \
-	ripgrep \
-  rkhunter \
-	rsyslog \
-  secure-delete \
-	shellcheck \
-	silversearcher-ag \
-	socat \
-	stow \
-	sudo \
-	tar \
-	tcpdump \
-	tmux/bullseye-backports \
-	toilet \
-	traceroute \
-	tree \
-	tzdata \
-	unzip \
-	util-linux \
-	uuid-runtime \
-	vim-tiny \
-	vpnc \
-	whiptail \
-	whois \
-	xsel \
-	xvfb \
-	xz-utils \
-	zlib1g \
-	zlib1g-dev \
-	zsh \
-  eslint \
-  python3-venv \
-  shellcheck \
-	zsh-syntax-highlighting
+		1password-cli \
+		apparmor \
+		apt-utils \
+		automake \
+		awscli \
+		bash \
+		bash-completion \
+		bc \
+		bind9-host \
+		bsdutils \
+		build-essential \
+		ca-certificates \
+		cmake \
+		cmatrix \
+		clamav-base \
+		coreutils \
+		curl \
+		dash \
+		dbus \
+		dbus-user-session \
+		debianutils \
+		diffutils \
+		dnsutils \
+		docker.io \
+		dpkg \
+		e2fsprogs \
+		ethtool \
+		expect \
+		fail2ban \
+		findutils \
+		fzf \
+		gawk \
+		gcc-10-base \
+		gcc-9-base \
+		gh \
+		git \
+		golang \
+		golang-doc \
+		golang-src \
+		gpg \
+		gpg-agent \
+		gpgv \
+		gzip \
+		htop \
+		iptables \
+		iputils-ping \
+		isc-dhcp-client \
+		jq \
+		keychain \
+		kubernetes-client \
+		libncurses5-dev \
+		libprotobuf-dev \
+		libssl-dev \
+		libutempter-dev \
+		libx11-dev \
+		libxfixes-dev \
+		lsb-base \
+		lua5.4 \
+		luajit \
+		luarocks \
+		man-db \
+		manpages \
+		mawk \
+		ncurses-base \
+		ncurses-bin \
+		ncurses-term \
+		neovim/prebuilt-mpr \
+		net-tools \
+		netbase \
+		nmap \
+		ocproxy \
+		openconnect \
+		openssh-client \
+		openssh-server \
+		openssl \
+		pciutils \
+		perl \
+		perl-base \
+		pkg-config \
+		protobuf-compiler \
+		protobuf-compiler \
+		proxychains4 \
+		psmisc \
+		python3 \
+		python3-boto \
+		python3-pip \
+		resolvconf \
+		ripgrep \
+		rkhunter \
+		rsyslog \
+		secure-delete \
+		shellcheck \
+		silversearcher-ag \
+		socat \
+		stow \
+		sudo \
+		tar \
+		tcpdump \
+		tmux/bullseye-backports \
+		toilet \
+		traceroute \
+		tree \
+		tzdata \
+		unzip \
+		util-linux \
+		uuid-runtime \
+		vim-tiny \
+		vpnc \
+		whiptail \
+		whois \
+		xsel \
+		xvfb \
+		xz-utils \
+		zlib1g \
+		zlib1g-dev \
+		zsh \
+		eslint \
+		python3-venv \
+		shellcheck \
+		zsh-syntax-highlighting
 
 _echo "systemd housekeeping"
 rm /etc/resolv.conf
@@ -286,9 +286,9 @@ $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rust
 $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall starship lolcat stylua bottom
 
 _echo "setting up dotfiles"
-$ASME git clone git@github.com:xero/dotfiles.git -b vps $MYHOME/.local/src/dotfiles &&
+$ASME git clone git@github.com:xero/dotfiles.git $MYHOME/.local/src/dotfiles &&
 	cd $MYHOME/.local/src/dotfiles &&
-	$ASME stow bin fun git gpg ssh tmux vim zsh -t $MYHOME
+	$ASME stow bin fun git gpg ssh tmux neovim zsh -t $MYHOME
 # tmux
 $ASME mkdir $MYHOME/.config/tmux/plugins &&
 	$ASME git clone --depth=1 https://github.com/tmux-plugins/tpm $MYHOME/.config/tmux/plugins/tpm &&
@@ -346,7 +346,9 @@ $ASME mkdir -p $MYHOME/.config/node
 curl -L https://raw.githubusercontent.com/isaacs/nave/main/nave.sh >$MYHOME/.local/bin/nave &&
 	chmod +x $MYHOME/.local/bin/nave &&
 	NAVE_DIR="$MYHOME/.local/lib/nodejs" $MYHOME/.local/bin/nave usemain lts &&
-	$ASME npm i -g neovim @fsouza/prettierd bash-language-server
+	$ASME npm i -g \
+		neovim \
+		sofancy
 
 _echo "setting up ascii/ansi art tools"
 rm -rf /usr/share/figlet/
@@ -463,5 +465,5 @@ echo "$HOSTNAME: $ME@$IP:$PORT"
 echo "mosh location: $(which mosh-server)"
 
 # self destruct
-shred -u "$0" &>/dev/null
+srm -dvrl "$0" &>/dev/null
 systemctl reboot
