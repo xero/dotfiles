@@ -82,6 +82,33 @@ this will symlink the fun scripts like `food` to `/usr/local/bin`. notice that t
 
 more notes on using/understanding stow in [this github issue](https://github.com/xero/dotfiles/issues/14).
 
+# my dotfiles setup
+
+to fully "install" and setup this repo run the [setup script](https://github.com/xero/dotfiles/blob/main/setup) or something like this:
+```
+# clone and stow
+git clone git@github.com:xero/dotfiles.git ~/.local/src/dotfiles &&
+	cd ~/.local/src/dotfiles &&
+	stow bin fun git gpg ssh tmux neovim zsh -t ~
+
+# tmux
+mkdir ~/.config/tmux/plugins &&
+	git clone --depth=1 https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm &&
+	~/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
+	cd ~/.config/tmux/plugins/tmux-thumbs &&
+		expect -c "spawn ./tmux-thumbs-install.sh; send \"\r2\r\"; expect complete" 1>/dev/null
+
+# nvim
+mkdir ~/.local/nvim &&
+  git clone --filter=blob:none --single-branch https://github.com/folke/lazy.nvim.git ~/.local/share/nvim/lazy
+nvim --headless "+Lazy! sync" +qa
+nvim --headless "+MasonUpdate" +qa
+
+# creating ~src and ~dotfiles aliases"
+sudo useradd -g src -d ~/.local/src src
+sudo useradd -d ~/.local/src/dotfiles dotfiles
+```
+
 # tl;dr
 
 navigate to your home directory
@@ -120,11 +147,11 @@ run blink `config` under appearance, set the screen mode set to `cover` then set
 
 # vps & local clipboard
 
-idk why, but i chose debian 11 on aws for some reason. there's a [setup script](https://github.com/xero/dotfiles/blob/vps/setup) for a fresh vps to install all the packages, tools, & services, create my user, setup keys, etc... that i use, my way. but you the reader don't need them all to run my dots, this is for me. beware there be dragons here.
+idk why, but i chose debian 11 on aws for some reason. there's a [setup script](https://github.com/xero/dotfiles/blob/main/setup) for a fresh vps to install all the packages, tools, & services, create my user, setup keys, etc... that i use, my way. but you the reader don't need them all to run my dots, this is for me. beware there be dragons here.
 
 it builds [mosh-server from this pr](https://github.com/mobile-shell/mosh/pull/1104#issuecomment-710754740) for osc 52 clipboard support.
 
-i use [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a headless xorg enviroment for the clipboard. you can then use tools like [xsel](https://linux.die.net/man/1/xsel) and [xclip](https://linux.die.net/man/1/xclip) to pipe `{in/out}` of it in the tty. i have a personal fork on clipmenu that uses [fzf](https://github.com/junegunn/fzf) and a an osc52 [yank script](https://github.com/xero/dotfiles/blob/vps/bin/.local/bin/yank) to syncromize the x and ipad clipboards. there are other osc52 plugins for neovim and tmux included in these dotfiles to bring the whole thing together.
+i use [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a headless xorg enviroment for the clipboard. you can then use tools like [xsel](https://linux.die.net/man/1/xsel) and [xclip](https://linux.die.net/man/1/xclip) to pipe `{in/out}` of it in the tty. i have a personal fork on clipmenu that uses [fzf](https://github.com/junegunn/fzf) and a an osc52 [yank script](https://github.com/xero/dotfiles/blob/main/bin/.local/bin/yank) to syncromize the x and ipad clipboards. there are other osc52 plugins for neovim and tmux included in these dotfiles to bring the whole thing together.
 
 # shell
 
