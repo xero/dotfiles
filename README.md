@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/xero/dotfiles/vps/preview.jpg)
+
 ```
       ██            ██     ████ ██  ██
      ░██           ░██    ░██░ ░░  ░██
@@ -18,17 +20,20 @@
 
 ```
 
+> NOTE: if you are looking for my linux wm configs like [2bwm](https://github.com/xero/dotfiles/tree/classic/2bwm), [windowchef](https://github.com/xero/dotfiles/tree/classic/windowchef), etc. they now live in the [classic](https://github.com/xero/dotfiles/tree/classic) branch and are not activly maintained since i live in the tty, xorg free these days.
+
 ## table of contents
  - [introduction](#dotfiles)
  - [managing](#managing)
  - [installing](#installing)
  - [how it works](#how-it-works)
  - [tl;dr](#tldr)
- - [my shell](#my-shell)
- - [vim](#vim)
+ - [terminal emulator](#terminal-emulator)
+ - [vps & local clipboard](#vps--local-clipboard)
+ - [shell](#shell)
+ - [clean home](#clean-home)
+ - [neovim](#neovim)
  - [license](#license)
-
-![](https://raw.githubusercontent.com/xero/dotfiles/vps/preview.jpg)
 
 # dotfiles
 in the unix world programs are commonly configured in two different ways, via shell arguments or text based configuration files. programs with many options like text editors are configured on a per-user basis with files in your home directory `~`. in unix like operating systems any file or directory name that starts with a period or full stop character is considered hidden, and in a default view will not be displayed. thus the name dotfiles.
@@ -53,16 +58,14 @@ stow is available for all linux and most other unix like distributions via your 
 or clone it [from source](https://savannah.gnu.org/git/?group=stow) and [build it](http://git.savannah.gnu.org/cgit/stow.git/tree/INSTALL) yourself.
 
 # how it works
-by default the stow command will create symlinks for files in the parent directory of where you execute the command. so my dotfiles setup assumes this repo is located in the root of your home directory `~/dotfiles`. and all stow commands should be executed in that directory. otherwise you'll need to use the `-d` flag with the repo directory location.
+by default the stow command will create symlinks for files in the parent directory of where you execute the command. since i keep my dots in: `~/.local/src/dotfiles` and all stow commands should be executed in that directory and suffixed with `-t ~` to target the home directory. otherwise they will end up in `~/.local/`. if you wanna make things easier on yourself you can clone the repo to `~/dotfiles` then run commands with no flags. but who likes things easy in the unix world ;P
 
-to install most of my configs you execute the stow command with the folder name as the only argument.
+to install configs execute the stow command with the folder name as the first argument, then target your home directory (or wherever you like).
 
 to install my **zsh** configs use the command:
 
-`stow zsh`
+`stow zsh -t ~`
 this will symlink files like `.zshrc` to `~/.config/zsh`
-
-but you can override the default behavior and symlink files to another location with the `-t` (target) argument flag.
 
 to install the **fun scripts** to `/usr/local/bin` execute the command:
 
@@ -72,6 +75,8 @@ this will symlink the fun scripts like `food` to `/usr/local/bin`. notice that t
 
 **note:** stow can only create a symlink if a config file does not already exist. if a default file was created upon program installation you must delete it first before you can install a new one with stow. this does not apply to directories, only files.
 
+more notes on using/understanding stow in [this github issue](https://github.com/xero/dotfiles/issues/14).
+
 # tl;dr
 navigate to your home directory
 
@@ -79,7 +84,7 @@ navigate to your home directory
 
 clone the repo:
 
-`git clone http://git.x-e.ro/dotfiles.git`
+`git clone git@github.com:xero/dotfiles.git`
 
 enter the dotfiles directory
 
@@ -108,6 +113,7 @@ when it comes to fonts i've been using [hack](https://sourcefoundry.org/hack/) (
 run blink `config` under appearance, set the screen mode set to `cover` then setup your server identity and keys. beyond that the only command i ever run in blink is `mosh x`. x being my server alias.
 
 # vps & local clipboard
+
 idk why, but i chose debian 11 on aws for some reason. there's a [setup script](https://github.com/xero/dotfiles/blob/vps/setup) for a fresh vps to install all the packages, tools, & services, create my user, setup keys, etc... that i use, my way. but you the reader don't need them all to run my dots, this is for me. beware there be dragons here.
 
 it builds [mosh-server from this pr](https://github.com/mobile-shell/mosh/pull/1104#issuecomment-710754740) for osc 52 clipboard support.
@@ -115,14 +121,58 @@ it builds [mosh-server from this pr](https://github.com/mobile-shell/mosh/pull/1
 i use [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a headless xorg enviroment for the clipboard. you can then use tools like [xsel](https://linux.die.net/man/1/xsel) and [xclip](https://linux.die.net/man/1/xclip) to pipe `{in/out}` of it in the tty. i have a personal fork on clipmenu that uses [fzf](https://github.com/junegunn/fzf) and a an osc52 [yank script](https://github.com/xero/dotfiles/blob/vps/bin/.local/bin/yank) to syncromize the x and ipad clipboards. there are other osc52 plugins for neovim and tmux included in these dotfiles to bring the whole thing together.
 
 # shell
-i prefer a minimal setup, and choose to interact with my operating system via the so-called "terminal" or "command line", (read that quoting sarcastically) over a gui interface 2 times out of 3. with the web browser and video player among the noted outliers. in my opinion, using your computer should be a very personal experience. your colors, aliases, key-bindings, etc meticulously crafted to your exacting specifications. so for me, the unix shell is the most important part of my environment.
+
+i prefer a minimal setup, and choose to interact with my operating system via the so-called "terminal" or "command line", (read that quoting sarcastically). with the web browser and video player among the noted outliers. in my opinion, using your computer should be a very personal experience. your colors, aliases, key-bindings, etc meticulously crafted to your exacting specifications. so for me, the unix shell is the most important part of my environment.
 
 i use [zsh](http://linux.die.net/man/1/zsh) as my interactive shell. it's an extensible, bash like shell with awesome completion and correction engines. i manage multiple shell sessions with [tmux](http://linux.die.net/man/1/tmux). it's a feature packed terminal multiplexer with support for buffers, split windows, detached local and remote sessions, etc. i'm a member of the cult of [vim](http://linux.die.net/man/1/vim). sing phrases to the third reincarnation of the glorious ed! lel.
 
-# editor
-with it's tight integration to the unix shell, [vim](http://www.vim.org) has been my editor of choice. once you start to grok movements and operators you quickly begin manipulating, not just editing text files. and in the shell, everything is just text ;D these days i'm a full time [neovim](https://neovim.io) user. it's just better than normal vim at this point imho.
+# clean home
 
-with [my asliases](https://github.com/xero/dotfiles/blob/vps/zsh/.config/zsh/06-aliases.zsh#L21) `e` is `$EDITOR` and `se` is `sudo $EDITOR` so `se /etc/hosts` is `sudo nvim /etc/hosts`
+i'm all about living a clean digital life, so that means a tidy and organized home dir. my `~` and this repo, follow the [XDG spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).  here's a generalized breakdown:
+
+```
+.
+├── .config/ $XDG_CONFIG_HOME --> app specific configs
+│   ├── nvim
+│   ├── tmux
+│   ├── zsh
+│   │   └── zshrc --> config files
+│   └── etc...
+├── .local/
+│   ├── bin/   $PATH            --> my scripts
+│   ├── cache/ $XDG_CACHE_HOME  --> runtime files
+│   ├── docs/  ~docs            --> my documents
+│   ├── lib/   $pkgManger_HOME  --> app libraries
+│   ├── share/ $XDG_SHARE_HOME  --> shared app setting
+│   ├── src/
+│   │   ├── dotfiles/   --> this repo
+│   │   └── other_code/
+│   └── state/ $XDG_STATE_HOME  --> app state files
+│       └── zsh/
+│           └── history --> app created files
+├── .ssh/
+│   ├── authorized_keys
+│   ├── config
+│   └── known_hosts
+└── ▄█▀ █▬█ █ ▀█▀
+```
+to make this all work, (esp `~/.local/lib`) i have a ton of XDG directives in my [zsh environment file](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/01-environment.zsh#L16). the one tricky bit it getting your zshrc outta home. you need to export the ZDOTDIR globally somewhere like `/etc/zsh/zshenv` or `/etc/zlogin`  that is globally sourced. other options like using systemd discussed [here](https://www.reddit.com/r/zsh/comments/3ubrdr/comment/iqd901v/). i suggest running these two commands from my [setup script](https://github.com/xero/dotfiles/blob/main/setup) to get things ready:
+
+```
+# create directory skeleton
+mkdir -p ~/.local/{bin,docs,cache,lib,share,src,state} ~/.local/state/zsh
+
+# export ZDOTDIR globally
+echo 'export ZDOTDIR="$HOME"/.config/zsh' >>/etc/zsh/zshenv
+```
+
+# neovim
+
+with it's tight integration to the unix shell, [vim](http://www.vim.org) has been my editor of choice for years. once you start to grok movements and operators you quickly begin manipulating, not just editing text files. and in the shell, everything is just text ;D these days i'm a full time [neovim](https://neovim.io) user. it's just better than normal vim at this point imho.
+
+with [my asliases](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/06-aliases.zsh#L35) `e` is `$EDITOR` and `se` is `sudo $EDITOR` so `se /etc/hosts` is `sudo nvim /etc/hosts`
+
+you can start neovim using `ec` or editor clean, to run `nvim --cmd ":lua vim.g.noplugins=1"`. which is kinda like `nvim --clean` with the added bonus of still loading some sane defaults. i use this as my [MANPAGER](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/01-environment.zsh#L40) with `+MAN!` as well.
 
 # license
 
