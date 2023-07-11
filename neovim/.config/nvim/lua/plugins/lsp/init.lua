@@ -24,8 +24,6 @@ return {
 		vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
 
 		local function on_attach(client, bufnr)
-			-- print(client.name)
-			-- require("utils.functions").tprint_keys(client.server_capabilities)
 			remaps.set_default_on_buffer(client, bufnr)
 
 			if presentLspStatus then
@@ -34,12 +32,6 @@ return {
 
 			if presentLspSignature then
 				lsp_signature.on_attach({ floating_window = false, timer_interval = 500 })
-			end
-
-			if client.name == "tsserver" then
-				-- let prettier format
-				client.server_capabilities.document_formatting = false
-				client.server_capabilities.documentFormattingProvider = false
 			end
 		end
 
@@ -104,6 +96,7 @@ return {
 			lua_ls = require("plugins.lsp.servers.luals")(on_attach),
 			rust_analyzer = {},
 			terraformls = {},
+			tsserver = {},
 			yamlls = require("plugins.lsp.servers.yamlls")(capabilities),
 		}
 
@@ -126,17 +119,6 @@ return {
 		if present_mason then
 			mason.setup({ ensure_installed = server_names })
 		end
-
-		--		local present_typescript, typescript = pcall(require, "typescript")
-		--		if present_typescript then
-		--			typescript.setup({
-		--				server = {
-		--					on_attach = function(client, bufnr)
-		--						on_attach(client, bufnr)
-		--					end,
-		--				},
-		--			})
-		--		end
 
 		for server_name, server_config in pairs(servers) do
 			local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_config)
