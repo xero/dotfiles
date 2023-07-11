@@ -130,11 +130,11 @@ i use [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to cr
 
 i prefer a minimal setup, and choose to interact with my operating system via the so-called "terminal" or "command line", (read that quoting sarcastically). with the web browser and video player among the noted outliers. in my opinion, using your computer should be a very personal experience. your colors, aliases, key-bindings, etc meticulously crafted to your exacting specifications. so for me, the unix shell is the most important part of my environment.
 
-i use [zsh](http://linux.die.net/man/1/zsh) as my interactive shell. it's an extensible, bash like shell with awesome completion and correction engines. i manage multiple shell sessions with [tmux](http://linux.die.net/man/1/tmux). it's a feature packed terminal multiplexer with support for buffers, split windows, detached local and remote sessions, etc. i'm a member of the cult of [vim](http://linux.die.net/man/1/vim). sing phrases to the third reincarnation of the glorious ed! lel.
+i use [zsh](http://linux.die.net/man/1/zsh) as my interactive shell. it's an extensible, bash like shell with awesome completion and correction engines. i manage multiple shell sessions with [tmux](http://linux.die.net/man/1/tmux). it's a feature packed terminal multiplexer with support for buffers, split windows, detached local and remote sessions, etc. i use [neovim](https://neovim.io) and a member of the [cult of vi](https://en.wikipedia.org/wiki/Editor_war). sing phrases to the third reincarnation of the glorious ed! **lel.**
 
 # clean home
 
-i'm all about living a clean digital life, so that means a tidy and organized home dir. my `~` and this repo, follow the [XDG spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).  here's a generalized breakdown:
+i'm all about living a __comfy__ and clean digital life, so that means a tidy and organized home dir. my `~` and this repo, follow the [XDG spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).  here's a generalized breakdown:
 
 ```
 .
@@ -172,6 +172,8 @@ mkdir -p ~/.local/{bin,docs,cache,lib,share,src,state} ~/.local/state/zsh
 echo 'export ZDOTDIR="$HOME"/.config/zsh' >>/etc/zsh/zshenv
 ```
 
+i like to run these __before__ cloning my dotfiles and using stow, to prevent these dirs from being symlinks.
+
 # neovim
 
 with it's tight integration to the unix shell, [vim](http://www.vim.org) has been my editor of choice for years. once you start to grok movements and operators you quickly begin manipulating, not just editing text files. and in the shell, everything is just text ;D these days i'm a full time [neovim](https://neovim.io) user. it's just better than normal vim at this point imho.
@@ -179,6 +181,41 @@ with it's tight integration to the unix shell, [vim](http://www.vim.org) has bee
 with [my asliases](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/06-aliases.zsh#L35) `e` is `$EDITOR` and `se` is `sudo $EDITOR` so `se /etc/hosts` is `sudo nvim /etc/hosts`
 
 you can start neovim using `ec` or editor clean, to run `nvim --cmd ":lua vim.g.noplugins=1"`. which is kinda like `nvim --clean` with the added bonus of still loading some sane defaults. i use this as my [MANPAGER](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/01-environment.zsh#L40) with `+MAN!` as well.
+
+my neovim setup using [lazy.vim](https://github.com/folke/lazy.nvim) and a bunch of plugins. you can enable/disable them selectivly from [plugins.lua](https://github.com/xero/dotfiles/blob/main/neovim/.config/nvim/lua/plugins.lua). here's the structure of configs:
+```
+~/.config/nvim
+├── lua/
+│   ├── utils/       --> helper functions
+│   ├── plugins/
+│   │   ├── alpha.lua
+│   │   ├── cmp.lua  --> each plugin has it's own config
+│   │   └── etc...
+│   ├── ui.lua       --> ui specific options
+│   ├── commands.lua --> custom commands and key-bindings
+│   ├── general.lua  --> general settings
+│   └── plugins.lua  --> lazy.nvim entrypoint
+├── nvim-logo*       --> k-rad ansi art
+└── init.lua         --> calls other files
+```
+
+as of writing this, i use 50 [plugins](https://github.com/xero/dotfiles/tree/main/neovim/.config/nvim/lua/plugins). the highlights include:
+
+* [lspconfig](https://github.com/neovim/nvim-lspconfig) - native language server protocol
+    * [neodev](https://github.com/folke/neodev.nvim) - vscode exported completions and snips
+	* [mason_lsp](https://github.com/williamboman/mason-lspconfig.nvim) - mason backend
+	* [lsp_lines](https://git.sr.ht/~whynothugo/lsp_lines.nvim) - visualize diagnostics
+* [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - subtle git diffs in the gutter
+* [cmp](https://github.com/hrsh7th/nvim-cmp) - completion engine
+* [flog](https://github.com/rbong/vim-flog) - visually explore your git history
+* [lualine](https://github.com/nvim-lualine/lualine.nvim) - customized status bar for the rice factor
+* [tint](https://github.com/levouh/tint.nvim) - desaturate inactive panes for visual cues
+* [indent_blank_line](https://github.com/lukas-reineke/indent-blankline.nvim) - eyecandy for indent whitespace
+* [telescope](https://github.com/nvim-telescope/telescope.nvim) - extensible fuzzy finder with native  floating windows
+    * [telescope-undo](https://github.com/debugloop/telescope-undo.nvim) - view your undo history as a tree of diffs
+    * [telescope-live-grep-args](https://github.com/nvim-telescope/telescope-live-grep-args.nvim) - ripgrep powered fuzzy search
+    * [telescope-file-browser](https://github.com/nvim-telescope/telescope-file-browser.nvim) - file browser, for when you need it
+* [alpha](https://github.com/goolord/alpha-nvim) - hipster splashscreen with awesome text art
 
 # license
 
