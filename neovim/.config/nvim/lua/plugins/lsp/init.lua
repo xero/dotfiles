@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"folke/neodev.nvim",
 		"nvim-lua/lsp-status.nvim",
-		--"jose-elias-alvarez/typescript.nvim",
 		"b0o/schemastore.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -50,7 +49,6 @@ return {
 			virtual_text = true,
 			-- enables lsp_lines but we want to start disabled
 			virtual_lines = false,
-			-- show signs
 			signs = {
 				active = signs,
 			},
@@ -113,7 +111,6 @@ return {
 		for server_name, _ in pairs(servers) do
 			table.insert(server_names, server_name)
 		end
-		table.insert(server_names, "tsserver")
 
 		local present_mason, mason = pcall(require, "mason-lspconfig")
 		if present_mason then
@@ -122,12 +119,10 @@ return {
 
 		for server_name, server_config in pairs(servers) do
 			local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_config)
-
 			lspconfig[server_name].setup(merged_config)
 
 			if server_name == "rust_analyzer" then
 				local present_rust_tools, rust_tools = pcall(require, "rust-tools")
-
 				if present_rust_tools then
 					rust_tools.setup({ server = merged_config })
 				end
