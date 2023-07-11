@@ -134,14 +134,14 @@ i use [zsh](http://linux.die.net/man/1/zsh) as my interactive shell. it's an ext
 
 # clean home
 
-i'm all about living a __comfy__ and clean digital life, so that means a tidy and organized home dir. my `~` and this repo, follow the [XDG spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).  here's a generalized breakdown:
+i'm all about living a *comfy* and clean digital life, so that means a tidy and organized home directory. my `~` and this repo, follow the [XDG spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).  here's a generalized breakdown:
 
 ```
 .
 ├── .config/ $XDG_CONFIG_HOME --> app specific configs
 │   ├── nvim
 │   ├── tmux
-│   ├── zsh
+│   ├── zsh       --> each app has a folder
 │   │   └── zshrc --> config files
 │   └── etc...
 ├── .local/
@@ -182,7 +182,7 @@ with [my asliases](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/06
 
 you can start neovim using `ec` or editor clean, to run `nvim --cmd ":lua vim.g.noplugins=1"`. which is kinda like `nvim --clean` with the added bonus of still loading some sane defaults. i use this as my [MANPAGER](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/01-environment.zsh#L40) with `+MAN!` as well.
 
-my neovim setup uses [lazy.vim](https://github.com/folke/lazy.nvim) and a bunch of plugins. you can enable/disable them selectivly from [plugins.lua](https://github.com/xero/dotfiles/blob/main/neovim/.config/nvim/lua/plugins.lua). here's the structure of configs:
+my neovim setup is written in [lua](https://neovim.io/doc/user/lua-guide.html), uses [lazy.vim](https://github.com/folke/lazy.nvim), and a bunch of plugins. you can enable/disable them selectivly from [plugins.lua](https://github.com/xero/dotfiles/blob/main/neovim/.config/nvim/lua/plugins.lua). here's the structure of configs:
 ```
 ~/.config/nvim
 ├── lua/
@@ -199,7 +199,7 @@ my neovim setup uses [lazy.vim](https://github.com/folke/lazy.nvim) and a bunch 
 └── init.lua         --> calls other files
 ```
 
-as of writing this, i use 50 [plugins](https://github.com/xero/dotfiles/tree/main/neovim/.config/nvim/lua/plugins). the highlights include:
+as of writing this, i use 50 [plugins](https://github.com/xero/dotfiles/tree/main/neovim/.config/nvim/lua/plugins) and an average startup time of 200ms. plugin highlights include:
 
 * [lspconfig](https://github.com/neovim/nvim-lspconfig) - native language server protocol
     * [neodev](https://github.com/folke/neodev.nvim) - vscode exported completions and snips
@@ -218,6 +218,8 @@ as of writing this, i use 50 [plugins](https://github.com/xero/dotfiles/tree/mai
 * [lush](https://github.com/rktjmp/lush.nvim) - interactive colorscheme development tool
     * [miasma](https://github.com/xero/miasma.nvim) - my own colorscheme
 * [alpha](https://github.com/goolord/alpha-nvim) - hipster splashscreen with awesome text art
+
+my leader key is set to `,` and you can checkout all my custom key-bindings by calling `:WhichKey`
 
 # license
 
