@@ -176,11 +176,15 @@ i like to run these __before__ cloning my dotfiles and using stow, to prevent th
 
 # neovim
 
-with it's tight integration to the unix shell, [vim](http://www.vim.org) has been my editor of choice for years. once you start to grok movements and operators you quickly begin manipulating, not just editing text files. and in the shell, everything is just text ;D these days i'm a full time [neovim](https://neovim.io) user. it's just better than normal vim at this point imho.
+with it's tight integration to the unix shell, [vim](http://www.vim.org) has been my editor of choice for years. once you start to grok movements and operators you quickly begin manipulating, not just editing text files. and in the shell, everything is just text ;D these days i'm a full time [neovim](https://neovim.io) user. it's just better than normal vim at this point imho. using a community built embedded language like lua5 makes way more sense than a custom/proprietary one.
 
-with [my asliases](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/06-aliases.zsh#L35) `e` is `$EDITOR` and `se` is `sudo $EDITOR` so `se /etc/hosts` is `sudo nvim /etc/hosts`
+with [my asliases](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/06-aliases.zsh#L35) `e` is `$EDITOR` and `se` is `sudo $EDITOR`
 
-you can start neovim using `ec` or editor clean, to run `nvim --cmd ":lua vim.g.noplugins=1"`. which is kinda like `nvim --clean` with the added bonus of still loading some sane defaults. i use this as my [MANPAGER](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/01-environment.zsh#L40) with `+MAN!` as well.
+`e ~dotfiles/README.md` is `nvim ~/.local/src/dotfiles/README.md`
+
+`se /etc/hosts` is `sudo nvim /etc/hosts`
+
+you can also start neovim using `ec` or editor clean, to run `nvim --cmd ":lua vim.g.noplugins=1"`. which is kinda like `nvim --clean` with the added bonus of still loading some sane defaults. i use this as my [MANPAGER](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/01-environment.zsh#L40) with `+MAN!` as well.
 
 my neovim setup is written in [lua](https://neovim.io/doc/user/lua-guide.html), uses [lazy.vim](https://github.com/folke/lazy.nvim), and a bunch of plugins. you can enable/disable them selectivly from [plugins.lua](https://github.com/xero/dotfiles/blob/main/neovim/.config/nvim/lua/plugins.lua). here's the structure of configs:
 ```
