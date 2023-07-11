@@ -20,9 +20,10 @@
 
 ```
 
-> NOTE: if you are looking for my linux wm configs like [2bwm](https://github.com/xero/dotfiles/tree/classic/2bwm), [windowchef](https://github.com/xero/dotfiles/tree/classic/windowchef), etc. they now live in the [classic](https://github.com/xero/dotfiles/tree/classic) branch and are not activly maintained since i live in the tty, xorg free these days.
+> __NOTE:__ if you are looking for my linux wm configs like [2bwm](https://github.com/xero/dotfiles/tree/classic/2bwm), [windowchef](https://github.com/xero/dotfiles/tree/classic/windowchef), etc. they now live in the [classic](https://github.com/xero/dotfiles/tree/classic) branch and are not actively maintained since i live in the tty, xorg free, these days.
 
 ## table of contents
+
  - [introduction](#dotfiles)
  - [managing](#managing)
  - [installing](#installing)
@@ -36,17 +37,20 @@
  - [license](#license)
 
 # dotfiles
+
 in the unix world programs are commonly configured in two different ways, via shell arguments or text based configuration files. programs with many options like text editors are configured on a per-user basis with files in your home directory `~`. in unix like operating systems any file or directory name that starts with a period or full stop character is considered hidden, and in a default view will not be displayed. thus the name dotfiles.
 
 it's been said of every console user:
 > _"you are your dotfiles"_.
 
-since they dictate how your system will look and function. to many users (see [ricers](http://unixporn.net) and [beaners](http://nixers.net)) these files are very important, and need to be backed up and shared. people who create custom themes have the added challenge of managing multiple versions of them. i have tried many organization techniques. and just take my word for it when i say, keeping a git repo in the root of your home directory is a bad idea. i've written custom shell scripts for moving or symlinking files into place. there are even a few dotfile managers, but they all seem to have lots of dependencies. i knew there had to be a simple tool to help me.
+since they dictate how your system will look and function. to many users (see [ricers](https://reddit.com/r/unixporn/) and [beaners](https://reddit.com/r/unixart/)) these files are very important, and need to be backed up and shared. people who create custom themes have the added challenge of managing multiple versions of them. i have tried many organization techniques. and just take my word for it when i say, keeping a git repo in the root of your home directory is a bad idea. i've written custom shell scripts for moving or symlinking files into place. there are even a few [dotfile managers](https://dotfiles.github.io/utilities/), but they all seem to have lots of dependencies. i knew there had to be a simple tool to help me.
 
 # managing
+
 i manage mine with [gnu stow](http://www.gnu.org/software/stow/), a free, portable, lightweight symlink farm manager. this allows me to keep a versioned directory of all my config files that are virtually linked into place via a single command. this makes sharing these files among many users (root) and computers super simple. and does not clutter your home directory with version control files.
 
 # installing
+
 stow is available for all linux and most other unix like distributions via your package manager.
 
 - `apt install stow`
@@ -58,6 +62,7 @@ stow is available for all linux and most other unix like distributions via your 
 or clone it [from source](https://savannah.gnu.org/git/?group=stow) and [build it](http://git.savannah.gnu.org/cgit/stow.git/tree/INSTALL) yourself.
 
 # how it works
+
 by default the stow command will create symlinks for files in the parent directory of where you execute the command. since i keep my dots in: `~/.local/src/dotfiles` and all stow commands should be executed in that directory and suffixed with `-t ~` to target the home directory. otherwise they will end up in `~/.local/`. if you wanna make things easier on yourself you can clone the repo to `~/dotfiles` then run commands with no flags. but who likes things easy in the unix world ;P
 
 to install configs execute the stow command with the folder name as the first argument, then target your home directory (or wherever you like).
@@ -78,6 +83,7 @@ this will symlink the fun scripts like `food` to `/usr/local/bin`. notice that t
 more notes on using/understanding stow in [this github issue](https://github.com/xero/dotfiles/issues/14).
 
 # tl;dr
+
 navigate to your home directory
 
 `cd ~`
