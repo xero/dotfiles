@@ -182,7 +182,7 @@ with [my asliases](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/06
 
 you can start neovim using `ec` or editor clean, to run `nvim --cmd ":lua vim.g.noplugins=1"`. which is kinda like `nvim --clean` with the added bonus of still loading some sane defaults. i use this as my [MANPAGER](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/01-environment.zsh#L40) with `+MAN!` as well.
 
-my neovim setup using [lazy.vim](https://github.com/folke/lazy.nvim) and a bunch of plugins. you can enable/disable them selectivly from [plugins.lua](https://github.com/xero/dotfiles/blob/main/neovim/.config/nvim/lua/plugins.lua). here's the structure of configs:
+my neovim setup uses [lazy.vim](https://github.com/folke/lazy.nvim) and a bunch of plugins. you can enable/disable them selectivly from [plugins.lua](https://github.com/xero/dotfiles/blob/main/neovim/.config/nvim/lua/plugins.lua). here's the structure of configs:
 ```
 ~/.config/nvim
 ├── lua/
@@ -215,6 +215,8 @@ as of writing this, i use 50 [plugins](https://github.com/xero/dotfiles/tree/mai
     * [telescope-undo](https://github.com/debugloop/telescope-undo.nvim) - view your undo history as a tree of diffs
     * [telescope-live-grep-args](https://github.com/nvim-telescope/telescope-live-grep-args.nvim) - ripgrep powered fuzzy search
     * [telescope-file-browser](https://github.com/nvim-telescope/telescope-file-browser.nvim) - file browser, for when you need it
+* [lush](https://github.com/rktjmp/lush.nvim) - interactive colorscheme development tool
+    * [miasma](https://github.com/xero/miasma.nvim) - my own colorscheme
 * [alpha](https://github.com/goolord/alpha-nvim) - hipster splashscreen with awesome text art
 
 # license
