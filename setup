@@ -59,7 +59,7 @@ echo "vm.swappiness=0" >> /etc/sysctl.conf
 sysctl vm.swappiness=0
 
 _echo "installing runtime deps"
-apt update && apt install -y git gpg bash curl locales
+apt update && apt install -y git gpg bash curl locales gnupg software-properties-common
 
 _echo "setting up locales and console"
 locale-gen "en_US.UTF-8"
@@ -82,13 +82,24 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of
 	chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
 	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list >/dev/null
 
-#add 1pw
+# add 1pw
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg &&
 	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | tee /etc/apt/sources.list.d/1password.list >/dev/null
 mkdir -p /etc/debsig/policies/AC2D62742012EA22/ &&
 	curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
 mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 &&
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+
+# add hashicorp
+curl -sL https://apt.releases.hashicorp.com/gpg | \
+		gpg --dearmor | \
+		tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+gpg --no-default-keyring \
+		--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+		--fingerprint
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+		https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+		tee /etc/apt/sources.list.d/hashicorp.list
 
 # install all the things \o/
 _echo "installing packages"
@@ -160,7 +171,6 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 		ncurses-base \
 		ncurses-bin \
 		ncurses-term \
-		neovim/prebuilt-mpr \
 		net-tools \
 		netbase \
 		nmap \
@@ -187,10 +197,12 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 		secure-delete \
 		shellcheck \
 		silversearcher-ag \
+		snapd \
 		socat \
 		stow \
 		sudo \
 		tar \
+		terraform \
 		tcpdump \
 		tmux/bullseye-backports \
 		toilet \
@@ -214,6 +226,9 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 		python3-venv \
 		shellcheck \
 		zsh-syntax-highlighting
+
+snap install core
+snap install nvim --classic
 
 _echo "systemd housekeeping"
 rm /etc/resolv.conf
@@ -259,31 +274,15 @@ chmod 600 $MYHOME/.ssh/*
 
 # i do not want these dirs to be symlinks
 _echo "creating directory skeletons"
-$ASME mkdir -p $MYHOME/.{config,local} $MYHOME/.local/{src,bin,lib,state,share}
-
-_echo "setting up python + pip"
-$ASME pip3 -V
-$ASME pip3 install --upgrade pip
-$ASME pip3 install --no-warn-script-location \
-	boto3 \
-	cryptography \
-	docutils \
-	emoji-fzf \
-	greynoise \
-	https://github.com/PaulSec/API-dnsdumpster.com/archive/master.zip \
-	json-spec \
-	mycli \
-	neovim \
-	pgcli \
-	six \
-	urllib3 \
-	wcwidth \
-	yamllint
+$ASME mkdir -p \
+		$MYHOME/.{config,local} \
+		$MYHOME/.local/{bin,docs,cache,lib,share,src,state} \
+		$MYHOME/.local/state/zsh
 
 _echo "setting up rust"
 curl https://sh.rustup.rs -sSf | $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" sh -s -- -y --default-toolchain stable --profile default &&
 $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo install cargo-quickinstall &&
-$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall starship lolcat stylua bottom
+$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall lolcat stylua
 
 _echo "setting up dotfiles"
 $ASME git clone git@github.com:xero/dotfiles.git $MYHOME/.local/src/dotfiles &&
@@ -317,6 +316,9 @@ $ASME git clone --depth=1 https://github.com/mgulick/mosh.git -b osc-52-clipboar
 	make &&
 	make install
 
+_echo "setting up starship"
+curl -sS https://starship.rs/install.sh | sh
+
 _echo "setting up clipmenu"
 $ASME git clone --recurse-submodules git@github.com:xero/clipmenu.git $MYHOME/.local/src/clipmenu &&
 	cd $MYHOME/.local/src/clipmenu/clipnotify &&
@@ -349,6 +351,25 @@ curl -L https://raw.githubusercontent.com/isaacs/nave/main/nave.sh >$MYHOME/.loc
 	$ASME npm i -g \
 		neovim \
 		sofancy
+
+_echo "setting up python + pip"
+$ASME pip3 -V
+$ASME pip3 install --upgrade pip
+$ASME pip3 install --no-warn-script-location \
+	boto3 \
+	cryptography \
+	docutils \
+	emoji-fzf \
+	greynoise \
+	https://github.com/PaulSec/API-dnsdumpster.com/archive/master.zip \
+	json-spec \
+	mycli \
+	neovim \
+	pgcli \
+	six \
+	urllib3 \
+	wcwidth \
+	yamllint
 
 _echo "setting up ascii/ansi art tools"
 rm -rf /usr/share/figlet/
@@ -439,7 +460,6 @@ chmod +x /etc/update-motd.d/00-banner
 # run ssh on a non-standard port
 _echo "setting up ssh"
 echo "Port $PORT" >>/etc/ssh/sshd_config
-sed -i "s!\t22/tcp!\t$PORT/tcp!" /etc/services
 systemctl restart ssh.service
 systemctl restart sshd
 
@@ -452,6 +472,7 @@ getfile x0 keys runme runme >$MYHOME/runme
 op signout --account x0 --forget
 $ASME rm $MYHOME/.profile $MYHOME/.bash*
 mv $MYHOME/go $MYHOME/.local/lib/
+mv $MYHOME/.cache $MYHOME/cache
 chmod +x $MYHOME/runme
 chown -R $ME:$ME /home/$ME
 
