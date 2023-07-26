@@ -90,12 +90,13 @@ return {
 			gopls = {},
 			graphql = {},
 			html = {},
-			jsonls = require("plugins.lsp.servers.jsonls")(capabilities),
+			jsonls = {},
 			lua_ls = require("plugins.lsp.servers.luals")(on_attach),
 			rust_analyzer = {},
 			terraformls = {},
+			tflint = {},
 			tsserver = {},
-			yamlls = require("plugins.lsp.servers.yamlls")(capabilities),
+			yamlls = {},
 		}
 
 		local default_lsp_config = {
