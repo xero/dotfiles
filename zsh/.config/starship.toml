@@ -87,3 +87,8 @@ vimcmd_replace_one_symbol = "[❮](bold yellow)"
 vimcmd_replace_symbol = "[❮](bold yellow)"
 vimcmd_visual_symbol = "[❮](bold cyan)"
 
+[git_status]
+diverged = '↑$ahead_count↓$behind_count'
+conflicted = '$count'
+ahead = "⇡${count}"
+behind = "⇣${count}"

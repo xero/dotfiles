@@ -20,7 +20,7 @@ export CARGO_HOME="$HOME"/.local/lib/cargo
 export RUSTUP_HOME="$HOME"/.local/lib/rustup
 export GOPATH="$HOME"/.local/lib/go
 export XDG_DATA_HOME="$HOME"/.local/share
-export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_CACHE_HOME="$HOME"/.local/cache
 export XDG_STATE_HOME="$HOME"/.local/state
 export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:=/tmp}"
 export ZDOTDIR="$HOME"/.config/zsh
@@ -28,13 +28,15 @@ export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export GNUPGHOME="$XDG_DATA_HOME"/gpg
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-export NPM_CONFIG_PREFIX="${XDG_DATA_HOME}"/npm
+export NPM_CONFIG_PREFIX="$XDG_DATA_HOME"/npm
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
 export KUBECONFIG="$XDG_CONFIG_HOME"/kube/config
 export KUBECACHEDIR="$XDG_RUNTIME_DIR"/kube
+export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
+export TFENV="$XDG_DATA_HOME"/terraform
 
 #█▓▒░ paths
-export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$XDG_DATA_HOME/npm/bin:$PATH
+export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$NPM_CONFIG_PREFIX/bin:$TFENV/bin:$PATH
 
 #█▓▒░ man
 export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
