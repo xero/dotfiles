@@ -26,7 +26,7 @@ end
 function X.set_default_on_buffer(client, bufnr)
 	local buf_set_keymap = generate_buf_keymapper(bufnr)
 	local filetype = vim.api.nvim_buf_get_option(bufnr or 0, "filetype")
-	local is_typescript = filetype == "typescript" or filetype == "typescriptreact"
+	-- local is_typescript = filetype == "typescript" or filetype == "typescriptreact"
 
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
@@ -74,41 +74,16 @@ function X.set_default_on_buffer(client, bufnr)
 		end, "code actions")
 	end
 
-	if cap.documentFormattingProvider then
-		buf_set_keymap("n", "<leader>rf", function()
+	buf_set_keymap("n", "<leader>rf", function()
+		if cap.documentFormattingProvider then
 			vim.lsp.buf.format({
 				async = true,
 				bufnr = bufnr,
-				filter = function(format_client)
-					if is_typescript then
-						if format_client.name == "null-ls" then
-							return true
-						else
-							return false
-						end
-					end
-					return true
-				end,
 			})
-		end, "format")
-	end
-
-	--	if is_typescript then
-	--		buf_set_keymap("n", "<leader>rio", function()
-	--			local typescript = require("typescript")
-	--			typescript.actions.organizeImports()
-	--		end, "Organize imports (TS)")
-	--
-	--		buf_set_keymap("n", "<leader>riu", function()
-	--			local typescript = require("typescript")
-	--			typescript.actions.removeUnused()
-	--		end, "Remove unused variables (TS)")
-	--
-	--		buf_set_keymap("n", "<leader>rim", function()
-	--			local typescript = require("typescript")
-	--			typescript.actions.addMissingImports()
-	--		end, "Import all (TS)")
-	--	end
+		else
+			require("plugins.lsp.format").run()
+		end
+	end, "format")
 
 	if cap.renameProvider then
 		buf_set_keymap("n", "<leader>rr", ":IncRename ", "rename")

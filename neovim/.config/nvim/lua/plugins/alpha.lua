@@ -11,7 +11,7 @@ return {
 		dashboard.section.terminal.opts.window_config.zindex = 1
 		dashboard.section.buttons.val = {
 			dashboard.button('i', '    new file', ':ene <BAR> startinsert<CR>'),
-			dashboard.button('r', '    recent files', ':Telescope oldfiles<CR>'),
+			dashboard.button('o', '    old files', ':Telescope oldfiles<CR>'),
 			dashboard.button('f', '󰥨    find file', ':Telescope file_browser<CR>'),
 			dashboard.button('g', '󰱼    find text', ':Telescope live_grep_args<CR>'),
 			dashboard.button('h', '    browse git', ':Flog<CR>'),

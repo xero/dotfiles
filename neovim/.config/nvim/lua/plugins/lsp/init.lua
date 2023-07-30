@@ -2,8 +2,8 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"folke/neodev.nvim",
-		"nvim-lua/lsp-status.nvim",
 		"b0o/schemastore.nvim",
+		"nvim-lua/lsp-status.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	},
@@ -83,15 +83,14 @@ return {
 
 		local servers = {
 			bashls = require("plugins.lsp.servers.bashls")(on_attach),
-			clangd = {},
 			cssls = {},
 			dockerls = {},
 			eslint = require("plugins.lsp.servers.eslint")(on_attach),
-			gopls = {},
 			graphql = {},
 			html = {},
 			jsonls = {},
 			lua_ls = require("plugins.lsp.servers.luals")(on_attach),
+			pylsp = {},
 			rust_analyzer = {},
 			terraformls = {},
 			tflint = {},
