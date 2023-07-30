@@ -40,6 +40,8 @@ alias y="yank"
 alias k="vpnns -- kubectl"
 alias kx="kubectx"
 alias k9s="vpnns -- k9s"
+alias tgp="vpnns -- terragrunt plan"
+alias tga="vpnns -- terragrunt apply"
 alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e";echo "╙────────────────────────────────────── ─ ─ "; df -h;echo "╓───── s w a p s "; echo "╙────────────────────────────────────── ─ ─ "; swapon --show'
 
 #lazy
