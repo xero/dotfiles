@@ -1,11 +1,13 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
+  requires = { 'nvim-tree/nvim-web-devicons' },
 	init = function()
 		-- disable until lualine loads
 		vim.opt.laststatus = 0
 	end,
 	opts = function()
+		-- miasma colors
 		local colors = {
 			bg = "#222222",
 			black = "#1c1c1c",
@@ -128,10 +130,24 @@ return {
 
 		-- active left section
 		active_left({
-			"filetype",
-			icon_only = true,
-			colored = false,
-			icon = { color = { fg = colors.white } },
+			function()
+				local icon
+				local ok, devicons = pcall(require, 'nvim-web-devicons')
+				if ok then
+					icon = devicons.get_icon(vim.fn.expand('%:t'))
+					if icon == nil then
+						icon = devicons.get_icon_by_filetype(vim.bo.filetype)
+					end
+				else
+					if vim.fn.exists('*WebDevIconsGetFileTypeSymbol') > 0 then
+						icon = vim.fn.WebDevIconsGetFileTypeSymbol()
+					end
+				end
+				if icon == nil then
+					icon = ''
+				end
+				return icon:gsub("%s+", "")
+			end,
 			color = function()
 				return { bg = mode_color[vim.fn.mode()], fg = colors.white }
 			end,
@@ -147,10 +163,10 @@ return {
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
 			symbols = {
-				modified = "󰶻",
-				readonly = "",
-				unnamed = "",
-				newfile = "",
+				modified = "󰶻 ",
+				readonly = " ",
+				unnamed = " ",
+				newfile = " ",
 			},
 		})
 		active_left({
