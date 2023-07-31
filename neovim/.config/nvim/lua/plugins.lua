@@ -56,7 +56,7 @@ lazy.setup({
 		--{ 'mattn/vim-sl' }, -- train
 	},
 	dev = {
-		path = "~src",
+		path = "~/.local/src",
 	},
 	lockfile = vim.fn.stdpath("config") .. "/lua/plugins/lazy-lock.json",
 	ui = {
