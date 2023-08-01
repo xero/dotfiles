@@ -1,6 +1,7 @@
 #!/bin/bash
 # usage:
 # curl -L https://raw.githubusercontent.com/xero/dotfiles/main/setup > x && chmod +x x && sudo ./x
+# make sure your edit the ARCH var for your architecture
 #
 # setup.sh by xero (http://git.io/.files)
 # a script to setup a new deb 11 vps with
@@ -24,9 +25,11 @@ export ME='x0'
 export X_UID=10806
 export PORT=60806
 export HOSTNAME='thirteen'
+export ARCH='arm' # arm, x86
 # script vars
 MYHOME="/home/$ME"
 ASME="sudo -u $ME"
+PKGARCH=$ARCH
 
 # helper functions
 function _echo() { printf "\n╓───── %s \n╙────────────────────────────────────── ─ ─ \n" "$1"; }
@@ -92,143 +95,144 @@ mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 &&
 
 # add hashicorp
 curl -sL https://apt.releases.hashicorp.com/gpg | \
-		gpg --dearmor | \
-		tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+	gpg --dearmor | \
+	tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
 gpg --no-default-keyring \
-		--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
-		--fingerprint
+	--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+	--fingerprint
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
-		https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
-		tee /etc/apt/sources.list.d/hashicorp.list
+	https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+	tee /etc/apt/sources.list.d/hashicorp.list
 
 # install all the things \o/
 _echo "installing packages"
 apt update &&
 DEBIAN_FRONTEND=noninteractive apt install -y \
-		1password-cli \
-		apparmor \
-		apt-utils \
-		automake \
-		awscli \
-		bash \
-		bash-completion \
-		bc \
-		bind9-host \
-		bsdutils \
-		build-essential \
-		ca-certificates \
-		cmake \
-		cmatrix \
-		clamav-base \
-		coreutils \
-		curl \
-		dash \
-		dbus \
-		dbus-user-session \
-		debianutils \
-		diffutils \
-		dnsutils \
-		docker.io \
-		dpkg \
-		e2fsprogs \
-		ethtool \
-		expect \
-		fail2ban \
-		findutils \
-		fzf \
-		gawk \
-		gcc-10-base \
-		gcc-9-base \
-		gh \
-		git \
-		golang \
-		golang-doc \
-		golang-src \
-		gpg \
-		gpg-agent \
-		gpgv \
-		gzip \
-		htop \
-		iptables \
-		iputils-ping \
-		isc-dhcp-client \
-		jq \
-		keychain \
-		kubernetes-client \
-		libncurses5-dev \
-		libprotobuf-dev \
-		libssl-dev \
-		libutempter-dev \
-		libx11-dev \
-		libxfixes-dev \
-		lsb-base \
-		lua5.4 \
-		luajit \
-		luarocks \
-		man-db \
-		manpages \
-		mawk \
-		ncurses-base \
-		ncurses-bin \
-		ncurses-term \
-		net-tools \
-		netbase \
-		nmap \
-		ocproxy \
-		openconnect \
-		openssh-client \
-		openssh-server \
-		openssl \
-		pciutils \
-		perl \
-		perl-base \
-		pkg-config \
-		protobuf-compiler \
-		protobuf-compiler \
-		proxychains4 \
-		psmisc \
-		python3 \
-		python3-boto \
-		python3-pip \
-		resolvconf \
-		ripgrep \
-		rkhunter \
-		rsyslog \
-		secure-delete \
-		shellcheck \
-		silversearcher-ag \
-		snapd \
-		socat \
-		stow \
-		sudo \
-		tar \
-		terraform \
-		tcpdump \
-		tmux/bullseye-backports \
-		toilet \
-		traceroute \
-		tree \
-		tzdata \
-		unzip \
-		util-linux \
-		uuid-runtime \
-		vim-tiny \
-		vpnc \
-		whiptail \
-		whois \
-		xsel \
-		xvfb \
-		xz-utils \
-		zlib1g \
-		zlib1g-dev \
-		zsh \
-		eslint \
-		python3-venv \
-		shellcheck \
-		zsh-syntax-highlighting
-
-snap install core
-snap install nvim --classic
+	1password-cli \
+	apparmor \
+	apt-utils \
+	autoconf \
+	automake \
+	awscli \
+	bash \
+	bash-completion \
+	bc \
+	bind9-host \
+	bsdutils \
+	build-essential \
+	ca-certificates \
+	clamav-base \
+	cmake \
+	cmatrix \
+	coreutils \
+	curl \
+	dash \
+	dbus \
+	dbus-user-session \
+	debianutils \
+	diffutils \
+	dnsutils \
+	docker.io \
+	doxygen \
+	dpkg \
+	e2fsprogs \
+	eslint \
+	ethtool \
+	expect \
+	fail2ban \
+	findutils \
+	fzf \
+	g++ \
+	gawk \
+	gcc-10-base \
+	gcc-9-base \
+	gettext \
+	gh \
+	git \
+	golang \
+	golang-doc \
+	golang-src \
+	gpg \
+	gpg-agent \
+	gpgv \
+	gzip \
+	htop \
+	iptables \
+	iputils-ping \
+	isc-dhcp-client \
+	jq \
+	keychain \
+	kubernetes-client \
+	libncurses5-dev \
+	libprotobuf-dev \
+	libssl-dev \
+	libtool \
+	libtool-bin \
+	libutempter-dev \
+	libx11-dev \
+	libxfixes-dev \
+	lsb-base \
+	lua5.4 \
+	luajit \
+	luarocks \
+	man-db \
+	manpages \
+	mawk \
+	ncurses-base \
+	ncurses-bin \
+	ncurses-term \
+	net-tools \
+	netbase \
+	ninja-build \
+	nmap \
+	ocproxy \
+	openconnect \
+	openssh-client \
+	openssh-server \
+	openssl \
+	pciutils \
+	perl \
+	perl-base \
+	pkg-config \
+	protobuf-compiler \
+	proxychains4 \
+	psmisc \
+	python3 \
+	python3-boto \
+	python3-pip \
+	python3-venv \
+	resolvconf \
+	ripgrep \
+	rkhunter \
+	rsyslog \
+	secure-delete \
+	shellcheck \
+	silversearcher-ag \
+	socat \
+	stow \
+	sudo \
+	tar \
+	tcpdump \
+	terraform \
+	tmux/bullseye-backports \
+	toilet \
+	traceroute \
+	tree \
+	tzdata \
+	unzip \
+	util-linux \
+	uuid-runtime \
+	vim-tiny \
+	vpnc \
+	whiptail \
+	whois \
+	xsel \
+	xvfb \
+	xz-utils \
+	zlib1g \
+	zlib1g-dev \
+	zsh \
+	zsh-syntax-highlighting
 
 _echo "systemd housekeeping"
 rm /etc/resolv.conf
@@ -275,14 +279,20 @@ chmod 600 $MYHOME/.ssh/*
 # i do not want these dirs to be symlinks
 _echo "creating directory skeletons"
 $ASME mkdir -p \
-		$MYHOME/.{config,local} \
-		$MYHOME/.local/{bin,docs,cache,lib,share,src,state} \
-		$MYHOME/.local/state/zsh
+	$MYHOME/.{config,local} \
+	$MYHOME/.local/{bin,docs,cache,lib,share,src,state} \
+	$MYHOME/.local/state/zsh
 
 _echo "setting up rust"
 curl https://sh.rustup.rs -sSf | $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" sh -s -- -y --default-toolchain stable --profile default &&
 $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo install cargo-quickinstall &&
 $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall lolcat stylua
+
+_echo "building neovim"
+$ASME git clone --depth=1 https://github.com/neovim/neovim.git -b stable $MYHOME/.local/src/neovim &&
+	cd $MYHOME/.local/src/neovim &&
+	make CMAKE_BUILD_TYPE=RelWithDebInfo &&
+	make install
 
 _echo "setting up dotfiles"
 $ASME git clone git@github.com:xero/dotfiles.git $MYHOME/.local/src/dotfiles &&
@@ -293,21 +303,22 @@ $ASME mkdir $MYHOME/.config/tmux/plugins &&
 	$ASME git clone --depth=1 https://github.com/tmux-plugins/tpm $MYHOME/.config/tmux/plugins/tpm &&
 	$ASME $MYHOME/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
 	cd $MYHOME/.config/tmux/plugins/tmux-thumbs &&
-		expect -c "spawn ./tmux-thumbs-install.sh; send \"\r2\r\"; expect complete" 1>/dev/null
+		expect -c "spawn ./tmux-thumbs-install.sh; send \"\r1\r\"; expect complete" 1>/dev/null
 # nvim
 $ASME mkdir $MYHOME/.local/nvim &&
   $ASME git clone --filter=blob:none --single-branch https://github.com/folke/lazy.nvim.git $MYHOME/.local/share/nvim/lazy
 $ASME nvim --headless "+Lazy! sync" +qa
-$ASME nvim --headless "+MasonUpdate" +qa
+$ASME nvim --headless "+MasonInstallAll" +qa
 
 # shellcheck disable=SC2016
 echo 'export ZDOTDIR="$HOME"/.config/zsh' >>/etc/zsh/zshenv
 
-_echo "creating ~src and ~dotfiles aliases"
+_echo "creating ~src, ~docs, and ~dotfiles aliases"
 useradd -g src -d $MYHOME/.local/src src
 useradd -d $MYHOME/.local/src/dotfiles dotfiles
+useradd -d $MYHOME/docs docs
 
-_echo "setting up mosh"
+_echo "building mosh"
 # OSC52 clipboard support - https://github.com/mobile-shell/mosh/pull/1104
 $ASME git clone --depth=1 https://github.com/mgulick/mosh.git -b osc-52-clipboard-types $MYHOME/.local/src/mosh &&
 	cd $MYHOME/.local/src/mosh &&
@@ -319,7 +330,7 @@ $ASME git clone --depth=1 https://github.com/mgulick/mosh.git -b osc-52-clipboar
 _echo "setting up starship"
 curl -sS https://starship.rs/install.sh | sh
 
-_echo "setting up clipmenu"
+_echo "building clipmenu"
 $ASME git clone --recurse-submodules git@github.com:xero/clipmenu.git $MYHOME/.local/src/clipmenu &&
 	cd $MYHOME/.local/src/clipmenu/clipnotify &&
 	make install && cd .. && make install &&
@@ -332,13 +343,15 @@ $ASME git clone --depth=1 https://github.com/ahmetb/kubectx.git $MYHOME/.local/s
 	chmod +x $MYHOME/.local/bin/kubens $MYHOME/.local/bin/kubectx
 
 _echo "setting up k9s"
-$ASME curl -L https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_amd64.tar.gz -o $MYHOME/.local/src/k9s.tar.gz &&
+[[ "$ARCH" == "arm" ]] && PKGARCH="arm64" || PKGARCH="amd64"
+$ASME curl -L "https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_${PKGARCH}.tar.gz" -o $MYHOME/.local/src/k9s.tar.gz &&
 	tar xzf $MYHOME/.local/src/k9s.tar.gz -C $MYHOME/.local/bin/ k9s &&
 	chmod +x $MYHOME/.local/bin/k9s &&
 	rm $MYHOME/.local/src/k9s.tar.gz
 
 echo "updating the  aws cli to v2"
-curl -L https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o /tmp/awscliv2.zip &&
+[[ "$ARCH" == "arm" ]] && PKGARCH="aarch64" || PKGARCH="x86_64"
+curl -L "https://awscli.amazonaws.com/awscli-exe-linux-${PKGARCH}.zip" -o /tmp/awscliv2.zip &&
 	cd /tmp && unzip awscliv2.zip &&
 	./aws/install --bin-dir /usr/bin --install-dir /usr/local/aws-cli --update &&
 	rm /tmp/awscliv2.zip
@@ -368,8 +381,7 @@ $ASME pip3 install --no-warn-script-location \
 	pgcli \
 	six \
 	urllib3 \
-	wcwidth \
-	yamllint
+	wcwidth
 
 _echo "setting up ascii/ansi art tools"
 rm -rf /usr/share/figlet/
