@@ -6,10 +6,10 @@ local function LspToggle()
 	if vim.diagnostic.is_disabled(0) == true then
 		vim.diagnostic.enable()
 		vim.diagnostic.config({ virtual_text = true })
-		vim.cmd([[LspStart]])
+		vim.cmd [[LspStart]]
 	else
 		vim.diagnostic.disable()
-		vim.cmd([[LspStop]])
+		vim.cmd [[LspStop]]
 	end
 end
 
@@ -118,7 +118,7 @@ function X.set_default_on_buffer(client, bufnr)
 	buf_set_keymap("n", "<leader>ll", function()
 		if vim.diagnostic.is_disabled(0) == true then
 			vim.diagnostic.enable()
-			vim.cmd([[LspStart]])
+			vim.cmd [[LspStart]]
 		end
 		require("lsp_lines").toggle()
 		vim.diagnostic.config({ virtual_text = false })

@@ -1,6 +1,6 @@
 return {
 	"brenoprata10/nvim-highlight-colors",
-	verylazy = true,
+	event = "VeryLazy",
 	config = function()
 		local r = require("utils.remaps")
 		local c = require("nvim-highlight-colors")

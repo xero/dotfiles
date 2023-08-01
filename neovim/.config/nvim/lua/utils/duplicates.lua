@@ -14,7 +14,7 @@ local function check_and_set_duplicates(input, description, check, table)
 
 		if found ~= nil then
 			if found ~= description then
-				print(input .. " already mapped (" .. found .. " so we cannot map (" .. description .. ")")
+				print(input .. " already mapped (" .. found .. " so we cannot re-map (" .. description .. ")")
 			end
 		end
 

@@ -86,7 +86,6 @@ return {
 			cssls = {},
 			dockerls = {},
 			eslint = require("plugins.lsp.servers.eslint")(on_attach),
-			graphql = {},
 			html = {},
 			jsonls = {},
 			lua_ls = require("plugins.lsp.servers.luals")(on_attach),

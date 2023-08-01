@@ -11,7 +11,7 @@ return {
 			callback = function()
 				vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
 				if vim.v.event.operator == "y" and vim.v.event.regname == "" then
-					vim.cmd([[OSCYankRegister]])
+					vim.cmd [[OSCYankRegister]]
 				end
 			end,
 		})

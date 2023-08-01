@@ -17,6 +17,7 @@ return {
 				"dockerfile",
 				"go",
 				"graphql",
+				"hcl",
 				"html",
 				"javascript",
 				"json",
@@ -159,6 +160,6 @@ return {
 		-- r.map_virtual("[]", "Go to previous class (end)")
 	end,
 	build = function()
-		vim.cmd([[TSUpdate]])
+		vim.cmd [[TSUpdate]]
 	end,
 }
