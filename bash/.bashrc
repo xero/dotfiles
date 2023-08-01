@@ -20,6 +20,12 @@ case $- in
   *i*) ;;
   *) return;;
 esac
+# env vars
+export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$NPM_CONFIG_PREFIX/bin:$TFENV/bin:$XDG_DATA_HOME/nvim/mason/bin:$PATH
+export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
+export MANWIDTH=999
+export EDITOR=nvim
+export VISUAL=nvim
 # options
 PS1='\n\w\n\$ '
 set -o noclobber
