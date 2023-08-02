@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/xero/dotfiles/vps/preview.jpg)
+![](https://raw.githubusercontent.com/xero/dotfiles/main/preview.png)
 
 ```
       ██            ██     ████ ██  ██
