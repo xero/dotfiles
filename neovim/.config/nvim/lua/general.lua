@@ -66,8 +66,8 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 
--- use indents of 4 spaces
-vim.opt.shiftwidth = 4
+-- use indents of 2
+vim.opt.shiftwidth = 2
 
 -- tabs are tabs
 vim.opt.expandtab = false

@@ -49,6 +49,9 @@ return {
 					node_decremental = "zd",
 				},
 			},
+			indent = {
+				enable = true,
+			},
 			-- textobjects = {
 			--   select = {
 			--     enable = true,
