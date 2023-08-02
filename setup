@@ -290,19 +290,19 @@ $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rust
 
 _echo "setting up starship"
 if [[ "$ARCH" == "arm" ]]; then
-		curl -sS https://starship.rs/install.sh | sh
+	curl -sS https://starship.rs/install.sh | sh
 else
-		$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall starship
+	$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall starship
 fi
 
 _echo "building neovim"
 if [[ "$ARCH" == "arm" ]]; then
-		$ASME git clone --depth=1 https://github.com/neovim/neovim.git -b stable $MYHOME/.local/src/neovim &&
-			cd $MYHOME/.local/src/neovim &&
-			make CMAKE_BUILD_TYPE=RelWithDebInfo &&
-			make install
+	$ASME git clone --depth=1 https://github.com/neovim/neovim.git -b stable $MYHOME/.local/src/neovim &&
+		cd $MYHOME/.local/src/neovim &&
+		make CMAKE_BUILD_TYPE=RelWithDebInfo &&
+		make install
 else
-		apt install -y neovim/prebuilt-mpr
+	apt install -y neovim/prebuilt-mpr
 fi
 
 _echo "setting up dotfiles"
