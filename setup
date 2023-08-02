@@ -288,11 +288,22 @@ curl https://sh.rustup.rs -sSf | $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUS
 $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo install cargo-quickinstall &&
 $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall lolcat stylua
 
+_echo "setting up starship"
+if [[ "$ARCH" == "arm" ]]; then
+		curl -sS https://starship.rs/install.sh | sh
+else
+		$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall starship
+fi
+
 _echo "building neovim"
-$ASME git clone --depth=1 https://github.com/neovim/neovim.git -b stable $MYHOME/.local/src/neovim &&
-	cd $MYHOME/.local/src/neovim &&
-	make CMAKE_BUILD_TYPE=RelWithDebInfo &&
-	make install
+if [[ "$ARCH" == "arm" ]]; then
+		$ASME git clone --depth=1 https://github.com/neovim/neovim.git -b stable $MYHOME/.local/src/neovim &&
+			cd $MYHOME/.local/src/neovim &&
+			make CMAKE_BUILD_TYPE=RelWithDebInfo &&
+			make install
+else
+		apt install -y neovim/prebuilt-mpr
+fi
 
 _echo "setting up dotfiles"
 $ASME git clone git@github.com:xero/dotfiles.git $MYHOME/.local/src/dotfiles &&
@@ -326,9 +337,6 @@ $ASME git clone --depth=1 https://github.com/mgulick/mosh.git -b osc-52-clipboar
 	./configure &&
 	make &&
 	make install
-
-_echo "setting up starship"
-curl -sS https://starship.rs/install.sh | sh
 
 _echo "building clipmenu"
 $ASME git clone --recurse-submodules git@github.com:xero/clipmenu.git $MYHOME/.local/src/clipmenu &&
