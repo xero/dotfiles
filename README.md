@@ -230,14 +230,16 @@ my neovim setup is written in [lua](https://neovim.io/doc/user/lua-guide.html), 
 └── init.lua         --> calls other files
 ```
 
-as of writing this, i use 50 [plugins](https://github.com/xero/dotfiles/tree/main/neovim/.config/nvim/lua/plugins) and an average startup time of 200ms. plugin highlights include:
+as of writing this, i use ~50 [plugins](https://github.com/xero/dotfiles/tree/main/neovim/.config/nvim/lua/plugins) and an average startup time of 90-150ms. plugin highlights include:
 
 * [lspconfig](https://github.com/neovim/nvim-lspconfig) - native language server protocol
     * [neodev](https://github.com/folke/neodev.nvim) - vscode exported completions and snips
 	* [mason_lsp](https://github.com/williamboman/mason-lspconfig.nvim) - mason backend
 	* [lsp_lines](https://git.sr.ht/~whynothugo/lsp_lines.nvim) - visualize diagnostics
+    * [trouble](https://github.com/folke/trouble.nvim) - pretty diagnostics navigation pane
 * [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - subtle git diffs in the gutter
 * [cmp](https://github.com/hrsh7th/nvim-cmp) - completion engine
+* [comments](https://github.com/terrortylor/nvim-comment) - toggle comments with motion
 * [flog](https://github.com/rbong/vim-flog) - visually explore your git history
 * [lualine](https://github.com/nvim-lualine/lualine.nvim) - customized status bar for the rice factor
 * [tint](https://github.com/levouh/tint.nvim) - desaturate inactive panes for visual cues
@@ -249,6 +251,7 @@ as of writing this, i use 50 [plugins](https://github.com/xero/dotfiles/tree/mai
 * [lush](https://github.com/rktjmp/lush.nvim) - interactive colorscheme development tool
     * [miasma](https://github.com/xero/miasma.nvim) - my own colorscheme
 * [alpha](https://github.com/goolord/alpha-nvim) - hipster splashscreen with awesome text art
+* [which-key](https://github.com/folke/which-key.nvim) - help define and display key-bindings
 
 my leader key is set to `,` and you can checkout all my custom key-bindings by calling `:WhichKey`
 
