@@ -1,9 +1,10 @@
 return {
 	diagnostics = {
-		Error = " ",
-		Warn = " ",
-		Hint = " ",
-		Info = " ",
+		error = " ",
+		hint = " ",
+		information = " ",
+		other = " ",
+		warning = " ",
 	},
 	git = {
 		Added = " ",
@@ -61,7 +62,7 @@ return {
 		blocky = { "▀", "▐", "▄", "▌", "▄", "▄", "▓", "▀", },
 	},
 	telescope = {
-		prompt =  { "┄", "┊", "┄", "┊", "╭", "╮", "╯", "╰", },
+		prompt = { "┄", "┊", "┄", "┊", "╭", "╮", "╯", "╰", },
 		results = { "┄", " ", "┄", "┊", "╭", "┄", "┄", "╰", },
 		preview = { "┄", "┊", "┄", "┊", "┄", "╮", "╯", "╰", },
 	},

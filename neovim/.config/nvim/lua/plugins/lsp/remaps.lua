@@ -25,8 +25,6 @@ end
 
 function X.set_default_on_buffer(client, bufnr)
 	local buf_set_keymap = generate_buf_keymapper(bufnr)
-	local filetype = vim.api.nvim_buf_get_option(bufnr or 0, "filetype")
-	-- local is_typescript = filetype == "typescript" or filetype == "typescriptreact"
 
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
@@ -48,13 +46,13 @@ function X.set_default_on_buffer(client, bufnr)
 		buf_set_keymap("n", "gi", vim.lsp.buf.implementation, "go to implementation")
 		buf_set_keymap("n", "gI", function()
 			require("fzf-lua").lsp_implementations()
-		end, "Search implementations")
+		end, "search implementations")
 	end
 
 	if cap.referencesProvider then
 		buf_set_keymap("n", "gr", function()
 			require("fzf-lua").lsp_references()
-		end, "Show references")
+		end, "show references")
 	end
 
 	if cap.hoverProvider then
@@ -64,12 +62,10 @@ function X.set_default_on_buffer(client, bufnr)
 	if cap.codeActionProvider then
 		buf_set_keymap({ "n", "v" }, "<leader>ra", function()
 			local line_count = vim.api.nvim_buf_line_count(bufnr)
-			--[[ local range = vim.lsp.util.make_given_range_params({ 1, 1 }, { line_count, 1 }, bufnr) ]]
 			local range = {
 				start = { line = 1, character = 1 },
 				["end"] = { line = line_count, character = 1 },
 			}
-
 			vim.lsp.buf.code_action({ range = range.range })
 		end, "code actions")
 	end
@@ -92,29 +88,13 @@ function X.set_default_on_buffer(client, bufnr)
 	if cap.documentSymbolProvider then
 		buf_set_keymap("n", "<leader>lo", function()
 			require("fzf-lua").lsp_document_symbols()
-		end, "Document symbols")
+		end, "document symbols")
 	end
 
-	buf_set_keymap("n", "<leader>lsa", ":LspInfo<CR>", "LSP info")
-	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "Show signature")
-	buf_set_keymap("n", "<leader>lE", function()
-		require("fzf-lua").diagnostics_document()
-	end, "show diagnostics")
-
-	buf_set_keymap("n", "<leader>le", vim.diagnostic.open_float, "show line diagnostics")
-
-	buf_set_keymap("n", "<leader>lsc", function()
-		print(vim.inspect(vim.lsp.get_active_clients()))
-	end, "LSP clients")
-
-	buf_set_keymap("n", "<leader>lsl", function()
-		print(vim.lsp.get_log_path())
-	end, "show log path")
-
-	buf_set_keymap("n", "<leader>lt", function()
-		LspToggle()
-	end, "toggle LSP")
-
+	buf_set_keymap("n", "<leader>lsa", ":LspInfo<CR>", "lsp info")
+	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "show signature")
+	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "show line diagnostics")
+	buf_set_keymap("n", "<leader>lt", function() LspToggle() end, "toggle lsp")
 	buf_set_keymap("n", "<leader>ll", function()
 		if vim.diagnostic.is_disabled(0) == true then
 			vim.diagnostic.enable()
@@ -125,7 +105,5 @@ function X.set_default_on_buffer(client, bufnr)
 	end, "toggle lsp lines")
 end
 
-r.which_key("<leader>ls", "LSP servers")
-r.noremap("n", "<leader>lsi", "<cmd>LspInstallInfo<CR>", "LSP servers install info")
-
+r.which_key("<leader>ls", "lsp servers")
 return X

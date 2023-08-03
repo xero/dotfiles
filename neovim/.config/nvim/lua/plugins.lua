@@ -39,6 +39,7 @@ lazy.setup({
 		-- require("plugins.mason-dap"),
 		require("plugins.lsp"),
 		require("plugins.cmp"),
+		require("plugins.trouble"),
 		require("plugins.comments"),
 		require("plugins.colorizer"),
 		require("plugins.tint"),

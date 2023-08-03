@@ -34,6 +34,8 @@ return {
 		end
 		lsp_kind.init()
 		cmp.setup({
+			enabled = true,
+			preselect = cmp.PreselectMode.None,
 			window = {
 				completion = cmp.config.window.bordered({
 					winhighlight = "Normal:Normal,FloatBorder:LspBorderBG,CursorLine:PmenuSel,Search:None",
