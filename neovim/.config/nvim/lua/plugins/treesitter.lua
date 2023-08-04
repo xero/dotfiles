@@ -114,22 +114,19 @@ return {
 		})
 
 		local r = require("utils.remaps")
-
-		r.which_key("<leader>dt", "Treesitter")
-
-		r.noremap("n", "<leader>dtp", function()
+		r.noremap("n", "<leader>dp", function()
 			vim.treesitter.inspect_tree({ command = "botright 60vnew" })
-		end, "Treesitter playground")
+		end, "treesitter playground")
 
 		r.noremap("n", "<C-e>", function()
 			local result = vim.treesitter.get_captures_at_cursor(0)
 			print(vim.inspect(result))
 		end, "show treesitter capture group")
 
-		r.map_virtual("zi", "Init selection")
-		r.map_virtual("zi", "Expand node")
-		r.map_virtual("zo", "Expand scope")
-		r.map_virtual("zd", "Decrement scope")
+		r.map_virtual("zi", "init selection")
+		r.map_virtual("zi", "expand node")
+		r.map_virtual("zo", "expand scope")
+		r.map_virtual("zd", "decrement scope")
 
 		-- r.map_virtual("af", "Function outer motion")
 		-- r.map_virtual("if", "Function inner motion")
@@ -147,8 +144,8 @@ return {
 		--
 		-- r.which_key("fp", "parameters")
 		--
-		r.map_virtual("<leader>rp", "Swap parameter to next")
-		r.map_virtual("<leader>rP", "Swap parameter to previous")
+		r.map_virtual("<leader>rp", "swap parameter to next")
+		r.map_virtual("<leader>rP", "swap parameter to previous")
 		--
 		-- r.map_virtual("]m", "Go to next function (start)")
 		-- r.map_virtual("]M", "Go to next function (end)")

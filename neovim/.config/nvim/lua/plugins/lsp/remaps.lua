@@ -91,7 +91,7 @@ function X.set_default_on_buffer(client, bufnr)
 		end, "document symbols")
 	end
 
-	buf_set_keymap("n", "<leader>lsa", ":LspInfo<CR>", "lsp info")
+	buf_set_keymap("n", "<leader>li", ":LspInfo<CR>", "lsp info")
 	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "show signature")
 	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "show line diagnostics")
 	buf_set_keymap("n", "<leader>lt", function() LspToggle() end, "toggle lsp")
@@ -105,5 +105,4 @@ function X.set_default_on_buffer(client, bufnr)
 	end, "toggle lsp lines")
 end
 
-r.which_key("<leader>ls", "lsp servers")
 return X

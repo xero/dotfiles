@@ -1,6 +1,6 @@
 return {
 	"rbong/vim-flog",
-	verylazy = true,
+	event = "VeryLazy",
 	dependencies = {
 		"tpope/vim-fugitive",
 	},

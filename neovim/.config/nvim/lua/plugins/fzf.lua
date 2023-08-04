@@ -1,7 +1,7 @@
 return {
   'ibhagwan/fzf-lua',
 	event = "VeryLazy",
-  requires = { 'nvim-tree/nvim-web-devicons' },
+	dependencies = { 'nvim-tree/nvim-web-devicons' },
   keys = {
     { "<leader>/c",  function() require("fzf-lua").commands() end,        desc = "Search commands" },
     { "<leader>/C",  function() require("fzf-lua").command_history() end, desc = "Search command history" },

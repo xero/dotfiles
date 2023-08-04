@@ -1,6 +1,6 @@
 return {
 	"rktjmp/lush.nvim",
-	verylazy = true,
+	lazy = true,
 	dependencies = {
 		"rktjmp/shipwright.nvim",
 	},

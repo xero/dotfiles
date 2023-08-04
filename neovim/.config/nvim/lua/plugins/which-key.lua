@@ -35,7 +35,7 @@ return {
 		local groups = {
 			b = { name = "buffer" },
 			s = { name = "search" },
-			g = { name = "git" },
+			-- g = { name = "git" },
 			r = { name = "refactor" },
 			l = { name = "lsp" },
 			d = { name = "debug" },

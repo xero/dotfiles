@@ -9,6 +9,10 @@ return {
 		dashboard.section.terminal.height = 10
 		dashboard.section.terminal.opts.redraw = true
 		dashboard.section.terminal.opts.window_config.zindex = 1
+		-- offset placment for screenshots
+		-- dashboard.section.terminal.opts.window_config.col = math.floor((vim.o.columns - 70) / 2 + 20)
+		-- vim.cmd [[autocmd! User AlphaClosed]]
+
 		dashboard.section.buttons.val = {
 			dashboard.button('i', '    new file', ':ene <BAR> startinsert<CR>'),
 			dashboard.button('o', '    old files', ':Telescope oldfiles<CR>'),
@@ -17,6 +21,7 @@ return {
 			dashboard.button('h', '    browse git', ':Flog<CR>'),
 			dashboard.button('l', '󰒲    lazy', ':Lazy<CR>'),
 			dashboard.button('m', '󱌣    mason', ':Mason<CR>'),
+			dashboard.button('p', '󰄉    profile', ':Lazy profile<CR>'),
 			dashboard.button('q', '󰭿    quit', ':qa<CR>'),
 		}
 		for _, button in ipairs(dashboard.section.buttons.val) do

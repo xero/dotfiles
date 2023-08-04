@@ -1,7 +1,7 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
-  requires = { 'nvim-tree/nvim-web-devicons' },
+	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	init = function()
 		-- disable until lualine loads
 		vim.opt.laststatus = 0
