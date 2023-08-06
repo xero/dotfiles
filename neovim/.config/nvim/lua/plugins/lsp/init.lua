@@ -85,7 +85,7 @@ return {
 			bashls = require("plugins.lsp.servers.bashls")(on_attach),
 			cssls = {},
 			dockerls = {},
-			eslint = require("plugins.lsp.servers.eslint")(on_attach),
+			-- eslint = require("plugins.lsp.servers.eslint")(on_attach),
 			html = {},
 			jsonls = {},
 			lua_ls = require("plugins.lsp.servers.luals")(on_attach),
@@ -93,7 +93,7 @@ return {
 			rust_analyzer = {},
 			terraformls = {},
 			tflint = {},
-			tsserver = {},
+			tsserver = require("plugins.lsp.servers.tsserver")(on_attach),
 			yamlls = {},
 		}
 

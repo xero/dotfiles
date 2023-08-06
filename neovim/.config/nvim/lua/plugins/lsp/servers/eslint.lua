@@ -9,8 +9,17 @@ return function(on_attach)
 			})
 		end,
 		cmd = { "vscode-eslint-language-server", "--stdio" },
-		filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact",
-			"typescript.tsx", "vue", "svelte", "astro", "js" },
+		filetypes = {
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript", "typescriptreact",
+			"typescript.tsx",
+			"vue",
+			"svelte",
+			"astro",
+			"js",
+		},
 		codeAction = {
 			disableRuleComment = {
 				enable = true,
