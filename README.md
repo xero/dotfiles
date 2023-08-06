@@ -153,6 +153,44 @@ it builds [mosh-server from this pr](https://github.com/mobile-shell/mosh/pull/1
 
 i use [xvfb](https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml) to create a headless xorg enviroment for the clipboard. you can then use tools like [xsel](https://linux.die.net/man/1/xsel) and [xclip](https://linux.die.net/man/1/xclip) to pipe `{in/out}` of it in the tty. i have a personal fork on clipmenu that uses [fzf](https://github.com/junegunn/fzf) and a an osc52 [yank script](https://github.com/xero/dotfiles/blob/main/bin/.local/bin/yank) to syncromize the x and ipad clipboards. there are other osc52 plugins for neovim and tmux included in these dotfiles to bring the whole thing together.
 
+here's an abbreviated aws ec2 launch template for my arm64 graviton instance:
+```
+{
+	"LaunchTemplateName": "debian11_dev_box",
+	"LaunchTemplateData": {
+		"ImageId": "ami-038e5cbebf3138c24",
+		"InstanceType": "c6g.medium",
+		"EbsOptimized": true,
+		"BlockDeviceMappings": [{
+			"DeviceName": "/dev/xvda",
+			"Ebs": {
+				"Encrypted": true,
+				"Iops": 8000,
+				"VolumeSize": 80,
+				"VolumeType": "gp3",
+				"Throughput": 125
+			}
+		}],
+		"NetworkInterfaces": [{
+			"SecuityGroups": {
+				"IpPermissions": [
+					{ "protocol": "tcp", "port": 0 },
+					{ "protocol": "tcp", "port": 1723 },
+					{ "protocol": "tcp", "port": 22 },
+					{ "protocol": "tcp", "port": 443 },
+					{ "protocol": "tcp", "port": 60806 },
+					{ "protocol": "tcp", "port": 80 },
+					{ "protocol": "udp", "port": 1701 },
+					{ "protocol": "udp", "port": 4500 },
+					{ "protocol": "udp", "port": 500 },
+					{ "protocol": "udp", "port": 61000 }
+				]
+			}
+		}]
+	}
+}
+```
+
 # shell
 
 i prefer a minimal setup, and choose to interact with my operating system via the so-called "terminal" or "command line", (read that quoting sarcastically). with the web browser and video player among the noted outliers. in my opinion, using your computer should be a very personal experience. your colors, aliases, key-bindings, etc meticulously crafted to your exacting specifications. so for me, the unix shell is the most important part of my environment.
@@ -176,7 +214,7 @@ i'm all about living a *comfy* and clean digital life, so that means a tidy and 
 │   ├── cache/ $XDG_CACHE_HOME  --> runtime files
 │   ├── docs/  ~docs            --> my documents
 │   ├── lib/   $pkgManger_HOME  --> app libraries
-│   ├── share/ $XDG_SHARE_HOME  --> shared app setting
+│   ├── share/ $XDG_DATA_HOME   --> shared app files
 │   ├── src/
 │   │   ├── dotfiles/   --> this repo
 │   │   └── other_code/
@@ -217,12 +255,20 @@ my neovim setup is written in [lua](https://neovim.io/doc/user/lua-guide.html), 
 ```
 ~/.config/nvim
 ├── lua/
-│   ├── utils/       --> helper functions
+│   ├── utils/        --> shared helper functions
 │   ├── plugins/
-│   │   ├── alpha.lua
-│   │   ├── cmp.lua  --> each plugin has it's own config
+│   │   ├── alpha.lua --> each plugin has it's own config
+│   │   ├── cmp.lua
+│   │   ├── lsp/
+│   │   │   ├── init.lua   --> main lsp setup logic
+│   │   │   ├── remaps.lua --> lsp key-bindings
+│   │   │   └── servers/
+│   │   │       ├── bashls.lua --> language server specific configs
+│   │   │       ├── luals.lua
+│   │   │       └── etc...
+│   │   ├── mason.lua
 │   │   └── etc...
-│   ├── ui.lua       --> ui specific options
+│   ├── ui.lua       --> ui related options
 │   ├── commands.lua --> custom commands and key-bindings
 │   ├── general.lua  --> general settings
 │   └── plugins.lua  --> lazy.nvim entrypoint
