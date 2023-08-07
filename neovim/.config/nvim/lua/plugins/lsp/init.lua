@@ -2,9 +2,8 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"folke/neodev.nvim",
-		"nvim-lua/lsp-status.nvim",
-		"jose-elias-alvarez/typescript.nvim",
 		"b0o/schemastore.nvim",
+		"nvim-lua/lsp-status.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	},
@@ -24,8 +23,6 @@ return {
 		vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
 
 		local function on_attach(client, bufnr)
-			-- print(client.name)
-			-- require("utils.functions").tprint_keys(client.server_capabilities)
 			remaps.set_default_on_buffer(client, bufnr)
 
 			if presentLspStatus then
@@ -35,19 +32,13 @@ return {
 			if presentLspSignature then
 				lsp_signature.on_attach({ floating_window = false, timer_interval = 500 })
 			end
-
-			if client.name == "tsserver" then
-				-- let prettier format
-				client.server_capabilities.document_formatting = false
-				client.server_capabilities.documentFormattingProvider = false
-			end
 		end
 
 		local signs = {
-			{ name = "DiagnosticSignError", text = icons.diagnostics.Error },
-			{ name = "DiagnosticSignWarn",  text = icons.diagnostics.Warn },
-			{ name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
-			{ name = "DiagnosticSignInfo",  text = icons.diagnostics.Info },
+			{ name = "DiagnosticSignError", text = icons.diagnostics.error },
+			{ name = "DiagnosticSignWarn",  text = icons.diagnostics.warning},
+			{ name = "DiagnosticSignHint",  text = icons.diagnostics.hint },
+			{ name = "DiagnosticSignInfo",  text = icons.diagnostics.information },
 		}
 
 		for _, sign in ipairs(signs) do
@@ -58,7 +49,6 @@ return {
 			virtual_text = true,
 			-- enables lsp_lines but we want to start disabled
 			virtual_lines = false,
-			-- show signs
 			signs = {
 				active = signs,
 			},
@@ -93,18 +83,18 @@ return {
 
 		local servers = {
 			bashls = require("plugins.lsp.servers.bashls")(on_attach),
-			clangd = {},
 			cssls = {},
 			dockerls = {},
-			eslint = require("plugins.lsp.servers.eslint")(on_attach),
-			gopls = {},
-			graphql = {},
+			-- eslint = require("plugins.lsp.servers.eslint")(on_attach),
 			html = {},
-			jsonls = require("plugins.lsp.servers.jsonls")(capabilities),
+			jsonls = {},
 			lua_ls = require("plugins.lsp.servers.luals")(on_attach),
+			pylsp = {},
 			rust_analyzer = {},
 			terraformls = {},
-			yamlls = require("plugins.lsp.servers.yamlls")(capabilities),
+			tflint = {},
+			tsserver = require("plugins.lsp.servers.tsserver")(on_attach),
+			yamlls = {},
 		}
 
 		local default_lsp_config = {
@@ -120,33 +110,18 @@ return {
 		for server_name, _ in pairs(servers) do
 			table.insert(server_names, server_name)
 		end
-		table.insert(server_names, "tsserver")
 
 		local present_mason, mason = pcall(require, "mason-lspconfig")
 		if present_mason then
 			mason.setup({ ensure_installed = server_names })
 		end
 
-		local present_typescript, typescript = pcall(require, "typescript")
-
-		if present_typescript then
-			typescript.setup({
-				server = {
-					on_attach = function(client, bufnr)
-						on_attach(client, bufnr)
-					end,
-				},
-			})
-		end
-
 		for server_name, server_config in pairs(servers) do
 			local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_config)
-
 			lspconfig[server_name].setup(merged_config)
 
 			if server_name == "rust_analyzer" then
 				local present_rust_tools, rust_tools = pcall(require, "rust-tools")
-
 				if present_rust_tools then
 					rust_tools.setup({ server = merged_config })
 				end

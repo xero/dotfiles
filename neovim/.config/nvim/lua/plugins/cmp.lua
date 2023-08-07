@@ -10,7 +10,6 @@ return {
 		"hrsh7th/cmp-nvim-lua",
 		"windwp/nvim-autopairs",
 		"onsails/lspkind-nvim",
-		"roobert/tailwindcss-colorizer-cmp.nvim",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -35,6 +34,8 @@ return {
 		end
 		lsp_kind.init()
 		cmp.setup({
+			enabled = true,
+			preselect = cmp.PreselectMode.None,
 			window = {
 				completion = cmp.config.window.bordered({
 					winhighlight = "Normal:Normal,FloatBorder:LspBorderBG,CursorLine:PmenuSel,Search:None",
@@ -64,12 +65,6 @@ return {
 				["<down>"] = cmp_next,
 				["<C-p>"] = cmp_prev,
 				["<up>"] = cmp_prev,
-			},
-			formatting = {
-				format = function(entry, vim_item)
-					vim_item.kind = lsp_kind.presets.default[vim_item.kind] .. " "
-					return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
-				end,
 			},
 			sources = {
 				{ name = "nvim_lsp_signature_help", group_index = 1 },

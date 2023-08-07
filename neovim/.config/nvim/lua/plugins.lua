@@ -23,14 +23,7 @@ end
 -- install plugins
 lazy.setup({
 	spec = {
-		{
-			"xero/miasma.nvim",
-			lazy = false,
-			priority = 1000,
-			config = function()
-				vim.cmd("colorscheme miasma")
-			end,
-		},
+		require("plugins.miasma"),
 		require("plugins.osc52-yank"),
 		require("plugins.git"),
 		require("plugins.tmux"),
@@ -43,11 +36,11 @@ lazy.setup({
 		require("plugins.treesitter"),
 		require("plugins.guess-indent"),
 		require("plugins.mason"),
-		require("plugins.mason-dap"),
-		require("plugins.mason-null-ls"),
-		require("plugins.null-ls"),
+		-- require("plugins.mason-dap"),
 		require("plugins.lsp"),
 		require("plugins.cmp"),
+		require("plugins.trouble"),
+		require("plugins.comments"),
 		require("plugins.colorizer"),
 		require("plugins.tint"),
 		require("plugins.ansi"),
@@ -57,14 +50,14 @@ lazy.setup({
 		require("plugins.devicons"),
 		require("plugins.matchparen"),
 		require("plugins.lush"),
+		require("plugins.alpha"),
+		--require("plugins.copilot"),
 		--{ "xero/sourcerer.vim" },
 		--{ 'xero/vim-noctu' },
 		--{ 'mattn/vim-sl' }, -- train
-		--require("plugins.autopairs"),
-		--require("plugins.copilot"),
 	},
 	dev = {
-		path = "~src",
+		path = "~/.local/src",
 	},
 	lockfile = vim.fn.stdpath("config") .. "/lua/plugins/lazy-lock.json",
 	ui = {
@@ -81,7 +74,6 @@ lazy.setup({
 		rtp = {
 			disabled_plugins = {
 				"gzip",
-				"matchit",
 				"matchparen",
 				"netrwPlugin",
 				"tarPlugin",

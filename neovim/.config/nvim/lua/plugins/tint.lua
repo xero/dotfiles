@@ -1,5 +1,6 @@
 return {
 	"levouh/tint.nvim",
+	event = "VeryLazy",
 	config = function()
 		local tint = require("tint")
 		local transforms = require("tint.transforms")
@@ -9,7 +10,14 @@ return {
 				transforms.saturate(0.65),
 			},
 			tint_background_colors = true,
-			highlight_ignore_patterns = { "SignColumn", "LineNr", "CursorLine", "WinSeparator" },
+			highlight_ignore_patterns = {
+				"SignColumn",
+				"LineNr",
+				"CursorLine",
+				"WinSeparator",
+				"VertSplit",
+				"StatusLineNC",
+			},
 		})
 		vim.api.nvim_create_autocmd("FocusGained", {
 			callback = function()

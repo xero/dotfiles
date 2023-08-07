@@ -25,8 +25,6 @@
 
 FULL=━
 EMPTY=┄
-EOL=▒
-SIZE=7
 C0="#000000"
 C1="#222222"
 C2="#8FBCBB"
@@ -37,77 +35,80 @@ C6="#C9A554"
 C7="#78824b"
 C8="#B36D43"
 
-draw(){
+draw() {
 	perc=$1
-	SIZE=$2
-	inc=$(( perc * SIZE / 100 ))
+	size=$2
+	inc=$((perc * size / 100))
 	out=
-	for v in $(seq 0 $(( SIZE - 1 ))); do
-		test "$v" -le "$inc"   \
-		&& out="${out}#[fg=$C1]${FULL}" \
-		|| out="${out}#[fg=$C6]${EMPTY}"
+	for v in $(seq 0 $((size - 1))); do
+		test "$v" -le "$inc" &&
+			out="${out}#[fg=$C1]${FULL}" ||
+			out="${out}#[fg=$C6]${EMPTY}"
 	done
 	echo "$out"
 }
-temp(){
-	builtin type -P "sensors" &> /dev/null || exit
-
+temp() {
+	builtin type -P "sensors" &>/dev/null || exit
 	t=$(sensors | awk '/Core\ 0/ {gsub(/\+/,"",$3); gsub(/\..+/,"",$3)    ; print $3}')
 	tc=$C0
 	if [ $((t <= 50)) ]; then
-			tc=$C2
-		elif [ $((t >= 75)) ]; then
-			tc=$C3
-		fi
+		tc=$C2
+	elif [ $((t >= 75)) ]; then
+		tc=$C3
+	fi
 	echo " #[fg=$tc]$t°c"
 }
-bat(){
+bat() {
 	BATPATH=/sys/class/power_supply/BAT0
 	STATUS=$BATPATH/status
 	BAT_FULL=$BATPATH/charge_full
 	BAT_NOW=$BATPATH/charge_now
 	bf=$(cat $BAT_FULL)
 	bn=$(cat $BAT_NOW)
-	bp=$(( 100 * bn / bf ))
+	bp=$((100 * bn / bf))
 	stat=$(cat $STATUS)
 	case $stat in
-		Full)
-			st="="
-			;;
-		Discharging)
-			st="-"
-			;;
-		Charging)
-			st="+"
-			;;
+	Full)
+		st="="
+		;;
+	Discharging)
+		st="-"
+		;;
+	Charging)
+		st="+"
+		;;
 	esac
-	test "$bp" -lt 10  \
-		&& bc=$C3 \
-		|| bc=$C1
+	test "$bp" -lt 10 &&
+		bc=$C3 ||
+		bc=$C1
 	echo "$st#[fg=$bc]$bp""%"
 }
-cpu(){
+cpu() {
 	CPU_USE=$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}')
 	printf "%.0f" "$CPU_USE"
 }
-ram(){
+ram() {
 	free | awk '/Mem:/ {print int($3/$2 * 100.0)}'
 }
-vpn(){
+disk() {
+	df -h | grep '/$' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//'
+}
+vpn() {
 	pgrep 'vpn/|openvpn/|openconnect' >/dev/null 2>&1 && echo "#[bg=$C8]#[fg=$C7]▓▒░#[fg=0]" || echo "#[bg=$C8]#[fg=$C7]▓▒░#[fg=0]"
 }
-clock(){
+clock() {
 	mtime=$(date +'%H:%M')
 	myear=$(date +'%Y-%m-')
 	mday=$(date +'%d')
-	echo "#[fg=$C5]#[bg=$C4] $mtime #[fg=$C6]$myear#[fg=$C5]$mday #[fg=$C6]$EOL"
+	echo "#[fg=$C5]#[bg=$C4] $mtime #[fg=$C6]$myear#[fg=$C5]$mday #[bg=0]#[fg=$C4]▒░"
 }
-front(){
+front() {
 	echo "#[bg=$C7]#[fg=0]▓▒░"
 }
-separator(){
+separator() {
 	echo "#[bg=$C9]#[fg=$C4]░▒#[bg=$C9]#[fg=$C9]▓"
 }
 CPU_INFO=$(cpu)
 RAM_INFO=$(ram)
-echo "$(front)""$(temp)" "#[fg=0] ${RAM_INFO}%" "$(draw "$RAM_INFO" 5)" "#[fg=0] ${CPU_INFO}%" "$(draw "$CPU_INFO" 5)" "$(vpn)" "$(separator)""$(clock)"
+DISK_INFO=$(disk)
+echo "$(front)" "#[fg=0] ${RAM_INFO}%" "$(draw "$RAM_INFO" 4)" "#[fg=0] ${CPU_INFO}%" "$(draw "$CPU_INFO" 4)" "#[fg=0]󰽄 ${DISK_INFO}%" "$(draw "${DISK_INFO}" 4)" "$(vpn)" "$(separator)""$(clock)"

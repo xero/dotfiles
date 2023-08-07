@@ -1,9 +1,10 @@
 return {
 	diagnostics = {
-		Error = " ",
-		Warn = " ",
-		Hint = " ",
-		Info = " ",
+		error = " ",
+		hint = " ",
+		information = " ",
+		other = " ",
+		warning = " ",
 	},
 	git = {
 		Added = " ",
@@ -47,5 +48,22 @@ return {
 			"★",
 			"‒",
 		},
+	},
+	mason = {
+		package_installed = "󱄲",
+		package_pending = "󱄰",
+		package_uninstalled = "󱄯",
+	},
+	borders = {
+		dashed = { "┄", "┊", "┄", "┊", "╭", "╮", "╯", "╰", },
+		double = { "═", "║", "═", "║", "╔", "╗", "╝", "╚", },
+		single = { "─", "│", "─", "│", "╭", "╮", "╯", "╰", },
+		blocks = { "▀", "▐", "▄", "▌", "▛", "▜", "▟", "▙", },
+		blocky = { "▀", "▐", "▄", "▌", "▄", "▄", "▓", "▀", },
+	},
+	telescope = {
+		prompt = { "┄", "┊", "┄", "┊", "╭", "╮", "╯", "╰", },
+		results = { "┄", " ", "┄", "┊", "╭", "┄", "┄", "╰", },
+		preview = { "┄", "┊", "┄", "┊", "┄", "╮", "╯", "╰", },
 	},
 }

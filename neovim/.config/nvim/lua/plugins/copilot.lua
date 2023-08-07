@@ -2,15 +2,17 @@ return {
 	-- copilot
 	{
 		"zbirenbaum/copilot.lua",
+		verylazy = true,
 		cmd = "Copilot",
 		build = ":Copilot auth",
 		opts = {
-			suggestion = { enabled = true },
+			suggestion = { enabled = false },
 			panel = { enabled = false },
 			filetypes = {
 				markdown = true,
 				help = true,
 				lua = true,
+				bash = true,
 			},
 		},
 	},
@@ -20,6 +22,7 @@ return {
 		dependencies = {
 			{
 				"zbirenbaum/copilot-cmp",
+				verylazy = true,
 				dependencies = "copilot.lua",
 				opts = {},
 				config = function(_, opts)

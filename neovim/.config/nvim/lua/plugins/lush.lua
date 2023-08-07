@@ -1,9 +1,9 @@
 return {
 	"rktjmp/lush.nvim",
+	lazy = true,
 	dependencies = {
 		"rktjmp/shipwright.nvim",
 	},
-	verylazy = true,
 	cmd = {
 		"Lushify",
 		"Shipwright",

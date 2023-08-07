@@ -1,7 +1,7 @@
 return {
-	'powerman/vim-plugin-AnsiEsc',
-	verylazy = true,
+	"powerman/vim-plugin-AnsiEsc",
+	lazy = true,
 	cmd = {
-		'AnsiEsc',
+		"AnsiEsc",
 	},
 }

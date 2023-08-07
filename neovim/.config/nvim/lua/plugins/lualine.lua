@@ -1,11 +1,13 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
+	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	init = function()
 		-- disable until lualine loads
 		vim.opt.laststatus = 0
 	end,
 	opts = function()
+		-- miasma colors
 		local colors = {
 			bg = "#222222",
 			black = "#1c1c1c",
@@ -48,10 +50,10 @@ return {
 			S = colors.orange,
 			[""] = colors.orange,
 			ic = colors.yellow,
-			R = colors.violet,
-			Rv = colors.violet,
-			cv = colors.red,
-			ce = colors.red,
+			R = colors.yellow,
+			Rv = colors.yellow,
+			cv = colors.yellow,
+			ce = colors.yellow,
 			r = colors.cyan,
 			rm = colors.cyan,
 			["r?"] = colors.cyan,
@@ -112,13 +114,40 @@ return {
 			table.insert(config.inactive_sections.lualine_x, component)
 		end
 
+		-- dump object contents
+		local function dump(o)
+			if type(o) == 'table' then
+				local s = ''
+				for k, v in pairs(o) do
+					if type(k) ~= 'number' then k = '"' .. k .. '"' end
+					s = s .. dump(v) .. ','
+				end
+				return s
+			else
+				return tostring(o)
+			end
+		end
+
 		-- active left section
 		active_left({
-			"filetype",
-			cond = conditions.buffer_not_empty,
-			icon_only = true,
-			colored = false,
-			icon = { color = { fg = colors.white } },
+			function()
+				local icon
+				local ok, devicons = pcall(require, 'nvim-web-devicons')
+				if ok then
+					icon = devicons.get_icon(vim.fn.expand('%:t'))
+					if icon == nil then
+						icon = devicons.get_icon_by_filetype(vim.bo.filetype)
+					end
+				else
+					if vim.fn.exists('*WebDevIconsGetFileTypeSymbol') > 0 then
+						icon = vim.fn.WebDevIconsGetFileTypeSymbol()
+					end
+				end
+				if icon == nil then
+					icon = ''
+				end
+				return icon:gsub("%s+", "")
+			end,
 			color = function()
 				return { bg = mode_color[vim.fn.mode()], fg = colors.white }
 			end,
@@ -134,10 +163,10 @@ return {
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
 			symbols = {
-				modified = "»",
-				readonly = "",
-				unnamed = "",
-				newfile = "",
+				modified = "󰶻 ",
+				readonly = " ",
+				unnamed = " ",
+				newfile = " ",
 			},
 		})
 		active_left({
@@ -150,22 +179,17 @@ return {
 
 		-- inactive left section
 		inactive_left({
-			"filetype",
-			cond = conditions.buffer_not_empty,
-			icon_only = true,
-			colored = false,
-			icon = { color = { fg = colors.white } },
-			color = function()
-				return { bg = colors.black, fg = colors.grey }
+			function()
+				return ''
 			end,
+			cond = conditions.buffer_not_empty,
+			color = { bg = colors.black, fg = colors.grey },
 			padding = { left = 1, right = 1 },
 		})
 		inactive_left({
 			"filename",
 			cond = conditions.buffer_not_empty,
-			color = function()
-				return { bg = colors.black, fg = colors.grey }
-			end,
+			color = { bg = colors.black, fg = colors.grey },
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
 			symbols = {
@@ -177,25 +201,25 @@ return {
 		})
 
 		-- active right section
-		local clients = vim.lsp.get_active_clients()
-		if next(clients) ~= nil then
-			active_right({
-				function()
-					local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-					for _, client in ipairs(clients) do
-						local filetypes = client.config.filetypes
-						if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-							return client.name
-						end
+		active_right({
+			function()
+				local clients = vim.lsp.get_active_clients()
+				local clients_list = {}
+				for _, client in pairs(clients) do
+					if (not clients_list[client.name]) then
+						table.insert(clients_list, client.name)
 					end
-				end,
-				icon = " ",
-				color = { bg = colors.green, fg = colors.black },
-				padding = { left = 1, right = 1 },
-				cond = conditions.hide_in_width_first,
-				separator = { right = "▓▒░", left = "░▒▓" },
-			})
-		end
+				end
+				local lsp_lbl = dump(clients_list):gsub("(.*),", "%1")
+				return lsp_lbl:gsub(",", ", ")
+			end,
+			icon = " ",
+			color = { bg = colors.green, fg = colors.black },
+			padding = { left = 1, right = 1 },
+			cond = conditions.hide_in_width_first,
+			separator = { right = "▓▒░", left = "░▒▓" },
+		})
+
 		active_right({
 			"diagnostics",
 			sources = { "nvim_diagnostic" },

@@ -1,15 +1,10 @@
 # editor completions
-"$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = "https://starship.rs/config-schema.json"
 
-# Inserts a blank line between shell prompts
+# append newlines to command outputs
 add_newline = true
 
-#Use custom format
-#format = '''
-#[┌───────────────────>](bold green)
-#[│](bold green)$directory$rust$package
-#[└─>](bold green) '''
-
+# custom format
 format = """
 $shlvl\
 $singularity\
@@ -83,3 +78,17 @@ $jobs\
 $status\
 $character"""
 
+# prompt chars
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+vimcmd_replace_one_symbol = "[❮](bold yellow)"
+vimcmd_replace_symbol = "[❮](bold yellow)"
+vimcmd_visual_symbol = "[❮](bold cyan)"
+
+[git_status]
+diverged = '↑$ahead_count↓$behind_count'
+conflicted = '$count'
+ahead = "⇡${count}"
+behind = "⇣${count}"

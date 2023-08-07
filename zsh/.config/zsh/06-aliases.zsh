@@ -13,11 +13,25 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 #
+#█▓▒░ shorter octal list
+function l() {
+		sudo ls -gGAhF --color=always "$@" \
+		| sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/rwt/7/g' \
+		| sed -e 's/^\(....\) [[:digit:]] /\1 /'
+}
+
+#█▓▒░ tmux
+function t() {
+	X=$#
+	[[ $X -eq 0 ]] || X=X
+	tmux new-session -A -s $X
+	tmux set-environment LC_ALL 'en_US.UTF-8'
+	tmux set-environment LANG 'en_US.UTF-8'
+}
+
 #█▓▒░ aliases
 alias c="clear"
-alias l="ls -hF --color=auto"
-alias ll="ls -lahF --color=auto"
-alias lll="ls -lahF "$@" | sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/^[d-]//g'"
+alias ll="ls -lahF --color=always"
 alias e="$EDITOR"
 alias se="sudo $EDITOR"
 alias ec='nvim --cmd ":lua vim.g.noplugins=1" ' #nvim --clean
@@ -26,7 +40,9 @@ alias y="yank"
 alias k="vpnns -- kubectl"
 alias kx="kubectx"
 alias k9s="vpnns -- k9s"
-alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e";echo "╙────────────────────────────────────── ─ ─ "; df -h;'
+alias tgp="vpnns -- terragrunt plan"
+alias tga="vpnns -- terragrunt apply"
+alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e";echo "╙────────────────────────────────────── ─ ─ "; df -h;echo "╓───── s w a p s "; echo "╙────────────────────────────────────── ─ ─ "; swapon --show'
 
 #lazy
 alias "cd.."="cd ../"
@@ -36,9 +52,11 @@ alias ZZ="exit"
 
 #git
 alias ga="git add"
+alias gb="git branch"
 alias gc="git clone"
 alias gcm="git commit -m"
 alias gco="git checkout"
+alias gcob="git checkout -b"
 alias gcs="git commit -S -m"
 alias gd="git difftool"
 alias gdc="git difftool --cached"
@@ -50,13 +68,16 @@ alias gp="git push"
 alias gpr="gh pr create"
 alias gr="git rebase -i"
 alias gs="git status -sb"
-alias gu="git reset HEAD -- "
+alias gt="git tag"
+alias gu="git reset @ --"
+alias gx="git reset --hard @"
 
 #overrides
+alias sudo="sudo "  # expand aliases with sudo
 alias mkdir="mkdir -p"
 alias cp="cp -r"
 alias scp="scp -r"
-alias vimdiff="nvim -d -u ~/.vimrc"
+alias vimdiff="nvim -d --cmd ':lua vim.g.noplugins=1'"
 alias apt="sudo apt"
 alias doc="sudo docker"
 alias docker="sudo docker"
@@ -72,6 +93,8 @@ alias curld="curl -A \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML
 alias curlm="curl -A \"Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.12 Mobile/10B329 Safari/8536.25\""
 
 #security
+alias rip="sudo srm -dvrl"
+alias ripfull="sudo srm -dlv"
 alias checkrootkits="sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check"
 alias checkvirus="clamscan --recursive=yes --infected /home"
 alias updateantivirus="sudo freshclam"
@@ -124,7 +147,6 @@ function 1pwfile() {
 function 1pweditfile() {
 	1pwcheck "$1" && op item edit --account "$1" "$2" "files.[file]=$3"
 }
-# get item uuid from 1password share urls
 function 1pwurl() {
 	echo "$1" | sed 's/^.*i=//;s/\&.*$//'
 }
@@ -133,15 +155,6 @@ function 1pwurl() {
 function docclean() {
 	sudo docker rm $(sudo docker ps -a -q)
 	sudo docker rmi $(sudo docker images -q)
-}
-
-#█▓▒░ tmux
-function t() {
-	X=$#
-	[[ $X -eq 0 ]] || X=X
-	tmux new-session -A -s $X
-	tmux set-environment LC_ALL 'en_US.UTF-8'
-	tmux set-environment LANG 'en_US.UTF-8'
 }
 
 #█▓▒░ ascii
@@ -209,36 +222,4 @@ function greynoise() {
 	[[ "$IP" =~ "([0-9]{1,3}[\.]){3}[0-9]{1,3}" ]] || IP=`dig +short ${IP}`
 	curl -sX GET "https://api.greynoise.io/v3/community/${IP}" -H "Accept: application/json" -H "key: ${GREY_TOKEN}"
 }
-function dnsdumpster() {
-	TMP=`mktemp /tmp/dnsdumpXXX`
-	DNS="${1:-/dev/stdin}"
-	cat << EOF > $TMP
-#!env python
-from dnsdumpster.DNSDumpsterAPI import DNSDumpsterAPI
-domain = '$DNS'
-res = DNSDumpsterAPI().search(domain)
 
-print("\n╓───── domain: \n╙────────────────────────────────────── ─ ─")
-print(res['domain'])
-
-print("\n╓───── dns servers: \n╙────────────────────────────────────── ─ ─")
-for entry in res['dns_records']['dns']:
-    print(("{domain} ({ip})\n   {as} {provider} {country}".format(**entry)))
-
-print("\n╓───── mx records: \n╙────────────────────────────────────── ─ ─")
-for entry in res['dns_records']['mx']:
-    print(("{domain} ({ip})\n   {as} {provider} {country}".format(**entry)))
-
-print("\n╓───── host records: \n╙────────────────────────────────────── ─ ─")
-for entry in res['dns_records']['host']:
-    if entry['reverse_dns']:
-        print(("{domain} ({reverse_dns}) ({ip})\n   {as} {provider} {country}".format(**entry)))
-    else:
-        print(("{domain} ({ip})\n   {as} {provider} {country}".format(**entry)))
-
-print("\n╓───── txt records: \n╙────────────────────────────────────── ─ ─")
-for entry in res['dns_records']['txt']:
-    print(entry)
-EOF
-	chmod +x $TMP && python3 $TMP; rm $TMP
-}

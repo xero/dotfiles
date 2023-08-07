@@ -1,6 +1,7 @@
 #!/bin/bash
 # usage:
-# curl -L https://raw.githubusercontent.com/xero/dotfiles/vps/setup > x && chmod +x x && sudo ./x
+# curl -L https://raw.githubusercontent.com/xero/dotfiles/main/setup > x && chmod +x x && sudo ./x
+# make sure your edit the ARCH var for your architecture
 #
 # setup.sh by xero (http://git.io/.files)
 # a script to setup a new deb 11 vps with
@@ -24,9 +25,11 @@ export ME='x0'
 export X_UID=10806
 export PORT=60806
 export HOSTNAME='thirteen'
+export ARCH='arm' # arm, x86
 # script vars
 MYHOME="/home/$ME"
 ASME="sudo -u $ME"
+PKGARCH=$ARCH
 
 # helper functions
 function _echo() { printf "\n╓───── %s \n╙────────────────────────────────────── ─ ─ \n" "$1"; }
@@ -48,8 +51,26 @@ function account() {
 
 [ "$(id -u)" -ne 0 ] && { _echo "got root?" >&2; exit 1; }
 
+_echo "creating swap"
+dd if=/dev/zero of=/swapmeet bs=128M count=32
+chmod 600 /swapmeet
+mkswap /swapmeet
+swapon /swapmeet
+swapon -s
+echo "/swapmeet swap swap defaults 0 0" >> /etc/fstab
+echo "vm.swappiness=0" >> /etc/sysctl.conf
+sysctl vm.swappiness=0
+
 _echo "installing runtime deps"
-apt update && apt install -y git gpg bash curl
+apt update && apt install -y git gpg bash curl locales gnupg software-properties-common
+
+_echo "setting up locales and console"
+locale-gen "en_US.UTF-8"
+localectl set-locale en_US.UTF-8
+dpkg-reconfigure locales
+dpkg-reconfigure console-setup
+systemctl daemon-reload
+systemctl restart console-setup.service
 
 _echo "adding apt sources"
 # add backports
@@ -64,13 +85,24 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of
 	chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
 	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list >/dev/null
 
-#add 1pw
+# add 1pw
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg &&
 	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | tee /etc/apt/sources.list.d/1password.list >/dev/null
 mkdir -p /etc/debsig/policies/AC2D62742012EA22/ &&
 	curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
 mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 &&
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+
+# add hashicorp
+curl -sL https://apt.releases.hashicorp.com/gpg | \
+	gpg --dearmor | \
+	tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+gpg --no-default-keyring \
+	--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+	--fingerprint
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+	https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+	tee /etc/apt/sources.list.d/hashicorp.list
 
 # install all the things \o/
 _echo "installing packages"
@@ -79,6 +111,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	1password-cli \
 	apparmor \
 	apt-utils \
+	autoconf \
 	automake \
 	awscli \
 	bash \
@@ -88,6 +121,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	bsdutils \
 	build-essential \
 	ca-certificates \
+	clamav-base \
 	cmake \
 	cmatrix \
 	coreutils \
@@ -99,16 +133,20 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	diffutils \
 	dnsutils \
 	docker.io \
+	doxygen \
 	dpkg \
 	e2fsprogs \
+	eslint \
 	ethtool \
 	expect \
 	fail2ban \
 	findutils \
 	fzf \
+	g++ \
 	gawk \
 	gcc-10-base \
 	gcc-9-base \
+	gettext \
 	gh \
 	git \
 	golang \
@@ -128,10 +166,11 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	libncurses5-dev \
 	libprotobuf-dev \
 	libssl-dev \
+	libtool \
+	libtool-bin \
 	libutempter-dev \
 	libx11-dev \
 	libxfixes-dev \
-	locales \
 	lsb-base \
 	lua5.4 \
 	luajit \
@@ -142,9 +181,9 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	ncurses-base \
 	ncurses-bin \
 	ncurses-term \
-	neovim/prebuilt-mpr \
 	net-tools \
 	netbase \
+	ninja-build \
 	nmap \
 	ocproxy \
 	openconnect \
@@ -156,15 +195,17 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	perl-base \
 	pkg-config \
 	protobuf-compiler \
-	protobuf-compiler \
 	proxychains4 \
 	psmisc \
 	python3 \
 	python3-boto \
 	python3-pip \
+	python3-venv \
 	resolvconf \
 	ripgrep \
+	rkhunter \
 	rsyslog \
+	secure-delete \
 	shellcheck \
 	silversearcher-ag \
 	socat \
@@ -172,6 +213,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	sudo \
 	tar \
 	tcpdump \
+	terraform \
 	tmux/bullseye-backports \
 	toilet \
 	traceroute \
@@ -190,9 +232,6 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
 	zlib1g \
 	zlib1g-dev \
 	zsh \
-  eslint \
-  python3-venv \
-  shellcheck \
 	zsh-syntax-highlighting
 
 _echo "systemd housekeeping"
@@ -202,6 +241,7 @@ systemctl restart networking.service
 systemctl restart resolvconf.service
 systemctl stop docker.service
 systemctl stop containerd.service
+systemctl enable clamav-freshclam.service
 
 _echo "setting up timezone and hostname"
 timedatectl set-timezone America/New_York
@@ -209,14 +249,6 @@ hostname "$HOSTNAME"
 hostnamectl set-hostname "$HOSTNAME"
 sed -i '/^127\.0\.0\.1\s/s/$/ '"$HOSTNAME"'/' /etc/hosts
 sed -i '/^127\.0\.0\.1\s/s/$/ '"$HOSTNAME"'/' /etc/cloud/templates/hosts.debian.tmpl
-
-_echo "setting up locales and console"
-locale-gen "en_US.UTF-8"
-localectl set-locale en_US.UTF-8
-dpkg-reconfigure locales
-dpkg-reconfigure console-setup
-systemctl daemon-reload
-systemctl restart console-setup.service
 
 _echo "creating local user"
 adduser --uid "$X_UID" --shell "$(which zsh)" "$ME"
@@ -231,7 +263,11 @@ eval "$(op signin --account x0)"
 _echo "setting up key keychain"
 get x0 GH_TOKEN | $ASME gh auth login -p ssh --with-token
 mkdir -p $MYHOME/.ssh
-cp /home/admin/.ssh/authorized_keys $MYHOME/.ssh/authorized_keys
+if [[ -d /home/admin/.ssh ]]; then
+		cp /home/admin/.ssh/authorized_keys $MYHOME/.ssh/authorized_keys
+else
+		cp /root/.ssh/authorized_keys $MYHOME/.ssh/authorized_keys
+fi
 get x0 id_ed25519_github privateKey >$MYHOME/.ssh/id_ed25519
 get x0 id_ed25519_github publicKey >$MYHOME/.ssh/id_ed25519.pub
 ssh-keyscan -p 22 -H github.com gist.github.com >/root/.ssh/known_hosts
@@ -242,7 +278,100 @@ chmod 600 $MYHOME/.ssh/*
 
 # i do not want these dirs to be symlinks
 _echo "creating directory skeletons"
-$ASME mkdir -p $MYHOME/.{config,local} $MYHOME/.local/{src,bin,lib,state,share}
+$ASME mkdir -p \
+	$MYHOME/.{config,local} \
+	$MYHOME/.local/{bin,docs,cache,lib,share,src,state} \
+	$MYHOME/.local/state/zsh
+
+_echo "setting up rust"
+curl https://sh.rustup.rs -sSf | $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" sh -s -- -y --default-toolchain stable --profile default &&
+$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo install cargo-quickinstall &&
+$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall lolcat stylua
+
+_echo "setting up starship"
+if [[ "$ARCH" == "arm" ]]; then
+	curl -sS https://starship.rs/install.sh | sh
+else
+	$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall starship
+fi
+
+_echo "building neovim"
+if [[ "$ARCH" == "arm" ]]; then
+	$ASME git clone --depth=1 https://github.com/neovim/neovim.git -b stable $MYHOME/.local/src/neovim &&
+		cd $MYHOME/.local/src/neovim &&
+		make CMAKE_BUILD_TYPE=RelWithDebInfo &&
+		make install
+else
+	apt install -y neovim/prebuilt-mpr
+fi
+
+_echo "setting up dotfiles"
+$ASME git clone git@github.com:xero/dotfiles.git $MYHOME/.local/src/dotfiles &&
+	cd $MYHOME/.local/src/dotfiles &&
+	$ASME stow bin fun git gpg ssh tmux neovim zsh -t $MYHOME
+# tmux
+$ASME mkdir $MYHOME/.config/tmux/plugins &&
+	$ASME git clone --depth=1 https://github.com/tmux-plugins/tpm $MYHOME/.config/tmux/plugins/tpm &&
+	$ASME $MYHOME/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
+	cd $MYHOME/.config/tmux/plugins/tmux-thumbs &&
+		expect -c "spawn ./tmux-thumbs-install.sh; send \"\r1\r\"; expect complete" 1>/dev/null
+# nvim
+$ASME mkdir $MYHOME/.local/nvim &&
+  $ASME git clone --filter=blob:none --single-branch https://github.com/folke/lazy.nvim.git $MYHOME/.local/share/nvim/lazy
+$ASME nvim --headless "+Lazy! sync" +qa
+$ASME nvim --headless "+MasonInstallAll" +qa
+
+# shellcheck disable=SC2016
+echo 'export ZDOTDIR="$HOME"/.config/zsh' >>/etc/zsh/zshenv
+
+_echo "creating ~src, ~docs, and ~dotfiles aliases"
+useradd -g src -d $MYHOME/.local/src src
+useradd -d $MYHOME/.local/src/dotfiles dotfiles
+useradd -d $MYHOME/docs docs
+
+_echo "building mosh"
+# OSC52 clipboard support - https://github.com/mobile-shell/mosh/pull/1104
+$ASME git clone --depth=1 https://github.com/mgulick/mosh.git -b osc-52-clipboard-types $MYHOME/.local/src/mosh &&
+	cd $MYHOME/.local/src/mosh &&
+	./autogen.sh &&
+	./configure &&
+	make &&
+	make install
+
+_echo "building clipmenu"
+$ASME git clone --recurse-submodules git@github.com:xero/clipmenu.git $MYHOME/.local/src/clipmenu &&
+	cd $MYHOME/.local/src/clipmenu/clipnotify &&
+	make install && cd .. && make install &&
+	$ASME systemctl --user daemon-reload &&
+	$ASME systemctl --user restart clipmenud.service &>/dev/null
+
+_echo "setting up kubectx"
+$ASME git clone --depth=1 https://github.com/ahmetb/kubectx.git $MYHOME/.local/src/kubectx &&
+	mv $MYHOME/.local/src/kubectx/kubectx $MYHOME/.local/src/kubectx/kubens $MYHOME/.local/bin/ &&
+	chmod +x $MYHOME/.local/bin/kubens $MYHOME/.local/bin/kubectx
+
+_echo "setting up k9s"
+[[ "$ARCH" == "arm" ]] && PKGARCH="arm64" || PKGARCH="amd64"
+$ASME curl -L "https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_${PKGARCH}.tar.gz" -o $MYHOME/.local/src/k9s.tar.gz &&
+	tar xzf $MYHOME/.local/src/k9s.tar.gz -C $MYHOME/.local/bin/ k9s &&
+	chmod +x $MYHOME/.local/bin/k9s &&
+	rm $MYHOME/.local/src/k9s.tar.gz
+
+echo "updating the  aws cli to v2"
+[[ "$ARCH" == "arm" ]] && PKGARCH="aarch64" || PKGARCH="x86_64"
+curl -L "https://awscli.amazonaws.com/awscli-exe-linux-${PKGARCH}.zip" -o /tmp/awscliv2.zip &&
+	cd /tmp && unzip awscliv2.zip &&
+	./aws/install --bin-dir /usr/bin --install-dir /usr/local/aws-cli --update &&
+	rm /tmp/awscliv2.zip
+
+_echo "setting up node with nave"
+$ASME mkdir -p $MYHOME/.config/node
+curl -L https://raw.githubusercontent.com/isaacs/nave/main/nave.sh >$MYHOME/.local/bin/nave &&
+	chmod +x $MYHOME/.local/bin/nave &&
+	NAVE_DIR="$MYHOME/.local/lib/nodejs" $MYHOME/.local/bin/nave usemain lts &&
+	$ASME npm i -g \
+		neovim \
+		sofancy
 
 _echo "setting up python + pip"
 $ASME pip3 -V
@@ -260,76 +389,7 @@ $ASME pip3 install --no-warn-script-location \
 	pgcli \
 	six \
 	urllib3 \
-	wcwidth \
-	yamllint
-
-_echo "setting up rust"
-curl https://sh.rustup.rs -sSf | $ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" sh -s -- -y --default-toolchain stable --profile default &&
-$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo install cargo-quickinstall &&
-$ASME CARGO_HOME="$MYHOME/.local/lib/cargo" RUSTUP_HOME="$MYHOME/.local/lib/rustup" $MYHOME/.local/lib/cargo/bin/cargo quickinstall starship lolcat stylua bottom
-
-_echo "setting up dotfiles"
-$ASME git clone git@github.com:xero/dotfiles.git -b vps $MYHOME/.local/src/dotfiles &&
-	cd $MYHOME/.local/src/dotfiles &&
-	$ASME stow bin fun git gpg ssh tmux vim zsh -t $MYHOME
-# tmux
-$ASME mkdir $MYHOME/.config/tmux/plugins &&
-	$ASME git clone --depth=1 https://github.com/tmux-plugins/tpm $MYHOME/.config/tmux/plugins/tpm &&
-	$ASME $MYHOME/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
-	cd $MYHOME/.config/tmux/plugins/tmux-thumbs &&
-		expect -c "spawn ./tmux-thumbs-install.sh; send \"\r2\r\"; expect complete" 1>/dev/null
-# nvim
-$ASME mkdir $MYHOME/.local/nvim &&
-  $ASME git clone --filter=blob:none --single-branch https://github.com/folke/lazy.nvim.git $MYHOME/.local/share/nvim/lazy
-$ASME nvim --headless "+Lazy! sync" +qa
-$ASME nvim --headless "+MasonUpdate" +qa
-
-# shellcheck disable=SC2016
-echo 'export ZDOTDIR="$HOME"/.config/zsh' >>/etc/zsh/zshenv
-
-_echo "creating ~src and ~dotfiles aliases"
-useradd -g src -d $MYHOME/.local/src src
-useradd -d $MYHOME/.local/src/dotfiles dotfiles
-
-_echo "setting up mosh"
-# OSC52 clipboard support - https://github.com/mobile-shell/mosh/pull/1104
-$ASME git clone --depth=1 https://github.com/mgulick/mosh.git -b osc-52-clipboard-types $MYHOME/.local/src/mosh &&
-	cd $MYHOME/.local/src/mosh &&
-	./autogen.sh &&
-	./configure &&
-	make &&
-	make install
-
-_echo "setting up clipmenu"
-$ASME git clone --recurse-submodules git@github.com:xero/clipmenu.git $MYHOME/.local/src/clipmenu &&
-	cd $MYHOME/.local/src/clipmenu/clipnotify &&
-	make install && cd .. && make install &&
-	$ASME systemctl --user daemon-reload &&
-	$ASME systemctl --user restart clipmenud.service &>/dev/null
-
-_echo "setting up kubectx"
-$ASME git clone --depth=1 https://github.com/ahmetb/kubectx.git $MYHOME/.local/src/kubectx &&
-	mv $MYHOME/.local/src/kubectx/kubectx $MYHOME/.local/src/kubectx/kubens $MYHOME/.local/bin/ &&
-	chmod +x $MYHOME/.local/bin/kubens $MYHOME/.local/bin/kubectx
-
-_echo "setting up k9s"
-$ASME curl -L https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_amd64.tar.gz -o $MYHOME/.local/src/k9s.tar.gz &&
-	tar xzf $MYHOME/.local/src/k9s.tar.gz -C $MYHOME/.local/bin/ k9s &&
-	chmod +x $MYHOME/.local/bin/k9s &&
-	rm $MYHOME/.local/src/k9s.tar.gz
-
-echo "updating the  aws cli to v2"
-curl -L https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o /tmp/awscliv2.zip &&
-	cd /tmp && unzip awscliv2.zip &&
-	./aws/install --bin-dir /usr/bin --install-dir /usr/local/aws-cli --update &&
-	rm /tmp/awscliv2.zip
-
-_echo "setting up node with nave"
-$ASME mkdir -p $MYHOME/.config/node
-curl -L https://raw.githubusercontent.com/isaacs/nave/main/nave.sh >$MYHOME/.local/bin/nave &&
-	chmod +x $MYHOME/.local/bin/nave &&
-	NAVE_DIR="$MYHOME/.local/lib/nodejs" $MYHOME/.local/bin/nave usemain lts &&
-	$ASME npm i -g neovim @fsouza/prettierd bash-language-server
+	wcwidth
 
 _echo "setting up ascii/ansi art tools"
 rm -rf /usr/share/figlet/
@@ -420,7 +480,6 @@ chmod +x /etc/update-motd.d/00-banner
 # run ssh on a non-standard port
 _echo "setting up ssh"
 echo "Port $PORT" >>/etc/ssh/sshd_config
-sed -i "s!\t22/tcp!\t$PORT/tcp!" /etc/services
 systemctl restart ssh.service
 systemctl restart sshd
 
@@ -433,12 +492,13 @@ getfile x0 keys runme runme >$MYHOME/runme
 op signout --account x0 --forget
 $ASME rm $MYHOME/.profile $MYHOME/.bash*
 mv $MYHOME/go $MYHOME/.local/lib/
+mv $MYHOME/.cache $MYHOME/cache
 chmod +x $MYHOME/runme
 chown -R $ME:$ME /home/$ME
 
 _echo "removing default user"
-userdel -rf admin &>/dev/null
-rm /etc/sudoers.d/90-cloud-init-users
+userdel -rf admin &>/dev/null &&
+  rm /etc/sudoers.d/90-cloud-init-users
 
 _echo "setup complete. rebooting the vps. reconnect as yourself via mosh"
 IP=$(curl -sL icanhazip.com)
@@ -446,5 +506,5 @@ echo "$HOSTNAME: $ME@$IP:$PORT"
 echo "mosh location: $(which mosh-server)"
 
 # self destruct
-shred -u "$0" &>/dev/null
+srm -dvrl "$0" &>/dev/null
 systemctl reboot

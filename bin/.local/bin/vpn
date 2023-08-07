@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2086
 #   _______._____.__________._________
 #   \_    (|     /   ._     \         \
 #     \    l    /    |/     /  /      /
@@ -11,12 +12,12 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
-#█▓▒░  dont run as root
+# dont run as root
 [[ "$(id -u)" -eq 0	]] && { echo "just be yourself"; exit 0; }
 
 usage() {
 	me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
-cat <<x0
+	cat <<x0
  _______._____.__________._________
  \\_    (|     /   ._     \\         \\
    \\    l    /    |/     /  /      /
@@ -32,7 +33,6 @@ cat <<x0
 x0
 	exit 0
 }
-
 function get_login() {
 	pass=$(op item get "$1" --fields password)
 	mfa=$(op item get "$1" --otp)
@@ -41,7 +41,7 @@ function get_login() {
 function get_user() {
 	user=$(op item get "$1" --fields email)
 	[[ -z "$user"	]] && echo "failed to get user, op signin?" && exit 1
-	[[ $user =~ @	]] && user=$(echo "$user" | sed 's/@.*//')
+	[[ $user =~ @	]] && user=${user//@.*//}
 	echo "$user"
 }
 function connect() {
@@ -57,21 +57,22 @@ function connect() {
 	echo "${login}" | /usr/sbin/openconnect \
 		-b -u "${user}" \
 		--passwd-on-stdin \
-		--protocol=${protocol} \
-		${cert} \
-        -S --script "vpnns --attach" \
-		"${host}"
+		--protocol=$protocol \
+    -S --script "vpnns --attach" \
+		$cert \
+		"$host" && \
+      echo "vpn connected " && \
+	  		ln -s ~/.config/kube ~/.kube
 }
 function disconnect() {
-	echo "killing vpn processes"
+	echo "killing vpn processes 󰭿"
 	pkill openconnect
 	pkill vpnns
 	[[ -d "$HOME/.vpnns-default" ]] && rm -rf "$HOME/.vpnns-default"
-
-	exit
+	[[ -L "$HOME/.kube" ]] && rm ~/.kube
+	exit 0
 }
-
-function parse_arguments() {
+function parse_args() {
 	account=''
 	secret=''
 	host=''
@@ -82,30 +83,29 @@ function parse_arguments() {
 	set -- $options
 	while [[ $# -gt 0	]];do
 		case $1 in
-		-h|--help) usage ;;
-		-a|--account) account="${2//\'/}" ; shift;;
-		-s|--secret) secret="${2//\'/}" ; shift;;
-		-d|--dns) dns="${2//\'/}" ; shift;;
-		-p|--protocol) protocol="${2//\'/}" ; shift;;
-		-c|--cert) cert="${2//\'/}" ; shift;;
-		-q|--quit) disconnect;;
-		(--) host="${2//\'/}" ; shift; break;;
+		-h|--help)     usage;;
+		-a|--account)  account="${2//\'/}";  shift;;
+		-s|--secret)   secret="${2//\'/}";   shift;;
+		-d|--dns)      dns="${2//\'/}";      shift;;
+		-p|--protocol) protocol="${2//\'/}"; shift;;
+		-c|--cert)     cert="${2//\'/}";     shift;;
+		-q|--quit)     disconnect;;
+		(--)           host="${2//\'/}";     shift; break;;
 		(-*) echo "vpn error - unrecognized option $1" 1>&2; usage;;
 		(*) break;;
 		esac
 		shift
 	done
 	[[ -z "$host"	]] && usage
-	[[ "$host" =~ ^(q|quit|exit|disconnect)$	]] && disconnect
+	[[ "$host" =~ ^(q|quit|x|exit|rip|disconnect)$ ]] && disconnect
 	[[ -z "$account"	]] || account="--account ${account}"
-    eval $(op signin ${account})
+  eval "$(op signin ${account})"
 	echo "getting credentials"
 	user="$(get_user $secret)"
 	login="$(get_login $secret)"
 	connect "$user" "$login" "$host" "$dns" "$protocol" "$cert"
 }
-
 # fail fast w/ proper exit codes
 set -eo pipefail
-# main application logic
-parse_arguments "$@"
+# run main logic
+parse_args "$@"

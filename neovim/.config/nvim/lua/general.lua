@@ -17,18 +17,27 @@
 -- security
 vim.opt.modelines = 0
 
+-- set leader key to comma
+vim.g.mapleader = ","
+
 -- hide buffers, not close them
 vim.opt.hidden = true
 
 -- maintain undo history between sessions
+vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
-vim.opt.swapfile = false
+
+-- scroll bounds
+vim.o.scrolloff = 13
+
+-- ipad scrolling
+vim.opt.mouse = "a"
 
 -- fuzzy find
 vim.opt.path:append("**")
 -- lazy file name tab completion
-vim.opt.wildmode = "longest,list,full"
+vim.opt.wildmode = "list:longest,list:full"
 vim.opt.wildmenu = true
 vim.opt.wildignorecase = true
 -- ignore files vim doesnt use
@@ -42,6 +51,7 @@ vim.opt.wildignore:append(".eot,*.otf,*.ttf,*.woff")
 vim.opt.wildignore:append(".doc,*.pdf,*.cbr,*.cbz")
 vim.opt.wildignore:append(".zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb")
 vim.opt.wildignore:append(".swp,.lock,.DS_Store,._*")
+vim.opt.wildignore:append(".,..")
 
 -- case insensitive search
 vim.opt.ignorecase = true
@@ -56,7 +66,7 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 
--- use indents of 2 spaces
+-- use indents of 2
 vim.opt.shiftwidth = 2
 
 -- tabs are tabs
@@ -71,18 +81,3 @@ vim.opt.softtabstop = 2
 -- enable auto indentation
 vim.opt.autoindent = true
 
--- remove trailing whitespaces and ^M chars
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	pattern = { "*" },
-	callback = function(ev)
-		local save_cursor = vim.fn.getpos(".")
-		vim.cmd([[%s/\s\+$//e]])
-		vim.fn.setpos(".", save_cursor)
-	end,
-})
-
--- set leader key to comma
-vim.g.mapleader = ","
-
--- ipad
-vim.opt.mouse = "a"

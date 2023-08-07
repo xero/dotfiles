@@ -15,10 +15,18 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
+# interactive
 case $- in
   *i*) ;;
   *) return;;
 esac
+# env vars
+export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$NPM_CONFIG_PREFIX/bin:$TFENV/bin:$XDG_DATA_HOME/nvim/mason/bin:$PATH
+export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
+export MANWIDTH=999
+export EDITOR=nvim
+export VISUAL=nvim
+# options
 PS1='\n\w\n\$ '
 set -o noclobber
 shopt -s checkwinsize
@@ -45,6 +53,19 @@ shopt -s autocd 2> /dev/null
 shopt -s dirspell 2> /dev/null
 shopt -s cdspell 2> /dev/null
 CDPATH="."
+# aliases
+function l() {
+		ls -gGAhF --color=always "$@" \
+		| sed -e 's/--x/1/g;s/-w-/2/g;s/-wx/3/g;s/r--/4/g;s/r-x/5/g;s/rw-/6/g;s/rwx/7/g;s/---/0/g;s/rwt/7/g' \
+		| sed 's/^\(....\) [[:digit:]] /\1 /'
+}
+function t() {
+	X=$#
+	[[ $X -eq 0 ]] || X=X
+	tmux new-session -A -s $X
+	tmux set-environment LC_ALL 'en_US.UTF-8'
+	tmux set-environment LANG 'en_US.UTF-8'
+}
 alias c="clear"
 alias l="ls -hF --color=auto"
 alias ll="ls -lahF --color=auto"
@@ -57,9 +78,11 @@ alias rmrf="rm -rf"
 alias psef="ps -ef"
 alias ZZ="exit"
 alias ga="git add"
+alias gb="git branch"
 alias gc="git clone"
 alias gcm="git commit -m"
 alias gco="git checkout"
+alias gcob="git checkout -b"
 alias gcs="git commit -S -m"
 alias gd="git difftool"
 alias gdc="git difftool --cached"
@@ -71,7 +94,9 @@ alias gp="git push"
 alias gpr="gh pr create"
 alias gr="git rebase -i"
 alias gs="git status -sb"
-alias gu="git reset HEAD -- "
+alias gt="git tag"
+alias gu="git reset @ -- "
+alias gx="git reset --hard @"
 alias mkdir="mkdir -p"
 alias cp="cp -r"
 alias scp="scp -r"
@@ -84,6 +109,7 @@ alias curld="curl -A \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML
 alias curlm="curl -A \"Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.12 Mobile/10B329 Safari/8536.25\""
 alias fuck='sudo "$BASH" -c "$(history -p !!)"'
 alias xyzzy="echo nothing happens"
+# completionion hail mary
 if ! shopt -oq posix; then
 	if [ -f /usr/share/bash-completion/bash_completion ]; then
 		. /usr/share/bash-completion/bash_completion

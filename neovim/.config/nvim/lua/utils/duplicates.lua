@@ -1,6 +1,6 @@
 local functions = require("utils.functions")
 
-local M = {}
+local X = {}
 
 local duplicates_n = {}
 local duplicates_v = {}
@@ -14,7 +14,7 @@ local function check_and_set_duplicates(input, description, check, table)
 
 		if found ~= nil then
 			if found ~= description then
-				print(input .. " already mapped (" .. found .. " so we cannot map (" .. description .. ")")
+				print(input .. " already mapped (" .. found .. " so we cannot re-map (" .. description .. ")")
 			end
 		end
 
@@ -22,7 +22,7 @@ local function check_and_set_duplicates(input, description, check, table)
 	end
 end
 
-M.check_duplicates = function(type, input, description)
+X.check_duplicates = function(type, input, description)
 	local check_n = false
 	local check_v = false
 	local check_i = false
@@ -70,4 +70,4 @@ M.check_duplicates = function(type, input, description)
 	check_and_set_duplicates(input, description, check_x, duplicates_x)
 end
 
-return M
+return X
