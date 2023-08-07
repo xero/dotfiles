@@ -45,6 +45,7 @@
   "telescope.nvim": { "branch": "master", "commit": "31b05ad3c313210039fae6958fb00449d72c259e" },
   "tint.nvim": { "branch": "master", "commit": "80b15a91087991068d5834419437f652d1d4bc8e" },
   "tmux.nvim": { "branch": "main", "commit": "03e28fdaa2ef54b975ba1930f1e69b5e231dedc9" },
+  "trouble.nvim": { "branch": "main", "commit": "40aad004f53ae1d1ba91bcc5c29d59f07c5f01d3" },
   "vim-flog": { "branch": "master", "commit": "2cfa2e9d67a06a75d3d4e965c6bad558ff41e488" },
   "vim-fugitive": { "branch": "master", "commit": "b3b838d690f315a503ec4af8c634bdff3b200aaf" },
   "vim-oscyank": { "branch": "main", "commit": "74f5ed963d6dc9dc25db212078300fca6b0a0b4d" },

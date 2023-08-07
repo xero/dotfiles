@@ -36,7 +36,7 @@ export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
 export TFENV="$XDG_DATA_HOME"/terraform
 
 #█▓▒░ paths
-export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$NPM_CONFIG_PREFIX/bin:$TFENV/bin:$XDG_DATA_HOME/nvim/mason/bin:$PATH
+export PATH=$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$NPM_CONFIG_PREFIX/bin:$TFENV/bin:$XDG_DATA_HOME/nvim/mason/bin:$HOME/.pyenv/bin:$HOME/Library/Python/3.8/bin:/Library/Apple/usr/bin:/System/Cryptexes/App/usr/bin:/Users/xero.harrison/.pyenv/shims:/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:$PATH
 
 #█▓▒░ man
 export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'

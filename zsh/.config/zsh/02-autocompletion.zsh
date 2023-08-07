@@ -18,7 +18,9 @@ fpath=($HOME/.config/zsh/completion $fpath)
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 complete -C '/usr/bin/aws_completer' aws
-source /usr/share/doc/fzf/examples/completion.zsh
+
+[[ ! "$PATH" == */usr/local/opt/fzf/bin* ]] &&  PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 #█▓▒░stylez
@@ -26,7 +28,6 @@ zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: hit TAB for more, or the character to insert%s

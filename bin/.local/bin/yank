@@ -57,12 +57,9 @@ fi
 esc="\033]52;c;$(printf "%b" "$buf" | head -c $maxlen | base64 | tr -d '\r\n')\a"
 
 # multiplexin? update the eascape sequence
-if (tmux has-session 2>/dev/null); then
-	esc="\033Ptmux;\033$esc\033\\"
-	# send to all terminals \o/
-	for pts in /dev/pts/[0-9]; do
-		printf "%b" "$esc" >"$pts"
-	done
+if (tmux has-session 2> /dev/null); then
+  esc="\033Ptmux;\033$esc\033\\"
+  printf "%b" "$esc" > "$(tty)"
 else
 	# print that shiz raw
 	printf "%b" "$esc"
