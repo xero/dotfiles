@@ -3,9 +3,9 @@ local ext_fmt = function(cmd)
 		local view = vim.fn.winsaveview()
 		vim.cmd [[:silent w!]]
 		vim.cmd((":silent !%s %%"):format(cmd))
-		vim.cmd[[:silent syntax sync fromstart]]
+		vim.cmd [[:silent syntax sync fromstart]]
 		vim.fn.winrestview(view)
-		vim.cmd[[:silent redraw!]]
+		vim.cmd [[:silent redraw!]]
 		vim.cmd [[:silent e]]
 	end
 end
@@ -26,7 +26,7 @@ local cmds = {
 	php = ext_fmt "php-cs-fixer fix --rules=@PSR12",
 	python = ext_fmt "black",
 	rust = int_fmt,
-	sh = ext_fmt "shfmt -w -i 2 -ci -sr",
+	sh = ext_fmt "shfmt -w -i 0 -sr -kp",
 	typescript = ext_fmt "prettier -w",
 	yaml = ext_fmt "prettier -w",
 }
