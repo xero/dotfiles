@@ -35,13 +35,13 @@ return {
 				undo = {
 					use_delta = true,
 					side_by_side = true,
-					entry_format = "󰣜 #$ID, $STAT, $TIME",
+					entry_format = "󰣜  #$ID, $STAT, $TIME",
 					layout_strategy = "flex",
 					mappings = {
 						i = {
 							["<cr>"] = undo_actions.yank_additions,
-							["<S-cr>"] = undo_actions.yank_deletions,
-							["<C-\\>"] = undo_actions.restore,
+							["§"] = undo_actions.yank_deletions, -- term mapped to shift+enter
+							["<c-\\>"] = undo_actions.restore,
 						},
 					},
 				},
@@ -49,7 +49,7 @@ return {
 					auto_quoting = true,
 					mappings = {
 						i = {
-							["<C-\\>"] = lga_actions.quote_prompt({ postfix = " --hidden " }),
+							["<c-\\>"] = lga_actions.quote_prompt({ postfix = " --hidden " }),
 						},
 					},
 				},

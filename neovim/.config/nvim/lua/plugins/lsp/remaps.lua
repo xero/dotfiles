@@ -101,7 +101,6 @@ function X.set_default_on_buffer(client, bufnr)
 			vim.cmd [[LspStart]]
 		end
 		require("lsp_lines").toggle()
-		vim.diagnostic.config({ virtual_text = false })
 	end, "toggle lsp lines")
 end
 

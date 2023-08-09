@@ -41,6 +41,7 @@ return {
 			d = { name = "debug" },
 			m = { name = "macro/markdown" },
 			n = { name = "notifications" },
+			["<tab>"] = { name = "tabs" },
 			[";"] = { name = "test" },
 			["'"] = { name = "marks" },
 			["/"] = { name = "search" },

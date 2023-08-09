@@ -2,7 +2,6 @@ return function(on_attach)
 	return {
 		on_attach = function(client, bufnr)
 			on_attach(client, bufnr)
-
 			client.server_capabilities.document_formatting = false
 			client.server_capabilities.document_range_formatting = false
 		end,
@@ -18,14 +17,14 @@ return function(on_attach)
 					globals = { "vim" },
 				},
 				workspace = {
-					-- Make the server aware of Neovim runtime files
+					-- make the server aware of Neovim runtime files
 					library = {
 						[vim.fn.expand('$VIMRUNTIME/lua')] = true,
 						[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
 					},
 					checkThirdParty = false
 				},
-				-- Do not send telemetry data containing a randomized but unique identifier
+				-- do not send telemetry data containing a randomized but unique identifier
 				telemetry = { enable = false },
 			},
 		},

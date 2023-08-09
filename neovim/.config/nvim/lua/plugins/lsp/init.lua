@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"folke/neodev.nvim",
 		"b0o/schemastore.nvim",
-		"nvim-lua/lsp-status.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	},
@@ -12,11 +11,9 @@ return {
 		require("neodev").setup({})
 		require("lsp_lines").setup()
 		local lspconfig = require("lspconfig")
-
 		local remaps = require("plugins.lsp.remaps")
 		local icons = require("utils.icons")
 
-		local presentLspStatus, lsp_status = pcall(require, "lsp-status")
 		local presentCmpNvimLsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 		local presentLspSignature, lsp_signature = pcall(require, "lsp_signature")
 
@@ -25,10 +22,6 @@ return {
 		local function on_attach(client, bufnr)
 			remaps.set_default_on_buffer(client, bufnr)
 
-			if presentLspStatus then
-				lsp_status.on_attach(client)
-			end
-
 			if presentLspSignature then
 				lsp_signature.on_attach({ floating_window = false, timer_interval = 500 })
 			end
@@ -36,49 +29,50 @@ return {
 
 		local signs = {
 			{ name = "DiagnosticSignError", text = icons.diagnostics.error },
-			{ name = "DiagnosticSignWarn",  text = icons.diagnostics.warning},
+			{ name = "DiagnosticSignWarn",  text = icons.diagnostics.warning },
 			{ name = "DiagnosticSignHint",  text = icons.diagnostics.hint },
 			{ name = "DiagnosticSignInfo",  text = icons.diagnostics.information },
 		}
-
 		for _, sign in ipairs(signs) do
 			vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 		end
 
 		local config = {
-			virtual_text = true,
-			-- enables lsp_lines but we want to start disabled
-			virtual_lines = false,
+			virtual_text = false,  -- appears after the line
+			virtual_lines = false, -- appears under the line
 			signs = {
 				active = signs,
 			},
-			update_in_insert = true,
+      flags = {
+        debounce_text_changes = 200,
+      },
+ 			update_in_insert = true,
 			underline = true,
 			severity_sort = true,
 			float = {
 				focus = false,
 				focusable = false,
 				style = "minimal",
-				border = "rounded",
+				border = "shadow",
 				source = "always",
 				header = "",
 				prefix = "",
 			},
 		}
-
+    lspconfig.util.default_config = vim.tbl_deep_extend('force', lspconfig.util.default_config, config)
 		vim.diagnostic.config(config)
 
-		local capabilities
+		local border = {
+			border = "shadow",
+		}
+		vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, border)
+		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, border)
 
+		local capabilities
 		if presentCmpNvimLsp then
-			capabilities = cmp_lsp.default_capabilities()
+			capabilities = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 		else
 			capabilities = vim.lsp.protocol.make_client_capabilities()
-		end
-
-		if presentLspStatus then
-			lsp_status.register_progress()
-			capabilities = vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
 		end
 
 		local servers = {
@@ -127,5 +121,5 @@ return {
 				end
 			end
 		end
-	end,
+	end
 }

@@ -1,14 +1,15 @@
 return {
-	"folke/trouble.nvim",
+	-- "folke/trouble.nvim",
+	"xero/trouble.nvim", -- till my pr is merged
+	branch = "custom-indent",
 	event = "VeryLazy",
-	dev = true,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("trouble").setup({
 			auto_fold = false,
 			fold_open = " ",
 			fold_closed = " ",
-			height = 10,
+			height = 6,
 			indent_str = " ┊   ",
 			include_declaration = {
 				"lsp_references",
