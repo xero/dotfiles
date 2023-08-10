@@ -91,6 +91,23 @@ function X.set_default_on_buffer(client, bufnr)
 		end, "document symbols")
 	end
 
+	if vim.bo[bufnr].filetype == "sh" then
+		buf_set_keymap("n", "<leader>ld", function()
+			local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
+			local msgs = vim.diagnostic.get(bufnr)
+			local last, result = unpack({ "SC0000", "" })
+			for _, d in pairs(msgs) do
+				if d.lnum == (row - 1) and d.code ~= last then
+					result = (result ~= "") and result .. "," .. d.code or "#shellcheck disable=" .. d.code
+					last = d.code
+				end
+			end
+			if result ~= "" then
+				vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, { result })
+			end
+		end, "shellscheck ignore")
+	end
+
 	buf_set_keymap("n", "<leader>li", ":LspInfo<CR>", "lsp info")
 	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "show signature")
 	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "show line diagnostics")
@@ -102,6 +119,7 @@ function X.set_default_on_buffer(client, bufnr)
 		end
 		require("lsp_lines").toggle()
 	end, "toggle lsp lines")
+
 end
 
 return X
