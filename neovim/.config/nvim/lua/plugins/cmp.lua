@@ -33,6 +33,7 @@ return {
 			end
 		end
 		lsp_kind.init()
+		---@diagnostic disable-next-line
 		cmp.setup({
 			enabled = true,
 			preselect = cmp.PreselectMode.None,

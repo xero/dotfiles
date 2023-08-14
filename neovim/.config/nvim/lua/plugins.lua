@@ -48,6 +48,7 @@ lazy.setup({
 		require("plugins.trouble"),
 		require("plugins.comments"),
 		require("plugins.colorizer"),
+		require("plugins.surround"),
 		require("plugins.tint"),
 		require("plugins.ansi"),
 		require("plugins.lualine"),

@@ -8,6 +8,7 @@ return {
 	config = function()
 		local treesitter = require("nvim-treesitter.configs")
 
+		---@diagnostic disable-next-line
 		treesitter.setup({
 			ensure_installed = {
 				"bash",
