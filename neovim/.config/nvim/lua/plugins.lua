@@ -58,6 +58,7 @@ lazy.setup({
 		require("plugins.matchparen"),
 		require("plugins.lush"),
 		require("plugins.alpha"),
+		require("plugins.dadbod"),
 		--require("plugins.copilot"),
 		--require("plugins.mason-dap"),
 		--{ "xero/sourcerer.vim" },
