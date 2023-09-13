@@ -4,7 +4,7 @@
 # make sure your edit the ARCH var for your architecture
 #
 # setup.sh by xero (http://git.io/.files)
-# a script to setup a new deb 11 vps with
+# a script to setup a new debian vps with
 # all my tools and configs, ready to roll
 # it relies heavily on my 1password vault
 # so...
@@ -25,7 +25,7 @@ export ME='x0'
 export X_UID=10806
 export PORT=60806
 export HOSTNAME='thirteen'
-export ARCH='arm' # arm, x86
+export ARCH='x86' # arm, x86
 # script vars
 MYHOME="/home/$ME"
 ASME="sudo -u $ME"
@@ -76,13 +76,6 @@ systemctl daemon-reload
 systemctl restart console-setup.service
 
 _echo "adding apt sources"
-# add backports
-echo "deb http://deb.debian.org/debian bullseye-backports main" > /etc/apt/sources.list.d/backports.list
-
-# add makedeb prebuilt-mpr
-curl -sS https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub | gpg --dearmor | tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | tee /etc/apt/sources.list.d/prebuilt-mpr.list > /dev/null
-
 # add github
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
 	chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
@@ -147,8 +140,7 @@ apt update &&
 		fzf \
 		g++ \
 		gawk \
-		gcc-10-base \
-		gcc-9-base \
+		gcc \
 		gettext \
 		gh \
 		git \
@@ -204,7 +196,6 @@ apt update &&
 		python3-boto \
 		python3-pip \
 		python3-venv \
-		resolvconf \
 		ripgrep \
 		rkhunter \
 		rsyslog \
@@ -217,7 +208,7 @@ apt update &&
 		tar \
 		tcpdump \
 		terraform \
-		tmux/bullseye-backports \
+		tmux \
 		toilet \
 		traceroute \
 		tree \
@@ -238,10 +229,6 @@ apt update &&
 		zsh-syntax-highlighting
 
 _echo "systemd housekeeping"
-rm /etc/resolv.conf
-ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
-systemctl restart networking.service
-systemctl restart resolvconf.service
 systemctl stop docker.service
 systemctl stop containerd.service
 systemctl enable clamav-freshclam.service
@@ -299,14 +286,10 @@ else
 fi
 
 _echo "building neovim"
-if [[ "$ARCH" == "arm" ]]; then
-	$ASME git clone --depth=1 https://github.com/neovim/neovim.git -b stable $MYHOME/.local/src/neovim &&
-		cd $MYHOME/.local/src/neovim &&
-		make CMAKE_BUILD_TYPE=RelWithDebInfo &&
-		make install
-else
-	apt install -y neovim/prebuilt-mpr
-fi
+$ASME git clone --depth=1 https://github.com/neovim/neovim.git -b stable $MYHOME/.local/src/neovim &&
+	cd $MYHOME/.local/src/neovim &&
+	make CMAKE_BUILD_TYPE=RelWithDebInfo &&
+	make install
 
 _echo "setting up dotfiles"
 $ASME git clone git@github.com:xero/dotfiles.git $MYHOME/.local/src/dotfiles &&
@@ -496,6 +479,8 @@ op signout --account x0 --forget
 $ASME rm $MYHOME/.profile $MYHOME/.bash*
 mv $MYHOME/go $MYHOME/.local/lib/
 mv $MYHOME/.cache $MYHOME/cache
+mv $MYHOME/cache/* $MYHOME/cache
+rm -rf $MYHOME/.npm
 chmod +x $MYHOME/runme
 chown -R $ME:$ME /home/$ME
 
