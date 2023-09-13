@@ -45,6 +45,7 @@ return {
 					winhighlight = "Normal:Normal,FloatBorder:LspBorderBG,CursorLine:PmenuSel,Search:None",
 				}),
 			},
+			---@diagnostic disable-next-line
 			view = {
 				entries = "bordered",
 			},

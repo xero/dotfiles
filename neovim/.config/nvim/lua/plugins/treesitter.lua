@@ -30,6 +30,7 @@ return {
 				"ruby",
 				"rust",
 				"scss",
+				"sql",
 				"terraform",
 				"tsx",
 				"typescript",
