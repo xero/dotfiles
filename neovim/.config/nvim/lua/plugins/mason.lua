@@ -30,6 +30,7 @@ return {
 				"shellharden",
 				"shfmt",
 				"stylua",
+				"tailwindcss-language-server",
 				"terraform-ls",
 				"tflint",
 				"typescript-language-server",

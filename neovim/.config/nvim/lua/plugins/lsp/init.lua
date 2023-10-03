@@ -77,14 +77,15 @@ return {
 
 		local servers = {
 			bashls = require("plugins.lsp.servers.bashls")(on_attach),
-			cssls = {},
+			cssls = require("plugins.lsp.servers.cssls")(on_attach),
 			dockerls = {},
-			-- eslint = require("plugins.lsp.servers.eslint")(on_attach),
 			html = {},
 			jsonls = {},
 			lua_ls = require("plugins.lsp.servers.luals")(on_attach),
+			intelephense = require("plugins.lsp.servers.phpls")(on_attach),
 			pylsp = {},
 			rust_analyzer = {},
+			tailwindcss = {},
 			terraformls = {},
 			tflint = {},
 			tsserver = require("plugins.lsp.servers.tsserver")(on_attach),

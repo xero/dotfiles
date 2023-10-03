@@ -10,6 +10,7 @@ return {
 		"hrsh7th/cmp-nvim-lua",
 		"windwp/nvim-autopairs",
 		"onsails/lspkind-nvim",
+		{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true }
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -32,6 +33,7 @@ return {
 				fallback()
 			end
 		end
+
 		lsp_kind.init()
 		---@diagnostic disable-next-line
 		cmp.setup({
@@ -73,6 +75,7 @@ return {
 				{ name = "luasnip",                 max_item_count = 5,  group_index = 1 },
 				{ name = "nvim_lsp",                max_item_count = 20, group_index = 1 },
 				{ name = "nvim_lua",                group_index = 1 },
+				{ name = "vim-dadbod-completion",   group_index = 1 },
 				{ name = "path",                    group_index = 2 },
 				{ name = "buffer",                  keyword_length = 2,  max_item_count = 5, group_index = 2 },
 			},

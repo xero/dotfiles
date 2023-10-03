@@ -16,6 +16,7 @@ local cmds = {
 	c = ext_fmt "clang-format --style=file -i",
 	cmake = ext_fmt "cmake-format -i",
 	cpp = ext_fmt "clang-format --style=file -i",
+	css = ext_fmt "prettier -w",
 	go = int_fmt,
 	html = ext_fmt "prettierd -w",
 	java = ext_fmt "astyle -A2 -s2 -c -J -n -q -z2 -xC80",
