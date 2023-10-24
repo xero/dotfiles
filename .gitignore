@@ -15,4 +15,4 @@ ssh/.ssh/known_hosts
 tmux/.config/tmux/plugins/
 vim/.config/nvim/*/
 zsh/.zcompdump
-zsh/.config/zsh/secrets.zsh
+zsh/.config/zsh/*secret*.zsh
