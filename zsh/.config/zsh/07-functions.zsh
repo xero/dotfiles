@@ -24,7 +24,7 @@ function l() {
 function t() {
 	X=$#
 	[[ $X -eq 0 ]] || X=X
-	tmux new-session -A -s $X
+	tmux new-session -A -s "$X"
 	tmux set-environment LC_ALL 'en_US.UTF-8'
 	tmux set-environment LANG 'en_US.UTF-8'
 }
@@ -33,19 +33,19 @@ function t() {
 uz() {
   if [[ -f $1 ]]; then
     case $1 in
-      *.tar.bz2)   tar xvjf "$1"     ;;
-      *.tar.gz)    tar xvzf "$1"     ;;
-      *.bz2)       bunzip2 "$1"      ;;
-      *.rar)       unrar x "$1"      ;;
-      *.gz)        gunzip "$1"       ;;
-      *.tar)       tar xvf "$1"      ;;
-      *.tbz2)      tar xvjf "$1"     ;;
-      *.tgz)       tar xvzf "$1"     ;;
-      *.zip)       unzip "$1"        ;;
-      *.Z)         uncompress "$1"   ;;
-      *.7z)        7z x "$1"         ;;
-      *.xz)        unxz "$1"         ;;
-      *)           echo "'$1' unknown compression" ;;
+      *.tar.bz2)  tar xvjf "$1" ;;
+      *.tar.gz)   tar xvzf "$1" ;;
+      *.bz2)       bunzip2 "$1" ;;
+      *.rar)       unrar x "$1" ;;
+      *.gz)         gunzip "$1" ;;
+      *.tar)       tar xvf "$1" ;;
+      *.tbz2)     tar xvjf "$1" ;;
+      *.tgz)      tar xvzf "$1" ;;
+      *.zip)         unzip "$1" ;;
+      *.Z)      uncompress "$1" ;;
+      *.7z)           7z x "$1" ;;
+      *.xz)           unxz "$1" ;;
+			*)             echo "'$1' unknown compression" ;;
     esac
   else
     echo "'$1' not a valid file"
@@ -57,6 +57,51 @@ z() {
 	else
 		echo "not a valid file or dir"
 	fi
+}
+
+#█▓▒░ disk info
+function disks() {
+	# echo
+	function _e() {
+		title=$(echo "$1" | sed 's/./& /g')
+		echo "
+\033[0;31m╓─────\033[0;35m ${title}
+\033[0;31m╙────────────────────────────────────── ─ ─"
+	}
+	# loops
+	function _l() {
+		X=$(printf '\033[0m')
+		G=$(printf '\033[0;32m')
+		R=$(printf '\033[0;35m')
+		C=$(printf '\033[0;36m')
+		W=$(printf '\033[0;37m')
+		i=0;
+		while IFS= read -r line || [[ -n $line ]]; do
+			if [[ $i == 0 ]]; then
+				echo "${G}${line}${X}"
+			else
+				if [[ "$line" == *"%"* ]]; then
+					percent=$(echo "$line" | awk '{ print $5 }' | sed 's!%!!')
+					color=$W
+					((percent >= 75)) && color=$C
+					((percent >= 90)) && color=$R
+					line=$(echo "$line" | sed "s/${percent}%/${color}${percent}%${W}/")
+				fi
+				echo "${W}${line}${X}" | sed "s/\([─└├┌┐└┘├┤┬┴┼]\)/${R}\1${W}/g; s! \(/.*\)! ${C}\1${W}!g;"
+			fi
+			i=$((i+1))
+		done < <(printf '%s' "$1")
+	}
+	# outputs
+	m=$(lsblk -a | grep -v loop)
+	_e "mount.points"
+	_l "$m"
+	d=$(df -h)
+	_e "disk.usage"
+	_l "$d"
+	s=$(swapon --show)
+	_e "swaps"
+	_l "$s"
 }
 
 #█▓▒░ 1password
@@ -71,7 +116,7 @@ function 1pwsignin() {
 	# muliuser fun times
 	echo "unlock your keychain 🔐"
 	read -rs _pw
-	if [ ! -z "$_pw" ]; then
+	if [[ -n "$_pw" ]]; then
 		printf "logging in: "
 		accounts=("${(f)$(op account list | tail -n +2 | cut -d' ' -f1)}")
 		for acct in "${accounts[@]}" ;do
@@ -82,7 +127,7 @@ function 1pwsignin() {
 	fi
 }
 function 1pwcheck() {
-	[ -z "$(op vault user list private --account $1 2>/dev/null)" ] && 1pwsignin || return true
+	[[ -z "$(op vault user list private --account $1 2>/dev/null)" ]] && 1pwsignin || return true
 }
 function 1pw() {
 	f="${3:-notesPlain}"
@@ -90,7 +135,7 @@ function 1pw() {
 	1pwcheck "$1" && op item get "$i" --account "$1" --fields "$f" --format json | jq -rM '.value'
 }
 function 1pwedit() {
-	[ -z "$4" ] && { read val; } || { val=$4; }
+	[[ -z "$4" ]] && { read val; } || { val=$4; }
 	1pwcheck "$1" && op item edit --account "$1" "$2" "${3}=${val}"
 }
 function 1pwfile() {
@@ -115,7 +160,6 @@ alias ascii="toilet -t -f 3d"
 alias future="toilet -t -f future"
 alias rusto="toilet -t -f rusto"
 alias rustofat="toilet -t -f rustofat"
-alias u="node ~/.local/src/unicoder/unicoder.js "
 function toiletlist() {
 	TXT=$1
 	[ -z "$TXT" ] && TXT="{}"
@@ -139,7 +183,7 @@ function manwww() {
 
 #█▓▒░ hack time
 function gitforge() {
-	[ ! -d .git ] && echo "not a git repo" && return
+	[[ ! -d .git ]] && echo "not a git repo" && return
 	gitauthor=`git config user.name`
 	printf "author ($gitauthor): "
 	read -r author
@@ -159,7 +203,7 @@ function gitforge() {
 	export GIT_COMMITTER_DATE=$date
 	export GIT_COMMITTER_EMAIL=$email
 	export GIT_COMMITTER_NAME=$author
-	[ ! "$1" ] && git commit || git commit -S$1
+	[[ ! "$1" ]] && git commit || git commit -S$1
 	unset GIT_AUTHOR_DATE
 	unset GIT_AUTHOR_EMAIL
 	unset GIT_AUTHOR_NAME

@@ -27,16 +27,6 @@ alias kx="kubectx"
 alias k9s="vpnns -- k9s"
 alias tgp="vpnns -- terragrunt plan"
 alias tga="vpnns -- terragrunt apply"
-alias disks='echo "
-\033[0;31m╓─────\033[0;35m m o u n t . p o i n t s
-\033[0;31m╙────────────────────────────────────── ─ ─
-\033[0;37m$(lsblk -a | grep -v loop)\n
-\033[0;31m╓─────\033[0;35m d i s k . u s a g e
-\033[0;31m╙────────────────────────────────────── ─ ─
-\033[0;37m$(df -h)\n
-\033[0;31m╓─────\033[0;35m s w a p s
-\033[0;31m╙────────────────────────────────────── ─ ─
-\033[0;37m$(swapon --show)\033[0m"'
 
 #lazy
 alias "cd.."="cd ../"
