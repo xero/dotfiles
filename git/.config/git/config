@@ -22,3 +22,5 @@
 	program = gpg
 [core]
      attributesFile = ~/.config/git/gitattributes
+[init]
+	defaultBranch = main
