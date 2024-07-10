@@ -16,3 +16,4 @@ tmux/.config/tmux/plugins/
 vim/.config/nvim/*/
 zsh/.zcompdump
 zsh/.config/zsh/*secret*.zsh
+neovim/.config/nvim/db_ui/connections.json
