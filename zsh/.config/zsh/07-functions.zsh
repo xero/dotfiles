@@ -104,6 +104,12 @@ function disks() {
 	_l "$s"
 }
 
+#█▓▒░ silver searcher replace
+function agr() {
+	[[ -n "$3" ]] && l=$3 || l="."
+	\ag -l "$1" "$l" | xargs sed -i "s/$1/$2/g"
+}
+
 #█▓▒░ 1password
 function 1pwaccount() {
 	domain="${3:-my}.1password.com"

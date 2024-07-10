@@ -17,7 +17,7 @@
 alias c="clear"
 alias ll="ls -lahF --color=always"
 alias e="$EDITOR"
-alias se="sudo $EDITOR"
+alias se="sudoedit"
 alias ec='nvim --cmd ":lua vim.g.noplugins=1" ' #nvim --clean
 alias fuck='sudo $(fc -ln -1)'
 alias g="git"
