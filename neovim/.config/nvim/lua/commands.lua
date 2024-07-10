@@ -23,12 +23,12 @@ r.noremap("n", "<c-p>", ":bp<cr>", "prev buffer")
 r.noremap("n", "<c-x>", ":bd<cr>", "exit buffer")
 
 -- tabs
-r.noremap("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-r.noremap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-r.noremap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-r.noremap("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-r.noremap("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-r.noremap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+r.noremap("n", "<leader><tab>l", "<cmd>tablast<cr>", "Last Tab")
+r.noremap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", "First Tab")
+r.noremap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", "New Tab")
+r.noremap("n", "<leader><tab>]", "<cmd>tabnext<cr>", "Next Tab")
+r.noremap("n", "<leader><tab>d", "<cmd>tabclose<cr>", "Close Tab")
+r.noremap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", "Previous Tab")
 
 -- json pretty print
 r.noremap("n", "<leader>j", ":%!jq .<cr>", "jq format")

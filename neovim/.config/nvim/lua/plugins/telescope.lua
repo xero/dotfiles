@@ -40,7 +40,7 @@ return {
 					mappings = {
 						i = {
 							["<cr>"] = undo_actions.yank_additions,
-							["§"] = undo_actions.yank_deletions, -- term mapped to shift+enter
+							["�"] = undo_actions.yank_deletions, -- term mapped to shift+enter
 							["<c-\\>"] = undo_actions.restore,
 						},
 					},

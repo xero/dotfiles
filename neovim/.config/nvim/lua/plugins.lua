@@ -34,7 +34,7 @@ lazy.setup({
 		require("plugins.osc52-yank"),
 		require("plugins.git"),
 		require("plugins.tmux"),
-		require("plugins.scrollbar"),
+		-- require("plugns.scrollbar"),
 		require("plugins.gitsigns"),
 		require("plugins.indent"),
 		require("plugins.luasnip"),
@@ -62,7 +62,6 @@ lazy.setup({
 		--require("plugins.copilot"),
 		--require("plugins.mason-dap"),
 		--{ "xero/sourcerer.vim" },
-		--{ 'xero/vim-noctu' },
 		--{ 'mattn/vim-sl' }, -- train
 	},
 	dev = {

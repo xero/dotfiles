@@ -85,7 +85,7 @@ return {
 			intelephense = require("plugins.lsp.servers.phpls")(on_attach),
 			pylsp = {},
 			rust_analyzer = {},
-			tailwindcss = {},
+			tailwindcss = require("plugins.lsp.servers.tailwindcss")(on_attach),
 			terraformls = {},
 			tflint = {},
 			tsserver = require("plugins.lsp.servers.tsserver")(on_attach),
