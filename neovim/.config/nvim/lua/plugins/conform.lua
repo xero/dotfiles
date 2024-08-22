@@ -56,7 +56,7 @@ return {
 				},
 				shfmt = {
 					command = "shfmt",
-					prepend_args = { "-w", "-i", "0", "-sr", "-kp" },
+					prepend_args = { "-i", "0", "-sr", "-kp" },
 				},
 			},
 		})
