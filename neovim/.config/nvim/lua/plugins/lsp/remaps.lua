@@ -70,17 +70,6 @@ function X.set_default_on_buffer(client, bufnr)
 		end, "code actions")
 	end
 
-	buf_set_keymap("n", "<leader>rf", function()
-		if cap.documentFormattingProvider then
-			vim.lsp.buf.format({
-				async = true,
-				bufnr = bufnr,
-			})
-		else
-			require("plugins.lsp.format").run()
-		end
-	end, "format")
-
 	if cap.renameProvider then
 		buf_set_keymap("n", "<leader>rr", ":IncRename ", "rename")
 	end

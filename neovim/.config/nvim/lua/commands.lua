@@ -42,6 +42,10 @@ f.cmd("Nows", "%s/\\s\\+$//e", { desc = "remove trailing whitespace" })
 -- remove blank lines
 f.cmd("Nobl", "g/^\\s*$/d", { desc = "remove blank lines" })
 
+-- toggle wrapping
+f.cmd("Wt", "setlocal wrap! nowrap?", { desc = "toggle line wrapping" })
+r.noremap("n", "<leader>w", ":Wt<cr>", "toggle line wrapping")
+
 -- spell check
 f.cmd("Sp", "setlocal spell! spell?", { desc = "toggle spell check" })
 r.noremap("n", "<leader>s", ":Sp<cr>", "toggle spell check")

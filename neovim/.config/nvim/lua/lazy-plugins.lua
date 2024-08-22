@@ -34,7 +34,6 @@ lazy.setup({
 		require("plugins.osc52-yank"),
 		require("plugins.git"),
 		require("plugins.tmux"),
-		-- require("plugns.scrollbar"),
 		require("plugins.gitsigns"),
 		require("plugins.indent"),
 		require("plugins.luasnip"),
@@ -47,6 +46,7 @@ lazy.setup({
 		require("plugins.cmp"),
 		require("plugins.trouble"),
 		require("plugins.comments"),
+		require("plugins.conform"),
 		require("plugins.colorizer"),
 		require("plugins.surround"),
 		require("plugins.tint"),
@@ -59,10 +59,7 @@ lazy.setup({
 		require("plugins.lush"),
 		require("plugins.alpha"),
 		require("plugins.dadbod"),
-		--require("plugins.copilot"),
-		--require("plugins.mason-dap"),
-		--{ "xero/sourcerer.vim" },
-		--{ 'mattn/vim-sl' }, -- train
+		require("plugins.sourcerer"),
 	},
 	dev = {
 		path = "~/.local/src",
