@@ -71,8 +71,8 @@ return {
 		r.noremap("n", "<leader>u", ":Telescope undo<cr>", "undo tree")
 		r.noremap("n", "\\", function()
 			telescope.extensions.live_grep_args.live_grep_args({
-				prompt_title = 'grep',
-				additional_args = '-i',
+				prompt_title = "grep",
+				additional_args = "-i",
 			})
 		end, "live grep")
 		r.noremap("n", "<leader>o", ":Telescope oldfiles<cr>", "old files")
@@ -84,9 +84,16 @@ return {
 		end, "browse files")
 		r.noremap("n", "<leader>.", function()
 			telescope.extensions.file_browser.file_browser({
-				path = vim.fn.stdpath("config")
+				path = vim.fn.stdpath("config"),
 			})
 		end, "nvim dotfiles")
+
+		require("which-key").add({
+			{ "<leader>u", icon = { icon = " ", hl = "Constant" }  },
+			{ "<leader>o", icon = { icon = " ", hl = "Constant" }  },
+			{ "<leader>f", icon = { icon = "󰙅 ", hl = "Constant" }  },
+			{ "<leader>.", icon = { icon = " ", hl = "Constant" }  },
+		})
 		telescope.load_extension("undo")
 		telescope.load_extension("file_browser")
 		telescope.load_extension("live_grep_args")

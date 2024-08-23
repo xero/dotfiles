@@ -30,11 +30,8 @@ r.noremap("n", "<leader><tab>]", "<cmd>tabnext<cr>", "Next Tab")
 r.noremap("n", "<leader><tab>d", "<cmd>tabclose<cr>", "Close Tab")
 r.noremap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", "Previous Tab")
 
--- json pretty print
-r.noremap("n", "<leader>j", ":%!jq .<cr>", "jq format")
-
 -- remove highlighting
-r.noremap("n", "<esc><esc>", ":nohlsearch<cr>", "remove highlighting", { silent = true })
+r.noremap("n", "<esc><esc>", ":nohlsearch<cr>", "which_key_ignore", { silent = true })
 
 -- remove trailing white space
 f.cmd("Nows", "%s/\\s\\+$//e", { desc = "remove trailing whitespace" })
@@ -87,7 +84,8 @@ f.autocmd({ "BufWritePre" }, {
 	pattern = { "*" },
 	callback = function(_)
 		local save_cursor = vim.fn.getpos(".")
-		vim.cmd [[%s/\s\+$//e]]
+		vim.cmd([[%s/\s\+$//e]])
 		vim.fn.setpos(".", save_cursor)
 	end,
 })
+

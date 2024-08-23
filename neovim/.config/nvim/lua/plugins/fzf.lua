@@ -15,7 +15,6 @@ return {
     { "<leader>/gb", function() require("fzf-lua").git_branches() end,    desc = "Search git branches" },
     { "<leader>/gc", function() require("fzf-lua").git_commits() end,     desc = "Search git commits" },
     { "<leader>/gC", function() require("fzf-lua").git_bcommits() end,    desc = "Search git buffer commits" },
-    { "<leader>bc",  function() require("fzf-lua").git_bcommits() end,    desc = "Search git buffer commits" },
     { "<leader>//",  function() require("fzf-lua").resume() end,          desc = "Resume FZF" },
   },
   config = function()
@@ -28,5 +27,8 @@ return {
       },
     })
     fzf.register_ui_select()
+		require("which-key").add({
+			{ "<leader>/", group = "fZf", icon = { icon = "󰮫", hl = "Constant" } },
+		})
   end,
 }

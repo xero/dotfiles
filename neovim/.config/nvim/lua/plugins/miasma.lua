@@ -1,10 +1,10 @@
 return {
 	"xero/miasma.nvim",
 	-- dev = true,
-	-- branch = "dev",
+	branch = "lua",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd("colorscheme miasma")
+		vim.cmd.colorscheme("miasma")
 	end,
 }

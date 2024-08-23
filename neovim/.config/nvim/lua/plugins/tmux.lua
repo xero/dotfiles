@@ -48,6 +48,9 @@ return {
 		r.noremap("t", "<c-down>", tmux.resize_bottom, "tmux resize bottom")
 		r.noremap("t", "<c-up>", tmux.resize_top, "tmux resize top")
 		r.noremap("t", "<c-right>", tmux.resize_right, "tmux resize right")
-		r.noremap("n", "<leader>z", zoom, "tmux zoom")
+	 	r.noremap("n", "<leader>z", zoom, "tmux zoom")
+		require("which-key").add({
+			{ "<leader>z", icon = { icon = " ", hl = "Constant" } },
+		})
 	end,
 }

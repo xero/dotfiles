@@ -14,7 +14,7 @@ return {
 			include_declaration = {
 				"lsp_references",
 				"lsp_implementations",
-				"lsp_definitions"
+				"lsp_definitions",
 			},
 			mode = "workspace_diagnostics",
 			multiline = true,
@@ -29,7 +29,12 @@ return {
 		r.noremap("n", "<leader>le", ":TroubleToggle document_diagnostics<cr>", "diagnostics")
 		r.noremap("n", "<leader>t", function()
 			require("lsp_lines").toggle()
-			vim.cmd [[TroubleToggle workspace_diagnostics]]
-		end, "toggle trouble  ")
+			vim.cmd([[TroubleToggle workspace_diagnostics]])
+		end, "toggle trouble")
+		require("which-key").add({
+			{ "<leader>t", icon = { icon = " ", hl = "Constant" } },
+			{ "<leader>le", icon = { icon = " ", hl = "Constant" } },
+			{ "<leader>lr", icon = { icon = " ", hl = "Constant" } },
+		})
 	end,
 }

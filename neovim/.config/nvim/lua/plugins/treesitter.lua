@@ -6,6 +6,14 @@ return {
 	},
 	event = { "BufReadPost", "BufNewFile" },
 	config = function()
+		require("which-key").add({
+			{ "<leader>d", icon = " ", group = "debug" },
+			{ "<leader>dp", icon = " ", group = "treesitter playground" },
+			{ "<leader>r", icon = " ", group = "refactor" },
+			{ "<leader>rp", icon = "󰯍 ", group = "swap parameter to next" },
+			{ "<leader>rP", icon = "󰯍 ", group = "swap parameter to previous" },
+		})
+
 		local treesitter = require("nvim-treesitter.configs")
 
 		---@diagnostic disable-next-line

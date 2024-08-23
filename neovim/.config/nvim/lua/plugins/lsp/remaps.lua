@@ -3,13 +3,13 @@ local vim = vim
 local X = {}
 
 local function LspToggle()
-	if vim.diagnostic.is_disabled(0) == true then
+	if vim.diagnostic.is_enabled() == false then
 		vim.diagnostic.enable()
 		vim.diagnostic.config({ virtual_text = true })
-		vim.cmd [[LspStart]]
+		vim.cmd([[LspStart]])
 	else
-		vim.diagnostic.disable()
-		vim.cmd [[LspStop]]
+		vim.diagnostic.enable(false)
+		vim.cmd([[LspStop]])
 	end
 end
 
@@ -26,8 +26,8 @@ end
 function X.set_default_on_buffer(client, bufnr)
 	local buf_set_keymap = generate_buf_keymapper(bufnr)
 
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
+	local function buf_set_option(o, v)
+		vim.api.nvim_set_option_value(o, v, { buf = bufnr })
 	end
 
 	local cap = client.server_capabilities
@@ -92,7 +92,7 @@ function X.set_default_on_buffer(client, bufnr)
 				for _, d in pairs(msgs) do
 					if d.lnum == (row - 1) and d.code ~= last then
 						result = (result ~= "") and result .. "," .. d.code or "#shellcheck disable=" .. d.code
-						last = d.code
+						last = tostring(d.code)
 					end
 				end
 			end
@@ -102,14 +102,22 @@ function X.set_default_on_buffer(client, bufnr)
 		end, "shellscheck ignore")
 	end
 
-	buf_set_keymap("n", "<leader>li", ":LspInfo<CR>", "lsp info")
-	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "show signature")
-	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "show line diagnostics")
-	buf_set_keymap("n", "<leader>lt", function() LspToggle() end, "toggle lsp")
+	require("which-key").add({
+		{ "<leader>l", icon = { icon = " ", hl = "Constant" }, group = "lsp" },
+		{ "<leader>li", icon = { icon = " ", hl = "Constant" }, group = "lsp info" },
+		{ "<leader>ls", icon = { icon = "󰅨 ", hl = "Constant" }, group = "show signature" },
+		{ "<leader>lE", icon = { icon = "󰅰 ", hl = "Constant" }, group = "show line diagnostics" },
+	})
+	buf_set_keymap("n", "<leader>li", ":LspInfo<CR>", " lsp info")
+	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "󰅨 show signature")
+	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "󰅰 show line diagnostics")
+	buf_set_keymap("n", "<leader>lt", function()
+		LspToggle()
+	end, "toggle lsp")
 	buf_set_keymap("n", "<leader>ll", function()
-		if vim.diagnostic.is_disabled(0) == true then
+		if vim.diagnostic.is_enabled() == false then
 			vim.diagnostic.enable()
-			vim.cmd [[LspStart]]
+			vim.cmd([[LspStart]])
 		end
 		require("lsp_lines").toggle()
 	end, "toggle lsp lines")
