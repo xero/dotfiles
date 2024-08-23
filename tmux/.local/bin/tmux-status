@@ -54,7 +54,6 @@ D1=$(df -h | grep '/$' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
 D2=$(df -h | grep 'x0' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
 BAT=$({
 	BATPATH=$(find /sys/class/power_supply -name 'status' -printf "%h\n" | head -1)
-	BATPATH=$(find /tmp/power_supply -name 'status' -printf "%h\n" | head -1)
 	if [[ -n "$BATPATH" ]]; then
 		bf="$(< "$BATPATH/charge_full")"
 		bn="$(< "$BATPATH/charge_now")"
