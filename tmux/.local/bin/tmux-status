@@ -53,18 +53,30 @@ FRONT="#[bg=$C7]#[fg=0]▓▒░"
 D1=$(df -h | grep '/$' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
 D2=$(df -h | grep 'x0' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
 BAT=$({
-	BATPATH=/sys/class/power_supply/BAT0
-	bf="$(<"$BATPATH/charge_full")"
-	bn="$(<"$BATPATH/charge_now")"
-	bp=$((100 * bn / bf))
-	stat="$(<"$BATPATH/status")"
-	case "$stat" in
-		Full) : "󱟢" ;;
-		Discharging) : "󱟤" ;;
-		Charging) : "󱟦" ;;
-	esac
-	st="$_"
-	printf "#[fg=0]%s %s%s" "$st" "$bp" "%"
+	BATPATH=$(find /sys/class/power_supply -name 'status' -printf "%h\n" | head -1)
+	BATPATH=$(find /tmp/power_supply -name 'status' -printf "%h\n" | head -1)
+	if [[ -n "$BATPATH" ]]; then
+		bf="$(< "$BATPATH/charge_full")"
+		bn="$(< "$BATPATH/charge_now")"
+		bp=$((100 * bn / bf))
+		case "$(< "$BATPATH/status")" in
+		Discharging)
+			if [[ "$bp" -gt 90 ]]; then
+				: "󱊣"
+			elif [[ "$bp" -gt 50 ]]; then
+				: "󱊢"
+			elif [[ "$bp" -gt 20 ]]; then
+				: "󱊡"
+			else
+				: "#[fg=$C3]󰂎#[fg=$C0]"
+			fi
+			;;
+		Charging) : "󰂄" ;;
+		*) : "󰁹" ;;
+		esac
+		st="$_"
+		printf "#[fg=$C0]%s %s%s" "$st" "$bp" "%"
+	fi
 })
 RAM=$(free | awk '/Mem:/ {print int($3/$2 * 100.0)}')
 CPU=$(printf "%.0f" "$(grep 'cpu ' /proc/stat |
@@ -77,9 +89,9 @@ TIME=$({
 })
 #---------------------------------------------------------------------// render
 echo "$FRONT" \
-	"#[fg=0] ${RAM}%" "$(draw "$RAM" 4)" \
-	"#[fg=0] ${CPU}%" "$(draw "$CPU" 4)" \
-	"#[fg=0]󰽄 ${D1}%" "$(draw "$D1" 4)" \
-	"#[fg=0]󰖟 ${D2}%" "$(draw "$D2" 4)" \
+	"#[fg=$C0] ${RAM}%" "$(draw "$RAM" 4)" \
+	"#[fg=$C0] ${CPU}%" "$(draw "$CPU" 4)" \
+	"#[fg=$C0]󰽄 ${D1}%" "$(draw "$D1" 4)" \
+	"#[fg=$C0]󰖟 ${D2}%" "$(draw "$D2" 4)" \
 	"$BAT" \
 	"$TIME"
