@@ -288,7 +288,7 @@ fi
 _echo "building neovim"
 $ASME git clone --depth=1 https://github.com/neovim/neovim.git -b stable $MYHOME/.local/src/neovim &&
 	cd $MYHOME/.local/src/neovim &&
-	make CMAKE_BUILD_TYPE=RelWithDebInfo &&
+	CMAKE_BUILD_TYPE=RelWithDebInfo make &&
 	make install
 
 _echo "setting up dotfiles"
