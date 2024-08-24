@@ -20,6 +20,5 @@ require("commands")
 if vim.g.noplugins == nil then
 	require("lazy-plugins")
 else
-	local colors = vim.fn.stdpath("data") .. "/lazy/miasma.nvim/colors/miasma.vim"
-	if vim.fn.filereadable(colors) then vim.cmd('source ' .. colors) end
+	vim.cmd("source " .. vim.fn.stdpath("data") .. "/lazy/miasma.nvim/colors/miasma.lua")
 end

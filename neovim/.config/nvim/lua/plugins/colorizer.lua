@@ -8,5 +8,6 @@ return {
 		r.noremap("n", "<leader>c", function()
 			c.toggle()
 		end, "toggle colorizer")
+		r.map_virtual({ "<leader>c", group = "colorizer", icon = { icon = "󰌁", hl = "Constant" } })
 	end,
 }

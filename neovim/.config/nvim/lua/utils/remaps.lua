@@ -1,9 +1,23 @@
 local keymap = vim.keymap
 local check_duplicates = require("utils.duplicates").check_duplicates
-
 local X = {}
-local function try_add_to_which_key_by_input(input, description)
-	require("which-key").add({{ input, description }})
+local wk_lazy = {}
+
+local function lazy_register_wk(input)
+	table.insert(wk_lazy, input)
+end
+
+local function add_wk(input)
+	local wk_ready, wk = pcall(require, "which-key")
+	if wk_ready then
+		if wk_lazy ~= {} then
+			wk.add(wk_lazy)
+			wk_lazy = {}
+		end
+		wk.add(input)
+	else
+		lazy_register_wk(input)
+	end
 end
 
 function X.map(type, input, output, description, additional_options)
@@ -23,13 +37,8 @@ function X.noremap(type, input, output, description, additional_options)
 	X.map(type, input, output, description, options)
 end
 
-function X.map_virtual(input, description)
-	check_duplicates(type, input, description)
-	try_add_to_which_key_by_input(input, description)
-end
-
-function X.which_key(input, description)
-	try_add_to_which_key_by_input(input, description)
+function X.map_virtual(input)
+	add_wk(input)
 end
 
 return X

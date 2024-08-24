@@ -6,14 +6,7 @@ return {
 	},
 	event = { "BufReadPost", "BufNewFile" },
 	config = function()
-		require("which-key").add({
-			{ "<leader>d", icon = " ", group = "debug" },
-			{ "<leader>dp", icon = " ", group = "treesitter playground" },
-			{ "<leader>r", icon = " ", group = "refactor" },
-			{ "<leader>rp", icon = "󰯍 ", group = "swap parameter to next" },
-			{ "<leader>rP", icon = "󰯍 ", group = "swap parameter to previous" },
-		})
-
+		local r = require("utils.remaps")
 		local treesitter = require("nvim-treesitter.configs")
 
 		---@diagnostic disable-next-line
@@ -33,7 +26,7 @@ return {
 				"markdown_inline",
 				"php",
 				"python",
-				"regex",
+				"query",
 				"regex",
 				"ruby",
 				"rust",
@@ -55,7 +48,7 @@ return {
 				enable = true,
 				keymaps = {
 					init_selection = "zi",
-					node_incremental = "zi",
+					node_incremental = "zn",
 					scope_incremental = "zo",
 					node_decremental = "zd",
 				},
@@ -124,20 +117,14 @@ return {
 			},
 		})
 
-		local r = require("utils.remaps")
-		r.noremap("n", "<leader>dp", function()
-			vim.treesitter.inspect_tree({ command = "botright 60vnew" })
+		r.noremap("n", "<leader>rt", function()
+			vim.treesitter.inspect_tree({ command = "botleft60vnew" })
 		end, "treesitter playground")
 
 		r.noremap("n", "<C-e>", function()
 			local result = vim.treesitter.get_captures_at_cursor(0)
 			print(vim.inspect(result))
 		end, "show treesitter capture group")
-
-		r.map_virtual("zi", "init selection")
-		r.map_virtual("zi", "expand node")
-		r.map_virtual("zo", "expand scope")
-		r.map_virtual("zd", "decrement scope")
 
 		-- r.map_virtual("af", "Function outer motion")
 		-- r.map_virtual("if", "Function inner motion")
@@ -155,8 +142,6 @@ return {
 		--
 		-- r.which_key("fp", "parameters")
 		--
-		r.map_virtual("<leader>rp", "swap parameter to next")
-		r.map_virtual("<leader>rP", "swap parameter to previous")
 		--
 		-- r.map_virtual("]m", "Go to next function (start)")
 		-- r.map_virtual("]M", "Go to next function (end)")
@@ -169,8 +154,20 @@ return {
 		--
 		-- r.map_virtual("[[", "Go to previous class (start)")
 		-- r.map_virtual("[]", "Go to previous class (end)")
+		--
+		r.map_virtual({
+			{ "<leader>r", group = "refactor", icon = { icon = " ", hl = "Constant" } },
+			{ "<leader>rt", group = "treesitter playground", icon = { icon = " ", hl = "Constant" } },
+			{ "<leader>rp", group = "swap parameter next", icon = { icon = "󰯍 ", hl = "Constant" } },
+			{ "<leader>rP", group = "swap parameter prev", icon = { icon = "󰯍 ", hl = "Constant" } },
+			{ "zi", group = "init selection"},
+			{ "zn", group = "expand node"},
+			{ "zo", group = "expand scope"},
+			{ "zd", group = "decrement scope"},
+		})
+
 	end,
 	build = function()
-		vim.cmd [[TSUpdate]]
+		vim.cmd([[TSUpdate]])
 	end,
 }

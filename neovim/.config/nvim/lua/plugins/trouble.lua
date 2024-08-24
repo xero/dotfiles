@@ -1,40 +1,40 @@
 return {
-	-- "folke/trouble.nvim",
-	"xero/trouble.nvim", -- till my pr is merged
-	branch = "custom-indent",
+	"folke/trouble.nvim",
+	cmd = "Trouble",
 	event = "VeryLazy",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("trouble").setup({
-			auto_fold = false,
-			fold_open = " ",
-			fold_closed = " ",
-			height = 6,
-			indent_str = " ┊   ",
-			include_declaration = {
-				"lsp_references",
-				"lsp_implementations",
-				"lsp_definitions",
+			modes = {
+				diagnostics = {
+					auto_open = false,
+					auto_close = true,
+				},
 			},
-			mode = "workspace_diagnostics",
-			multiline = true,
-			padding = false,
-			position = "bottom",
-			severity = nil, -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
-			signs = require("utils.icons").diagnostics,
-			use_diagnostic_signs = true,
+			warn_no_results = false,
+			-- stylua: ignore
+			icons = require("utils.icons").trouble,
 		})
-		local r = require("utils.remaps")
-		r.noremap("n", "<leader>lr", ":TroubleToggle lsp_references<cr>", "lsp references ")
-		r.noremap("n", "<leader>le", ":TroubleToggle document_diagnostics<cr>", "diagnostics")
-		r.noremap("n", "<leader>t", function()
-			require("lsp_lines").toggle()
-			vim.cmd([[TroubleToggle workspace_diagnostics]])
-		end, "toggle trouble")
-		require("which-key").add({
-			{ "<leader>t", icon = { icon = " ", hl = "Constant" } },
-			{ "<leader>le", icon = { icon = " ", hl = "Constant" } },
-			{ "<leader>lr", icon = { icon = " ", hl = "Constant" } },
+		require("utils.remaps").map_virtual({
+			{ "<leader>t", group = "trouble", icon = { icon = " ", hl = "Constant" } },
+			{ "<leader>ts", group = "symbols", icon = { icon = " ", hl = "Constant" } },
 		})
 	end,
+	keys = {
+		{
+			"<leader>tt",
+			"<cmd>Trouble diagnostics toggle<cr>",
+			desc = "trouble diagnostics",
+		},
+		{
+			"<leader>tT",
+			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+			desc = "buffer diagnostics",
+		},
+		{
+			"<leader>ts",
+			"<cmd>Trouble symbols toggle focus=false<cr>",
+			desc = "symbols",
+		},
+	},
 }

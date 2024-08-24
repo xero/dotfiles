@@ -88,11 +88,11 @@ return {
 			})
 		end, "nvim dotfiles")
 
-		require("which-key").add({
-			{ "<leader>u", icon = { icon = " ", hl = "Constant" }  },
-			{ "<leader>o", icon = { icon = " ", hl = "Constant" }  },
-			{ "<leader>f", icon = { icon = "󰙅 ", hl = "Constant" }  },
-			{ "<leader>.", icon = { icon = " ", hl = "Constant" }  },
+		r.map_virtual({
+			{ "<leader>u", icon = { icon = " ", hl = "Constant" } },
+			{ "<leader>o", icon = { icon = " ", hl = "Constant" } },
+			{ "<leader>f", icon = { icon = "󰙅 ", hl = "Constant" } },
+			{ "<leader>.", icon = { icon = " ", hl = "Constant" } },
 		})
 		telescope.load_extension("undo")
 		telescope.load_extension("file_browser")

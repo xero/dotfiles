@@ -5,11 +5,13 @@ return {
 		"b0o/schemastore.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    "ravibrock/spellwarn.nvim",
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("neodev").setup({})
 		require("lsp_lines").setup()
+		require("spellwarn").setup()
 		local lspconfig = require("lspconfig")
 		local remaps = require("plugins.lsp.remaps")
 		local icons = require("utils.icons")

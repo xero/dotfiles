@@ -23,12 +23,13 @@ r.noremap("n", "<c-p>", ":bp<cr>", "prev buffer")
 r.noremap("n", "<c-x>", ":bd<cr>", "exit buffer")
 
 -- tabs
-r.noremap("n", "<leader><tab>l", "<cmd>tablast<cr>", "Last Tab")
-r.noremap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", "First Tab")
-r.noremap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", "New Tab")
-r.noremap("n", "<leader><tab>]", "<cmd>tabnext<cr>", "Next Tab")
-r.noremap("n", "<leader><tab>d", "<cmd>tabclose<cr>", "Close Tab")
-r.noremap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", "Previous Tab")
+r.noremap("n", "<leader><tab>l", "<cmd>tablast<cr>", "last tab")
+r.noremap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", "first tab")
+r.noremap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", "new tab")
+r.noremap("n", "<leader><tab>]", "<cmd>tabnext<cr>", "next tab")
+r.noremap("n", "<leader><tab>d", "<cmd>tabclose<cr>", "close tab")
+r.noremap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", "previous tab")
+r.map_virtual({ "<leader><tab>", group = "tabs", icon = { icon = " ", hl = "Constant" } })
 
 -- remove highlighting
 r.noremap("n", "<esc><esc>", ":nohlsearch<cr>", "which_key_ignore", { silent = true })
@@ -42,10 +43,12 @@ f.cmd("Nobl", "g/^\\s*$/d", { desc = "remove blank lines" })
 -- toggle wrapping
 f.cmd("Wt", "setlocal wrap! nowrap?", { desc = "toggle line wrapping" })
 r.noremap("n", "<leader>w", ":Wt<cr>", "toggle line wrapping")
+r.map_virtual({ "<leader>w", group = "line wrap", icon = { icon = "󰖶", hl = "Constant" } })
 
 -- spell check
 f.cmd("Sp", "setlocal spell! spell?", { desc = "toggle spell check" })
 r.noremap("n", "<leader>s", ":Sp<cr>", "toggle spell check")
+r.map_virtual({ "<leader>s", group = "spell check", icon = { icon = "󰓆", hl = "Constant" } })
 
 -- ios keeb
 r.noremap("n", "<a-left>", "0", "ios home key")
@@ -57,6 +60,7 @@ f.cmd("Tail", 'set autoread | au CursorHold * checktime | call feedkeys("G")', {
 -- make current buffer executable
 f.cmd("Chmodx", "!chmod a+x %", { desc = "make current buffer executable" })
 r.noremap("n", "<leader>x", ":Chmodx<cr>", "chmod +x buffer")
+r.map_virtual({ "<leader>x", group = "mark executable", icon = { icon = "", hl = "Constant" } })
 
 -- fix syntax highlighting
 f.cmd("FixSyntax", "syntax sync fromstart", { desc = "reload syntax highlighting" })
@@ -88,4 +92,3 @@ f.autocmd({ "BufWritePre" }, {
 		vim.fn.setpos(".", save_cursor)
 	end,
 })
-
