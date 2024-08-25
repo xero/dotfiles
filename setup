@@ -158,6 +158,7 @@ apt update &&
 		jq \
 		keychain \
 		kubernetes-client \
+		libevent-dev \
 		libncurses5-dev \
 		libprotobuf-dev \
 		libssl-dev \
@@ -316,9 +317,9 @@ useradd -d $MYHOME/.local/src/dotfiles dotfiles
 useradd -d $MYHOME/docs docs
 
 _echo "building mosh"
-# OSC52 clipboard support - https://github.com/mobile-shell/mosh/pull/1104
-$ASME git clone --depth=1 https://github.com/mgulick/mosh.git -b osc-52-clipboard-types $MYHOME/.local/src/mosh &&
+$ASME git clone --depth=1 https://github.com/mobile-shell/mosh.git $MYHOME/.local/src/mosh &&
 	cd $MYHOME/.local/src/mosh &&
+	git fetch origin && git checkout mosh-1.4.0 &&
 	./autogen.sh &&
 	./configure &&
 	make &&
