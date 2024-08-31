@@ -9,12 +9,12 @@ end
 
 local function add_wk(input)
 	local wk_ready, wk = pcall(require, "which-key")
-	if wk_ready then
+	if wk_ready and wk.did_setup then
 		if wk_lazy ~= {} then
+			lazy_register_wk(input)
 			wk.add(wk_lazy)
 			wk_lazy = {}
 		end
-		wk.add(input)
 	else
 		lazy_register_wk(input)
 	end

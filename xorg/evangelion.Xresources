@@ -1,0 +1,45 @@
+! https://x-e.ro   _            ____
+!                 : \           |   \    .
+!                 |  \ .        |    :   |\            /\
+!              .  |   :|\__     |    |   | \          /  \
+! .            |\ |   |! \ \    |    |   | |\        /   /
+! \"-.______   | \:   ||\ \ \   |    |   | | \      /   /
+!  \_       "-_|  |\  || \ \/   |    |___| ! |\____/  _/-. /\
+!    "-_   ____:  |_\ ||  \/  ___\  __  _//  | |  ___ \---" /
+!       \  \   |  _____,  /___\___\/ / /   \_! |  // _/  / /
+!     ___\_ \__|  |    | __. _/____ / /     /  > // /    \/
+!   //_________|  /    |/  |/  \__// /     /  /_/ \/
+!              | /     |   :      | /     /__/
+!              |/                 |/   E V A N G E L I O N
+
+*.foreground:   #8edf5f
+*.background:   #242629
+*.cursorColor:  #5f875f
+! black
+*.color0:       #201430
+*.color8:       #3b3847
+! red
+*.color1:       #bf2d2d
+*.color9:       #db6088
+! green
+*.color2:       #9cda7c
+*.color10:      #87FF5F
+! yellow
+*.color3:       #d99145
+*.color11:      #e6bb85
+! blue
+*.color4:       #b968fc
+*.color12:      #ce67f0
+! magenta
+*.color5:       #875FAF
+*.color13:      #ab92fc
+! cyan
+*.color6:       #9dafd1
+*.color14:      #a4d2ec
+! white
+*.color7:       #ccd2d9
+*.color15:      #e1d6f8
+! others
+URxvt.colorIT:  #b968fc
+URxvt.colorBD:  #87FF5F
+URxvt.colorUL:  #87FF5F

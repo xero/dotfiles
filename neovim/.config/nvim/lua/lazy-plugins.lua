@@ -30,7 +30,7 @@ end
 -- install plugins
 lazy.setup({
 	spec = {
-		require("plugins.miasma"),
+		require("plugins.evangelion"),
 		require("plugins.osc52-yank"),
 		require("plugins.git"),
 		require("plugins.tmux"),
@@ -60,6 +60,7 @@ lazy.setup({
 		require("plugins.alpha"),
 		require("plugins.dadbod"),
 		require("plugins.sourcerer"),
+		require("plugins.miasma"),
 	},
 	dev = {
 		path = "~/.local/src",

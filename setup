@@ -344,6 +344,13 @@ $ASME curl -L "https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Lin
 	chmod +x $MYHOME/.local/bin/k9s &&
 	rm $MYHOME/.local/src/k9s.tar.gz
 
+_echo "updating fzf"
+[[ "$ARCH" == "arm" ]] && PKGARCH="arm64" || PKGARCH="amd64"
+$ASME curl -L "https://github.com/junegunn/fzf/releases/download/v0.55.0/fzf-0.55.0-linux_${PKGARCH}.tar.gz" -o $MYHOME/.local/src/fzf.tar.gz
+	tar xzf $MYHOME/.local/src/fzf.tar.gz -C /usr/bin/ fzf &&
+	chmod +x /usr/bin/fzf &&
+	rm $MYHOME/.local/src/fzf.tar.gz
+
 echo "updating the aws cli to v2"
 [[ "$ARCH" == "arm" ]] && PKGARCH="aarch64" || PKGARCH="x86_64"
 curl -L "https://awscli.amazonaws.com/awscli-exe-linux-${PKGARCH}.zip" -o /tmp/awscliv2.zip &&

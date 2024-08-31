@@ -14,14 +14,18 @@
 # ░░░░░░░░░░
 #
 #█▓▒░ autocompletion systems
-fpath=($HOME/.config/zsh/completion $fpath)
+loc=${ZDOTDIR:-"$HOME/.config/zsh"}
+fpath=($loc/completion $fpath)
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+
+#█▓▒░ sources
 complete -C '/usr/bin/aws_completer' aws
 source /usr/share/doc/fzf/examples/completion.zsh
+[[ $commands[gh] ]] && source <(gh completion -s zsh)
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
-#█▓▒░stylez
+#█▓▒░ style
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'

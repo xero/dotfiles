@@ -11,10 +11,10 @@ return {
 				changedelete = { text = '▐' },
 				untracked    = { text = '▐' },
 			},
-			signcolumn     = true,  -- Toggle with `:Gitsigns toggle_signs`
-			linehl         = false, -- Toggle with `:Gitsigns toggle_linehl`
-			numhl          = false, -- Toggle with `:Gitsigns toggle_nunhl`
-			word_diff      = false, -- Toggle with `:Gitsigns toggle_word_diff`
+			signcolumn     = true,  -- toggle with `:Gitsigns toggle_signs`
+			linehl         = false, -- toggle with `:Gitsigns toggle_linehl`
+			numhl          = false, -- toggle with `:Gitsigns toggle_nunhl`
+			word_diff      = false, -- toggle with `:Gitsigns toggle_word_diff`
 			sign_priority  = 9,
 			watch_gitdir   = {
 				interval     = 1000,

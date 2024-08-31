@@ -20,5 +20,5 @@ require("commands")
 if vim.g.noplugins == nil then
 	require("lazy-plugins")
 else
-	vim.cmd("source " .. vim.fn.stdpath("data") .. "/lazy/miasma.nvim/colors/miasma.lua")
+	vim.cmd("source " .. vim.fn.stdpath("data") .. "/lazy/evangelion.nvim/colors/evangelion.lua")
 end

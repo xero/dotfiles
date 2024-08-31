@@ -15,6 +15,3 @@
 #
 #█▓▒░ load configs
 for config (~/.config/zsh/*.zsh) source $config
-
-# bun completions
-[ -s "/home/x0/.local/_bun" ] && source "/home/x0/.local/_bun"

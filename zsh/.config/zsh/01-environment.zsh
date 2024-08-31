@@ -13,6 +13,9 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
+
+export UI_THEME="EVANGELION" # MIASMA | SOURCERER
+
 #█▓▒░ clean home
 export XDG_CONFIG_HOME="$HOME"/.config
 export NAVE_DIR="$HOME"/.local/lib/nodejs
@@ -48,7 +51,16 @@ export VISUAL=nvim
 
 #█▓▒░ fzf & clipboard menu
 export CM_LAUNCHER="fzf"
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#c1c1c1,bg:#2b2b2b,hl:#78824B --color=fg+:#ffffff,bg+:#1c1c1c,hl+:#C9A554 --color=info:#5f875f,prompt:#5f875f,pointer:#78824B --color=marker:#78824B,spinner:#78824B,header:#78824B --color=gutter:#2b2b2b,border:#222222 --padding=1 --prompt=❯ --marker=❯ --pointer=❯ --reverse'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:#ccd2d9,fg+:#d0d0d0,bg:#39274D,bg+:#39274D
+  --color=hl:#875FAF,hl+:#87FF5F,info:#ab92fc,marker:#87FF5F
+  --color=prompt:#87FF5F,spinner:#87FF5F,pointer:#87FF5F,header:#483160
+  --color=gutter:#483160,border:#39274D,preview-fg:#e1d6f8,preview-bg:#201430
+  --color=preview-border:#875FAF,preview-scrollbar:#875FAF,preview-label:#87FF5F,label:#8edf5f
+  --color=query:#d9d9d9,disabled:#3f3d46
+  --border="block" --border-label-pos="0" --preview-window="border-bold"
+  --padding="0" --margin="1" --prompt="❯ " --marker="❯"
+  --pointer="◈" --separator="~" --scrollbar="▌" --layout="reverse"'
 
 #█▓▒░ language
 export LC_COLLATE=en_US.UTF-8

@@ -87,8 +87,28 @@ vimcmd_replace_one_symbol = "[❮](bold yellow)"
 vimcmd_replace_symbol = "[❮](bold yellow)"
 vimcmd_visual_symbol = "[❮](bold cyan)"
 
+[directory]
+style = "#87FF5F bold"
+truncation_length = 6
+
+[git_branch]
+symbol = "[「󰊢 ](blue)"
+style = "bright-blue"
+format = '[$symbol$branch(:$remote_branch) ]($style)'
+
 [git_status]
-diverged = '↑$ahead_count↓$behind_count'
-conflicted = '$count'
 ahead = "⇡${count}"
 behind = "⇣${count}"
+conflicted = '$count'
+deleted = " "
+diverged = '↑$ahead_count↓$behind_count'
+modified = "󱇬 "
+renamed = " "
+staged = "󰝒 "
+stashed = "󰬲 "
+untracked = ""
+style = "yellow"
+format = "([$all_status$ahead_behind]($style)[」](blue))"
+
+[cmd_duration]
+style = "white"

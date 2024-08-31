@@ -6,8 +6,8 @@ return {
 		local transforms = require("tint.transforms")
 		tint.setup({
 			transforms = {
-				transforms.tint_with_threshold(-10, "#1a1a1a", 7),
-				transforms.saturate(0.65),
+				transforms.tint_with_threshold(-2, "#201430", 7),
+				transforms.saturate(0.7),
 			},
 			tint_background_colors = true,
 			highlight_ignore_patterns = {

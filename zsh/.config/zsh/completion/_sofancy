@@ -1,0 +1,51 @@
+#compdef sofancy
+_sofancy() {
+	local state
+	_arguments -C \
+		'(-f)'{-f,--font}'[pick a fancy font]:font:->font' \
+		'(-tf)'{-tf,--titledfont}'[pick a fancy font display with name]:font:->font' \
+		'(-t)'{-t,--titles}'[display font names]'\
+		'(-r)'{-r,--random}'[randomized font]'\
+		'(-c)'{-c,--completions}'[install shell completions]'\
+		'(-h)'{-h,--help}'[display usage]'
+		case "$state" in
+		(font)
+			_values 'fonts' \
+				'alien' \
+				'asian' \
+				'asian2' \
+				'bent' \
+				'bolditalic' \
+				'bold' \
+				'circled' \
+				'currency' \
+				'cursive' \
+				'doublestruck' \
+				'flip' \
+				'frakturbold' \
+				'fraktur' \
+				'greek' \
+				'invertedsquares' \
+				'italic' \
+				'mirrorflip' \
+				'mirror' \
+				'mono' \
+				'neon' \
+				'squares' \
+				'squiggle1' \
+				'squiggle2' \
+				'squiggle3' \
+				'squiggle4' \
+				'squiggle5' \
+				'squiggle6' \
+				'subscript' \
+				'superscript' \
+				'symbols' \
+				'upperangle' \
+				'upsidedown' \
+				'wide'
+    ;;
+	esac
+	return 0
+}
+_sofancy

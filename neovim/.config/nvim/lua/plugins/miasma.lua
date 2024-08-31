@@ -2,8 +2,7 @@ return {
 	"xero/miasma.nvim",
 	-- dev = true,
 	branch = "lua",
-	lazy = false,
-	priority = 1000,
+	lazy = true,
 	config = function()
 		vim.cmd.colorscheme("miasma")
 	end,

@@ -59,7 +59,7 @@ x0
  flags:
    -t  display in miasma true colors
    -o  display in origional true colors
-   -l  display in limited 246 colors
+   -l  display in limited 256 colors
    -b  display in black and white (text only)
    -h  display this message
  requirements:
