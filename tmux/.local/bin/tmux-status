@@ -63,9 +63,9 @@ SYS=$({
 D1=$(df -h | grep '/$' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
 D2=$(df -h | grep 'x0' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
 DISK=$({
-	[[ -z "$D0" ]] &&
+	[[ -n "$D1" ]] &&
 		printf "#[fg=%s]󰽄 %s %s" "$C0" "${D1}%" "$(draw "$D1" 4)"
-	[[ -z "$D1" ]] &&
+	[[ -n "$D2" ]] &&
 		printf " #[fg=%s]󰖟 %s %s" "$C0" "${D2}%" "$(draw "$D2" 4)"
 })
 BAT=$({
