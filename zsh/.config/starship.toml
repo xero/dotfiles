@@ -116,15 +116,14 @@ renamed = " "
 staged = "󰝒 "
 stashed = "󰬲 "
 untracked = " "
-style = "yellow"
-format = "[$all_status$ahead_behind]($style)"
+format = "[$all_status$ahead_behind](yellow)"
 
 [git_metrics]
 disabled = false
 format = '[」](bold blue)'
 
 [cmd_duration]
-style = "white"
+format = ' took [$duration](white) '
 
 [docker_context]
 symbol = '󰡨'
