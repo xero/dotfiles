@@ -62,6 +62,7 @@ lazy.setup({
 		require("plugins.sourcerer"),
 		require("plugins.miasma"),
 	},
+	---@diagnostic disable-next-line
 	dev = {
 		path = "~/.local/src",
 	},

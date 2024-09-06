@@ -5,7 +5,7 @@ return {
 		"b0o/schemastore.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    "ravibrock/spellwarn.nvim",
+		"ravibrock/spellwarn.nvim",
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
@@ -31,24 +31,24 @@ return {
 
 		local signs = {
 			{ name = "DiagnosticSignError", text = icons.diagnostics.error },
-			{ name = "DiagnosticSignWarn",  text = icons.diagnostics.warning },
-			{ name = "DiagnosticSignHint",  text = icons.diagnostics.hint },
-			{ name = "DiagnosticSignInfo",  text = icons.diagnostics.information },
+			{ name = "DiagnosticSignWarn", text = icons.diagnostics.warning },
+			{ name = "DiagnosticSignHint", text = icons.diagnostics.hint },
+			{ name = "DiagnosticSignInfo", text = icons.diagnostics.information },
 		}
 		for _, sign in ipairs(signs) do
 			vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 		end
 
 		local config = {
-			virtual_text = false,  -- appears after the line
+			virtual_text = false, -- appears after the line
 			virtual_lines = false, -- appears under the line
 			signs = {
 				active = signs,
 			},
-      flags = {
-        debounce_text_changes = 200,
-      },
- 			update_in_insert = true,
+			flags = {
+				debounce_text_changes = 200,
+			},
+			update_in_insert = true,
 			underline = true,
 			severity_sort = true,
 			float = {
@@ -61,7 +61,7 @@ return {
 				prefix = "",
 			},
 		}
-    lspconfig.util.default_config = vim.tbl_deep_extend('force', lspconfig.util.default_config, config)
+		lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, config)
 		vim.diagnostic.config(config)
 
 		local border = {
@@ -90,7 +90,7 @@ return {
 			tailwindcss = require("plugins.lsp.servers.tailwindcss")(on_attach),
 			terraformls = {},
 			tflint = {},
-			tsserver = require("plugins.lsp.servers.tsserver")(on_attach),
+			tsserver = require("plugins.lsp.servers.ts_ls")(on_attach),
 			yamlls = {},
 		}
 
@@ -104,25 +104,29 @@ return {
 		}
 
 		local server_names = {}
-		for server_name, _ in pairs(servers) do
+		local server_configs = {}
+		for server_name, server_config in pairs(servers) do
 			table.insert(server_names, server_name)
+			server_configs[server_name] = server_config
 		end
 
 		local present_mason, mason = pcall(require, "mason-lspconfig")
 		if present_mason then
 			mason.setup({ ensure_installed = server_names })
+			mason.setup_handlers({
+				function(server)
+					-- https://github.com/neovim/nvim-lspconfig/pull/3232
+					if server == "tsserver" then server = "ts_ls" end
+					local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_configs[server] or {})
+					lspconfig[server].setup(merged_config)
+					if server == "rust_analyzer" then
+						local present_rust_tools, rust_tools = pcall(require, "rust-tools")
+						if present_rust_tools then
+							rust_tools.setup({ server = merged_config })
+						end
+					end
+				end,
+			})
 		end
-
-		for server_name, server_config in pairs(servers) do
-			local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_config)
-			lspconfig[server_name].setup(merged_config)
-
-			if server_name == "rust_analyzer" then
-				local present_rust_tools, rust_tools = pcall(require, "rust-tools")
-				if present_rust_tools then
-					rust_tools.setup({ server = merged_config })
-				end
-			end
-		end
-	end
+	end,
 }

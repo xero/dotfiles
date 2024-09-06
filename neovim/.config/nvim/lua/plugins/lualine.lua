@@ -8,22 +8,8 @@ return {
 	end,
 	opts = function()
 		-- evangelion colors
-		local colors = {
-			bg = "#201430",
-			black = "#000000",
-			magenta = "#483160",
-			green = "#87FF5F",
-			lost = "#666666",
-			unit01 = "#67478a",
-			selee = "#875FAF",
-			mint = "#9cda7c",
-			hazard = "#D99145",
-			purple = "#AB92FC",
-			lcl = "#5b2b41",
-			nerv = "#bf2d2d",
-			rei = "#e1d6f8",
-		}
-
+		local colors = require("evangelion.unit01").get()
+		-- size display logic
 		local conditions = {
 			buffer_not_empty = function()
 				return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -42,26 +28,26 @@ return {
 		}
 		-- auto change color according to neovims mode
 		local mode_color = {
-			n = { bg = colors.magenta, fg = colors.green },
-			i = { bg = colors.purple, fg = colors.black },
-			v = { bg = colors.green, fg = colors.black },
-			[""] = { bg = colors.green, fg = colors.black },
-			V = { bg = colors.green, fg = colors.black },
-			c = { bg = colors.hazard, fg = colors.black },
-			no = { bg = colors.green, fg = colors.black },
-			s = { bg = colors.hazard, fg = colors.black },
-			S = { bg = colors.hazard, fg = colors.black },
-			[""] = { bg = colors.hazard, fg = colors.black },
-			ic = { bg = colors.hazard, fg = colors.black },
-			R = { bg = colors.hazard, fg = colors.black },
-			Rv = { bg = colors.hazard, fg = colors.black },
-			cv = { bg = colors.hazard, fg = colors.black },
-			ce = { bg = colors.hazard, fg = colors.black },
-			r = { bg = colors.blood, fg = colors.black },
-			rm = { bg = colors.blood, fg = colors.black },
-			["r?"] = { bg = colors.lcl, fg = colors.black },
-			["!"] = { bg = colors.lcl, fg = colors.black },
-			t = { bg = colors.green, fg = colors.black },
+			n = { bg = colors.longingus, fg = colors.kaworu },
+			i = { bg = colors.dummyplug, fg = colors.core },
+			v = { bg = colors.kaworu, fg = colors.core },
+			[""] = { bg = colors.kaworu, fg = colors.core },
+			V = { bg = colors.kaworu, fg = colors.core },
+			c = { bg = colors.lcl, fg = colors.core },
+			no = { bg = colors.kaworu, fg = colors.core },
+			s = { bg = colors.lcl, fg = colors.core },
+			S = { bg = colors.lcl, fg = colors.core },
+			[""] = { bg = colors.lcl, fg = colors.core },
+			ic = { bg = colors.lcl, fg = colors.core },
+			R = { bg = colors.lcl, fg = colors.core },
+			Rv = { bg = colors.lcl, fg = colors.core },
+			cv = { bg = colors.lcl, fg = colors.core },
+			ce = { bg = colors.lcl, fg = colors.core },
+			r = { bg = colors.nerv, fg = colors.core },
+			rm = { bg = colors.nerv, fg = colors.core },
+			["r?"] = { bg = colors.nerv, fg = colors.core },
+			["!"] = { bg = colors.nerv, fg = colors.core },
+			t = { bg = colors.kaworu, fg = colors.core },
 		}
 		-- config
 		local config = {
@@ -177,7 +163,7 @@ return {
 		active_left({
 			"branch",
 			icon = "",
-			color = { bg = colors.selee, fg = colors.rei },
+			color = { bg = colors.unit01, fg = colors.rei },
 			padding = { left = 0, right = 1 },
 			separator = { right = "▓▒░", left = "░▒▓" },
 		})
@@ -188,13 +174,13 @@ return {
 				return ""
 			end,
 			cond = conditions.buffer_not_empty,
-			color = { bg = colors.black, fg = colors.lost },
+			color = { bg = colors.core, fg = colors.fog },
 			padding = { left = 1, right = 1 },
 		})
 		inactive_left({
 			"filename",
 			cond = conditions.buffer_not_empty,
-			color = { bg = colors.black, fg = colors.lost },
+			color = { bg = colors.core, fg = colors.fog },
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
 			symbols = {
@@ -221,7 +207,7 @@ return {
 				end
 			end,
 			icon = " ",
-			color = { bg = colors.mint, fg = colors.black },
+			color = { bg = colors.kaji, fg = colors.core },
 			padding = { left = 1, right = 1 },
 			cond = conditions.hide_in_width_first,
 			separator = { right = "▓▒░", left = "░▒▓" },
@@ -232,24 +218,24 @@ return {
 			sources = { "nvim_diagnostic" },
 			symbols = { error = " ", warn = " ", info = " " },
 			diagnostics_color = {
-				error = { fg = colors.black },
-				info = { fg = colors.black },
-				warn = { fg = colors.black },
+				error = { fg = colors.core },
+				info = { fg = colors.core },
+				warn = { fg = colors.core },
 			},
 			colounit01 = false,
-			color = { bg = colors.hazard, fg = colors.black },
+			color = { bg = colors.lcl, fg = colors.core },
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░", left = "░▒▓" },
 		})
 		active_right({
 			"searchcount",
-			color = { bg = colors.purple, fg = colors.rei },
+			color = { bg = colors.dummyplug, fg = colors.rei },
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░", left = "░▒▓" },
 		})
 		active_right({
 			"location",
-			color = { bg = colors.unit01, fg = colors.rei },
+			color = { bg = colors.mari, fg = colors.rei },
 			padding = { left = 1, right = 0 },
 			separator = { left = "░▒▓" },
 		})
@@ -259,7 +245,7 @@ return {
 				local total = vim.fn.line("$")
 				return string.format("%2d%%%%", math.floor(cur / total * 100))
 			end,
-			color = { bg = colors.unit01, fg = colors.rei },
+			color = { bg = colors.mari, fg = colors.rei },
 			padding = { left = 1, right = 1 },
 			cond = conditions.hide_in_width,
 			separator = { right = "▓▒░" },
@@ -269,14 +255,14 @@ return {
 			fmt = string.upper,
 			cond = conditions.hide_in_width,
 			padding = { left = 1, right = 1 },
-			color = { bg = colors.selee, fg = colors.black },
+			color = { bg = colors.unit01, fg = colors.core },
 		})
 		active_right({
 			"fileformat",
 			fmt = string.lower,
 			icons_enabled = false,
 			cond = conditions.hide_in_width,
-			color = { bg = colors.selee, fg = colors.black },
+			color = { bg = colors.unit01, fg = colors.core },
 			separator = { right = "▓▒░" },
 			padding = { left = 0, right = 1 },
 		})
@@ -284,13 +270,13 @@ return {
 		-- inactive right section
 		inactive_right({
 			"location",
-			color = { bg = colors.black, fg = colors.lost },
+			color = { bg = colors.core, fg = colors.fog },
 			padding = { left = 1, right = 0 },
 			separator = { left = "░▒▓" },
 		})
 		inactive_right({
 			"progress",
-			color = { bg = colors.black, fg = colors.lost },
+			color = { bg = colors.core, fg = colors.fog },
 			cond = conditions.hide_in_width,
 			padding = { left = 1, right = 1 },
 			separator = { right = "▓▒░" },
@@ -300,11 +286,10 @@ return {
 			fmt = string.lower,
 			icons_enabled = false,
 			cond = conditions.hide_in_width,
-			color = { bg = colors.black, fg = colors.lost },
+			color = { bg = colors.core, fg = colors.fog },
 			separator = { right = "▓▒░" },
 			padding = { left = 0, right = 1 },
 		})
-		--
 		return config
 	end,
 }

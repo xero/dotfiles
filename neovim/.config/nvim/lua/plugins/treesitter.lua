@@ -7,12 +7,11 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	config = function()
 		local r = require("utils.remaps")
-		local treesitter = require("nvim-treesitter.configs")
-
 		---@diagnostic disable-next-line
-		treesitter.setup({
+		require('nvim-treesitter.configs').setup{
 			ensure_installed = {
 				"bash",
+				"c",
 				"css",
 				"dockerfile",
 				"go",
@@ -36,6 +35,7 @@ return {
 				"tsx",
 				"typescript",
 				"vim",
+				"vimdoc",
 				"yaml",
 			},
 			highlight = {
@@ -115,7 +115,7 @@ return {
 					["i;"] = "textsubjects-container-inner",
 				},
 			},
-		})
+		}
 
 		r.noremap("n", "<leader>rt", function()
 			vim.treesitter.inspect_tree({ command = "botleft60vnew" })
@@ -168,6 +168,6 @@ return {
 
 	end,
 	build = function()
-		vim.cmd([[TSUpdate]])
+		vim.cmd(":TSUpdate")
 	end,
 }
