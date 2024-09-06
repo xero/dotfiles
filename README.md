@@ -1,5 +1,4 @@
-![](https://raw.githubusercontent.com/xero/dotfiles/main/preview.png)
-
+![evangeion](https://raw.githubusercontent.com/xero/dotfiles/main/preview.png)
 ```
       ██            ██     ████ ██  ██
      ░██           ░██    ░██░ ░░  ░██
@@ -304,6 +303,13 @@ as of writing this, i use ~50 [plugins](https://github.com/xero/dotfiles/tree/ma
 * [which-key](https://github.com/folke/which-key.nvim) - help define and display key-bindings
 
 my leader key is set to `,` and you can checkout all my custom key-bindings by calling `:WhichKey`
+
+# previews
+
+[miasma](https://github.com/xero/dotfiles/releases/tag/miasma)
+![miasma](https://raw.githubusercontent.com/xero/dotfiles/miasma/preview.png)
+
+more at https://lab.x-e.ro/rice/
 
 # license
 
