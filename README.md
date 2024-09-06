@@ -255,9 +255,9 @@ my neovim setup is written in [lua](https://neovim.io/doc/user/lua-guide.html), 
 ```
 ~/.config/nvim
 ├── lua/
-│   ├── utils/        --> shared helper functions
+│   ├── utils/i            --> shared helper functions
 │   ├── plugins/
-│   │   ├── alpha.lua --> each plugin has it's own config
+│   │   ├── alpha.lua      --> each plugin has it's own config
 │   │   ├── cmp.lua
 │   │   ├── lsp/
 │   │   │   ├── init.lua   --> main lsp setup logic
@@ -268,34 +268,38 @@ my neovim setup is written in [lua](https://neovim.io/doc/user/lua-guide.html), 
 │   │   │       └── etc...
 │   │   ├── mason.lua
 │   │   └── etc...
-│   ├── ui.lua       --> ui related options
-│   ├── commands.lua --> custom commands and key-bindings
-│   ├── general.lua  --> general settings
-│   └── plugins.lua  --> lazy.nvim entrypoint
-├── nvim-logo*       --> k-rad ansi art
-└── init.lua         --> calls other files
+│   ├── ui.lua            --> ui related options
+│   ├── commands.lua      --> custom commands and key-bindings
+│   ├── general.lua       --> general settings
+│   └── lazy-plugins.lua  --> lazy.nvim entrypoint
+├── nvim-logo*            --> k-rad ansi art
+├── eva-logo*             --> evangeion ansi art
+└── init.lua              --> calls other files
 ```
 
-as of writing this, i use ~50 [plugins](https://github.com/xero/dotfiles/tree/main/neovim/.config/nvim/lua/plugins) and an average startup time of 90-150ms. plugin highlights include:
+as of writing this, i use ~50 [plugins](https://github.com/xero/dotfiles/tree/main/neovim/.config/nvim/lua/plugins) and an average startup time of 80-125ms. plugin highlights include:
 
+* [lazy](https://github.com/folke/lazy.nvim) - the chillest package manager
 * [lspconfig](https://github.com/neovim/nvim-lspconfig) - native language server protocol
+    * [conform](https://github.com/stevearc/conform.nvim) - lsp formatting
     * [neodev](https://github.com/folke/neodev.nvim) - vscode exported completions and snips
-	* [mason_lsp](https://github.com/williamboman/mason-lspconfig.nvim) - mason backend
+	* [mason_lsp](https://github.com/williamboman/mason-lspconfig.nvim) - mason linter backend
 	* [lsp_lines](https://git.sr.ht/~whynothugo/lsp_lines.nvim) - visualize diagnostics
     * [trouble](https://github.com/folke/trouble.nvim) - pretty diagnostics navigation pane
 * [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - subtle git diffs in the gutter
 * [cmp](https://github.com/hrsh7th/nvim-cmp) - completion engine
+* [surround](https://github.com/kylechui/nvim-surround) - motions to surround objects w/ characters
 * [comments](https://github.com/terrortylor/nvim-comment) - toggle comments with motion
 * [flog](https://github.com/rbong/vim-flog) - visually explore your git history
 * [lualine](https://github.com/nvim-lualine/lualine.nvim) - customized status bar for the rice factor
 * [tint](https://github.com/levouh/tint.nvim) - desaturate inactive panes for visual cues
-* [indent_blank_line](https://github.com/lukas-reineke/indent-blankline.nvim) - eyecandy for indent whitespace
+* [indent_blank_line](https://github.com/lukas-reineke/indent-blankline.nvim) - eyecandy for indentation whitespace
 * [telescope](https://github.com/nvim-telescope/telescope.nvim) - extensible fuzzy finder with native  floating windows
     * [telescope-undo](https://github.com/debugloop/telescope-undo.nvim) - view your undo history as a tree of diffs
     * [telescope-live-grep-args](https://github.com/nvim-telescope/telescope-live-grep-args.nvim) - ripgrep powered fuzzy search
     * [telescope-file-browser](https://github.com/nvim-telescope/telescope-file-browser.nvim) - file browser, for when you need it
 * [lush](https://github.com/rktjmp/lush.nvim) - interactive colorscheme development tool
-    * [miasma](https://github.com/xero/miasma.nvim) - my own colorscheme
+    * [evangeion](https://github.com/xero/evangeion.nvim) - my own colorscheme
 * [alpha](https://github.com/goolord/alpha-nvim) - hipster splashscreen with awesome text art
 * [which-key](https://github.com/folke/which-key.nvim) - help define and display key-bindings
 
