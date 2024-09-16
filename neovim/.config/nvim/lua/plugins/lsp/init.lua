@@ -90,7 +90,7 @@ return {
 			tailwindcss = require("plugins.lsp.servers.tailwindcss")(on_attach),
 			terraformls = {},
 			tflint = {},
-			tsserver = require("plugins.lsp.servers.ts_ls")(on_attach),
+			ts_ls = require("plugins.lsp.servers.ts_ls")(on_attach),
 			yamlls = {},
 		}
 
@@ -115,8 +115,6 @@ return {
 			mason.setup({ ensure_installed = server_names })
 			mason.setup_handlers({
 				function(server)
-					-- https://github.com/neovim/nvim-lspconfig/pull/3232
-					if server == "tsserver" then server = "ts_ls" end
 					local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_configs[server] or {})
 					lspconfig[server].setup(merged_config)
 					if server == "rust_analyzer" then
