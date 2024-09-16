@@ -1,111 +1,164 @@
 #!/bin/bash
-# shellcheck disable=SC2086
-#   _______._____.__________._________
-#   \_    (|     /   ._     \         \
-#     \    l    /    |/     /  /      /
-#      \_______/    /l_____X___\______\
-#            \_____/
+#
 #  ▓▓▓▓▓▓▓▓▓▓
 # ░▓ author ▓ xero <x@xero.style>
 # ░▓ code   ▓ https://code.x-e.ro/dotfiles
 # ░▓ mirror ▓ https://git.io/.files
 # ░▓▓▓▓▓▓▓▓▓▓
-# ░░░░░░░░░░
+#  ░░░░░░░░░░
 
-# dont run as root
-[[ "$(id -u)" -eq 0	]] && { echo "just be yourself"; exit 0; }
+#█▓▒░ style
+rip="󰭿" # 󰯆 󰯇
+alert="" #	
+spook="" # 󰞀 󰳌
+cat << x0
+_______._____.__________._________
+\\_    (|     /   ._     \\         \\
+  \\    l    /    |/     /  /      /
+   \\_______/    /l_____X___\\______\\
+          \\____/
 
+x0
+
+#█▓▒░ fatal errors
+_e(){ printf "%s error! %s\n" "$alert" "$1"; exit 1; }
+
+#█▓▒░ help
 usage() {
 	me="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
-	cat <<x0
- _______._____.__________._________
- \\_    (|     /   ._     \\         \\
-   \\    l    /    |/     /  /      /
-    \\_______/    /l_____X___\\______\\
-           \\____/
- usage: ${me} [-h|-a|-s|-d|-p|-c|-q] host
-   -a|--account  : 1password account alias
-   -s|--secret   : 1password secret item for login
-   -d|--dns      : private ipv4 dns server
-   -p|--protocol : openconnect protocol (default anyconnect)
-   -c|--cert     : pinned tls cert hash
-   -q|--quit     : disconnect vpn and proxy
-x0
+	cat <<USE
+ usage: ${me} [-q|-h] | [account]
+   -q|--quit : disconnects the vpn and proxy
+   -h|--help : display this message
+	 account   : optional prefix name of 1password item
+
+if an account arg is provided, it will be used to fetch
+the authentication credentials. otherwise, the logged
+in account of the envoking command will be used.
+USE
 	exit 0
 }
-function get_login() {
-	pass=$(op item get "$1" --fields password)
-	mfa=$(op item get "$1" --otp)
-	echo "${pass},${mfa}"
+
+#█▓▒░ deps
+installed() {
+	if ! command -v "$1" &> /dev/null; then
+		[[ -n $2 ]] \
+			&& _e "$1 not found.\nplease install it first." \
+			|| return 0
+	fi
 }
-function get_user() {
-	user=$(op item get "$1" --fields email)
-	[[ -z "$user"	]] && echo "failed to get user, op signin?" && exit 1
-	[[ $user =~ @	]] && user=${user//@.*//}
-	echo "$user"
-}
-function connect() {
-	user=$1
-	login=$2
-	host=$3
-	dns=$4
-	protocol=$5
-	cert=$6
-	[[ -z "$cert"	]] || cert="--servercert $cert"
-	[[ -z "$dns"	]] || export INTERNAL_IP4_DNS=$dns
-	echo "starting vpn processes"
-	echo "${login}" | /usr/sbin/openconnect \
-		-b -u "${user}" \
-		--passwd-on-stdin \
-		--protocol=$protocol \
-    -S --script "vpnns --attach" \
-		$cert \
-		"$host" && \
-      echo "vpn connected " && \
-	  		ln -s ~/.config/kube ~/.kube
-}
-function disconnect() {
-	echo "killing vpn processes 󰭿"
-	pkill openconnect
-	pkill vpnns
-	[[ -d "$HOME/.vpnns-default" ]] && rm -rf "$HOME/.vpnns-default"
-	[[ -L "$HOME/.kube" ]] && rm ~/.kube
-	exit 0
-}
-function parse_args() {
-	account=''
-	secret=''
-	host=''
-	dns=''
-	protocol='anyconnect'
-	cert=''
-	options=$(getopt -o ha:s:d:p:c:q -l help,account:,secret:,dns:,protocol:,cert:,quit -- "$@") || exit 1
-	set -- $options
-	while [[ $# -gt 0	]];do
-		case $1 in
-		-h|--help)     usage;;
-		-a|--account)  account="${2//\'/}";  shift;;
-		-s|--secret)   secret="${2//\'/}";   shift;;
-		-d|--dns)      dns="${2//\'/}";      shift;;
-		-p|--protocol) protocol="${2//\'/}"; shift;;
-		-c|--cert)     cert="${2//\'/}";     shift;;
-		-q|--quit)     disconnect;;
-		(--)           host="${2//\'/}";     shift; break;;
-		(-*) echo "vpn error - unrecognized option $1" 1>&2; usage;;
-		(*) break;;
-		esac
-		shift
+
+#█▓▒░ 1pw creds
+auth() {
+	account="$1"
+	[[ -z "$account" ]] && account=$(op whoami | awk '/Email:/ {split($2, a, "@"); print a[1]}')
+	    host=$(op item get "$account vpn login" --format json | jq -r '.urls[0].href')
+	username=$(op item get "$account vpn login" --fields username)
+	   group=$(op item get "$account vpn login" --fields group)
+	password=$(op item get "$account vpn login" --fields password --reveal)
+	     otp=$(op item get "$account vpn login" --otp)
+
+	for var in  host username group password otp; do
+		[[ -z "${!var}" || ("$var" == "otp" && ${#otp} -ne 6) ]] && \
+			_e "invalid credential: $var"
 	done
-	[[ -z "$host"	]] && usage
-	[[ "$host" =~ ^(q|quit|x|exit|rip|disconnect)$ ]] && disconnect
-	[[ -z "$account"	]] || account="--account ${account}"
-  eval "$(op signin ${account})"
-	echo "getting credentials"
-	user="$(get_user $secret)"
-	login="$(get_login $secret)"
-	connect "$user" "$login" "$host" "$dns" "$protocol" "$cert"
+	printf "credentials for: %s have been retrieved\n" "$account"
 }
-# fail fast w/ proper exit codes
-set -eo pipefail
-# run main logic
-parse_args "$@"
+
+#█▓▒░ create script
+setup() {
+	tmp=$(mktemp -d -t vpn-XXXXXXXXXX)
+	run="$tmp/vpn"
+	cat  << EOF > "$run"
+#!/bin/bash
+openconnect --timestamp --protocol=anyconnect --authgroup=$group $host
+EOF
+	chmod +x "$run"
+	$vpnns_installed && \
+		sed -i 's/openconnect/openconnect -S -s "vpnns --attach"/' "$run"
+}
+
+#█▓▒░ cleanup
+selfdestruct() {
+	local exit_code=$?
+	trap '' EXIT HUP INT QUIT PIPE TERM
+	[[ -d "$tmp"  ]] && rm -rf "$tmp"
+	exit $exit_code
+}
+trap selfdestruct EXIT HUP INT QUIT PIPE TERM
+
+#█▓▒░ connect using expect
+connect() {
+	sudo expect << EOF
+log_user 0
+spawn -ignore HUP "$run" && disown
+expect {
+    "Please enter your username." {
+        expect "Username:"
+        send "${username}\n"
+        exp_continue
+    }
+    "Please enter your password." {
+        expect "Password:"
+        send "${password}\n"
+        exp_continue
+    }
+    "Please enter your OTP password." {
+        expect "Password:"
+        send "${otp}\n"
+        exp_continue
+    }
+    "SSL connection failure: The TLS connection was non-properly terminated." {
+        log_user 1
+        send_user "Error: SSL connection failure.\n"
+        log_user 0
+        exit 1
+    }
+    "Failed to complete authentication" {
+        log_user 1
+        send_user "error ${rip}\nfailed to complete authentication.\n"
+        log_user 0
+        exit 1
+    }
+    "Got CONNECT response: HTTP/1.1 200 CONNECTED" {
+        log_user 1
+        send_user "\n\nvpn connected ${spook}\n"
+        log_user 0
+        # by not exiting here it allows the spawned process to continue running
+    }
+}
+EOF
+}
+
+#█▓▒░ rip
+disconnect() {
+	printf "killing vpn processes %s\n" "$rip"
+	sudo pkill openconnect
+	[[ -L "$HOME/.kube"  ]] && rm -f "$HOME/.kube"
+	if  $vpnns_installed; then
+		sudo pkill vpn
+		[[ -d "$HOME/.vpnns-default" ]] && rm -rf "$HOME/.vpnns-default"
+	fi
+	exit 0
+}
+
+#█▓▒░ logic
+main() {
+	vpnns_installed=false
+	installed "openconnect" true
+	installed "expect" true
+	installed "vpnns" && vpnns_installed=true
+	case "$1" in
+	q|quit|x|exi|rip|disconnect|-q|--quit|-x|--exit)
+		disconnect
+	;;
+	h|help|-h|--help)
+		usage
+	;;
+	esac
+	pgrep openconnect &> /dev/null && _e "vpn is already running."
+	auth "$*"
+	setup
+	connect
+}
+main "$@"
