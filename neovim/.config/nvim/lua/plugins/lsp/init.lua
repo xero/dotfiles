@@ -3,9 +3,9 @@ return {
 	dependencies = {
 		"folke/neodev.nvim",
 		"b0o/schemastore.nvim",
+		"ravibrock/spellwarn.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-		"ravibrock/spellwarn.nvim",
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
@@ -19,11 +19,10 @@ return {
 		local presentCmpNvimLsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 		local presentLspSignature, lsp_signature = pcall(require, "lsp_signature")
 
-		vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
+		vim.lsp.set_log_level("error")
 
 		local function on_attach(client, bufnr)
 			remaps.set_default_on_buffer(client, bufnr)
-
 			if presentLspSignature then
 				lsp_signature.on_attach({ floating_window = false, timer_interval = 500 })
 			end
