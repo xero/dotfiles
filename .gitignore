@@ -1,19 +1,20 @@
 # 𝙄𝙂𝙉𝙊𝙍𝙀 𝙈𝙀! 🙈
-dbcli/.config/pgcli/log
 dbcli/.config/mycli/log
+dbcli/.config/pgcli/log
+gpg/.local/share/gpg/.*.*
 gpg/.local/share/gpg/crls.d/
 gpg/.local/share/gpg/private-keys-v1.d/
-gpg/.local/share/gpg/tofu.db
 gpg/.local/share/gpg/pubring.kbx
 gpg/.local/share/gpg/pubring.kbx~
+gpg/.local/share/gpg/tofu.db
 gpg/.local/share/gpg/trustdb.gpg
-gpg/.local/share/gpg/.*.*
+neovim/.config/nvim/db_ui/connections.json
+ssh/.ssh/*.pub
 ssh/.ssh/authorized_keys
 ssh/.ssh/id_*
-ssh/.ssh/*.pub
 ssh/.ssh/known_hosts
 tmux/.config/tmux/plugins/
 vim/.config/nvim/*/
-zsh/.zcompdump
 zsh/.config/zsh/*secret*.zsh
-neovim/.config/nvim/db_ui/connections.json
+zsh/.config/zsh/syntaxhighlighting
+zsh/.zcompdump

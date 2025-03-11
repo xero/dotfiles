@@ -14,6 +14,9 @@
 -- ░▓▓▓▓▓▓▓▓▓▓
 -- ░░░░░░░░░░
 --
+-- neovide font
+vim.o.guifont ="Hack Nerd Font"
+
 -- show matching brackets/parenthesis
 vim.opt.showmatch = true
 
