@@ -11,6 +11,17 @@ return {
 			},
 		})
 		f.cmd("MasonInstallAll", function()
+
+			local function filter_missing_tools(tools)
+				local missing = {}
+				for _, tool in ipairs(tools) do
+					if vim.fn.executable(tool) ~= 1 then
+						table.insert(missing, tool)
+					end
+				end
+				return missing
+			end
+
 			vim.cmd('MasonUpdate')
 			local ensure_installed = {
 				"bash-language-server",
@@ -47,7 +58,10 @@ return {
 				"yamlfmt",
 				"yamllint",
 			}
-			vim.cmd('MasonInstall ' .. table.concat(ensure_installed, ' '))
-		end, { desc = "install all lsp tools" })
+			local missing_tools = filter_missing_tools(ensure_installed)
+			if #missing_tools > 0 then
+				vim.cmd('MasonInstall ' .. table.concat(missing_tools, ' '))
+			end
+		end, { desc = "install lsp tools" })
 	end,
 }

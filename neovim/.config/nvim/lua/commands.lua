@@ -94,3 +94,6 @@ f.autocmd({ "BufWritePre" }, {
 		vim.fn.setpos(".", save_cursor)
 	end,
 })
+-- dont clobber register
+r.noremap("n", "d", "\"_d", "delete char")
+r.noremap("n", "dd", "\"_dd", "delete line")

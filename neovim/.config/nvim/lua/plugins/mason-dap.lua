@@ -15,7 +15,6 @@ return {
 			},
 			auto_update = false,
 			run_on_start = false,
-			automatic_setup = true,
 		})
 		mason_dap.setup_handlers {}
 	end,

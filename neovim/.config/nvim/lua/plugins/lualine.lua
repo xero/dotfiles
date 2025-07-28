@@ -199,7 +199,9 @@ return {
 					local clients_list = {}
 					for _, client in pairs(clients) do
 						if not clients_list[client.name] then
-							table.insert(clients_list, client.name)
+							if not string.find(client.name, "GitHub Copilot") then
+								table.insert(clients_list, client.name)
+							end
 						end
 					end
 					local lsp_lbl = dump(clients_list):gsub("(.*),", "%1")

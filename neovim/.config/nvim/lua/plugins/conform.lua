@@ -4,7 +4,7 @@ return {
 	cmd = { "ConformInfo" },
 	config = function()
 		local conform = require("conform")
-		local prettier = { "prettierd", "prettier", stop_after_first = true }
+		local prettier = { "prettier", stop_after_first = true }
 		conform.setup({
 			default_format_opts = {
 				lsp_format = "fallback",
@@ -44,14 +44,16 @@ return {
 				},
 				["php-cs-fixer"] = {
 					command = "php-cs-fixer",
+					args = {
+						"fix",
+						"--rules=@PSR12",
+						"$FILENAME",
+					},
+					stdin = false,
 					prepend_args = { "fix", "--rules=@PSR12" },
 				},
 				prettier = {
 					command = "prettier",
-					prepend_args = { "-w" },
-				},
-				prettierd = {
-					command = "prettierd",
 					prepend_args = { "-w" },
 				},
 				shfmt = {

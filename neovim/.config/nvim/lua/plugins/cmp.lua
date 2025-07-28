@@ -34,7 +34,12 @@ return {
 			end
 		end
 
-		lsp_kind.init()
+		lsp_kind.init({
+			symbol_map = {
+				Copilot = "",
+			},
+		})
+		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
 		---@diagnostic disable-next-line
 		cmp.setup({
 			enabled = true,
@@ -71,13 +76,15 @@ return {
 				["<up>"] = cmp_prev,
 			},
 			sources = {
-				{ name = "nvim_lsp_signature_help", group_index = 1 },
-				{ name = "luasnip",                 max_item_count = 5,  group_index = 1 },
-				{ name = "nvim_lsp",                max_item_count = 20, group_index = 1 },
-				{ name = "nvim_lua",                group_index = 1 },
-				{ name = "vim-dadbod-completion",   group_index = 1 },
-				{ name = "path",                    group_index = 2 },
-				{ name = "buffer",                  keyword_length = 2,  max_item_count = 5, group_index = 2 },
+				{ name = "nvim_lsp_signature_help",   group_index = 1 },
+				{ name = "luasnip",                   max_item_count = 5,  group_index = 1 },
+				{ name = "buffer",                    keyword_length = 2,  max_item_count = 5, group_index = 2 },
+				{ name = "nvim_lsp",                  max_item_count = 20, group_index = 1 },
+				{ name = "nvim_lua",                  group_index = 1 },
+				{ name = "copilot",                   group_index = 2 },
+				{ name = "tailwindcss_colorizer_cmp", group_index = 1 },
+				{ name = "vim-dadbod-completion",     group_index = 1 },
+				{ name = "path",                      group_index = 2 },
 			},
 		})
 		local presentAutopairs, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")

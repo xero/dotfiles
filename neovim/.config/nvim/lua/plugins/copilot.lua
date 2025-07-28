@@ -1,59 +1,50 @@
 return {
-	-- copilot
-	{
-		"zbirenbaum/copilot.lua",
-		verylazy = true,
-		cmd = "Copilot",
-		build = ":Copilot auth",
-		opts = {
+	"CopilotC-Nvim/CopilotChat.nvim",
+	dependencies = {
+		{ "zbirenbaum/copilot.lua" },
+		{ "nvim-lua/plenary.nvim" },
+		{ "zbirenbaum/copilot-cmp" },
+	},
+	cmd = { "CopilotChat" },
+	init = function()
+		vim.g.copilot_chat_disable_defaults = true
+
+		local r = require("utils.remaps")
+		local f = require("utils.functions")
+		f.cmd("CC", ":CopilotChat", { desc = "Copilot Chat" })
+		r.noremap("n", "<leader>m", ":CC<cr>", "copilot chat")
+		r.map_virtual({ "<leader>m", group = "Copilot", icon = { icon = "", hl = "Constant" } })
+	end,
+	opts = function()
+		require("copilot").setup({
 			suggestion = { enabled = false },
 			panel = { enabled = false },
-			filetypes = {
-				markdown = true,
-				help = true,
-				lua = true,
-				bash = true,
+		})
+		require("copilot_cmp").setup()
+		local token_file = vim.fn.expand("~/.config/nvim/gh_token")
+		local token = ""
+		local f = io.open(token_file, "r")
+		if f then
+			token = f:read("*l")
+			f:close()
+		end
+		return {
+			separator = "████▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░",
+			headers = {
+				user = ' ',
+				assistant = ' ',
+				tool = ' ',
 			},
-		},
-	},
-	-- copilot cmp source
-	{
-		"nvim-cmp",
-		dependencies = {
-			{
-				"zbirenbaum/copilot-cmp",
-				verylazy = true,
-				dependencies = "copilot.lua",
-				opts = {},
-				config = function(_, opts)
-					local copilot_cmp = require("copilot_cmp")
-					copilot_cmp.setup(opts)
-					require("utils.functions").on_attach(function(client)
-						if client.name == "copilot" then
-							copilot_cmp._on_insert_enter({})
-						end
-					end)
-				end,
-			},
-		},
-		---@param opts cmp.ConfigSchema
-		opts = function(_, opts)
-			local cmp = require("cmp")
-			table.insert(opts, { sources = { name = "copilot", group_index = 2 } })
-
-			opts.sorting = {
-				priority_weight = 2,
-				comparators = {
-					require("copilot_cmp.comparators").prioritize,
-					cmp.config.compare.offset,
-					cmp.config.compare.exact,
-					cmp.config.compare.score,
-					cmp.config.compare.kind,
-					cmp.config.compare.sort_text,
-					cmp.config.compare.length,
-					cmp.config.compare.order,
+			github_token = token,
+			mappings = {
+				reset = {
+					normal = "<nop>",
+					insert = "<nop>",
 				},
-			}
-		end,
-	},
+				show_diff = {
+					full_diff = true,
+				},
+			},
+		}
+	end,
 }

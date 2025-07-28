@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"folke/neodev.nvim",
 		"b0o/schemastore.nvim",
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		"ravibrock/spellwarn.nvim",
 	},
@@ -110,21 +110,20 @@ return {
 			server_configs[server_name] = server_config
 		end
 
-		local present_mason, mason = pcall(require, "mason-lspconfig")
-		if present_mason then
-			mason.setup({ ensure_installed = server_names })
-			mason.setup_handlers({
-				function(server)
-					local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_configs[server] or {})
-					lspconfig[server].setup(merged_config)
-					if server == "rust_analyzer" then
-						local present_rust_tools, rust_tools = pcall(require, "rust-tools")
-						if present_rust_tools then
-							rust_tools.setup({ server = merged_config })
-						end
-					end
-				end,
+		local mason_ok, mason = pcall(require, "mason")
+		local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+
+		if mason_ok and mason_lspconfig_ok then
+			mason.setup()
+			mason_lspconfig.setup({
+				ensure_installed = server_names,
+				automatic_enable = false,
 			})
+			for server, config in pairs(server_configs) do
+				require("lspconfig")[server].setup(
+					vim.tbl_deep_extend("force", default_lsp_config, config or {})
+				)
+			end
 		end
 	end,
 }

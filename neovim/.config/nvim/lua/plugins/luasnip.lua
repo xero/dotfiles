@@ -25,12 +25,5 @@ return {
 				luasnip.jump(-1)
 			end
 		end, "Go to previous snippet", { silent = true })
-
-		r.map("i", "<c-l>", function()
-			if luasnip.choice_active() then
-				luasnip.change_choice(1)
-			end
-		end, "Show list of options")
-
 	end,
 }
