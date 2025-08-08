@@ -1,18 +1,18 @@
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	lazy = true,
-	 dependencies = {
+	dependencies = {
 		{ "zbirenbaum/copilot.lua" },
 		{ "nvim-lua/plenary.nvim" },
 	},
-			cmd = { "CopilotChat" },
+	cmd = { "CopilotChat" },
 
-			init = function()
-				vim.g.copilot_chat_disable_defaults = true
+	init = function()
+		vim.g.copilot_chat_disable_defaults = true
 
-				local r = require("utils.remaps")
-				local f = require("utils.functions")
-				f.cmd("CC", ":CopilotChat", { desc = "Copilot Chat" })
+		local r = require("utils.remaps")
+		local f = require("utils.functions")
+		f.cmd("CC", ":CopilotChat", { desc = "Copilot Chat" })
 		r.noremap("n", "<leader>C", ":CC<cr>", "copilot chat")
 		r.map_virtual({ "<leader>C", group = "Copilot", icon = { icon = "", hl = "Constant" } })
 	end,

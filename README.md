@@ -224,7 +224,7 @@ i'm all about living a *comfy* and clean digital life, so that means a tidy and 
 │   ├── authorized_keys
 │   ├── config
 │   └── known_hosts
-└── ▄█▀ █▬█ █ ▀█▀
+└── todo.txt
 ```
 to make this all work, (esp `~/.local/lib`) i have a ton of XDG directives in my [zsh environment file](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/01-environment.zsh#L16). the one tricky bit it getting your zshrc outta home. you need to export the ZDOTDIR globally somewhere like `/etc/zsh/zshenv` or `/etc/zlogin`  that is globally sourced. other options like using systemd discussed [here](https://www.reddit.com/r/zsh/comments/3ubrdr/comment/iqd901v/). i suggest running these two commands from my [setup script](https://github.com/xero/dotfiles/blob/main/setup) to get things ready:
 
@@ -250,30 +250,35 @@ with [my asliases](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/06
 
 you can also start neovim using `ec` or editor clean, to run `nvim --cmd ":lua vim.g.noplugins=1"`. which is kinda like `nvim --clean` with the added bonus of still loading some sane defaults. i use this as my [MANPAGER](https://github.com/xero/dotfiles/blob/main/zsh/.config/zsh/01-environment.zsh#L40) with `+MAN!` as well.
 
-my neovim setup is written in [lua](https://neovim.io/doc/user/lua-guide.html), uses [lazy.vim](https://github.com/folke/lazy.nvim), and a bunch of plugins. you can enable/disable them selectivly from [plugins.lua](https://github.com/xero/dotfiles/blob/main/neovim/.config/nvim/lua/plugins.lua). here's the structure of configs:
+my neovim setup is written in [lua](https://neovim.io/doc/user/lua-guide.html), uses [lazy.vim](https://github.com/folke/lazy.nvim), and a bunch of plugins. you can enable/disable them selectivly from [plugins.lua](https://github.com/xero/dotfiles/blob/main/neovim/.config/nvim/lua/cfg/lazy.lua). here's the general structure of configs:
 ```
 ~/.config/nvim
-├── lua/
-│   ├── utils/i            --> shared helper functions
-│   ├── plugins/
-│   │   ├── alpha.lua      --> each plugin has it's own config
-│   │   ├── cmp.lua
-│   │   ├── lsp/
-│   │   │   ├── init.lua   --> main lsp setup logic
-│   │   │   ├── remaps.lua --> lsp key-bindings
-│   │   │   └── servers/
-│   │   │       ├── bashls.lua --> language server specific configs
-│   │   │       ├── luals.lua
-│   │   │       └── etc...
-│   │   ├── mason.lua
-│   │   └── etc...
-│   ├── ui.lua            --> ui related options
-│   ├── commands.lua      --> custom commands and key-bindings
-│   ├── general.lua       --> general settings
-│   └── lazy-plugins.lua  --> lazy.nvim entrypoint
-├── nvim-logo*            --> k-rad ansi art
-├── eva-logo*             --> evangeion ansi art
-└── init.lua              --> calls other files
+├── init.lua                 --> nvim entry point
+└── lua/
+    ├── cfg/                 --> main config files
+    │   ├── commands.lua     --> custom commands and key-bindings
+    │   ├── general.lua      --> general settings
+    │   ├── lazy.lua         --> lazy.nvim entrypoint
+    │   └── ui.lua           --> ui related options
+    ├── core/                --> features and functions
+    │   ├── blink.lua        --> completion engine
+    │   ├── snacks.lua       --> yummy little features
+    │   ├── yank.lua         --> local/remote/tmux clipboard sync
+    │   └── etc, etc...
+    ├── lsp/                 --> language server configs
+    │   ├── init.lua         --> main setup
+    │   ├── luals.lua        --> lua language server
+    │   ├── remaps.lua       --> key-bindings
+    │   └── etc, etc...
+    ├── ui/                  --> user interact config
+    │   ├── colorschemes.lua --> my colors
+    │   ├── devicons.lua     --> nerd font icons
+    │   ├── nvim-logo        --> dashboard text art
+    │   └── etc, etc...
+    └── utils/               --> helpers
+        ├── functions.lua    --> define functions
+        ├── icons.lua        --> icons all in one place
+        └── remaps.lua       --> remap and vmap keys
 ```
 
 as of writing this, i use ~50 [plugins](https://github.com/xero/dotfiles/tree/main/neovim/.config/nvim/lua/plugins) and an average startup time of 80-125ms. plugin highlights include:
@@ -281,25 +286,21 @@ as of writing this, i use ~50 [plugins](https://github.com/xero/dotfiles/tree/ma
 * [lazy](https://github.com/folke/lazy.nvim) - the chillest package manager
 * [lspconfig](https://github.com/neovim/nvim-lspconfig) - native language server protocol
     * [conform](https://github.com/stevearc/conform.nvim) - lsp formatting
-    * [neodev](https://github.com/folke/neodev.nvim) - vscode exported completions and snips
 	* [mason_lsp](https://github.com/williamboman/mason-lspconfig.nvim) - mason linter backend
-	* [lsp_lines](https://git.sr.ht/~whynothugo/lsp_lines.nvim) - visualize diagnostics
     * [trouble](https://github.com/folke/trouble.nvim) - pretty diagnostics navigation pane
 * [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - subtle git diffs in the gutter
-* [cmp](https://github.com/hrsh7th/nvim-cmp) - completion engine
+* [blink](https://github.com/Saghen/blink.cmp) - completion engine
+* [snacks](https://github.com/folke/snacks.nvim/tree/main) - QOL micro-plugins
 * [surround](https://github.com/kylechui/nvim-surround) - motions to surround objects w/ characters
-* [comments](https://github.com/terrortylor/nvim-comment) - toggle comments with motion
 * [flog](https://github.com/rbong/vim-flog) - visually explore your git history
 * [lualine](https://github.com/nvim-lualine/lualine.nvim) - customized status bar for the rice factor
 * [tint](https://github.com/levouh/tint.nvim) - desaturate inactive panes for visual cues
-* [indent_blank_line](https://github.com/lukas-reineke/indent-blankline.nvim) - eyecandy for indentation whitespace
 * [telescope](https://github.com/nvim-telescope/telescope.nvim) - extensible fuzzy finder with native  floating windows
     * [telescope-undo](https://github.com/debugloop/telescope-undo.nvim) - view your undo history as a tree of diffs
     * [telescope-live-grep-args](https://github.com/nvim-telescope/telescope-live-grep-args.nvim) - ripgrep powered fuzzy search
     * [telescope-file-browser](https://github.com/nvim-telescope/telescope-file-browser.nvim) - file browser, for when you need it
 * [lush](https://github.com/rktjmp/lush.nvim) - interactive colorscheme development tool
     * [evangeion](https://github.com/xero/evangeion.nvim) - my own colorscheme
-* [alpha](https://github.com/goolord/alpha-nvim) - hipster splashscreen with awesome text art
 * [which-key](https://github.com/folke/which-key.nvim) - help define and display key-bindings
 
 my leader key is set to `,` and you can checkout all my custom key-bindings by calling `:WhichKey`
