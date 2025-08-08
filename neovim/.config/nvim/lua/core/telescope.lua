@@ -1,3 +1,4 @@
+---@diagnostic disable undefined global
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VeryLazy",
@@ -14,6 +15,7 @@ return {
 		local lga_shortcuts = require("telescope-live-grep-args.shortcuts")
 		local undo_actions = require("telescope-undo.actions")
 		local r = require("utils.remaps")
+		local f = require("utils.functions")
 		local i = require("utils.icons")
 		telescope.setup({
 			defaults = {
@@ -74,12 +76,13 @@ return {
 			})
 			require("telescope").extensions.undo.undo()
 		end, "undo tree")
-		r.noremap("n", "\\", function()
+		f.cmd("LiveGrep", function ()
 			telescope.extensions.live_grep_args.live_grep_args({
 				prompt_title = "grep",
 				additional_args = "-i",
 			})
-		end, "live grep")
+		end, { desc =  "live grep" })
+		r.noremap("n", "\\", "<cmd>LiveGrep<cr>", "live grep")
 		r.noremap("n", "<leader>o", ":Telescope oldfiles<cr>", "old files")
 		r.noremap("n", "<leader>g", function()
 			lga_shortcuts.grep_word_under_cursor({ postfix = " --hidden " })

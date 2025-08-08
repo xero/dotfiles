@@ -1,19 +1,33 @@
 ---@diagnostic disable undefined global
+local i = require("utils.icons")
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
 	opts = {
+		dim = { enabled = false },
+		scroll = { enabled = false },
+		statuscolumn = { enabled = false },
+		words = { enabled = false },
+		explorer = { enabled = false },
+		quickfile = { enabled = true },
+		input = { enabled = true },
+		picker = { enabled = true },
+		animate = { enabled = true },
+		notifier = {
+			enabled = true,
+			timeout = 3000,
+		},
 		indent = {
 			indent = {
 				enabled = true,
-				char = "┊",
+				char = i.snacks.chunk.vertical,
 				only_scope = false,
 				only_current = false,
 			},
 			scope = {
 				enabled = true,
-				char = "┊",
+				char = i.snacks.chunk.vertical,
 				underline = false,
 				hl = "IblScope",
 			},
@@ -30,45 +44,56 @@ return {
 				enabled = true,
 				only_current = false,
 				hl = "@comment.note",
-				char = {
-					corner_top = "┌",
-					corner_bottom = "└",
-					horizontal = "┄",
-					vertical = "┊",
-					arrow = "┄",
-				},
+				char = i.snacks.chunk,
 			},
 		},
-		notifier = {
-			enabled = true,
-			timeout = 3000,
-		},
-		input = { enabled = true },
-		picker = { enabled = true },
-		animate = { enabled = true },
 		bigfile = {
 			enabled = true,
 			notify = true,
 			size = 1.5 * 1024 * 1024, -- 1.5MB
 			line_length = 1000,
-			-- Enable or disable features when big file detected
 			---@param ctx {buf: number, ft:string}
 			setup = function(ctx)
-				if vim.fn.exists(":NoMatchParen") ~= 0 then
-					vim.cmd([[NoMatchParen]])
+				if vim.fn.exists(":MatchParenDisable") ~= 0 then
+					vim.cmd([[MatchParenDisable]])
 				end
-
+				vim.opt_local.swapfile = false
+				vim.opt_local.foldmethod = "manual"
+				vim.opt_local.undolevels = -1
+				vim.opt_local.undoreload = 0
+				vim.opt_local.list = false
+				vim.cmd("syntax clear")
+				vim.opt_local.syntax = "off"
+				vim.opt_local.filetype = ""
 				vim.diagnostic.enable(false)
+				if vim.fn.exists(":VimadeDisable") ~= 0 then
+					vim.cmd([[VimadeDisable]])
+				end
+				vim.cmd("TSDisable highlight")
+				vim.cmd("TSDisable incremental_selection")
+				vim.cmd("TSDisable indent")
+				vim.cmd("TSDisable textobjects.lsp_interop")
+				vim.cmd("TSDisable textobjects.move")
+				vim.cmd("TSDisable textobjects.select")
+				vim.cmd("TSDisable textobjects.swap")
+				require("lualine").hide()
 				for _, client in pairs(vim.lsp.get_clients()) do
 					client.stop()
 				end
+				vim.api.nvim_create_autocmd({ "LspAttach" }, {
+					buffer = buf,
+					callback = function(args)
+						vim.schedule(function()
+							vim.lsp.buf_detach_client(buf, args.data.client_id)
+						end)
+					end,
+				})
 				local ok, blink_cmp = pcall(require, "blink.cmp")
 				if ok then
 					blink_cmp.hide()
 					blink_cmp.cancel()
 				end
 				vim.api.nvim_buf_set_option(0, "omnifunc", "")
-
 				Snacks.util.wo(0, { foldmethod = "manual", statuscolumn = "", conceallevel = 0 })
 				vim.b.minianimate_disable = true
 				vim.schedule(function()
@@ -78,39 +103,110 @@ return {
 				end)
 			end,
 		},
-		quickfile = { enabled = true },
-		explorer = { enabled = false },
 		dashboard = {
 			preset = {
 				keys = function()
-					return {
-						{ icon = "         ", key = "i", desc = "new file", action = ":ene | startinsert" },
-						{ icon = "         ", key = "o", desc = "old files", action = ":Telescope oldfiles" },
-						{ icon = "        󰥨 ", key = "f", desc = "find File", action = ":Telescope file_browser" },
-						{ icon = "         ", key = "g", desc = "find text", action = ":lua Snacks.dashboard.pick('live_grep')", },
-						{ icon = "         ", key = "h", desc = "browse git", action = ":Flog" },
-						{ icon = "        󰒲 ", key = "l", desc = "lazy", action = ":Lazy" },
-						{ icon = "        󱌣 ", key = "m", desc = "mason", action = ":Mason" },
-						{ icon = "        󰄉 ", key = "p", desc = "profile", action = ":Lazy profile" },
-						{ icon = "        󰭿 ", key = "q", desc = "quit", action = ":qa" },
+					local colors = require("evangelion.unit01").get()
+					vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = colors.lcl })
+					vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = colors.angel })
+					vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = colors.adam, bold = true })
+					return { {
+							text = {
+								{ "         " .. i.snacks.new .. "  ", hl = "SnacksDashboardIcon" },
+								{ "new file", hl = "SnacksDashboardDesc", width = 45 },
+								{ "[ i ]", hl = "SnacksDashboardKey" },
+							},
+							action = ":ene | startinsert",
+							key = "i",
+						}, {
+							text = {
+								{ "         " .. i.snacks.old .. "  ", hl = "SnacksDashboardIcon" },
+								{ "old files", hl = "SnacksDashboardDesc", width = 45 },
+								{ "[ o ]", hl = "SnacksDashboardKey" },
+							},
+							action = ":Telescope oldfiles",
+							key = "o",
+						}, {
+							text = {
+								{ "         " .. i.snacks.findf .. "  ", hl = "SnacksDashboardIcon" },
+								{ "find file", hl = "SnacksDashboardDesc", width = 45 },
+								{ "[ f ]", hl = "SnacksDashboardKey" },
+							},
+							action = ":Telescope file_browser",
+							key = "f",
+						}, {
+							text = {
+								{ "         " .. i.snacks.findt .. "  ", hl = "SnacksDashboardIcon" },
+								{ "find text", hl = "SnacksDashboardDesc", width = 45 },
+								{ "[ \\ ]", hl = "SnacksDashboardKey" },
+							},
+							action = ":LiveGrep",
+							key = "\\",
+						}, {
+							text = {
+								{ "         " .. i.snacks.git .. "  ", hl = "SnacksDashboardIcon" },
+								{ "browse git", hl = "SnacksDashboardDesc", width = 45 },
+								{ "[ g ]", hl = "SnacksDashboardKey" },
+							},
+							action = ":Flog",
+							key = "g",
+						}, {
+							text = {
+								{ "         " .. i.snacks.lazy .. "  ", hl = "SnacksDashboardIcon" },
+								{ "lazy", hl = "SnacksDashboardDesc", width = 45 },
+								{ "[ l ]", hl = "SnacksDashboardKey" },
+							},
+							action = ":Lazy",
+							key = "l",
+						}, {
+							text = {
+								{ "         " .. i.snacks.mason .. "  ", hl = "SnacksDashboardIcon" },
+								{ "mason", hl = "SnacksDashboardDesc", width = 45 },
+								{ "[ m ]", hl = "SnacksDashboardKey" },
+							},
+							action = ":Mason",
+							key = "m",
+						}, {
+							text = {
+								{ "         " .. i.snacks.prof .. "  ", hl = "SnacksDashboardIcon" },
+								{ "profile", hl = "SnacksDashboardDesc", width = 45 },
+								{ "[ p ]", hl = "SnacksDashboardKey" },
+							},
+							action = ":Lazy profile",
+							key = "p",
+						}, {
+							text = {
+								{ "         " .. i.snacks.quit .. "  ", hl = "SnacksDashboardIcon" },
+								{ "quit", hl = "SnacksDashboardDesc", width = 45 },
+								{ "[ q ]", hl = "SnacksDashboardKey" },
+							},
+							action = ":qa",
+							key = "q",
+						},
 					}
 				end,
 			},
 			sections = {
 				{
 					section = "terminal",
-					cmd = "~/.config/nvim/lua/ui/nvim-logo -l",
+					cmd = "~/.config/nvim/lua/ui/nvim-logo -e",
 					height = 10,
 					width = 70,
 					padding = 1,
 				},
-				{ section = "keys", gap = 0, padding = 0 },
+				{
+					section = "keys",
+					gap = 0,
+					padding = 1,
+				},
+				{
+					section = "startup",
+					icon = "         " .. i.snacks.plug .. " ",
+					padding = 1,
+					gap = 1,
+				},
 			},
 		},
-		scroll = { enabled = false },
-		statuscolumn = { enabled = false },
-		words = { enabled = false },
-		---@class snacks.dim.Config
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
@@ -122,21 +218,38 @@ return {
 				_G.bt = function()
 					Snacks.debug.backtrace()
 				end
-				vim.print = _G.dd -- Override print to use snacks for `:=` command
+				-- Override print to use snacks for `:=` command
+				vim.print = _G.dd
 
 				local r = require("utils.remaps")
-				r.map_virtual({ "<leader>U", group = "snacks", icon = { icon = "󰉚 ", hl = "Constant" } })
-				r.noremap("n", "<leader>UU", function() Snacks.picker.undo() end, "undo tree")
-				Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>s")
-				Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>w")
-				Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>UL")
-				Snacks.toggle.diagnostics():map("<leader>Ud")
-				Snacks.toggle.line_number():map("<leader>Ul")
-				Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }) :map("<leader>Uc")
-				Snacks.toggle.treesitter():map("<leader>UT")
-				Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }) :map("<leader>Ub")
-				Snacks.toggle.inlay_hints():map("<leader>Uh")
-				Snacks.toggle.indent():map("<leader>Ug")
+				r.map_virtual({
+					"<leader>U",
+					group = "snacks",
+					icon = { icon = i.snacks.snack, hl = "Constant" },
+				})
+				r.noremap("n", "<leader>UU", function()
+					Snacks.picker.undo()
+				end, "undo tree")
+				Snacks.toggle.option("conceallevel", {
+					off = 0,
+					on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2,
+				}):map("<leader>Uc")
+				Snacks.toggle.option("spell", { name = "Spelling" })
+					:map("<leader>s")
+				Snacks.toggle.option("wrap", { name = "Wrap" })
+					:map("<leader>w")
+				Snacks.toggle.option("relativenumber", { name = "Relative Number" })
+					:map("<leader>UL")
+				Snacks.toggle.diagnostics()
+					:map("<leader>Ud")
+				Snacks.toggle.line_number()
+					:map("<leader>Ul")
+				Snacks.toggle.treesitter()
+					:map("<leader>UT")
+				Snacks.toggle.inlay_hints()
+					:map("<leader>Uh")
+				Snacks.toggle.indent()
+					:map("<leader>Ug")
 			end,
 		})
 	end,
