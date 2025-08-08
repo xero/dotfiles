@@ -79,7 +79,6 @@ return {
 			Function      = "󰊕 ",
 			Interface     = " ",
 			Key           = " ",
-			Method        = "󰊕 ",
 			Module        = " ",
 			Namespace     = "󰦮 ",
 			Null          = " ",
@@ -92,6 +91,16 @@ return {
 			Struct        = "󰆼 ",
 			TypeParameter = " ",
 			Variable      = "󰀫 ",
+			Text          = "",
+			Method        = "",
+			Unit          = "",
+			Value         = "",
+			Keyword       = "",
+			Snippet       = "",
+			Color         = "",
+			Reference     = "",
+			Folder        = "",
+			Copilot       = "",
 		}
 	},
 	borders = {
@@ -100,6 +109,22 @@ return {
 		single = { "─", "│", "─", "│", "╭", "╮", "╯", "╰", },
 		blocks = { "▀", "▐", "▄", "▌", "▛", "▜", "▟", "▙", },
 		blocky = { "▀", "▐", "▄", "▌", "▄", "▄", "▓", "▀", },
+--        ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏
+--        ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟
+--        ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯
+--        ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿
+--        ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╌ ╍ ╎ ╏
+--        ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟
+--        ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ ╭ ╮ ╯
+--        ╰ ╱ ╲ ╳ ╴ ╵ ╶ ╷ ╸ ╹ ╺ ╻ ╼ ╽ ╾ ╿
+		diagflow = {
+			top_left     = "╭",
+			top_right    = "╮",
+			bottom_left  = "╰",
+			bottom_right = "╯",
+			horizontal   = "╌",
+			vertical     = "┊",
+		}
 	},
 	telescope = {
 		prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰", },

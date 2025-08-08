@@ -14,11 +14,11 @@
 -- ░▓▓▓▓▓▓▓▓▓▓
 -- ░░░░░░░░░░
 
-require("general")
-require("ui")
-require("commands")
+require("cfg.general")
+require("cfg.commands")
+require("cfg.ui")
 if vim.g.noplugins == nil then
-	require("lazy-plugins")
+	require("cfg.lazy")
 else
 	vim.cmd("source " .. vim.fn.stdpath("data") .. "/lazy/evangelion.nvim/extras/evangelion.vim")
 end

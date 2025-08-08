@@ -3,7 +3,6 @@ return {
 	version = "*",
 	event = "VeryLazy",
 	config = function()
-		---@diagnostic disable-next-line
 		require("nvim-surround").setup({
 			keymaps = {
 				insert = "<c-g>s",

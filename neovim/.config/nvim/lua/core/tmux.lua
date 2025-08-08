@@ -32,6 +32,7 @@ return {
 				vim.cmd("!tmux resize-pane -Z")
 			end
 		end
+		-- normal mode
 		r.noremap("n", "<c-h>", tmux.move_left, "tmux focus left")
 		r.noremap("n", "<c-j>", tmux.move_bottom, "tmux focus bottom")
 		r.noremap("n", "<c-k>", tmux.move_top, "tmux focus top")
@@ -40,6 +41,7 @@ return {
 		r.noremap("n", "<c-down>", tmux.resize_bottom, "tmux resize bottom")
 		r.noremap("n", "<c-up>", tmux.resize_top, "tmux resize top")
 		r.noremap("n", "<c-right>", tmux.resize_right, "tmux resize right")
+		-- term mode
 		r.noremap("t", "<c-h>", tmux.move_left, "tmux focus left")
 		r.noremap("t", "<c-j>", tmux.move_bottom, "tmux focus bottom")
 		r.noremap("t", "<c-k>", tmux.move_top, "tmux focus top")

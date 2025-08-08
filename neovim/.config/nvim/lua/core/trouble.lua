@@ -12,7 +12,6 @@ return {
 				},
 			},
 			warn_no_results = false,
-			-- stylua: ignore
 			icons = require("utils.icons").trouble,
 		})
 		require("utils.remaps").map_virtual({
@@ -20,20 +19,17 @@ return {
 			{ "<leader>ts", group = "symbols", icon = { icon = " ", hl = "Constant" } },
 		})
 	end,
-	keys = {
-		{
+	keys = {{
 			"<leader>tt",
-			"<cmd>Trouble diagnostics toggle<cr>",
+			"<cmd>Trouble diagnostics toggle focus=true filter.buf=0<cr>",
 			desc = "trouble diagnostics",
-		},
-		{
+		},{
 			"<leader>tT",
-			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-			desc = "buffer diagnostics",
-		},
-		{
+			"<cmd>Trouble diagnostics toggle focus=true<cr>",
+			desc = "project diagnostics",
+		},{
 			"<leader>ts",
-			"<cmd>Trouble symbols toggle focus=false<cr>",
+			"<cmd>Trouble symbols toggle focus=true<cr>",
 			desc = "symbols",
 		},
 	},

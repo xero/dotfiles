@@ -3,16 +3,8 @@ local vim = vim
 local X = {}
 
 local function LspToggle()
-	if vim.diagnostic.is_enabled() == false then
-		vim.diagnostic.enable()
-		vim.diagnostic.config({ virtual_text = true })
-		vim.cmd([[LspStart]])
-		print(" lsp starting...")
-	else
-		vim.diagnostic.enable(false)
-		vim.cmd([[LspStop]])
-		print("lsp disabled")
-	end
+	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+		print(" lsp toggled")
 end
 
 local function generate_buf_keymapper(bufnr)
@@ -52,7 +44,7 @@ function X.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.referencesProvider then
-		buf_set_keymap("n", "<leader>/lr", function()
+		buf_set_keymap("n", "<leader>/r", function()
 			require("fzf-lua").lsp_references()
 		end, "show references")
 	end
@@ -70,6 +62,7 @@ function X.set_default_on_buffer(client, bufnr)
 			}
 			vim.lsp.buf.code_action({ range = range.range })
 		end, "code actions")
+		r.map_virtual({ "<leader>r", group = "refactor", icon = { icon = " ", hl = "Constant" } })
 	end
 
 	if cap.renameProvider then
@@ -110,16 +103,8 @@ function X.set_default_on_buffer(client, bufnr)
 	buf_set_keymap("n", "<leader>lt", function()
 		LspToggle()
 	end, "toggle lsp")
-	buf_set_keymap("n", "<leader>ll", function()
-		if vim.diagnostic.is_enabled() == false then
-			vim.diagnostic.enable()
-			vim.cmd([[LspStart]])
-		end
-		require("lsp_lines").toggle()
-	end, "toggle lsp lines")
 	r.map_virtual({
 		{ "<leader>l", group = "lsp", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>ll", group = "lsp lines", icon = { icon = "󱞽", hl = "Constant" } },
 		{ "<leader>lI", group = "lsp Info", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>ls", group = "show signature", icon = { icon = "󰅨", hl = "Constant" } },
 		{ "<leader>lE", group = "show line diagnostics", icon = { icon = "󰅰", hl = "Constant" } },

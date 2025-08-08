@@ -47,14 +47,7 @@ r.map_virtual({ "<leader>w", group = "line wrap", icon = { icon = "󰖶", hl = "
 
 -- spell check
 f.cmd("Sp", "setlocal spell! spell?", { desc = "toggle spell check" })
-r.noremap("n", "<leader>s", ":Sp<cr>", "toggle spell check")
 r.map_virtual({ "<leader>s", group = "spell check", icon = { icon = "󰓆", hl = "Constant" } })
-
-r.noremap("n", "<leader>C", function()
-	local result = vim.treesitter.get_captures_at_cursor(0)
-	print(vim.inspect(result))
-end, "show highlight under cursor")
-r.map_virtual({ "<leader>C", group = "highlight", icon = { icon = "󰨺", hl = "Constant" } })
 
 -- pseudo tail functionality
 f.cmd("Tail", 'set autoread | au CursorHold * checktime | call feedkeys("G")', { desc = "pseudo tail functionality" })

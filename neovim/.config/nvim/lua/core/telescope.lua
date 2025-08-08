@@ -21,7 +21,6 @@ return {
 					anchor = "center",
 					height = 0.8,
 					width = 0.9,
-					preview_width = 0.6,
 					prompt_position = "bottom",
 				},
 				borderchars = i.telescope,
@@ -41,7 +40,7 @@ return {
 						i = {
 							["<cr>"] = undo_actions.yank_additions,
 							["<c-\\>"] = undo_actions.yank_deletions,
-							["§"] = undo_actions.restore, -- term mapped to shift+enter
+							["<tab>"] = undo_actions.restore,
 						},
 					},
 				},
@@ -68,7 +67,13 @@ return {
 				},
 			},
 		})
-		r.noremap("n", "<leader>u", ":Telescope undo<cr>", "undo tree")
+		r.noremap("n", "<leader>u", function()
+			Snacks.notify.info("<cr>  yank additions\n<c-\\> yank_deletions\n<tab> restore", {
+				timeout = 15000,
+				title = "keybinds"
+			})
+			require("telescope").extensions.undo.undo()
+		end, "undo tree")
 		r.noremap("n", "\\", function()
 			telescope.extensions.live_grep_args.live_grep_args({
 				prompt_title = "grep",
@@ -76,7 +81,7 @@ return {
 			})
 		end, "live grep")
 		r.noremap("n", "<leader>o", ":Telescope oldfiles<cr>", "old files")
-		r.noremap("n", "<leader>gc", function()
+		r.noremap("n", "<leader>g", function()
 			lga_shortcuts.grep_word_under_cursor({ postfix = " --hidden " })
 		end, "grep under cursor")
 		r.noremap("n", "<leader>f", function()
@@ -90,6 +95,7 @@ return {
 
 		r.map_virtual({
 			{ "<leader>u", icon = { icon = " ", hl = "Constant" } },
+			{ "<leader>g", icon = { icon = "󱩾 ", hl = "Constant" } },
 			{ "<leader>o", icon = { icon = " ", hl = "Constant" } },
 			{ "<leader>f", icon = { icon = "󰙅 ", hl = "Constant" } },
 			{ "<leader>.", icon = { icon = " ", hl = "Constant" } },

@@ -21,9 +21,6 @@ return {
 			},
 			attach_to_untracked = false,
 		})
---		if pcall(require, "scrollbar") then
---			require("scrollbar.handlers.gitsigns").setup()
---		end
 	end,
 	event = { "BufReadPre", "BufNewFile" },
 }

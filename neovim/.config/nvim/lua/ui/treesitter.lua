@@ -56,27 +56,6 @@ return {
 			indent = {
 				enable = true,
 			},
-			-- textobjects = {
-			--   select = {
-			--     enable = true,
-			--     lookahead = true,
-			--     keymaps = {
-			--       ["af"] = "@function.outer",
-			--       ["if"] = "@function.inner",
-			--       ["ac"] = "@class.outer",
-			--       ["ic"] = "@class.inner",
-			--
-			--       -- xml attribute
-			--       ["ax"] = "@attribute.outer",
-			--       ["ix"] = "@attribute.inner",
-			--
-			--       -- json
-			--       ["ak"] = "@key.outer",
-			--       ["ik"] = "@key.inner",
-			--       ["av"] = "@value.outer",
-			--       ["iv"] = "@value.inner",
-			--     },
-			--   },
 			swap = {
 				enable = true,
 				swap_next = {
@@ -86,27 +65,6 @@ return {
 					["<leader>rP"] = "@parameter.inner",
 				},
 			},
-			--   move = {
-			--     enable = true,
-			--     set_jumps = true, -- whether to set jumps in the jumplist
-			--     goto_next_start = {
-			--       ["]m"] = "@function.outer",
-			--       ["]]"] = "@class.outer",
-			--     },
-			--     goto_next_end = {
-			--       ["]M"] = "@function.outer",
-			--       ["]["] = "@class.outer",
-			--     },
-			--     goto_previous_start = {
-			--       ["[m"] = "@function.outer",
-			--       ["[["] = "@class.outer",
-			--     },
-			--     goto_previous_end = {
-			--       ["[M"] = "@function.outer",
-			--       ["[]"] = "@class.outer",
-			--     },
-			--   },
-			-- },
 			textsubjects = {
 				enable = true,
 				keymaps = {
@@ -126,35 +84,6 @@ return {
 			print(vim.inspect(result))
 		end, "show treesitter capture group")
 
-		-- r.map_virtual("af", "Function outer motion")
-		-- r.map_virtual("if", "Function inner motion")
-		-- r.map_virtual("ac", "Class outer motion")
-		-- r.map_virtual("ic", "Class inner motion")
-		--
-		-- r.map_virtual("ax", "Attribute (html, xml) outer motion")
-		-- r.map_virtual("ix", "Attribute (html, xml) inner motion")
-		--
-		-- r.map_virtual("ak", "Json key outer motion")
-		-- r.map_virtual("ik", "Json key inner motion")
-		--
-		-- r.map_virtual("av", "Json value outer motion")
-		-- r.map_virtual("iv", "Json value inner motion")
-		--
-		-- r.which_key("fp", "parameters")
-		--
-		--
-		-- r.map_virtual("]m", "Go to next function (start)")
-		-- r.map_virtual("]M", "Go to next function (end)")
-		--
-		-- r.map_virtual("]]", "Go to next class (start)")
-		-- r.map_virtual("][", "Go to next class (end)")
-		--
-		-- r.map_virtual("[m", "Go to previous function (start)")
-		-- r.map_virtual("[M", "Go to previous function (end)")
-		--
-		-- r.map_virtual("[[", "Go to previous class (start)")
-		-- r.map_virtual("[]", "Go to previous class (end)")
-		--
 		r.map_virtual({
 			{ "<leader>r", group = "refactor", icon = { icon = " ", hl = "Constant" } },
 			{ "<leader>rt", group = "treesitter playground", icon = { icon = " ", hl = "Constant" } },
@@ -165,7 +94,6 @@ return {
 			{ "zo", group = "expand scope"},
 			{ "zd", group = "decrement scope"},
 		})
-
 	end,
 	build = function()
 		vim.cmd(":TSUpdate")
