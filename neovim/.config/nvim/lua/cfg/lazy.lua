@@ -53,7 +53,7 @@ require("lazy").setup({
 	dev = {
 		path = "~/.local/src",
 	},
-	lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
+	lockfile = vim.fn.stdpath("config") .. "/lua/cfg/pkglock.json",
 	ui = {
 		size = { width = 0.8, height = 0.8 },
 		wrap = true,

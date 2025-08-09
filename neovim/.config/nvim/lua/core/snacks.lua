@@ -107,78 +107,99 @@ return {
 			preset = {
 				keys = function()
 					local colors = require("evangelion.unit01").get()
-					vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = colors.lcl })
-					vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = colors.angel })
-					vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = colors.adam, bold = true })
+					vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = colors.dummyplug })
+					vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = colors.adam })
+					vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = colors.kaworu, bg = colors.melchior, bold = true })
+					vim.api.nvim_set_hl(0, "SnacksDashboardFooter", { fg = colors.lcl, bold = true })
+					vim.api.nvim_set_hl(0, "SnacksDashboardSpecial", { fg = colors.penpen, bg = colors.melchior, bold = true })
+					vim.api.nvim_set_hl(0, "SnacksDashboardFade", { fg = colors.melchior })
 					return { {
 							text = {
-								{ "         " .. i.snacks.new .. "  ", hl = "SnacksDashboardIcon" },
+								{ "           " .. i.snacks.new .. "  ", hl = "SnacksDashboardIcon" },
 								{ "new file", hl = "SnacksDashboardDesc", width = 45 },
-								{ "[ i ]", hl = "SnacksDashboardKey" },
+								{ "░▒▓", hl = "SnacksDashboardFade" },
+								{ " i ", hl = "SnacksDashboardKey" },
+								{ "▓▒░", hl = "SnacksDashboardFade" },
 							},
 							action = ":ene | startinsert",
 							key = "i",
 						}, {
 							text = {
-								{ "         " .. i.snacks.old .. "  ", hl = "SnacksDashboardIcon" },
+								{ "           " .. i.snacks.old .. "  ", hl = "SnacksDashboardIcon" },
 								{ "old files", hl = "SnacksDashboardDesc", width = 45 },
-								{ "[ o ]", hl = "SnacksDashboardKey" },
+								{ "░▒▓", hl = "SnacksDashboardFade" },
+								{ " o ", hl = "SnacksDashboardKey" },
+								{ "▓▒░", hl = "SnacksDashboardFade" },
 							},
 							action = ":Telescope oldfiles",
 							key = "o",
 						}, {
 							text = {
-								{ "         " .. i.snacks.findf .. "  ", hl = "SnacksDashboardIcon" },
+								{ "           " .. i.snacks.findf .. "  ", hl = "SnacksDashboardIcon" },
 								{ "find file", hl = "SnacksDashboardDesc", width = 45 },
-								{ "[ f ]", hl = "SnacksDashboardKey" },
+								{ "░▒▓", hl = "SnacksDashboardFade" },
+								{ " f ", hl = "SnacksDashboardKey" },
+								{ "▓▒░", hl = "SnacksDashboardFade" },
 							},
 							action = ":Telescope file_browser",
 							key = "f",
 						}, {
 							text = {
-								{ "         " .. i.snacks.findt .. "  ", hl = "SnacksDashboardIcon" },
+								{ "           " .. i.snacks.findt .. "  ", hl = "SnacksDashboardIcon" },
 								{ "find text", hl = "SnacksDashboardDesc", width = 45 },
-								{ "[ \\ ]", hl = "SnacksDashboardKey" },
+								{ "░▒▓", hl = "SnacksDashboardFade" },
+								{ " \\ ", hl = "SnacksDashboardKey" },
+								{ "▓▒░", hl = "SnacksDashboardFade" },
 							},
 							action = ":LiveGrep",
 							key = "\\",
 						}, {
 							text = {
-								{ "         " .. i.snacks.git .. "  ", hl = "SnacksDashboardIcon" },
+								{ "           " .. i.snacks.git .. "  ", hl = "SnacksDashboardIcon" },
 								{ "browse git", hl = "SnacksDashboardDesc", width = 45 },
-								{ "[ g ]", hl = "SnacksDashboardKey" },
+								{ "░▒▓", hl = "SnacksDashboardFade" },
+								{ " g ", hl = "SnacksDashboardKey" },
+								{ "▓▒░", hl = "SnacksDashboardFade" },
 							},
 							action = ":Flog",
 							key = "g",
 						}, {
 							text = {
-								{ "         " .. i.snacks.lazy .. "  ", hl = "SnacksDashboardIcon" },
+								{ "           " .. i.snacks.lazy .. "  ", hl = "SnacksDashboardIcon" },
 								{ "lazy", hl = "SnacksDashboardDesc", width = 45 },
-								{ "[ l ]", hl = "SnacksDashboardKey" },
+								{ "░▒▓", hl = "SnacksDashboardFade" },
+								{ " l ", hl = "SnacksDashboardKey" },
+								{ "▓▒░", hl = "SnacksDashboardFade" },
 							},
 							action = ":Lazy",
 							key = "l",
 						}, {
 							text = {
-								{ "         " .. i.snacks.mason .. "  ", hl = "SnacksDashboardIcon" },
+								{ "           " .. i.snacks.mason .. "  ", hl = "SnacksDashboardIcon" },
 								{ "mason", hl = "SnacksDashboardDesc", width = 45 },
-								{ "[ m ]", hl = "SnacksDashboardKey" },
+								{ "░▒▓", hl = "SnacksDashboardFade" },
+								{ " m ", hl = "SnacksDashboardKey" },
+								{ "▓▒░", hl = "SnacksDashboardFade" },
 							},
 							action = ":Mason",
 							key = "m",
 						}, {
 							text = {
-								{ "         " .. i.snacks.prof .. "  ", hl = "SnacksDashboardIcon" },
+								{ "           " .. i.snacks.prof .. "  ", hl = "SnacksDashboardIcon" },
 								{ "profile", hl = "SnacksDashboardDesc", width = 45 },
-								{ "[ p ]", hl = "SnacksDashboardKey" },
+								{ "░▒▓", hl = "SnacksDashboardFade" },
+								{ " p ", hl = "SnacksDashboardKey" },
+								{ "▓▒░", hl = "SnacksDashboardFade" },
 							},
 							action = ":Lazy profile",
 							key = "p",
 						}, {
 							text = {
-								{ "         " .. i.snacks.quit .. "  ", hl = "SnacksDashboardIcon" },
+								{ "           " .. i.snacks.quit .. "  ", hl = "SnacksDashboardIcon" },
 								{ "quit", hl = "SnacksDashboardDesc", width = 45 },
-								{ "[ q ]", hl = "SnacksDashboardKey" },
+								{ "░▒▓", hl = "SnacksDashboardFade" },
+								{ " q ", hl = "SnacksDashboardKey" },
+								{ "▓▒░", hl = "SnacksDashboardFade" },
 							},
 							action = ":qa",
 							key = "q",
@@ -194,16 +215,23 @@ return {
 					width = 70,
 					padding = 1,
 				},
+				-- {
+				-- 	section = "terminal",
+				-- 	cmd = "~/.config/nvim/lua/ui/eva-logo -cc",
+				-- 	height = 14,
+				-- 	width = 66,
+				-- 	padding = 1,
+				-- },
 				{
 					section = "keys",
 					gap = 0,
-					padding = 1,
+					padding = 2,
 				},
 				{
 					section = "startup",
 					icon = "         " .. i.snacks.plug .. " ",
-					padding = 1,
-					gap = 1,
+					padding = 0,
+					gap = 0,
 				},
 			},
 		},
