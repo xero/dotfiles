@@ -20,7 +20,7 @@ autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 #█▓▒░ sources
-complete -C '/usr/bin/aws_completer' aws
+[[ $commands[aws_completer] ]] && complete -C $(which aws_completer) aws
 [[ $commands[gh] ]] && source <(gh completion -s zsh)
 [[ $commands[fzf] ]] && source <(fzf --zsh)
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)

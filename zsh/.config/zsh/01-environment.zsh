@@ -13,7 +13,9 @@
 # ░▓▓▓▓▓▓▓▓▓▓
 # ░░░░░░░░░░
 
-
+#█▓▒░ setup
+hash -d src=~/.local/src
+hash -d dotfiles=~/.local/src/dotfiles
 export UI_THEME="EVANGELION" # MIASMA | SOURCERER
 
 #█▓▒░ clean home

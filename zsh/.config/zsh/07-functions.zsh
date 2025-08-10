@@ -120,7 +120,7 @@ function 1pwaccount() {
 }
 function 1pwsignin() {
 	# muliuser fun times
-	echo "unlock your keychain 🔐"
+	echo "unlock your keychain 󱕵"
 	read -rs _pw
 	if [[ -n "$_pw" ]]; then
 		printf "logging in: "
@@ -224,4 +224,78 @@ function greynoise() {
 	[[ "$IP" =~ "stdin" ]] && read IP < "$IP"
 	[[ "$IP" =~ "([0-9]{1,3}[\.]){3}[0-9]{1,3}" ]] || IP=`dig +short ${IP}`
 	curl -sX GET "https://api.greynoise.io/v3/community/${IP}" -H "Accept: application/json" -H "key: ${GREY_TOKEN}"
+}
+
+#█▓▒░ nmap
+function nmap() {
+	if [[ -z "$*" ]]; then
+		scan=$(printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s" \
+			"'-sS' TCP SYN scan (best option)" \
+			"'-sT' full TCP connect scan" \
+			"'-sU' scan UDP ports" \
+			"'-sn' ping scan" \
+			"'-sP' ping scan only" \
+			"'-Pn' do not ping the hosts, assume they are up" \
+			"'-PE' ICMP Echo Request" \
+			"'-sV' version detection scan of open ports / services" \
+			"'-0'  identify Operating System version" \
+			"'-A'  this combines OS detection, service version detection, script scanning and traceroute" \
+			"'-sn' probe only (host discovery, not port scan)" \
+				| fzf --height=50% --border --color=label:italic:#87FFAF --border-label='[ nmap scan type ]' | sed "s/' .*$//;s/'//g")
+		[[ "$scan" == "" ]] && return 1
+		output=$(printf "%s\n%s\n%s\n%s\n%s" \
+			"raw" \
+			"'-oN' normal text format" \
+			"'-oG' grepable file" \
+			"'-oX' XML file" \
+			"'-oA' output in all 3 formats supported" \
+				| fzf --height=50% --border --color=label:italic:#87FFAF --border-label='[ nmap output ]' | sed "s/' .*$//;s/'//g")
+		[[ "$output" == "" ]] && return 1
+		if [[ "$output" != "raw" ]]; then
+			vared -p 'filename: ' -c file
+		else
+			output=""
+		fi
+		probe=$(printf "%s\n%s\n%s\n%s\n%s" \
+			"'-Pn' do not probe (assume all hosts are up)" \
+			"'-PB' default probe (TCP 80, 445 & ICMP)" \
+			"'-PS' discrete TCP ports" \
+			"'-PP' ICMP Timestamp Request" \
+			"'-PM' ICMP Netmask Request" \
+				| fzf --height=50% --border --color=label:italic:#87FFAF --border-label='[ nmap probing ]' | sed "s/' .*$//;s/'//g")
+		[[ "$probe" == "" ]] && return 1
+		if [[ "$probe" == "-PS" ]]; then
+			vared -p 'ports to scan: ' -c ports
+			[[ "$ports" == *" "* && ! "$ports" == *","* ]] && \
+				ports=${ports// /,}
+		fi
+		speed=$(printf "%s\n%s\n%s\n%s\n%s\n%s" \
+			"'-T0' Paranoid: Very slow, used for IDS evasion" \
+			"'-T1' Sneaky: Quite slow, used for IDS evasion" \
+			"'-T2' Polite: Slows down to consume less bandwidth, runs ~10 times slower than default" \
+			"'-T3' Normal: Default, a dynamic timing model based on target responsiveness" \
+			"'-T4' Aggressive: Assumes a fast and reliable network and may overwhelm targets" \
+			"'-T5' Insane: Very aggressive; will likely overwhelm targets or miss open ports" \
+				| fzf --height=50% --border --color=label:italic:#87FFAF --border-label='[ nmap speed ]' | sed "s/' .*$//;s/'//g")
+
+		if [[ -z "$ports" ]]; then
+			p=$(printf "%s\n%s\n%s\n%s" \
+				"single" "range" "list" "all" \
+				| fzf --height=50% --border --color=label:italic:#87FFAF --border-label='[ nmap port ]' | sed "s/' .*$//;s/'//g")
+			case "$p" in
+				single) m="80" ;;
+				range) m="23-25" ;;
+				list) m="80,443" ;;
+			esac
+			if [[ "$p" == "all" ]]; then
+				ports=" -p-"
+			else
+				vared -p "ports to scan [e.g. $m]: " -c ports
+				ports=" -p$ports"
+			fi
+		fi
+		echo "nmap $speed $scan $probe $ports $output $file $targets"
+	else
+		nmap "$@"
+	fi
 }
