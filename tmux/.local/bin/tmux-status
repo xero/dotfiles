@@ -16,28 +16,35 @@
 # ░░░░░░░░░░
 #
 #----------------------------------------------------------// vars
-[[ -z "$UI_THEME" ]] && UI_THEME="MIASMA"
 FULL=━
-EMPTY=┄
+EMPTY=╍
+[[ -z "$UI_THEME" ]] && UI_THEME="EVANGELION"
+# ┄─┉╍━
+CC=#dddddd
 if [[ "$UI_THEME" == "EVANGELION" ]]; then
 	C0=#201430
 	C1=#3b3847
 	C2=#a4d2ec
-	C3=#db6088
+	C3=#8B2B41
 	C4=#875FAF
 	C5=#ccd2d9
-	C6=#e1d6f8
+	C6=#bc5517
 	C7=#ab92fc
+	C8=#d88d3e
+	C9=#9CDA7C
 else
-	C0="#000000"
-	C1="#222222"
-	C2="#8FBCBB"
-	C3="#B3291C"
-	C4="#685742"
-	C5="#d7c483"
-	C6="#C9A554"
-	C7="#78824b"
+	C0=#000000
+	C1=#222222
+	C2=#8FBCBB
+	C3=#B3291C
+	C4=#685742
+	C5=#d7c483
+	C6=#C9A554
+	C7=#78824b
+	C8=#C9A554
+	C9=#9CDA7C
 fi
+W="$(tmux display-message -p "#{window_width}")"
 #--------------------------------------------------// progress bar
 draw() {
 	perc=$1
@@ -46,60 +53,92 @@ draw() {
 	out=
 	for v in $(seq 0 $((size - 1))); do
 		[[ "$v" -le "$inc" ]] &&
-			out="${out}#[fg=$C1]${FULL}" ||
-			out="${out}#[fg=$C6]${EMPTY}"
+			out="${out}#[fg=$3]${FULL}" ||
+			out="${out}#[fg=$C5]${EMPTY}"
 	done
-	printf "%s" "$out"
+	[[ $W -gt 80 ]] && printf "%s" "$out"
+}
+pressure() {
+	perc=$1
+	if [[ "$perc" -gt 90 ]]; then
+		echo "$C3"
+	elif [[ "$perc" -gt 74 ]]; then
+		echo "$C6"
+	else
+		echo "$C1"
+	fi
 }
 #-------------------------------------------------------// compute
 FRONT="#[bg=$C7]#[fg=0]▓▒░"
-RAM=$(free | awk '/Mem:/ {print int($3/$2 * 100.0)}')
-CPU=$(printf "%.0f" "$(grep 'cpu ' /proc/stat |
-	awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}')")
+if [[ "$(uname)" = "Darwin" ]]; then
+	CPU=$(top -l 1 -n 0 | awk '/CPU usage/ {printf "%.0f\n", $3 + $5}')
+	RAM=$(echo "100 - $(memory_pressure | tail -1 | sed 's/.*: //;s/\%//')" | bc)
+	D1=$(df -h | sed -n '2p' | sed 's/.*  //;s/\%.*//')
+else
+	CPU=$(printf "%.0f" "$(grep 'cpu ' /proc/stat |
+		awk '{u=($2+$4)*100/($2+$4+$5)} END {print u}')")
+	RAM=$(free | awk '/Mem:/ {print int($3/$2 * 100.0)}')
+	D1=$(df -h | grep '/$' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
+	D2=$(df -h | grep 'x0' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
+fi
 SYS=$({
-	printf "#[fg=%s] %s %s " "$C0" "${RAM}%" "$(draw "$RAM" 4)"
-	printf "#[fg=%s] %s %s" "$C0" "${CPU}%" "$(draw "$CPU" 4)"
-})
-D1=$(df -h | grep '/$' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
-D2=$(df -h | grep 'x0' | tr -s ' ' | cut -d ' ' -f5 | sed 's/%//')
-DISK=$({
-	[[ -n "$D1" ]] &&
-		printf "#[fg=%s]󰽄 %s %s" "$C0" "${D1}%" "$(draw "$D1" 4)"
+	PC=$(pressure "$CPU")
+	PR=$(pressure "$RAM")
+	PD=$(pressure "$D1")
 	[[ -n "$D2" ]] &&
-		printf " #[fg=%s]󰖟 %s %s" "$C0" "${D2}%" "$(draw "$D2" 4)"
+		PD2=$(pressure "$D2")
+	PAD=" "
+	printf "#[fg=%s] %s %s%s " "$PC" "${PAD:${#CPU}}" "$CPU% " "$(draw "$CPU" 4 "$PC")"
+	printf "#[fg=%s] %s %s " "$PR" "$RAM%" "$(draw "$RAM" 4 "$PR")"
+	printf "#[fg=%s]󰽄 %s %s " "$PD" "$D1%" "$(draw "$D1" 4 "$PD")"
+	[[ -n "$D2" ]] &&
+		printf "#[fg=%s]󰖟 %s %s" "$PD2" "$D2%" "$(draw "$D2" 4 "$PD2")"
+})
+VPN=$({
+	pgrep 'vpn/|openvpn/|openconnect' > /dev/null 2>&1 &&
+		printf "#[fg=%s]░▒#[bg=%s]#[fg=%s]  #[bg=%s]#[fg=%s]▒░" "$C8" "$C8" "$C0" "$C4" "$C8" ||
+		printf " #[fg=%s]░▒" "$C4"
 })
 BAT=$({
-	BATPATH=$(find /sys/class/power_supply -name 'status' \
-		-printf "%h\n" | head -1 | sed 's/[[:space:]]//g')
-	if [[ -n "$BATPATH" ]]; then
-		bf="$(< "$BATPATH/charge_full")"
-		bn="$(< "$BATPATH/charge_now")"
-		bp=$((100 * bn / bf))
-		case "$(< "$BATPATH/status")" in
-		Discharging)
-			if [[ "$bp" -gt 90 ]]; then
-				: "󱊣"
-			elif [[ "$bp" -gt 50 ]]; then
-				: "󱊢"
-			elif [[ "$bp" -gt 20 ]]; then
-				: "󱊡"
-			else
-				: "#[fg=$C3]󰂎#[fg=$C0]"
-			fi
-			;;
-		Charging) : "󰂄" ;;
-		*) : "󰁹" ;;
-		esac
-		st="$_"
-		printf " #[fg=%s]%s %s%s" "$C0" "$st" "$bp" "%"
+	bp=$(pmset -g batt | grep -Eo "\d+%" | sed 's/\%//')
+	if [[ -n "$bp" ]]; then
+		if [[ "$bp" -eq 100 ]]; then
+			st="󰂄"
+			C=$C9
+		elif [[ "$bp" -gt 90 ]]; then
+			st="󱊣"
+			C=$C9
+		elif [[ "$bp" -gt 74 ]]; then
+			st="󱊢"
+			C=$C2
+		elif [[ "$bp" -gt 50 ]]; then
+			st="󱊢"
+			C=$C2
+		elif [[ "$bp" -gt 20 ]]; then
+			st="󱊡"
+			C=$C8
+		else
+			st="󰂎"
+			C=$C3
+		fi
+		printf "#[bg=%s]#[fg=%s]░▒▓#[bg=%s]#[fg=%s]#[fg=%s]%s %s%s#[bg=%s]" \
+			"$C7" "$C" "$C" "$C7" "$C0" "$st" "$bp" "%" "$C"
 	fi
 })
 TIME=$({
-	printf "#[bg=%s]#[fg=%s]░▒#[bg=%s]#[fg=%s]▓\
-		#[fg=%s]#[bg=%s] %s #[fg=%s]%s#[fg=%s]%s #[bg=0]#[fg=%s]▒░" \
-		"$C7" "$C4" "$C7" "$C4" "$C5" "$C4" \
-		"$(date +'%H:%M')" "$C6" "$(date +'%Y-%m-')" \
-		"$C5" "$(date +'%d')" "$C4"
+	[[ "$W" -gt 80 ]] && C=$C8 || C=$C7
+	printf "#[fg=%s]#[bg=%s] %s" \
+		"$C5" "$C4" "$(date +'%H:%M')"
+	[[ "$W" -gt 80 ]] &&
+		printf " #[fg=%s]%s#[fg=%s]%s" \
+			"$C5" "$(date +'%Y-%m-')" \
+			"$CC" "$(date +'%d')" ||
+		printf " #[fg=%s]%s#[fg=%s]%s" \
+			"$C5" "$(date +'%m/')" \
+			"$CC" "$(date +'%d')"
+	printf " #[bg=%s]#[fg=%s]▒░" "$C0" "$C4"
 })
 #--------------------------------------------------------// render
-printf "%s %s %s %s" "$FRONT" "$SYS" "$DISK" "$TIME"
+[[ "$W" -gt 80 ]] &&
+	printf "%s %s%s%s%s" "$FRONT" "$SYS" "$BAT" "$VPN" "$TIME" ||
+	printf "%s %s%s" "$FRONT" "$SYS" "$TIME"
