@@ -1,0 +1,22 @@
+fork = false
+frame = "full"
+idle = true
+maximized = false
+mouse-cursor-icon = "arrow"
+no-multigrid = false
+srgb = true
+tabs = false
+theme = "auto"
+title-hidden = true
+vsync = true
+wsl = false
+
+[font]
+normal = ["Hack Nerd Font"]
+size = 18
+
+[font.features]
+"Hack Nerd Font" = [ "+ss01", "+ss07", "+ss11", "-calt", "+ss09", "+ss02", "+ss14" ]
+
+[box-drawing]
+mode = "font-glyph"
