@@ -6,7 +6,7 @@ return {
 	lazy = false,
 	opts = {
 		dim = { enabled = false },
-		scroll = { enabled = false },
+		scroll = { enabled = vim.g.neovide == true },
 		statuscolumn = { enabled = false },
 		words = { enabled = false },
 		explorer = { enabled = false },
@@ -211,9 +211,9 @@ return {
 				{
 					section = "terminal",
 					cmd = "~/.config/nvim/lua/ui/nvim-logo -e",
-					height = 10,
+					height = 9,
 					width = 70,
-					padding = 1,
+					padding = 2,
 				},
 				-- {
 				-- 	section = "terminal",
@@ -240,6 +240,9 @@ return {
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "VeryLazy",
 			callback = function()
+				-- force refresh req'd
+				Snacks.dashboard.update()
+
 				_G.dd = function(...)
 					Snacks.debug.inspect(...)
 				end

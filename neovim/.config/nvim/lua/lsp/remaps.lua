@@ -96,20 +96,11 @@ function X.set_default_on_buffer(client, bufnr)
 			end
 		end, "ignore warnings")
 	end
-
 	buf_set_keymap("n", "<leader>lI", ":LspInfo<CR>", "lsp info")
 	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "show signature")
 	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "show line diagnostics")
-	buf_set_keymap("n", "<leader>ll", function ()
-		if vim.diagnostic.config().virtual_lines then
-			vim.diagnostic.config({ virtual_lines = false })
-		else
-			vim.diagnostic.config({ virtual_lines = { current_line = true } })
-		end
-	end, "virtual lines")
-	buf_set_keymap("n", "<leader>lt", function()
-		LspToggle()
-	end, "toggle lsp")
+	buf_set_keymap("n", "<leader>ll", function () require("lsp_lines").toggle() end, "virtual lines")
+	buf_set_keymap("n", "<leader>lt", function() LspToggle() end, "toggle lsp")
 	r.map_virtual({
 		{ "<leader>l", group = "lsp", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>lI", group = "lsp Info", icon = { icon = "", hl = "Constant" } },

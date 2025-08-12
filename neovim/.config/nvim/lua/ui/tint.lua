@@ -1,6 +1,9 @@
 return {
 	'tadaa/vimade',
 	event = "VeryLazy",
+  cond = function()
+    return not vim.g.neovide
+  end,
 	opts = {
 		ncmode = "buffers",
 		recipe = { "duo", {

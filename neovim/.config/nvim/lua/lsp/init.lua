@@ -8,6 +8,7 @@ return {
 		"smjonas/inc-rename.nvim",
 		"ravibrock/spellwarn.nvim",
 		"dgagn/diagflow.nvim",
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
@@ -104,6 +105,7 @@ return {
 				require("lspconfig")[s].setup(vim.tbl_deep_extend("force", default_lsp_config, c or {}))
 			end
 		end
+		require("lsp_lines").setup()
 		require("inc_rename").setup({
 			hl_group = "Substitute",
 			preview_empty_name = false,
