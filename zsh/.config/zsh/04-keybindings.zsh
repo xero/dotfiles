@@ -38,7 +38,14 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   beginning-of-buffer-or-history
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
 
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+FZF_D=(
+	"/usr/share/doc/fzf/examples"
+	"/usr/local/opt/fzf/shell"
+)
+for D in "${FZF_D[@]}"; do
+  [[ -d "$D" ]] && source "$D/key-bindings.zsh"
+done
+unset FZF_D D
 
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 	function zle-line-init () {
@@ -50,3 +57,12 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 	zle -N zle-line-init
 	zle -N zle-line-finish
 fi
+
+# 0dwi alias
+function replace-first-word() {
+  zle beginning-of-line
+  zle kill-word
+  zle vi-insert
+}
+zle -N replace-first-word
+bindkey -M vicmd 'r' replace-first-word

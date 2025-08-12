@@ -40,7 +40,18 @@ export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
 export TFENV="$XDG_DATA_HOME"/terraform
 
 #█▓▒░ paths
-export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$GOPATH/bin:$NPM_CONFIG_PREFIX/bin:$TFENV/bin:$XDG_DATA_HOME/nvim/mason/bin:$PATH
+PATH="/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$PATH"
+EXTRA=(
+  "$GOPATH/bin"
+  "$NPM_CONFIG_PREFIX/bin"
+  "$TFENV/bin"
+  "$XDG_DATA_HOME/nvim/mason/bin"
+  "/usr/local/opt/coreutils/libexec/gnubin"
+)
+for dir in "${EXTRA[@]}"; do
+  [[ -d "$dir" ]] && PATH="$dir:$PATH"
+done
+export PATH
 
 #█▓▒░ man
 export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
