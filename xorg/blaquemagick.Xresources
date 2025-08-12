@@ -1,36 +1,32 @@
-! ┏┓ ╻  ┏━┓┏━┓╻ ╻┏━╸   ┏┳┓┏━┓┏━╸╻┏━╸╻┏
-! ┣┻┓┃  ┣━┫┃┓┃┃ ┃┣╸    ┃┃┃┣━┫┃╺┓┃┃  ┣┻┓
-! ┗━┛┗━╸╹ ╹┗┻┛┗━┛┗━╸   ╹ ╹╹ ╹┗━┛╹┗━╸╹ ╹
-! blaque magick by xero harrison (https://x-e.ro)
-
+! █▓▒░ blaque magick
 *.foreground:   #c2c2b0
-*.background:   #222222
+*.background:   #121212
 *.cursorColor:  #c2c2b0
 ! black
-*.color0:       #1c1c1c
-*.color8:       #1c1c1c
+*.color0:       #121212
+*.color8:       #121212
 ! red
 *.color1:       #5F8787
 *.color9:       #5F8787
 ! green
-*.color2:       #666666
-*.color10:      #a8a8a8
+*.color2:       #444444
+*.color10:      #444444
 ! yellow
-*.color3:       #87875f
-*.color11:      #87875f
+*.color3:       #666666
+*.color11:      #666666
 ! blue
-*.color4:       #8787af
-*.color12:      #8787af
+*.color4:       #888888
+*.color12:      #888888
 ! magenta
-*.color5:       #808080
-*.color13:      #c2c2b0
+*.color5:       #999999
+*.color13:      #999999
 ! cyan
-*.color6:       #666666
-*.color14:      #666666
+*.color6:       #aaaaaa
+*.color14:      #aaaaaa
 ! white
-*.color7:       #cccccc
-*.color15:      #cccccc
+*.color7:       #c1c1c1
+*.color15:      #c1c1c1
 ! others
-URxvt.colorIT:  #444444
-URxvt.colorBD:  #444444
-URxvt.colorUL:  #444444
+URxvt.colorIT:  #5F8787
+URxvt.colorBD:  #d3d3d3
+URxvt.colorUL:  #5F8787
