@@ -247,14 +247,24 @@ return {
 					Snacks.debug.backtrace()
 				end
 				-- Override print to use snacks for `:=` command
+				-- :=Snacks.notifier.notify("hello",4)
 				vim.print = _G.dd
 
 				local r = require("utils.remaps")
 				r.map_virtual({
+					{
 					"<leader>U",
 					group = "snacks",
 					icon = { icon = i.snacks.snack, hl = "Constant" },
+					},{
+					"<leader>Um",
+					group = "message history",
+					icon = { icon = i.snacks.msgs, hl = "Constant" },
+					}
 				})
+				r.noremap("n", "<leader>Um", function()
+					Snacks.notifier.show_history()
+				end, "message history")
 				r.noremap("n", "<leader>UU", function()
 					Snacks.picker.undo()
 				end, "undo tree")

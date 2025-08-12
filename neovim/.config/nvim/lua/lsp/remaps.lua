@@ -66,7 +66,7 @@ function X.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.renameProvider then
-		buf_set_keymap("n", "<leader>rr", ":IncRename ", "rename")
+		buf_set_keymap("n", "<leader>rr", ":IncRename", "rename")
 	end
 
 	if cap.documentSymbolProvider then
@@ -100,6 +100,13 @@ function X.set_default_on_buffer(client, bufnr)
 	buf_set_keymap("n", "<leader>lI", ":LspInfo<CR>", "lsp info")
 	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "show signature")
 	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "show line diagnostics")
+	buf_set_keymap("n", "<leader>ll", function ()
+		if vim.diagnostic.config().virtual_lines then
+			vim.diagnostic.config({ virtual_lines = false })
+		else
+			vim.diagnostic.config({ virtual_lines = { current_line = true } })
+		end
+	end, "virtual lines")
 	buf_set_keymap("n", "<leader>lt", function()
 		LspToggle()
 	end, "toggle lsp")
@@ -109,6 +116,7 @@ function X.set_default_on_buffer(client, bufnr)
 		{ "<leader>ls", group = "show signature", icon = { icon = "󰅨", hl = "Constant" } },
 		{ "<leader>lE", group = "show line diagnostics", icon = { icon = "󰅰", hl = "Constant" } },
 		{ "<leader>lD", group = "show definition", icon = { icon = "", hl = "Constant" } },
+		{ "<leader>lD", group = "virtual lines", icon = { icon = "󱞽", hl = "Constant" } },
 		{ "<leader>/lr", group = "show references", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>ra", group = "code actions (range)", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>rr", group = "rename", icon = { icon = "", hl = "Constant" } },

@@ -2,14 +2,13 @@ return {
 	'tadaa/vimade',
 	event = "VeryLazy",
 	opts = {
-		recipe = { "minimalist", { animate = true} }, -- 'default', 'minimalist', 'duo', and 'ripple'
 		ncmode = "buffers",
-		fadelevel = 0.4, -- any value between 0 and 1. 0 is hidden and 1 is opaque.
+		recipe = { "duo", {
+			animate = true,
+			fadelevel = 0.98, -- 0 hidden / 1 opaque.
+		} },
 		tint = {
-			-- bg = {rgb={0,0,0}, intensity=0.3}, -- adds 30% black to background
-			-- fg = {rgb={0,0,255}, intensity=0.3}, -- adds 30% blue to foreground
-			-- fg = {rgb={120,120,120}, intensity=1}, -- all text will be gray
-			-- sp = {rgb={255,0,0}, intensity=0.5}, -- adds 50% red to special characters
+			bg = {rgb={0,0,0}, intensity=0.15}, -- +15% black bg
 		},
 		blocklist = {
 			default = {
@@ -20,7 +19,6 @@ return {
 							return "StatusLineNC"
 						end
 					end,
-					-- Prevent from highlighting.
 					"TabLineSel",
 					"Pmenu",
 					"PmenuSel",
@@ -38,6 +36,18 @@ return {
 				},
 				buf_opts = { buftype = { "prompt" } },
 			},
+			buf_and_filetypes = {
+				buf_opts = {
+					buftype = {
+						"help",
+					},
+					filetype = {
+						"help",
+						"man",
+						"trouble",
+					},
+				},
+			},
 			default_block_floats = function(win, active)
 				return win.win_config.relative ~= "" and (win ~= active or win.buf_opts.buftype == "terminal") and true
 					or false
@@ -54,6 +64,16 @@ return {
 			providers = {
 				filetypes = {
 					default = {
+						{
+							"blanks", {
+								min_size = 1,
+								max_size = "35%",
+							},
+						},{
+							"static", {
+								size = "35%",
+							},
+						},
 						-- {'snacks', {}},
 						-- {'mini', {}},
 						-- {'hlchunk', {}},
@@ -84,15 +104,6 @@ return {
 									"expression_statement",
 									"compound_statement",
 								},
-							},
-						},{
-							"blanks", {
-								min_size = 1,
-								max_size = "35%",
-							},
-						},{
-							"static", {
-								size = "35%",
 							},
 						},
 					},

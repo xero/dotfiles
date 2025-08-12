@@ -135,6 +135,7 @@ return {
 		prof  = "󰄉 ",
 		quit  = "󰭿 ",
 		start = " ",
+		msgs  = " ",
 		plug = "  ",
 
 		chunk = {
