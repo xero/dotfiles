@@ -1,19 +1,13 @@
 #!/usr/bin/env bash
+# ▄█▀█ ▄█▀█ ▄█▀█ ▄█ █
+# ▓█▄▀ ▓█ █ ▓█▄▄ ▓█ █
+# ▓█ █ ▓█▀█ ▄ ██ ▓█▀█
+# ▓█▄█ ▓█ █ ▓▄█▀ ▓█ █
 #
-#  ██                        ██
-# ░██       ██████    ██████░██      ██████  █████
-# ░██████  ░░░░░░██  ██░░░░ ░██████ ░░██░░█ ██░░░██
-# ░██░░░██  ███████ ░░█████ ░██░░░██ ░██ ░ ░██  ░░
-# ░██  ░██ ██░░░░██  ░░░░░██░██  ░██ ░██   ░██   ██
-# ░██████ ░░████████ ██████ ░██  ░██░███   ░░█████
-# ░░░░░    ░░░░░░░░ ░░░░░░  ░░   ░░ ░░░     ░░░░░
-#
-#  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.style>
-# ░▓ code   ▓ https://code.x-e.ro/dotfiles
-# ░▓ mirror ▓ https://git.io/.files
-# ░▓▓▓▓▓▓▓▓▓▓
-# ░░░░░░░░░░
+# ░ config from xero's dotfiles
+# ▒ author: xero (x@xero.style)
+# ▓ https://git.io/.files
+# █ https://code.x-e.ro/dotfiles
 
 # interactive
 case $- in
@@ -70,8 +64,9 @@ function t() {
 alias c="clear"
 alias l="ls -hF --color=auto"
 alias ll="ls -lahF --color=auto"
-alias e='$EDITOR'
-alias se='sudo $EDITOR'
+alias e="$EDITOR"
+alias se="sudo $EDITOR"
+alias ec='nvim --cmd ":lua vim.g.noplugins=1"'
 alias g="git"
 alias disks='echo "╓───── m o u n t . p o i n t s";echo "╙────────────────────────────────────── ─ ─ ";lsblk -a;echo "";echo "╓───── d i s k . u s a g e";echo "╙────────────────────────────────────── ─ ─ ";df -h;'
 alias 'cd..'='cd ../'
