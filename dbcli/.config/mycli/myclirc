@@ -1,4 +1,13 @@
 # vi: ft=dosini
+# ▄█▄ ▄█ █   ██ ▄█▀█ ▄█   ▄█
+# ▓█ ▀ █  ▀▄█▀  ▓█ ▀ ▓█   ▓█
+# ▓█   █  ▄█▀   ▓█ █ ▓█ ▄ ▓█
+# ▓█   █ ▓█     ▓█▄█ ▓█▄█ ▓█
+#
+# ░ config from xero's dotfiles
+# ▒ author: xero (x@xero.style)
+# ▓ https://git.io/.files
+# █ https://code.x-e.ro/dotfiles
 [main]
 smart_completion = True
 multi_line = False

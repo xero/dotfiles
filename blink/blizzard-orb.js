@@ -1,7 +1,4 @@
-// ┏┓ ╻  ┏━┓┏━┓╻ ╻┏━╸   ┏┳┓┏━┓┏━╸╻┏━╸╻┏
-// ┣┻┓┃  ┣━┫┃┓┃┃ ┃┣╸    ┃┃┃┣━┫┃╺┓┃┃  ┣┻┓
-// ┗━┛┗━╸╹ ╹┗┻┛┗━┛┗━╸   ╹ ╹╹ ╹┗━┛╹┗━╸╹ ╹
-// blaque magick by xero harrison (https://x-e.ro)
+// blizzard orb by xero harrison (https://x-e.ro)
 
 black       = '#000000';
 red         = '#6688AA';
@@ -21,10 +18,10 @@ lightCyan   = '#4C6E84';
 lightWhite  = '#87875f';
 
 t.prefs_.set('color-palette-overrides',
-[ black , red     , green  , yellow,
-blue     , magenta , cyan   , white,
-lightBlack   , lightRed  , lightGreen , lightYellow,
-lightBlue    , lightMagenta  , lightCyan  , lightWhite ]);
+[ black, red, green, yellow,
+  blue, magenta, cyan, white,
+  lightBlack, lightRed, lightGreen, lightYellow,
+  lightBlue, lightMagenta, lightCyan, lightWhite ]);
 
 t.prefs_.set('cursor-color', '#94B6CC');
 t.prefs_.set('foreground-color', '#111111');

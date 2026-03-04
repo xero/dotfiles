@@ -1,3 +1,13 @@
+# ▄█▀▀█ ▄█ █▀██▀█
+# ▓█  ▀ ▓█   ▓█
+# ▓█ ▀█ ▓█   ▓█
+# ▀████ ▓█   ▓█
+#
+# ░ config from xero's dotfiles
+# ▒ author: xero (x@xero.style)
+# ▓ https://git.io/.files
+# █ https://code.x-e.ro/dotfiles
+
 # Auto detect text files and perform LF normalization
 *          text=auto
 # The above will handle all files NOT found below
@@ -43,6 +53,7 @@
 *.fish     text eol=lf
 *.sh       text eol=lf
 *.zsh      text eol=lf
+*.wasm     text eol=lf
 # These are explicitly windows files and should use crlf
 *.bat      text eol=crlf
 *.cmd      text eol=crlf
