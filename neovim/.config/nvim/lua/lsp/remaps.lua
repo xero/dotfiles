@@ -1,10 +1,20 @@
+-- ▄█▀▀▄ ▄█▀█ ▄█▀▀▄ ▄█ █ ▄█ ▄█▄ ▄█
+-- ▓█  █ ▓█▄  ▓█  █ ▓█ █ ▓█ ▓█ ▀ █
+-- ▓█  █ ▓█ ▄ ▓█  █ ▓█ █ ▓█ ▓█   █
+-- ▓█  █ ▓█▄█ ▀█▄▄▀ ▀█▄▀ ▓█ ▓█   █
+--
+-- ░ config from xero's dotfiles
+-- ▒ author: xero (x@xero.style)
+-- ▓ https://git.io/.files
+-- █ https://code.x-e.ro/dotfiles
+
 local r = require("utils.remaps")
 local vim = vim
 local X = {}
 
 local function LspToggle()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-		print(" lsp toggled")
+	print(" lsp toggled")
 end
 
 local function generate_buf_keymapper(bufnr)
@@ -66,7 +76,7 @@ function X.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.renameProvider then
-		buf_set_keymap("n", "<leader>rr", ":IncRename", "rename")
+		buf_set_keymap("n", "<leader>rr", ":IncRename ", "rename")
 	end
 
 	if cap.documentSymbolProvider then
@@ -75,12 +85,13 @@ function X.set_default_on_buffer(client, bufnr)
 		end, "document symbols")
 	end
 
+
 	local ft = vim.bo[bufnr].filetype
 	if ft == "sh" or ft == "lua" then
 		buf_set_keymap("n", "<leader>li", function()
 			local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
 			local msgs = vim.diagnostic.get(bufnr)
-			local last, result = unpack({ "error", "" })
+			local last, result = "error", ""
 			if ft == "lua" then
 				result = "---@diagnostic disable-next-line"
 			else
@@ -96,18 +107,18 @@ function X.set_default_on_buffer(client, bufnr)
 			end
 		end, "ignore warnings")
 	end
+
 	buf_set_keymap("n", "<leader>lI", ":LspInfo<CR>", "lsp info")
 	buf_set_keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "show signature")
 	buf_set_keymap("n", "<leader>lE", vim.diagnostic.open_float, "show line diagnostics")
-	buf_set_keymap("n", "<leader>ll", function () require("lsp_lines").toggle() end, "virtual lines")
 	buf_set_keymap("n", "<leader>lt", function() LspToggle() end, "toggle lsp")
+	buf_set_keymap("n", "<Leader>ll", require("lsp_lines").toggle, "toggle lsp lines")
 	r.map_virtual({
 		{ "<leader>l", group = "lsp", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>lI", group = "lsp Info", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>ls", group = "show signature", icon = { icon = "󰅨", hl = "Constant" } },
 		{ "<leader>lE", group = "show line diagnostics", icon = { icon = "󰅰", hl = "Constant" } },
 		{ "<leader>lD", group = "show definition", icon = { icon = "", hl = "Constant" } },
-		{ "<leader>lD", group = "virtual lines", icon = { icon = "󱞽", hl = "Constant" } },
 		{ "<leader>/lr", group = "show references", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>ra", group = "code actions (range)", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>rr", group = "rename", icon = { icon = "", hl = "Constant" } },
@@ -115,6 +126,7 @@ function X.set_default_on_buffer(client, bufnr)
 		{ "<leader>lo", group = "document symbols", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>ld", group = "show declaration", icon = { icon = "", hl = "Constant" } },
 		{ "<leader>lt", group = "toggle lsp", icon = { icon = "", hl = "Constant" } },
+		{ "<leader>ll", group = "toggle lsp lines", icon = { icon = "󱞱", hl = "Constant" } },
 	})
 end
 

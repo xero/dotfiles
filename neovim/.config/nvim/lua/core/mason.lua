@@ -1,3 +1,13 @@
+-- ▄█▀▀▄ ▄█▀█ ▄█▀▀▄ ▄█ █ ▄█ ▄█▄ ▄█
+-- ▓█  █ ▓█▄  ▓█  █ ▓█ █ ▓█ ▓█ ▀ █
+-- ▓█  █ ▓█ ▄ ▓█  █ ▓█ █ ▓█ ▓█   █
+-- ▓█  █ ▓█▄█ ▀█▄▄▀ ▀█▄▀ ▓█ ▓█   █
+--
+-- ░ config from xero's dotfiles
+-- ▒ author: xero (x@xero.style)
+-- ▓ https://git.io/.files
+-- █ https://code.x-e.ro/dotfiles
+
 return {
 	"williamboman/mason.nvim",
 	build = ":MasonInstallAll",
@@ -11,7 +21,6 @@ return {
 			},
 		})
 		f.cmd("MasonInstallAll", function()
-
 			local function filter_missing_tools(tools)
 				local missing = {}
 				for _, tool in ipairs(tools) do
@@ -22,23 +31,18 @@ return {
 				return missing
 			end
 
-			vim.cmd('MasonUpdate')
+			vim.cmd("MasonUpdate")
 			local ensure_installed = {
 				"bash-language-server",
 				"black",
 				"clang-format",
-				"clangd",
-				"css-lsp",
+				"css-lsp cssls",
 				"dockerfile-language-server",
-				"eslint-lsp",
 				"html-lsp",
 				"intelephense",
-				"isort",
-				"jq",
 				"json-lsp",
 				"jsonlint",
 				"lua-language-server",
-				"php-cs-fixer",
 				"prettier",
 				"prettierd",
 				"python-lsp-server",
@@ -47,8 +51,6 @@ return {
 				"shellharden",
 				"shfmt",
 				"standardjs",
-				"stylelint",
-				"stylelint-lsp",
 				"stylua",
 				"tailwindcss-language-server",
 				"terraform-ls",
@@ -60,7 +62,7 @@ return {
 			}
 			local missing_tools = filter_missing_tools(ensure_installed)
 			if #missing_tools > 0 then
-				vim.cmd('MasonInstall ' .. table.concat(missing_tools, ' '))
+				vim.cmd("MasonInstall " .. table.concat(missing_tools, " "))
 			end
 		end, { desc = "install lsp tools" })
 	end,

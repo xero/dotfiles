@@ -1,3 +1,13 @@
+-- ▄█▀▀▄ ▄█▀█ ▄█▀▀▄ ▄█ █ ▄█ ▄█▄ ▄█
+-- ▓█  █ ▓█▄  ▓█  █ ▓█ █ ▓█ ▓█ ▀ █
+-- ▓█  █ ▓█ ▄ ▓█  █ ▓█ █ ▓█ ▓█   █
+-- ▓█  █ ▓█▄█ ▀█▄▄▀ ▀█▄▀ ▓█ ▓█   █
+--
+-- ░ config from xero's dotfiles
+-- ▒ author: xero (x@xero.style)
+-- ▓ https://git.io/.files
+-- █ https://code.x-e.ro/dotfiles
+
 return function(capabilities)
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -8,7 +18,6 @@ return function(capabilities)
 					select = {
 						"package.json",
 						".eslintrc",
-						"GitHub Action",
 						"prettierrc.json",
 					},
 				}),

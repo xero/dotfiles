@@ -1,3 +1,13 @@
+-- ▄█▀▀▄ ▄█▀█ ▄█▀▀▄ ▄█ █ ▄█ ▄█▄ ▄█
+-- ▓█  █ ▓█▄  ▓█  █ ▓█ █ ▓█ ▓█ ▀ █
+-- ▓█  █ ▓█ ▄ ▓█  █ ▓█ █ ▓█ ▓█   █
+-- ▓█  █ ▓█▄█ ▀█▄▄▀ ▀█▄▀ ▓█ ▓█   █
+--
+-- ░ config from xero's dotfiles
+-- ▒ author: xero (x@xero.style)
+-- ▓ https://git.io/.files
+-- █ https://code.x-e.ro/dotfiles
+
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	lazy = true,
@@ -30,12 +40,12 @@ return {
 		end
 		return {
 			headers = {
-				user = "   ",
-				assistant = "   ",
-				tool = "   ",
+				user = " ",
+				assistant = " ",
+				tool = " ",
 			},
 			github_token = token,
-			temperature = 0.2,
+			temperature = 0.1,
 			remember_as_sticky = true,
 			window = {
 				layout = "vertical",

@@ -1,3 +1,13 @@
+-- ▄█▀▀▄ ▄█▀█ ▄█▀▀▄ ▄█ █ ▄█ ▄█▄ ▄█
+-- ▓█  █ ▓█▄  ▓█  █ ▓█ █ ▓█ ▓█ ▀ █
+-- ▓█  █ ▓█ ▄ ▓█  █ ▓█ █ ▓█ ▓█   █
+-- ▓█  █ ▓█▄█ ▀█▄▄▀ ▀█▄▀ ▓█ ▓█   █
+--
+-- ░ config from xero's dotfiles
+-- ▒ author: xero (x@xero.style)
+-- ▓ https://git.io/.files
+-- █ https://code.x-e.ro/dotfiles
+
 return {
 	diagnostics = {
 		error       = " ",
@@ -135,9 +145,9 @@ return {
 		prof  = "󰄉 ",
 		quit  = "󰭿 ",
 		start = " ",
-		msgs  = " ",
-		plug = "  ",
-
+		plug  = " ",
+		spell = "",
+		wrap  = "󰖶",
 		chunk = {
 			corner_top    = "┌",
 			corner_bottom = "└",

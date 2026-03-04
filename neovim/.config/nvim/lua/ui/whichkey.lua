@@ -1,3 +1,13 @@
+-- ▄█▀▀▄ ▄█▀█ ▄█▀▀▄ ▄█ █ ▄█ ▄█▄ ▄█
+-- ▓█  █ ▓█▄  ▓█  █ ▓█ █ ▓█ ▓█ ▀ █
+-- ▓█  █ ▓█ ▄ ▓█  █ ▓█ █ ▓█ ▓█   █
+-- ▓█  █ ▓█▄█ ▀█▄▄▀ ▀█▄▀ ▓█ ▓█   █
+--
+-- ░ config from xero's dotfiles
+-- ▒ author: xero (x@xero.style)
+-- ▓ https://git.io/.files
+-- █ https://code.x-e.ro/dotfiles
+
 return {
 	"folke/which-key.nvim",
 	keys = { "<leader>" },
@@ -13,6 +23,7 @@ return {
 			triggers = {
 				{ "<auto>", mode = "nixsotc" },
 				{ "a", mode = { "n", "v" } },
+				{ "s", mode = { "n", "v" } },
 			},
 		})
 	end,

@@ -1,9 +1,16 @@
+-- ▄█▀▀▄ ▄█▀█ ▄█▀▀▄ ▄█ █ ▄█ ▄█▄ ▄█
+-- ▓█  █ ▓█▄  ▓█  █ ▓█ █ ▓█ ▓█ ▀ █
+-- ▓█  █ ▓█ ▄ ▓█  █ ▓█ █ ▓█ ▓█   █
+-- ▓█  █ ▓█▄█ ▀█▄▄▀ ▀█▄▀ ▓█ ▓█   █
+--
+-- ░ config from xero's dotfiles
+-- ▒ author: xero (x@xero.style)
+-- ▓ https://git.io/.files
+-- █ https://code.x-e.ro/dotfiles
+
 return {
 	'tadaa/vimade',
 	event = "VeryLazy",
-  cond = function()
-    return not vim.g.neovide
-  end,
 	opts = {
 		ncmode = "buffers",
 		recipe = { "duo", {
@@ -11,7 +18,7 @@ return {
 			fadelevel = 0.98, -- 0 hidden / 1 opaque.
 		} },
 		tint = {
-			bg = {rgb={0,0,0}, intensity=0.15}, -- +15% black bg
+			bg = {rgb={0,0,0}, intensity=0.15}, -- +40% black bg
 		},
 		blocklist = {
 			default = {

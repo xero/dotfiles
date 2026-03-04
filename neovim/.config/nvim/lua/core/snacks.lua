@@ -1,4 +1,13 @@
----@diagnostic disable undefined global
+-- ▄█▀▀▄ ▄█▀█ ▄█▀▀▄ ▄█ █ ▄█ ▄█▄ ▄█
+-- ▓█  █ ▓█▄  ▓█  █ ▓█ █ ▓█ ▓█ ▀ █
+-- ▓█  █ ▓█ ▄ ▓█  █ ▓█ █ ▓█ ▓█   █
+-- ▓█  █ ▓█▄█ ▀█▄▄▀ ▀█▄▀ ▓█ ▓█   █
+--
+-- ░ config from xero's dotfiles
+-- ▒ author: xero (x@xero.style)
+-- ▓ https://git.io/.files
+-- █ https://code.x-e.ro/dotfiles
+
 local i = require("utils.icons")
 return {
 	"folke/snacks.nvim",
@@ -114,96 +123,96 @@ return {
 					vim.api.nvim_set_hl(0, "SnacksDashboardSpecial", { fg = colors.penpen, bg = colors.melchior, bold = true })
 					vim.api.nvim_set_hl(0, "SnacksDashboardFade", { fg = colors.melchior })
 					return { {
-							text = {
-								{ "           " .. i.snacks.new .. "  ", hl = "SnacksDashboardIcon" },
-								{ "new file", hl = "SnacksDashboardDesc", width = 45 },
-								{ "░▒▓", hl = "SnacksDashboardFade" },
-								{ " i ", hl = "SnacksDashboardKey" },
-								{ "▓▒░", hl = "SnacksDashboardFade" },
-							},
-							action = ":ene | startinsert",
-							key = "i",
-						}, {
-							text = {
-								{ "           " .. i.snacks.old .. "  ", hl = "SnacksDashboardIcon" },
-								{ "old files", hl = "SnacksDashboardDesc", width = 45 },
-								{ "░▒▓", hl = "SnacksDashboardFade" },
-								{ " o ", hl = "SnacksDashboardKey" },
-								{ "▓▒░", hl = "SnacksDashboardFade" },
-							},
-							action = ":Telescope oldfiles",
-							key = "o",
-						}, {
-							text = {
-								{ "           " .. i.snacks.findf .. "  ", hl = "SnacksDashboardIcon" },
-								{ "find file", hl = "SnacksDashboardDesc", width = 45 },
-								{ "░▒▓", hl = "SnacksDashboardFade" },
-								{ " f ", hl = "SnacksDashboardKey" },
-								{ "▓▒░", hl = "SnacksDashboardFade" },
-							},
-							action = ":Telescope file_browser",
-							key = "f",
-						}, {
-							text = {
-								{ "           " .. i.snacks.findt .. "  ", hl = "SnacksDashboardIcon" },
-								{ "find text", hl = "SnacksDashboardDesc", width = 45 },
-								{ "░▒▓", hl = "SnacksDashboardFade" },
-								{ " \\ ", hl = "SnacksDashboardKey" },
-								{ "▓▒░", hl = "SnacksDashboardFade" },
-							},
-							action = ":LiveGrep",
-							key = "\\",
-						}, {
-							text = {
-								{ "           " .. i.snacks.git .. "  ", hl = "SnacksDashboardIcon" },
-								{ "browse git", hl = "SnacksDashboardDesc", width = 45 },
-								{ "░▒▓", hl = "SnacksDashboardFade" },
-								{ " g ", hl = "SnacksDashboardKey" },
-								{ "▓▒░", hl = "SnacksDashboardFade" },
-							},
-							action = ":Flog",
-							key = "g",
-						}, {
-							text = {
-								{ "           " .. i.snacks.lazy .. "  ", hl = "SnacksDashboardIcon" },
-								{ "lazy", hl = "SnacksDashboardDesc", width = 45 },
-								{ "░▒▓", hl = "SnacksDashboardFade" },
-								{ " l ", hl = "SnacksDashboardKey" },
-								{ "▓▒░", hl = "SnacksDashboardFade" },
-							},
-							action = ":Lazy",
-							key = "l",
-						}, {
-							text = {
-								{ "           " .. i.snacks.mason .. "  ", hl = "SnacksDashboardIcon" },
-								{ "mason", hl = "SnacksDashboardDesc", width = 45 },
-								{ "░▒▓", hl = "SnacksDashboardFade" },
-								{ " m ", hl = "SnacksDashboardKey" },
-								{ "▓▒░", hl = "SnacksDashboardFade" },
-							},
-							action = ":Mason",
-							key = "m",
-						}, {
-							text = {
-								{ "           " .. i.snacks.prof .. "  ", hl = "SnacksDashboardIcon" },
-								{ "profile", hl = "SnacksDashboardDesc", width = 45 },
-								{ "░▒▓", hl = "SnacksDashboardFade" },
-								{ " p ", hl = "SnacksDashboardKey" },
-								{ "▓▒░", hl = "SnacksDashboardFade" },
-							},
-							action = ":Lazy profile",
-							key = "p",
-						}, {
-							text = {
-								{ "           " .. i.snacks.quit .. "  ", hl = "SnacksDashboardIcon" },
-								{ "quit", hl = "SnacksDashboardDesc", width = 45 },
-								{ "░▒▓", hl = "SnacksDashboardFade" },
-								{ " q ", hl = "SnacksDashboardKey" },
-								{ "▓▒░", hl = "SnacksDashboardFade" },
-							},
-							action = ":qa",
-							key = "q",
+						text = {
+							{ "           " .. i.snacks.new .. "  ", hl = "SnacksDashboardIcon" },
+							{ "new file", hl = "SnacksDashboardDesc", width = 45 },
+							{ "░▒▓", hl = "SnacksDashboardFade" },
+							{ " i ", hl = "SnacksDashboardKey" },
+							{ "▓▒░", hl = "SnacksDashboardFade" },
 						},
+						action = ":ene | startinsert",
+						key = "i",
+					}, {
+						text = {
+							{ "           " .. i.snacks.old .. "  ", hl = "SnacksDashboardIcon" },
+							{ "old files", hl = "SnacksDashboardDesc", width = 45 },
+							{ "░▒▓", hl = "SnacksDashboardFade" },
+							{ " o ", hl = "SnacksDashboardKey" },
+							{ "▓▒░", hl = "SnacksDashboardFade" },
+						},
+						action = ":Telescope oldfiles",
+						key = "o",
+					}, {
+						text = {
+							{ "           " .. i.snacks.findf .. "  ", hl = "SnacksDashboardIcon" },
+							{ "find file", hl = "SnacksDashboardDesc", width = 45 },
+							{ "░▒▓", hl = "SnacksDashboardFade" },
+							{ " f ", hl = "SnacksDashboardKey" },
+							{ "▓▒░", hl = "SnacksDashboardFade" },
+						},
+						action = ":Telescope file_browser",
+						key = "f",
+					}, {
+						text = {
+							{ "           " .. i.snacks.findt .. "  ", hl = "SnacksDashboardIcon" },
+							{ "find text", hl = "SnacksDashboardDesc", width = 45 },
+							{ "░▒▓", hl = "SnacksDashboardFade" },
+							{ " \\ ", hl = "SnacksDashboardKey" },
+							{ "▓▒░", hl = "SnacksDashboardFade" },
+						},
+						action = ":LiveGrep",
+						key = "\\",
+					}, {
+						text = {
+							{ "           " .. i.snacks.git .. "  ", hl = "SnacksDashboardIcon" },
+							{ "browse git", hl = "SnacksDashboardDesc", width = 45 },
+							{ "░▒▓", hl = "SnacksDashboardFade" },
+							{ " g ", hl = "SnacksDashboardKey" },
+							{ "▓▒░", hl = "SnacksDashboardFade" },
+						},
+						action = ":Flog",
+						key = "g",
+					}, {
+						text = {
+							{ "           " .. i.snacks.lazy .. "  ", hl = "SnacksDashboardIcon" },
+							{ "lazy", hl = "SnacksDashboardDesc", width = 45 },
+							{ "░▒▓", hl = "SnacksDashboardFade" },
+							{ " l ", hl = "SnacksDashboardKey" },
+							{ "▓▒░", hl = "SnacksDashboardFade" },
+						},
+						action = ":Lazy",
+						key = "l",
+					}, {
+						text = {
+							{ "           " .. i.snacks.mason .. "  ", hl = "SnacksDashboardIcon" },
+							{ "mason", hl = "SnacksDashboardDesc", width = 45 },
+							{ "░▒▓", hl = "SnacksDashboardFade" },
+							{ " m ", hl = "SnacksDashboardKey" },
+							{ "▓▒░", hl = "SnacksDashboardFade" },
+						},
+						action = ":Mason",
+						key = "m",
+					}, {
+						text = {
+							{ "           " .. i.snacks.prof .. "  ", hl = "SnacksDashboardIcon" },
+							{ "profile", hl = "SnacksDashboardDesc", width = 45 },
+							{ "░▒▓", hl = "SnacksDashboardFade" },
+							{ " p ", hl = "SnacksDashboardKey" },
+							{ "▓▒░", hl = "SnacksDashboardFade" },
+						},
+						action = ":Lazy profile",
+						key = "p",
+					}, {
+						text = {
+							{ "           " .. i.snacks.quit .. "  ", hl = "SnacksDashboardIcon" },
+							{ "quit", hl = "SnacksDashboardDesc", width = 45 },
+							{ "░▒▓", hl = "SnacksDashboardFade" },
+							{ " q ", hl = "SnacksDashboardKey" },
+							{ "▓▒░", hl = "SnacksDashboardFade" },
+						},
+						action = ":qa",
+						key = "q",
+					},
 					}
 				end,
 			},
@@ -211,9 +220,9 @@ return {
 				{
 					section = "terminal",
 					cmd = "~/.config/nvim/lua/ui/nvim-logo -e",
-					height = 9,
+					height = 10,
 					width = 70,
-					padding = 2,
+					padding = 1,
 				},
 				-- {
 				-- 	section = "terminal",
@@ -240,31 +249,16 @@ return {
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "VeryLazy",
 			callback = function()
-				-- force refresh req'd
-				Snacks.dashboard.update()
-
 				_G.dd = function(...)
 					Snacks.debug.inspect(...)
 				end
 				_G.bt = function()
 					Snacks.debug.backtrace()
 				end
-				-- Override print to use snacks for `:=` command
-				-- :=Snacks.notifier.notify("hello",4)
+				-- override print to use snacks for `:=` command
 				vim.print = _G.dd
 
 				local r = require("utils.remaps")
-				r.map_virtual({
-					{
-					"<leader>U",
-					group = "snacks",
-					icon = { icon = i.snacks.snack, hl = "Constant" },
-					},{
-					"<leader>Um",
-					group = "message history",
-					icon = { icon = i.snacks.msgs, hl = "Constant" },
-					}
-				})
 				r.noremap("n", "<leader>Um", function()
 					Snacks.notifier.show_history()
 				end, "message history")
@@ -275,22 +269,29 @@ return {
 					off = 0,
 					on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2,
 				}):map("<leader>Uc")
-				Snacks.toggle.option("spell", { name = "Spelling" })
-					:map("<leader>s")
-				Snacks.toggle.option("wrap", { name = "Wrap" })
-					:map("<leader>w")
-				Snacks.toggle.option("relativenumber", { name = "Relative Number" })
-					:map("<leader>UL")
+				Snacks.toggle.option("spell", { name = "spelling" })
+						:map("<leader>s")
+				Snacks.toggle.option("wrap", { name = "wrap" })
+						:map("<leader>w")
+				Snacks.toggle.option("relativenumber", { name = "relative number" })
+						:map("<leader>UL")
 				Snacks.toggle.diagnostics()
-					:map("<leader>Ud")
+						:map("<leader>Ud")
 				Snacks.toggle.line_number()
-					:map("<leader>Ul")
+						:map("<leader>Ul")
 				Snacks.toggle.treesitter()
-					:map("<leader>UT")
+						:map("<leader>UT")
 				Snacks.toggle.inlay_hints()
-					:map("<leader>Uh")
+						:map("<leader>Uh")
 				Snacks.toggle.indent()
-					:map("<leader>Ug")
+						:map("<leader>Ug")
+				r.map_virtual({
+					{ "<leader>U", group = "snacks", icon = { icon = i.snacks.snack, hl = "Constant" } },
+					{ "<leader>s", group = "spell",  icon = { icon = i.snacks.spell, hl = "Constant" } },
+					{ "<leader>w", group = "wrap",   icon = { icon = i.snacks.wrap, hl = "Constant" } },
+					{ "<leader>U", group = "snacks", icon = { icon = i.snacks.snack, hl = "Constant" } },
+					{ "<leader>Um", group = "message history", icon = { icon = i.snacks.msgs, hl = "Constant" } }
+				})
 			end,
 		})
 	end,
