@@ -1,36 +1,31 @@
-#                 ██
-#  ██████  ██████░██
-# ░░░░██  ██░░░░ ░██████
-#    ██  ░░█████ ░██░░░██
-#   ██    ░░░░░██░██  ░██
-#  ██████ ██████ ░██  ░██
-# ░░░░░░ ░░░░░░  ░░   ░░
+# █▀▀██ ▄█▀█ ▄█ █ ▄█▀█ ▄█   ▄█
+#   ▄█▀ ▓█▄▄ ▓█ █ ▓█▄  ▓█   ▓█
+# ▄█▀   ▄ ██ ▓█▀█ ▓█ ▄ ▓█ ▄ ▓█ ▄
+# ▓█▄▄█ ▓▄█▀ ▓█ █ ▓█▄█ ▓█▄█ ▓█▄█
 #
-#  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.style>
-# ░▓ code   ▓ https://code.x-e.ro/dotfiles
-# ░▓ mirror ▓ https://git.io/.files
-# ░▓▓▓▓▓▓▓▓▓▓
-# ░░░░░░░░░░
-#
+# ░ config from xero's dotfiles
+# ▒ author: xero (x@xero.style)
+# ▓ https://git.io/.files
+# █ https://code.x-e.ro/dotfiles
+
 #█▓▒░ autocompletion systems
 loc=${ZDOTDIR:-"$HOME/.config/zsh"}
-fpath=($loc/completion /usr/local/share/zsh/site-functions $fpath)
-
+fpath=($loc/completion $fpath)
 autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}"/zsh/zcompdump-"$ZSH_VERSION"
+autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
-! whence -w _aws >/dev/null &&
-  [[ $commands[aws_completer] ]] && complete -C $(which aws_completer) aws
+#█▓▒░ sources
+! whence -w _aws >/dev/null && [[ $commands[aws_completer] ]] &&
+	complete -C $(which aws_completer) aws
 
-! whence -w _gh >/dev/null &&
-  [[ $commands[gh] ]] && source <(gh completion -s zsh)
+! whence -w _gh >/dev/null && [[ $commands[gh] ]] &&
+	source <(gh completion -s zsh)
 
-! whence -w _fzf >/dev/null &&
-  [[ $commands[fzf] ]] && source <(fzf --zsh)
+! whence -w _fzf >/dev/null && [[ $commands[fzf] ]] &&
+	source <(fzf --zsh)
 
-! whence -w _kubectl >/dev/null &&
-  [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+! whence -w _kubectl >/dev/null && [[ $commands[kubectl] ]] &&
+	source <(kubectl completion zsh)
 
 #█▓▒░ style
 zstyle ':completion:*' auto-description 'specify: %d'

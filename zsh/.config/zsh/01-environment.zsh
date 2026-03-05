@@ -1,26 +1,21 @@
-#                 ██
-#  ██████  ██████░██
-# ░░░░██  ██░░░░ ░██████
-#    ██  ░░█████ ░██░░░██
-#   ██    ░░░░░██░██  ░██
-#  ██████ ██████ ░██  ░██
-# ░░░░░░ ░░░░░░  ░░   ░░
+# █▀▀██ ▄█▀█ ▄█ █ ▄█▀█ ▄█   ▄█
+#   ▄█▀ ▓█▄▄ ▓█ █ ▓█▄  ▓█   ▓█
+# ▄█▀   ▄ ██ ▓█▀█ ▓█ ▄ ▓█ ▄ ▓█ ▄
+# ▓█▄▄█ ▓▄█▀ ▓█ █ ▓█▄█ ▓█▄█ ▓█▄█
 #
-#  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.style>
-# ░▓ code   ▓ https://code.x-e.ro/dotfiles
-# ░▓ mirror ▓ https://git.io/.files
-# ░▓▓▓▓▓▓▓▓▓▓
-# ░░░░░░░░░░
+# ░ config from xero's dotfiles
+# ▒ author: xero (x@xero.style)
+# ▓ https://git.io/.files
+# █ https://code.x-e.ro/dotfiles
 
-#█▓▒░ setup
-hash -d src=~/.local/src
-hash -d dotfiles=~/.local/src/dotfiles
 export UI_THEME="EVANGELION" # MIASMA | SOURCERER
+hash -d src="$HOME/.local/src"
+hash -d dotfiles="$HOME/.local/src/dotfiles"
 
 #█▓▒░ clean home
 export XDG_CONFIG_HOME="$HOME"/.config
 export NAVE_DIR="$HOME"/.local/lib/nodejs
+export CARGO_HOME="$HOME"/.local/lib/cargo
 export RUSTUP_HOME="$HOME"/.local/lib/rustup
 export GOPATH="$HOME"/.local/lib/go
 export XDG_DATA_HOME="$HOME"/.local/share
@@ -42,11 +37,14 @@ export TFENV="$XDG_DATA_HOME"/terraform
 #█▓▒░ paths
 PATH="/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$PATH"
 EXTRA=(
+	"$CARGO_HOME/bin"
   "$GOPATH/bin"
   "$NPM_CONFIG_PREFIX/bin"
   "$TFENV/bin"
   "$XDG_DATA_HOME/nvim/mason/bin"
   "/usr/local/opt/coreutils/libexec/gnubin"
+	"/opt/homebrew/opt/coreutils/libexec/gnubin"
+	"$HOME/Library/Python/3.14/bin"
 )
 for dir in "${EXTRA[@]}"; do
   [[ -d "$dir" ]] && PATH="$dir:$PATH"
@@ -92,3 +90,8 @@ export MOSH_TITLE_NOPREFIX=1
 #█▓▒░ gpg cli in the tty
 GPG_TTY=$(tty)
 export GPG_TTY
+
+#█▓▒░ mac docker
+if [[ "$OSTYPE" == darwin* ]]; then
+	export DOCKER_HOST="unix:/$HOME/.config/colima/_lima/colima/ha.sock"
+fi

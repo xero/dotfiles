@@ -1,18 +1,13 @@
-#                 ██
-#  ██████  ██████░██
-# ░░░░██  ██░░░░ ░██████
-#    ██  ░░█████ ░██░░░██
-#   ██    ░░░░░██░██  ░██
-#  ██████ ██████ ░██  ░██
-# ░░░░░░ ░░░░░░  ░░   ░░
+# █▀▀██ ▄█▀█ ▄█ █ ▄█▀█ ▄█   ▄█
+#   ▄█▀ ▓█▄▄ ▓█ █ ▓█▄  ▓█   ▓█
+# ▄█▀   ▄ ██ ▓█▀█ ▓█ ▄ ▓█ ▄ ▓█ ▄
+# ▓█▄▄█ ▓▄█▀ ▓█ █ ▓█▄█ ▓█▄█ ▓█▄█
 #
-#  ▓▓▓▓▓▓▓▓▓▓
-# ░▓ author ▓ xero <x@xero.style>
-# ░▓ code   ▓ https://code.x-e.ro/dotfiles
-# ░▓ mirror ▓ https://git.io/.files
-# ░▓▓▓▓▓▓▓▓▓▓
-# ░░░░░░░░░░
-#
+# ░ config from xero's dotfiles
+# ▒ author: xero (x@xero.style)
+# ▓ https://git.io/.files
+# █ https://code.x-e.ro/dotfiles
+
 #█▓▒░ source: https://github.com/imkira/dotfiles/blob/master/.zsh/colored-man-pages.zsh
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;38;5;74m'
