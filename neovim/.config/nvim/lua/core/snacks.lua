@@ -21,7 +21,10 @@ return {
 		explorer = { enabled = false },
 		quickfile = { enabled = true },
 		input = { enabled = true },
-		picker = { enabled = true },
+		picker = {
+			enabled = false,
+			-- ui_select = true,
+		},
 		animate = { enabled = true },
 		notifier = {
 			enabled = true,
@@ -286,10 +289,10 @@ return {
 				Snacks.toggle.indent()
 						:map("<leader>Ug")
 				r.map_virtual({
-					{ "<leader>U", group = "snacks", icon = { icon = i.snacks.snack, hl = "Constant" } },
-					{ "<leader>s", group = "spell",  icon = { icon = i.snacks.spell, hl = "Constant" } },
-					{ "<leader>w", group = "wrap",   icon = { icon = i.snacks.wrap, hl = "Constant" } },
-					{ "<leader>U", group = "snacks", icon = { icon = i.snacks.snack, hl = "Constant" } },
+					{ "<leader>U",  group = "snacks",          icon = { icon = i.snacks.snack, hl = "Constant" } },
+					{ "<leader>s",  group = "spell",           icon = { icon = i.snacks.spell, hl = "Constant" } },
+					{ "<leader>w",  group = "wrap",            icon = { icon = i.snacks.wrap, hl = "Constant" } },
+					{ "<leader>U",  group = "snacks",          icon = { icon = i.snacks.snack, hl = "Constant" } },
 					{ "<leader>Um", group = "message history", icon = { icon = i.snacks.msgs, hl = "Constant" } }
 				})
 			end,

@@ -46,6 +46,9 @@ vim.opt.fillchars = { vert = "▒" }
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+-- shadowed borders
+vim.o.winborder = "shadow"
+
 -- custom tabline
 local noname = "[unnamed]"
 

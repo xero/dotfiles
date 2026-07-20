@@ -38,7 +38,6 @@ return {
 			text = icons.diagnostics.information,
 			texthl = "DiagnosticSignInfo",
 		})
-		vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
 
 		-- Global on_attach via autocmd (replaces per-server on_attach)
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -74,10 +73,6 @@ return {
 		}
 		vim.diagnostic.config(diag_config)
 
-		local border = { border = "shadow" }
-		vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, border)
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, border)
-
 		-- Global LSP defaults (replaces lspconfig.util.default_config merge)
 		vim.lsp.config("*", {
 			capabilities = vim.lsp.protocol.make_client_capabilities(),
@@ -87,10 +82,11 @@ return {
 			},
 		})
 
+		require("lsp.eslint")()
 		require("lsp.bashls")
 		require("lsp.jsonls")
+		require("lsp.tailwindcss")
 		local simple_servers = {
-			"tailwindcss",
 			"ts_ls",
 			"dockerls",
 			"html",
@@ -124,7 +120,43 @@ return {
 			save_in_cmdline_history = false,
 			input_buffer_type = "snacks",
 		})
-		require("spellwarn").setup()
+		require("spellwarn").setup(
+			{
+				event = { -- event(s) to refresh diagnostics on
+					"CursorHold",
+					"InsertLeave",
+					"TextChanged",
+					"TextChangedI",
+					"TextChangedP",
+				},
+				max_file_size = nil, -- maximum file size to check in lines (nil for no limit)
+				suggest = false, -- show spelling suggestions in diagnostic message
+				num_suggest = 3, -- number of suggestions shown in diagnostic message
+
+				bt_config = {
+					[""] = true,
+				},
+				bt_default = false,
+
+				ft_config = {
+					alpha = false,
+					help = false,
+					lazy = false,
+					lspinfo = false,
+					mason = false,
+				},
+				ft_default = true,
+
+				diagnostic_opts = { severity_sort = true },
+				severity = {
+					-- severity for each spelling error type (false to disable diagnostics for that type)
+					spellbad = { level = "WARN", prefix = "Unknown Word: ", suffix = "" },
+					spellcap = { level = "HINT", prefix = "Missing capital: ", suffix = "" },
+					spelllocal = { level = "HINT", prefix = "Word Localization: ", suffix = "" },
+					spellrare = { level = "INFO", prefix = "Rare Word: ", suffix = "" },
+				}
+			}
+		)
 		require("diagflow").setup({
 			enable = true,
 			max_width = 60,

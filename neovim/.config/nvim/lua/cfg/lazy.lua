@@ -34,7 +34,7 @@ require("lazy").setup({
 		require("core.match"),
 		require("core.fzf"),
 		require("core.git"),
-		require("core.copilot"),
+		require("core.claude"),
 		require("core.dadbod"),
 		require("core.treesj"),
 		require("ui.signs"),

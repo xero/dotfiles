@@ -9,7 +9,7 @@
 -- █ https://code.x-e.ro/dotfiles
 
 -- security
-vim.opt.modelines = 0
+-- vim.opt.modelines = 0
 
 -- set leader key to comma
 vim.g.mapleader = ","
