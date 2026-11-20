@@ -14,56 +14,37 @@
 # cc0 mmxxiii xero (https://x-e.ro | https://git.io/.files)
 
 set -eu
-shopt -s extglob
+# stdin or files; the trailing x stops $() from eating trailing newlines
+buf=$(cat -- "$@"; printf x)
+buf=${buf%x}
 
-# get data either from stdin or from a file
-buf=$(cat -- "$@")
+has() { command -v "$1" >/dev/null; }
+out() { printf %s "$buf"; }
 
-# bin test
-installed() {
-	type "$1" &>/dev/null
-}
-
-# check for local clipboards
-copy_backend=""
-if installed pbcopy; then
-	copy_backend="pbcopy"
-elif installed reattach-to-user-namespace; then
-	copy_backend="reattach-to-user-namespace pbcopy"
-elif [ -n "${DISPLAY-}" ] && installed xsel; then
-	copy_backend="xsel -i"
-elif [ -n "${DISPLAY-}" ] && installed xclip; then
-	copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
-elif [ -n "${copy_backend_remote_tunnel_port-}" ] && [ "$(ss -n -4 state listening "( sport = $copy_backend_remote_tunnel_port )" | tail -n +2 | wc -l)" -eq 1 ]; then
-	copy_backend="nc localhost $copy_backend_remote_tunnel_port"
-fi
-# if copy backend is resolved, copy to local clipboard
-[ -n "$copy_backend" ] && printf "%b" "$buf" | eval "$copy_backend"
-
-# copy via OSC 52 ANSI escape sequence to controlling terminal
-# https://sunaku.github.io/tmux-yank-osc52.html
-# The maximum length of an OSC 52 escape sequence is 100_000 bytes, of which
-# 7 bytes are occupied by a "\033]52;c;" header, 1 byte by a "\a" footer, and
-# 99_992 bytes by the base64-encoded result of 74_994 bytes of copyable text
-
-maxlen=74994
-buflen=$(printf %s "$buf" | wc -c)
-# warn if exceeds max
-if [ "$buflen" -gt "$maxlen" ]; then
-	printf "input is %d bytes too long, rip" "$((buflen - maxlen))" >&2
+#█▓▒░ local clipboards
+if has pbcopy; then
+	# pbcopy decodes stdin by locale, and a C locale turns utf-8 into mojibake
+	out | LC_ALL=en_US.UTF-8 pbcopy
+elif [ -n "${WAYLAND_DISPLAY-}" ] && has wl-copy; then
+	out | wl-copy
+elif [ -n "${DISPLAY-}" ] && has xclip; then
+	out | xclip -i -selection primary
+	out | xclip -i -selection clipboard
+elif [ -n "${DISPLAY-}" ] && has xsel; then
+	out | xsel -ip
+	out | xsel -ib
 fi
 
-# build OSC 52 ANSI escape sequence
-esc="\033]52;c;$(printf "%b" "$buf" | head -c $maxlen | base64 | tr -d '\r\n')\a"
+#█▓▒░ osc 52, reaches the terminal you're sitting at even over ssh/mosh
+# a 100_000 byte sequence leaves room for 74_994 bytes of text once base64'd
+max=74994
+len=$(out | wc -c)
+[ "$len" -gt "$max" ] && printf 'yank: %d bytes over the osc 52 limit, truncated\n' $((len - max)) >&2
 
-# multiplexin? update the eascape sequence
-if (tmux has-session 2>/dev/null); then
-	esc="\033Ptmux;\033$esc\033\\"
-	# send to all terminals \o/
-	for pts in /dev/pts/[0-9]; do
-		printf "%b" "$esc" >"$pts"
-	done
+if [ -n "${TMUX-}" ]; then
+	# tmux knows which client is attached and forwards it (needs set-clipboard on)
+	out | tmux load-buffer -w -
 else
-	# print that shiz raw
-	printf "%b" "$esc"
+	# the controlling tty, not stdout, so it still lands when stdout is a pipe
+	{ printf '\033]52;c;%s\a' "$(out | head -c $max | base64 | tr -d '\r\n')" >/dev/tty; } 2>/dev/null || :
 fi

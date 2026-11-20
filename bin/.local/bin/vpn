@@ -51,6 +51,7 @@ installed() {
 #█▓▒░ 1pw creds
 auth() {
 	account="$1"
+	eval "$(op signin)"
 	[[ -z "$account" ]] && account=$(op whoami | awk '/Email:/ {split($2, a, "@"); print a[1]}')
 	    host=$(op item get "$account vpn login" --format json | jq -r '.urls[0].href')
 	username=$(op item get "$account vpn login" --fields username)
@@ -71,11 +72,11 @@ setup() {
 	run="$tmp/vpn"
 	cat  << EOF > "$run"
 #!/bin/bash
-openconnect --timestamp --protocol=anyconnect --authgroup=$group $host
+openconnect --no-dtls --timestamp --protocol=anyconnect --authgroup=$group $host
 EOF
 	chmod +x "$run"
 	$vpnns_installed && \
-		sed -i 's/openconnect/openconnect -S -s "vpnns --attach"/' "$run"
+		sed -i '' 's/openconnect/openconnect -S -s "vpnns --attach"/' "$run"
 }
 
 #█▓▒░ cleanup
@@ -107,24 +108,6 @@ expect {
         expect "Password:"
         send "${otp}\n"
         exp_continue
-    }
-    "SSL connection failure: The TLS connection was non-properly terminated." {
-        log_user 1
-        send_user "Error: SSL connection failure.\n"
-        log_user 0
-        exit 1
-    }
-    "Failed to complete authentication" {
-        log_user 1
-        send_user "error ${rip}\nfailed to complete authentication.\n"
-        log_user 0
-        exit 1
-    }
-    "Got CONNECT response: HTTP/1.1 200 CONNECTED" {
-        log_user 1
-        send_user "\n\nvpn connected ${spook}\n"
-        log_user 0
-        # by not exiting here it allows the spawned process to continue running
     }
 }
 EOF
