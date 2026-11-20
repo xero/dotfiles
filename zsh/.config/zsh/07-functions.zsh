@@ -179,6 +179,16 @@ function nmap() {
 	fi
 }
 
+#█▓▒░ dos2unix all the things \o/
+d2u() {
+	local d="${1:-.}"
+	find "$d" \( -path '*/.git' -o -path '*/node_modules' \) -prune -o \
+		-type f -print0 | while IFS= read -rd '' f; do
+		file -b "$f" | grep -q text && dos2unix "$f"
+	done
+}
+
+
 #█▓▒░ 1password
 function 1pwaccount() {
 	domain="${3:-my}.1password.com"
@@ -222,6 +232,12 @@ function 1pweditfile() {
 }
 function 1pwurl() {
 	echo "$1" | sed 's/^.*i=//;s/\&.*$//'
+}
+
+function unixendings() {
+	find . \
+		\( -path './.git' -o -path './node_modules' -o -path '*/node_modules' \) -prune -o \
+		-type f -exec dos2unix {} \;
 }
 
 #█▓▒░ revive your drive

@@ -3,7 +3,7 @@ _sofancy() {
 	local state
 	_arguments -C \
 		'(-f)'{-f,--font}'[pick a fancy font]:font:->font' \
-		'(-tf)'{-tf,--titledfont}'[pick a fancy font display with name]:font:->font' \
+		'(-tf)-tf[pick a fancy font display with name]:font:->font' \
 		'(-t)'{-t,--titles}'[display font names]'\
 		'(-r)'{-r,--random}'[randomized font]'\
 		'(-c)'{-c,--completions}'[install shell completions]'\
@@ -17,6 +17,7 @@ _sofancy() {
 				'bent' \
 				'bolditalic' \
 				'bold' \
+				'cherokee' \
 				'circled' \
 				'currency' \
 				'cursive' \
@@ -24,13 +25,22 @@ _sofancy() {
 				'flip' \
 				'frakturbold' \
 				'fraktur' \
+				'gothic' \
 				'greek' \
+				'invertedcircled' \
 				'invertedsquares' \
 				'italic' \
 				'mirrorflip' \
 				'mirror' \
 				'mono' \
 				'neon' \
+				'parenthesized' \
+				'runic' \
+				'sans' \
+				'script' \
+				'serifbolditalic' \
+				'serifitalic' \
+				'smallcaps' \
 				'squares' \
 				'squiggle1' \
 				'squiggle2' \
@@ -41,6 +51,7 @@ _sofancy() {
 				'subscript' \
 				'superscript' \
 				'symbols' \
+				'tifinagh' \
 				'upperangle' \
 				'upsidedown' \
 				'wide'

@@ -27,6 +27,8 @@ autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSI
 ! whence -w _kubectl >/dev/null && [[ $commands[kubectl] ]] &&
 	source <(kubectl completion zsh)
 
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
 #█▓▒░ style
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate

@@ -20,4 +20,4 @@ if [[ -x ~/.local/bin/exorg ]]; then
 fi
 
 #█▓▒░ ssh & gpg keychain init
-eval "$(keychain --dir "$XDG_RUNTIME_DIR" --absolute -q --eval ~/.ssh/id_ed25519 0x0DA7AB45AC1D0000)"
+(( $+commands[keychain] )) && eval "$(keychain --dir "$XDG_RUNTIME_DIR" --absolute -q --eval ~/.ssh/id_ed25519 0x0DA7AB45AC1D0000)"

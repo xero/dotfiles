@@ -44,12 +44,18 @@ EXTRA=(
   "$XDG_DATA_HOME/nvim/mason/bin"
   "/usr/local/opt/coreutils/libexec/gnubin"
 	"/opt/homebrew/opt/coreutils/libexec/gnubin"
+	"/opt/homebrew/opt/grep/libexec/gnubin"
 	"$HOME/Library/Python/3.14/bin"
+	"$HOME/.bun/bin"
 )
 for dir in "${EXTRA[@]}"; do
   [[ -d "$dir" ]] && PATH="$dir:$PATH"
 done
 export PATH
+
+#█▓▒░ harness
+export CLAUDE_CODE_PLUGIN_DIRS="$XDG_STATE_HOME"/harness/release/plugin
+export PATH="$XDG_STATE_HOME"/harness/release/bin/shim:$PATH
 
 #█▓▒░ man
 export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
@@ -93,5 +99,15 @@ export GPG_TTY
 
 #█▓▒░ mac docker
 if [[ "$OSTYPE" == darwin* ]]; then
-	export DOCKER_HOST="unix:/$HOME/.config/colima/_lima/colima/ha.sock"
+	export DOCKER_HOST=unix://"$XDG_CONFIG_HOME"/colima/default/docker.sock
 fi
+
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=64000
+
+#█▓▒░ android sdk & jdk
+export JAVA_HOME="/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+export ANDROID_HOME="$XDG_DATA_HOME"/android/sdk
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+# Keep AVDs where Android Studio also looks on macOS, so the CLI and GUI share emulators.
+export ANDROID_USER_HOME="$HOME"/.android
+export PATH="$JAVA_HOME/bin:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
